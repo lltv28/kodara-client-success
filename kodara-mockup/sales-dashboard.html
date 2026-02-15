@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    button:focus, select:focus { outline: none; }
+    button { font-family: inherit; }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #fbfbfb;
+      --bg-tertiary: #f7f7f5;
+      --bg-hover: #f1f1ef;
+      --bg-active: #efefed;
+      --border: #e8e8e5;
+      --border-light: #f0f0ee;
+      --text-primary: #37352f;
+      --text-secondary: #6b6b6b;
+      --text-tertiary: #9b9b9b;
+      --text-light: #b4b4b4;
+      --accent-blue: #2383e2;
+      --accent-blue-light: #e8f0fe;
+      --accent-green: #0f7b6c;
+      --accent-green-light: #dbeddb;
+      --accent-red: #eb5757;
+      --accent-red-light: #ffe2dd;
+      --accent-yellow: #dfab01;
+      --accent-yellow-light: #fdecc8;
+      --accent-purple: #9065b0;
+      --accent-purple-light: #f3e8ff;
+      --accent-gray: #979a9b;
+      --accent-gray-light: #f1f1ef;
+      --sidebar-width: 248px;
+      --sidebar-collapsed-width: 0px;
+      --header-height: 44px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d8d8d8; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+    /* Layout */
+    .app-container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100%;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: width 0.2s ease, opacity 0.2s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 0;
+      border-right: none;
+    }
+
+    .sidebar-header {
+      padding: 10px 10px 6px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 44px;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-logo svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+
+    .sidebar-toggle {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: background 0.1s, opacity 0.15s;
+      opacity: 0;
+    }
+    .sidebar-header:hover .sidebar-toggle { opacity: 1; }
+    .sidebar-toggle:hover {
+      background: var(--bg-hover);
+      color: var(--text-secondary);
+    }
+
+    .sidebar-nav {
+      padding: 4px 8px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-section-label {
+      padding: 8px 8px 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: background 0.08s;
+      user-select: none;
+      white-space: nowrap;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      font-weight: 400;
+      min-height: 30px;
+    }
+    .nav-item:hover { background: var(--bg-hover); }
+    .nav-item.active {
+      background: var(--bg-active);
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .nav-item.active svg { opacity: 0.75; }
+
+    .nav-item .badge {
+      margin-left: auto;
+      background: var(--bg-hover);
+      color: var(--text-tertiary);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sidebar-footer {
+      padding: 8px 8px 12px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.08s;
+    }
+    .sidebar-user:hover { background: var(--bg-hover); }
+
+    .sidebar-user-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .sidebar-user-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .sidebar-user-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sidebar-user-role {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* Top Bar */
+    .topbar {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border-light);
+      flex-shrink: 0;
+      gap: 8px;
+    }
+
+    .topbar-expand-btn {
+      width: 28px;
+      height: 28px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      transition: background 0.1s;
+    }
+    .topbar-expand-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-secondary);
+    }
+    .sidebar.collapsed ~ .main-content .topbar-expand-btn {
+      display: flex;
+    }
+
+    .topbar-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+    .topbar-breadcrumb span:last-child {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .topbar-breadcrumb .separator {
+      font-size: 14px;
+      color: var(--text-light);
+      margin: 0 4px;
+    }
+
+    .topbar-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .topbar-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      font-size: 12px;
+      font-family: inherit;
+      transition: background 0.08s;
+    }
+    .topbar-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-secondary);
+    }
+    .topbar-btn svg { width: 16px; height: 16px; }
+
+    /* Page Content */
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 96px 60px;
+    }
+
+    .page-title {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    /* Filters Bar */
+    .filters-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .filter-btn {
+      padding: 5px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: inherit;
+      transition: background 0.08s, color 0.08s;
+      border-right: 1px solid var(--border);
+    }
+    .filter-btn:last-child { border-right: none; }
+    .filter-btn:hover { background: var(--bg-hover); }
+    .filter-btn.active {
+      background: var(--bg-active);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .filter-select {
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-primary);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
+      padding-right: 26px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239b9b9b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+    }
+    .filter-select:hover { background-color: var(--bg-hover); }
+    .filter-select:focus { border-color: var(--accent-blue); }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .metric-card {
+      padding: 20px 20px 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-primary);
+      transition: background 0.08s;
+    }
+    .metric-card:hover { background: var(--bg-tertiary); }
+
+    .metric-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-change {
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 6px;
+      color: var(--text-tertiary);
+    }
+    .metric-change.positive { color: var(--accent-green); }
+    .metric-change.negative { color: var(--accent-red); }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    /* Notion-style Database Table */
+    .db-table-wrapper {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .db-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .db-table thead th {
+      text-align: left;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-secondary);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .db-table thead th.sortable {
+      cursor: pointer;
+    }
+    .db-table thead th.sortable:hover {
+      background: var(--bg-hover);
+    }
+
+    .db-table tbody tr {
+      border-bottom: 1px solid var(--border-light);
+      transition: background 0.05s;
+    }
+    .db-table tbody tr:last-child { border-bottom: none; }
+    .db-table tbody tr:hover { background: var(--bg-tertiary); }
+
+    .db-table tbody td {
+      padding: 8px 12px;
+      color: var(--text-primary);
+      vertical-align: middle;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Rep Cell */
+    .rep-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rep-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .rep-info {}
+    .rep-name {
+      font-weight: 500;
+      color: var(--text-primary);
+      font-size: 13px;
+    }
+    .rep-title {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    /* Tags / Badges */
+    .stage-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .stage-lead { background: var(--accent-gray-light); color: var(--text-secondary); }
+    .stage-qualified { background: var(--accent-blue-light); color: var(--accent-blue); }
+    .stage-proposal { background: var(--accent-yellow-light); color: #9a6700; }
+    .stage-closed-won { background: var(--accent-green-light); color: var(--accent-green); }
+    .stage-closed-lost { background: var(--accent-red-light); color: var(--accent-red); }
+
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .rank-1 { background: #fdecc8; color: #9a6700; }
+    .rank-2 { background: #f1f1ef; color: var(--text-secondary); }
+    .rank-3 { background: #fce4d3; color: #a14e22; }
+    .rank-other { background: var(--bg-tertiary); color: var(--text-tertiary); }
+
+    /* Pipeline Columns */
+    .pipeline-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .pipeline-column {
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+      padding: 12px;
+      min-height: 200px;
+    }
+
+    .pipeline-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .pipeline-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pipeline-col-count {
+      font-size: 11px;
+      background: var(--bg-hover);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .pipeline-col-amount {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .pipeline-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      cursor: default;
+      transition: background 0.08s;
+    }
+    .pipeline-card:hover { background: var(--bg-tertiary); }
+
+    .pipeline-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .pipeline-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .pipeline-card-rep {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pipeline-card-rep img {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Activity Feed */
+    .activity-feed {
+      margin-bottom: 28px;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .activity-item:last-child { border-bottom: none; }
+
+    .activity-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .activity-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .activity-text {
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    .activity-text strong { font-weight: 600; }
+    .activity-text .amount { color: var(--accent-green); font-weight: 600; }
+    .activity-text .deal-name { font-weight: 500; }
+
+    .activity-time {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .activity-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    /* Leaderboard */
+    .leaderboard-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-light);
+      transition: background 0.08s;
+    }
+    .leaderboard-row:hover { background: var(--bg-tertiary); }
+    .leaderboard-row:last-child { border-bottom: none; }
+
+    .leaderboard-bar-container {
+      flex: 1;
+      height: 8px;
+      background: var(--bg-hover);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .leaderboard-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .leaderboard-amount {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      width: 90px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Two Column Layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .two-col-60-40 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .card-section {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .card-section-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .card-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .card-section-body {
+      padding: 0;
+    }
+
+    /* View-specific */
+    .view { display: none; }
+    .view.active { display: block; animation: fadeIn 0.15s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Progress bar for win rate */
+    .progress-bar-wrapper {
+      width: 80px;
+      height: 6px;
+      background: var(--bg-hover);
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-board { grid-template-columns: repeat(3, 1fr); }
+      .two-col, .two-col-60-40 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1100px) {
+      .page-content { padding: 24px 40px 60px; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { position: fixed; z-index: 100; height: 100%; }
+      .sidebar.collapsed { width: 0; }
+      .page-content { padding: 20px 16px 60px; }
+      .pipeline-board { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Sort arrow */
+    .sort-arrow {
+      display: inline-block;
+      margin-left: 3px;
+      font-size: 9px;
+      opacity: 0.5;
+    }
+
+    /* Divider */
+    .nav-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 6px 8px;
+    }
+
+    /* Empty indicator dot for stages */
+    .stage-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .dot-lead { background: #c4c4c4; }
+    .dot-qualified { background: #85b8e0; }
+    .dot-proposal { background: #d4b96a; }
+    .dot-closed-won { background: #6eb89c; }
+    .dot-closed-lost { background: #d4908d; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18"/>
+            <path d="M9 21V9"/>
+          </svg>
+          Sales Dashboard
+        </div>
+        <button class="sidebar-toggle" onclick="toggleSidebar()" title="Close sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="11 17 6 12 11 7"/>
+            <polyline points="18 17 13 12 18 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Views</div>
+        <button class="nav-item active" data-view="overview" onclick="switchView('overview', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Overview
+        </button>
+        <button class="nav-item" data-view="pipeline" onclick="switchView('pipeline', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Pipeline
+          <span class="badge" id="pipeline-badge">12</span>
+        </button>
+        <button class="nav-item" data-view="leaderboard" onclick="switchView('leaderboard', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          Leaderboard
+        </button>
+        <button class="nav-item" data-view="activity" onclick="switchView('activity', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Activity
+        </button>
+
+        <div class="nav-divider"></div>
+        <div class="nav-section-label">Team</div>
+        <button class="nav-item" data-view="reps" onclick="switchView('reps', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Team Members
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face" alt="User" class="sidebar-user-avatar">
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Sarah Chen</div>
+            <div class="sidebar-user-role">Sales Manager</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <div class="topbar">
+        <button class="topbar-expand-btn" onclick="toggleSidebar()" title="Open sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 17 18 12 13 7"/>
+            <polyline points="6 17 11 12 6 7"/>
+          </svg>
+        </button>
+        <div class="topbar-breadcrumb">
+          <span>Sales Dashboard</span>
+          <span class="separator">/</span>
+          <span id="breadcrumb-page">Overview</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="topbar-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button class="topbar-btn" title="Last synced: just now">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9"/></svg>
+            Synced
+          </button>
+        </div>
+      </div>
+
+      <!-- Page Content -->
+      <div class="page-content" id="page-content">
+
+        <!-- OVERVIEW VIEW -->
+        <div class="view active" id="view-overview">
+          <h1 class="page-title">Overview</h1>
+          <p class="page-subtitle">Sales team performance at a glance</p>
+
+          <!-- Filters -->
+          <div class="filters-bar">
+            <div class="filter-group" id="period-filter">
+              <button class="filter-btn" onclick="setPeriod('weekly', this)">Weekly</button>
+              <button class="filter-btn active" onclick="setPeriod('monthly', this)">Monthly</button>
+              <button class="filter-btn" onclick="setPeriod('quarterly', this)">Quarterly</button>
+            </div>
+            <select class="filter-select" id="rep-filter" onchange="filterByRep(this.value)">
+              <option value="all">All Reps</option>
+            </select>
+            <select class="filter-select" id="stage-filter" onchange="filterByStage(this.value)">
+              <option value="all">All Stages</option>
+              <option value="lead">Lead</option>
+              <option value="qualified">Qualified</option>
+              <option value="proposal">Proposal</option>
+              <option value="closed-won">Closed Won</option>
+              <option value="closed-lost">Closed Lost</option>
+            </select>
+          </div>
+
+          <!-- Metrics -->
+          <div class="metrics-grid" id="metrics-grid"></div>
+
+          <!-- Two Column: Leaderboard Preview + Activity -->
+          <div class="two-col-60-40">
+            <div class="card-section">
+              <div class="card-section-header">
+                <span class="card-section-title">Revenue by Rep</span>
+                <button class="topbar-btn" onclick="switchView('leaderboard', document.querySelector('.nav-item[data-view=leaderboard]'))">View all</button>
+              </div>
+              <div class="card-section-body" id="overview-leaderboard"></div>
+            </div>
+            <div class="card-section">
+              <div class="card-section-header">
+                <span class="card-section-title">Recent Activity</span>
+                <button class="topbar-btn" onclick="switchView('activity', document.querySelector('.nav-item[data-view=activity]'))">View all</button>
+              </div>
+              <div class="card-section-body" id="overview-activity" style="padding: 0 16px;"></div>
+            </div>
+          </div>
+
+          <!-- Pipeline Summary -->
+          <div class="card-section" style="margin-bottom: 28px;">
+            <div class="card-section-header">
+              <span class="card-section-title">Pipeline Summary</span>
+              <button class="topbar-btn" onclick="switchView('pipeline', document.querySelector('.nav-item[data-view=pipeline]'))">View all</button>
+            </div>
+            <div class="card-section-body">
+              <div id="overview-pipeline-table"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIPELINE VIEW -->
+        <div class="view" id="view-pipeline">
+          <h1 class="page-title">Pipeline</h1>
+          <p class="page-subtitle">Deal stages and progress</p>
+
+          <div class="filters-bar">
+            <select class="filter-select" id="pipeline-rep-filter" onchange="renderPipeline()">
+              <option value="all">All Reps</option>
+            </select>
+          </div>
+
+          <div class="pipeline-board" id="pipeline-board"></div>
+
+          <!-- Full deals table -->
+          <div class="section-header" style="margin-top: 16px;">
+            <span class="section-title">All Deals</span>
+          </div>
+          <div class="db-table-wrapper">
+            <table class="db-table" id="deals-table">
+              <thead>
+                <tr>
+                  <th class="sortable" onclick="sortDeals('name')">Deal <span class="sort-arrow" id="sort-name"></span></th>
+                  <th class="sortable" onclick="sortDeals('rep')">Rep <span class="sort-arrow" id="sort-rep"></span></th>
+                  <th class="sortable" onclick="sortDeals('amount')">Amount <span class="sort-arrow" id="sort-amount"></span></th>
+                  <th class="sortable" onclick="sortDeals('stage')">Stage <span class="sort-arrow" id="sort-stage"></span></th>
+                  <th>Close Date</th>
+                </tr>
+              </thead>
+              <tbody id="deals-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- LEADERBOARD VIEW -->
+        <div class="view" id="view-leaderboard">
+          <h1 class="page-title">Leaderboard</h1>
+          <p class="page-subtitle">Ranked performance by revenue closed</p>
+
+          <div class="filters-bar">
+            <div class="filter-group" id="lb-period-filter">
+              <button class="filter-btn" onclick="setLbPeriod('weekly', this)">Weekly</button>
+              <button class="filter-btn active" onclick="setLbPeriod('monthly', this)">Monthly</button>
+              <button class="filter-btn" onclick="setLbPeriod('quarterly', this)">Quarterly</button>
+            </div>
+          </div>
+
+          <div class="db-table-wrapper" style="margin-bottom: 28px;">
+            <div id="leaderboard-full"></div>
+          </div>
+
+          <!-- Rep Details Table -->
+          <div class="section-header">
+            <span class="section-title">Detailed Breakdown</span>
+          </div>
+          <div class="db-table-wrapper">
+            <table class="db-table" id="rep-details-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Rep</th>
+                  <th class="sortable" onclick="sortReps('revenue')">Revenue <span class="sort-arrow" id="rsort-revenue"></span></th>
+                  <th class="sortable" onclick="sortReps('deals')">Deals Won <span class="sort-arrow" id="rsort-deals"></span></th>
+                  <th class="sortable" onclick="sortReps('avgDeal')">Avg Deal <span class="sort-arrow" id="rsort-avgDeal"></span></th>
+                  <th class="sortable" onclick="sortReps('winRate')">Win Rate <span class="sort-arrow" id="rsort-winRate"></span></th>
+                  <th>Pipeline</th>
+                </tr>
+              </thead>
+              <tbody id="rep-details-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ACTIVITY VIEW -->
+        <div class="view" id="view-activity">
+          <h1 class="page-title">Activity</h1>
+          <p class="page-subtitle">Recent deals and pipeline movements</p>
+
+          <div class="filters-bar">
+            <select class="filter-select" id="activity-rep-filter" onchange="renderActivity()">
+              <option value="all">All Reps</option>
+            </select>
+          </div>
+
+          <div class="card-section">
+            <div class="card-section-body" id="activity-full" style="padding: 0 16px;"></div>
+          </div>
+        </div>
+
+        <!-- TEAM MEMBERS VIEW -->
+        <div class="view" id="view-reps">
+          <h1 class="page-title">Team Members</h1>
+          <p class="page-subtitle">Sales representatives and their roles</p>
+
+          <div class="db-table-wrapper">
+            <table class="db-table">
+              <thead>
+                <tr>
+                  <th>Rep</th>
+                  <th>Title</th>
+                  <th>Revenue (Monthly)</th>
+                  <th>Deals Won</th>
+                  <th>Win Rate</th>
+                  <th>Active Pipeline</th>
+                </tr>
+              </thead>
+              <tbody id="team-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+<script>
+// ================================================================
+// DATA LAYER — Hardcoded demo data structured for easy API swap
+// Replace fetchSalesData() with a real Google Sheets API call later
+// ================================================================
+
+function fetchSalesData() {
+  // This function simulates a data fetch.
+  // To swap in a real Sheets API: replace the return value with
+  // an async fetch to Google Sheets API v4 and map the response.
+  return {
+    reps: [
+      {
+        id: 'rep1',
+        name: 'Alex Rivera',
+        title: 'Senior Account Executive',
+        avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 28500, monthly: 124000, quarterly: 347000 },
+        dealsWon: { weekly: 2, monthly: 8, quarterly: 22 },
+        dealsLost: { weekly: 0, monthly: 2, quarterly: 5 },
+        pipelineValue: 186000,
+        pipelineCount: 6,
+      },
+      {
+        id: 'rep2',
+        name: 'Maya Patel',
+        title: 'Account Executive',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 34200, monthly: 156000, quarterly: 412000 },
+        dealsWon: { weekly: 3, monthly: 10, quarterly: 28 },
+        dealsLost: { weekly: 1, monthly: 3, quarterly: 7 },
+        pipelineValue: 210000,
+        pipelineCount: 8,
+      },
+      {
+        id: 'rep3',
+        name: 'Jordan Kim',
+        title: 'Senior Account Executive',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 18700, monthly: 98000, quarterly: 289000 },
+        dealsWon: { weekly: 1, monthly: 6, quarterly: 18 },
+        dealsLost: { weekly: 1, monthly: 4, quarterly: 8 },
+        pipelineValue: 145000,
+        pipelineCount: 5,
+      },
+      {
+        id: 'rep4',
+        name: 'Sam Okafor',
+        title: 'Account Executive',
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 22100, monthly: 87000, quarterly: 256000 },
+        dealsWon: { weekly: 2, monthly: 5, quarterly: 15 },
+        dealsLost: { weekly: 0, monthly: 3, quarterly: 9 },
+        pipelineValue: 134000,
+        pipelineCount: 7,
+      },
+      {
+        id: 'rep5',
+        name: 'Lily Chen',
+        title: 'Business Development Rep',
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 15300, monthly: 72000, quarterly: 198000 },
+        dealsWon: { weekly: 1, monthly: 4, quarterly: 12 },
+        dealsLost: { weekly: 1, monthly: 2, quarterly: 6 },
+        pipelineValue: 98000,
+        pipelineCount: 4,
+      },
+      {
+        id: 'rep6',
+        name: 'Marcus Johnson',
+        title: 'Senior Account Executive',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
+        revenue: { weekly: 41000, monthly: 178000, quarterly: 465000 },
+        dealsWon: { weekly: 3, monthly: 11, quarterly: 30 },
+        dealsLost: { weekly: 0, monthly: 2, quarterly: 4 },
+        pipelineValue: 225000,
+        pipelineCount: 9,
+      },
+    ],
+
+    deals: [
+      { id: 'd1', name: 'Acme Corp Platform License', rep: 'rep2', amount: 45000, stage: 'closed-won', closeDate: '2026-02-05' },
+      { id: 'd2', name: 'Globex Annual Renewal', rep: 'rep6', amount: 32000, stage: 'closed-won', closeDate: '2026-02-03' },
+      { id: 'd3', name: 'Initech Enterprise Suite', rep: 'rep1', amount: 68000, stage: 'proposal', closeDate: '2026-02-28' },
+      { id: 'd4', name: 'Wayne Industries Security', rep: 'rep6', amount: 125000, stage: 'qualified', closeDate: '2026-03-15' },
+      { id: 'd5', name: 'Stark Solutions Analytics', rep: 'rep2', amount: 54000, stage: 'proposal', closeDate: '2026-02-20' },
+      { id: 'd6', name: 'Umbrella Corp Data', rep: 'rep3', amount: 38000, stage: 'lead', closeDate: '2026-03-30' },
+      { id: 'd7', name: 'Cyberdyne Automation', rep: 'rep4', amount: 29000, stage: 'qualified', closeDate: '2026-02-25' },
+      { id: 'd8', name: 'Weyland-Yutani Cloud', rep: 'rep1', amount: 87000, stage: 'qualified', closeDate: '2026-03-10' },
+      { id: 'd9', name: 'Oscorp Biotech CRM', rep: 'rep5', amount: 42000, stage: 'lead', closeDate: '2026-04-01' },
+      { id: 'd10', name: 'LexCorp Digital', rep: 'rep3', amount: 56000, stage: 'proposal', closeDate: '2026-02-18' },
+      { id: 'd11', name: 'Tyrell Corp AI Suite', rep: 'rep6', amount: 95000, stage: 'proposal', closeDate: '2026-02-22' },
+      { id: 'd12', name: 'Soylent Green SaaS', rep: 'rep4', amount: 18000, stage: 'closed-lost', closeDate: '2026-01-30' },
+      { id: 'd13', name: 'Massive Dynamic Platform', rep: 'rep2', amount: 73000, stage: 'qualified', closeDate: '2026-03-05' },
+      { id: 'd14', name: 'Hooli Enterprise', rep: 'rep1', amount: 41000, stage: 'closed-won', closeDate: '2026-02-01' },
+      { id: 'd15', name: 'Pied Piper Compress', rep: 'rep5', amount: 22000, stage: 'lead', closeDate: '2026-04-15' },
+      { id: 'd16', name: 'Dunder Mifflin Digital', rep: 'rep3', amount: 15000, stage: 'closed-won', closeDate: '2026-01-28' },
+      { id: 'd17', name: 'Sterling Cooper Ads', rep: 'rep6', amount: 52000, stage: 'closed-won', closeDate: '2026-02-06' },
+      { id: 'd18', name: 'Prestige Worldwide SaaS', rep: 'rep4', amount: 34000, stage: 'lead', closeDate: '2026-03-20' },
+    ],
+
+    activities: [
+      { id: 'a1', rep: 'rep6', type: 'closed-won', deal: 'Sterling Cooper Ads', amount: 52000, time: '2 hours ago' },
+      { id: 'a2', rep: 'rep2', type: 'closed-won', deal: 'Acme Corp Platform License', amount: 45000, time: '5 hours ago' },
+      { id: 'a3', rep: 'rep6', type: 'stage-change', deal: 'Wayne Industries Security', from: 'Lead', to: 'Qualified', time: '8 hours ago' },
+      { id: 'a4', rep: 'rep1', type: 'stage-change', deal: 'Initech Enterprise Suite', from: 'Qualified', to: 'Proposal', time: '1 day ago' },
+      { id: 'a5', rep: 'rep3', type: 'closed-won', deal: 'Dunder Mifflin Digital', amount: 15000, time: '1 day ago' },
+      { id: 'a6', rep: 'rep4', type: 'closed-lost', deal: 'Soylent Green SaaS', amount: 18000, time: '2 days ago' },
+      { id: 'a7', rep: 'rep2', type: 'stage-change', deal: 'Massive Dynamic Platform', from: 'Lead', to: 'Qualified', time: '2 days ago' },
+      { id: 'a8', rep: 'rep6', type: 'closed-won', deal: 'Globex Annual Renewal', amount: 32000, time: '3 days ago' },
+      { id: 'a9', rep: 'rep5', type: 'stage-change', deal: 'Oscorp Biotech CRM', from: 'New', to: 'Lead', time: '3 days ago' },
+      { id: 'a10', rep: 'rep1', type: 'closed-won', deal: 'Hooli Enterprise', amount: 41000, time: '4 days ago' },
+      { id: 'a11', rep: 'rep6', type: 'stage-change', deal: 'Tyrell Corp AI Suite', from: 'Qualified', to: 'Proposal', time: '5 days ago' },
+      { id: 'a12', rep: 'rep3', type: 'stage-change', deal: 'LexCorp Digital', from: 'Qualified', to: 'Proposal', time: '5 days ago' },
+    ],
+  };
+}
+
+// ================================================================
+// APP STATE
+// ================================================================
+
+const data = fetchSalesData();
+let currentPeriod = 'monthly';
+let lbPeriod = 'monthly';
+let currentRepFilter = 'all';
+let currentStageFilter = 'all';
+let dealSortField = 'amount';
+let dealSortDir = 'desc';
+let repSortField = 'revenue';
+let repSortDir = 'desc';
+
+// ================================================================
+// HELPERS
+// ================================================================
+
+function fmt(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + (n / 1000).toFixed(0) + 'k';
+  return '$' + n.toLocaleString();
+}
+
+function fmtFull(n) {
+  return '$' + n.toLocaleString();
+}
+
+function pct(a, b) {
+  if (b === 0) return '0%';
+  return Math.round((a / b) * 100) + '%';
+}
+
+function getRepById(id) {
+  return data.reps.find(r => r.id === id);
+}
+
+function stageLabel(s) {
+  const m = { 'lead': 'Lead', 'qualified': 'Qualified', 'proposal': 'Proposal', 'closed-won': 'Closed Won', 'closed-lost': 'Closed Lost' };
+  return m[s] || s;
+}
+
+function stageClass(s) {
+  return 'stage-' + s;
+}
+
+function rankClass(i) {
+  if (i === 0) return 'rank-1';
+  if (i === 1) return 'rank-2';
+  if (i === 2) return 'rank-3';
+  return 'rank-other';
+}
+
+// Bar colors for leaderboard — muted, desaturated tones matching Notion
+const barColors = ['#91b4d5', '#8cb8b0', '#c5b87a', '#b5a0c4', '#cda0a0', '#a8abac'];
+
+// ================================================================
+// SIDEBAR / VIEW SWITCHING
+// ================================================================
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+}
+
+function switchView(viewId, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + viewId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  const names = { overview: 'Overview', pipeline: 'Pipeline', leaderboard: 'Leaderboard', activity: 'Activity', reps: 'Team Members' };
+  document.getElementById('breadcrumb-page').textContent = names[viewId] || viewId;
+
+  // Scroll to top
+  document.getElementById('page-content').scrollTop = 0;
+
+  // Re-render the view
+  if (viewId === 'overview') renderOverview();
+  if (viewId === 'pipeline') renderPipeline();
+  if (viewId === 'leaderboard') renderLeaderboard();
+  if (viewId === 'activity') renderActivity();
+  if (viewId === 'reps') renderTeam();
+}
+
+// ================================================================
+// FILTER HANDLERS
+// ================================================================
+
+function setPeriod(period, btn) {
+  currentPeriod = period;
+  document.querySelectorAll('#period-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderOverview();
+}
+
+function setLbPeriod(period, btn) {
+  lbPeriod = period;
+  document.querySelectorAll('#lb-period-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLeaderboard();
+}
+
+function filterByRep(val) {
+  currentRepFilter = val;
+  renderOverview();
+}
+
+function filterByStage(val) {
+  currentStageFilter = val;
+  renderOverview();
+}
+
+// ================================================================
+// RENDER: OVERVIEW
+// ================================================================
+
+function renderOverview() {
+  const period = currentPeriod;
+  let reps = data.reps;
+  if (currentRepFilter !== 'all') {
+    reps = reps.filter(r => r.id === currentRepFilter);
+  }
+
+  const totalRevenue = reps.reduce((s, r) => s + r.revenue[period], 0);
+  const totalDealsWon = reps.reduce((s, r) => s + r.dealsWon[period], 0);
+  const totalDealsLost = reps.reduce((s, r) => s + r.dealsLost[period], 0);
+  const avgDealSize = totalDealsWon > 0 ? Math.round(totalRevenue / totalDealsWon) : 0;
+  const winRate = (totalDealsWon + totalDealsLost) > 0 ? Math.round((totalDealsWon / (totalDealsWon + totalDealsLost)) * 100) : 0;
+  const pipelineValue = reps.reduce((s, r) => s + r.pipelineValue, 0);
+  const pipelineCount = reps.reduce((s, r) => s + r.pipelineCount, 0);
+
+  // Metrics
+  document.getElementById('metrics-grid').innerHTML = `
+    <div class="metric-card">
+      <div class="metric-label">Total Revenue</div>
+      <div class="metric-value">${fmt(totalRevenue)}</div>
+      <div class="metric-change positive">+12% vs last period</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Avg Deal Size</div>
+      <div class="metric-value">${fmt(avgDealSize)}</div>
+      <div class="metric-change positive">+5% vs last period</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Win Rate</div>
+      <div class="metric-value">${winRate}%</div>
+      <div class="metric-change ${winRate >= 65 ? 'positive' : 'negative'}">${winRate >= 65 ? 'Above' : 'Below'} target (65%)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Pipeline</div>
+      <div class="metric-value">${fmt(pipelineValue)}</div>
+      <div class="metric-change positive">${pipelineCount} deals in progress</div>
+    </div>
+  `;
+
+  // Overview Leaderboard
+  const sorted = [...data.reps].sort((a, b) => b.revenue[period] - a.revenue[period]);
+  const maxRev = sorted[0]?.revenue[period] || 1;
+  document.getElementById('overview-leaderboard').innerHTML = sorted.map((r, i) => `
+    <div class="leaderboard-row">
+      <span class="rank-badge ${rankClass(i)}">${i + 1}</span>
+      <div class="rep-cell" style="width: 160px;">
+        <img src="${r.avatar}" class="rep-avatar" alt="${r.name}">
+        <div class="rep-info">
+          <div class="rep-name">${r.name}</div>
+        </div>
+      </div>
+      <div class="leaderboard-bar-container">
+        <div class="leaderboard-bar" style="width: ${(r.revenue[period] / maxRev * 100)}%; background: ${barColors[i % barColors.length]};"></div>
+      </div>
+      <div class="leaderboard-amount">${fmtFull(r.revenue[period])}</div>
+    </div>
+  `).join('');
+
+  // Overview Activity (last 5)
+  const acts = data.activities.slice(0, 5);
+  document.getElementById('overview-activity').innerHTML = acts.map(a => renderActivityItem(a)).join('');
+
+  // Overview Pipeline Table
+  const stages = ['lead', 'qualified', 'proposal', 'closed-won', 'closed-lost'];
+  let filteredDeals = data.deals;
+  if (currentRepFilter !== 'all') filteredDeals = filteredDeals.filter(d => d.rep === currentRepFilter);
+  if (currentStageFilter !== 'all') filteredDeals = filteredDeals.filter(d => d.stage === currentStageFilter);
+
+  const stageRows = stages.map(s => {
+    const stageDeals = filteredDeals.filter(d => d.stage === s);
+    const total = stageDeals.reduce((sum, d) => sum + d.amount, 0);
+    return `<tr>
+      <td><span class="stage-dot dot-${s}"></span>${stageLabel(s)}</td>
+      <td>${stageDeals.length}</td>
+      <td>${fmtFull(total)}</td>
+      <td>${total > 0 ? fmt(Math.round(total / stageDeals.length)) : '-'}</td>
+    </tr>`;
+  });
+
+  document.getElementById('overview-pipeline-table').innerHTML = `
+    <table class="db-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Deals</th>
+          <th>Total Value</th>
+          <th>Avg Deal</th>
+        </tr>
+      </thead>
+      <tbody>${stageRows.join('')}</tbody>
+    </table>
+  `;
+}
+
+// ================================================================
+// RENDER: PIPELINE
+// ================================================================
+
+function renderPipeline() {
+  const repFilter = document.getElementById('pipeline-rep-filter').value;
+  let deals = data.deals;
+  if (repFilter !== 'all') deals = deals.filter(d => d.rep === repFilter);
+
+  const stages = ['lead', 'qualified', 'proposal', 'closed-won', 'closed-lost'];
+  const board = document.getElementById('pipeline-board');
+  board.innerHTML = stages.map(s => {
+    const stageDeals = deals.filter(d => d.stage === s);
+    const total = stageDeals.reduce((sum, d) => sum + d.amount, 0);
+    const cards = stageDeals.map(d => {
+      const rep = getRepById(d.rep);
+      return `<div class="pipeline-card">
+        <div class="pipeline-card-title">${d.name}</div>
+        <div class="pipeline-card-meta">
+          <span class="pipeline-card-rep">
+            <img src="${rep ? rep.avatar : ''}" alt="${rep ? rep.name : ''}">
+            ${rep ? rep.name.split(' ')[0] : ''}
+          </span>
+          <span>${fmtFull(d.amount)}</span>
+        </div>
+      </div>`;
+    }).join('');
+    return `<div class="pipeline-column">
+      <div class="pipeline-col-header">
+        <span class="pipeline-col-title"><span class="stage-dot dot-${s}"></span>${stageLabel(s)} <span class="pipeline-col-count">${stageDeals.length}</span></span>
+        <span class="pipeline-col-amount">${fmt(total)}</span>
+      </div>
+      ${cards}
+    </div>`;
+  }).join('');
+
+  // Deals table
+  renderDealsTable(deals);
+}
+
+function renderDealsTable(deals) {
+  if (!deals) {
+    const repFilter = document.getElementById('pipeline-rep-filter')?.value || 'all';
+    deals = repFilter !== 'all' ? data.deals.filter(d => d.rep === repFilter) : [...data.deals];
+  }
+
+  deals.sort((a, b) => {
+    let va, vb;
+    if (dealSortField === 'name') { va = a.name.toLowerCase(); vb = b.name.toLowerCase(); }
+    else if (dealSortField === 'rep') { va = getRepById(a.rep)?.name || ''; vb = getRepById(b.rep)?.name || ''; }
+    else if (dealSortField === 'amount') { va = a.amount; vb = b.amount; }
+    else if (dealSortField === 'stage') { va = a.stage; vb = b.stage; }
+    else { va = a[dealSortField]; vb = b[dealSortField]; }
+    if (typeof va === 'string') return dealSortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+    return dealSortDir === 'asc' ? va - vb : vb - va;
+  });
+
+  // Sort arrows
+  ['name', 'rep', 'amount', 'stage'].forEach(f => {
+    const el = document.getElementById('sort-' + f);
+    if (el) el.textContent = dealSortField === f ? (dealSortDir === 'asc' ? '▲' : '▼') : '';
+  });
+
+  document.getElementById('deals-tbody').innerHTML = deals.map(d => {
+    const rep = getRepById(d.rep);
+    return `<tr>
+      <td style="font-weight: 500;">${d.name}</td>
+      <td>
+        <div class="rep-cell">
+          <img src="${rep ? rep.avatar : ''}" class="rep-avatar" alt="">
+          <span>${rep ? rep.name : ''}</span>
+        </div>
+      </td>
+      <td>${fmtFull(d.amount)}</td>
+      <td><span class="stage-tag ${stageClass(d.stage)}">${stageLabel(d.stage)}</span></td>
+      <td style="color: var(--text-tertiary);">${d.closeDate}</td>
+    </tr>`;
+  }).join('');
+}
+
+function sortDeals(field) {
+  if (dealSortField === field) {
+    dealSortDir = dealSortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    dealSortField = field;
+    dealSortDir = field === 'name' || field === 'rep' ? 'asc' : 'desc';
+  }
+  renderDealsTable();
+}
+
+// ================================================================
+// RENDER: LEADERBOARD
+// ================================================================
+
+function renderLeaderboard() {
+  const period = lbPeriod;
+  const sorted = [...data.reps].sort((a, b) => b.revenue[period] - a.revenue[period]);
+  const maxRev = sorted[0]?.revenue[period] || 1;
+
+  document.getElementById('leaderboard-full').innerHTML = sorted.map((r, i) => `
+    <div class="leaderboard-row">
+      <span class="rank-badge ${rankClass(i)}">${i + 1}</span>
+      <div class="rep-cell" style="width: 200px;">
+        <img src="${r.avatar}" class="rep-avatar" alt="${r.name}">
+        <div class="rep-info">
+          <div class="rep-name">${r.name}</div>
+          <div class="rep-title">${r.title}</div>
+        </div>
+      </div>
+      <div class="leaderboard-bar-container">
+        <div class="leaderboard-bar" style="width: ${(r.revenue[period] / maxRev * 100)}%; background: ${barColors[i % barColors.length]};"></div>
+      </div>
+      <div class="leaderboard-amount">${fmtFull(r.revenue[period])}</div>
+    </div>
+  `).join('');
+
+  renderRepDetails(sorted, period);
+}
+
+function renderRepDetails(sorted, period) {
+  if (!sorted) {
+    sorted = [...data.reps].sort((a, b) => b.revenue[period || lbPeriod] - a.revenue[period || lbPeriod]);
+  }
+  period = period || lbPeriod;
+
+  // Apply sorting
+  sorted.sort((a, b) => {
+    let va, vb;
+    if (repSortField === 'revenue') { va = a.revenue[period]; vb = b.revenue[period]; }
+    else if (repSortField === 'deals') { va = a.dealsWon[period]; vb = b.dealsWon[period]; }
+    else if (repSortField === 'avgDeal') {
+      va = a.dealsWon[period] > 0 ? a.revenue[period] / a.dealsWon[period] : 0;
+      vb = b.dealsWon[period] > 0 ? b.revenue[period] / b.dealsWon[period] : 0;
+    }
+    else if (repSortField === 'winRate') {
+      va = (a.dealsWon[period] + a.dealsLost[period]) > 0 ? a.dealsWon[period] / (a.dealsWon[period] + a.dealsLost[period]) : 0;
+      vb = (b.dealsWon[period] + b.dealsLost[period]) > 0 ? b.dealsWon[period] / (b.dealsWon[period] + b.dealsLost[period]) : 0;
+    }
+    return repSortDir === 'asc' ? va - vb : vb - va;
+  });
+
+  ['revenue', 'deals', 'avgDeal', 'winRate'].forEach(f => {
+    const el = document.getElementById('rsort-' + f);
+    if (el) el.textContent = repSortField === f ? (repSortDir === 'asc' ? '▲' : '▼') : '';
+  });
+
+  document.getElementById('rep-details-tbody').innerHTML = sorted.map((r, i) => {
+    const won = r.dealsWon[period];
+    const lost = r.dealsLost[period];
+    const wr = (won + lost) > 0 ? Math.round((won / (won + lost)) * 100) : 0;
+    const avg = won > 0 ? Math.round(r.revenue[period] / won) : 0;
+    const wrColor = wr >= 70 ? 'var(--accent-green)' : wr >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+    return `<tr>
+      <td><span class="rank-badge ${rankClass(i)}">${i + 1}</span></td>
+      <td>
+        <div class="rep-cell">
+          <img src="${r.avatar}" class="rep-avatar" alt="${r.name}">
+          <div class="rep-info">
+            <div class="rep-name">${r.name}</div>
+            <div class="rep-title">${r.title}</div>
+          </div>
+        </div>
+      </td>
+      <td style="font-weight: 600;">${fmtFull(r.revenue[period])}</td>
+      <td>${won}</td>
+      <td>${fmt(avg)}</td>
+      <td>
+        <div class="progress-bar-wrapper"><div class="progress-bar-fill" style="width: ${wr}%; background: ${wrColor};"></div></div>
+        ${wr}%
+      </td>
+      <td>${fmt(r.pipelineValue)} <span style="color: var(--text-tertiary); font-size: 11px;">(${r.pipelineCount})</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function sortReps(field) {
+  if (repSortField === field) {
+    repSortDir = repSortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    repSortField = field;
+    repSortDir = 'desc';
+  }
+  renderRepDetails();
+}
+
+// ================================================================
+// RENDER: ACTIVITY
+// ================================================================
+
+function renderActivityItem(a) {
+  const rep = getRepById(a.rep);
+  let text = '';
+  let tag = '';
+  if (a.type === 'closed-won') {
+    text = `<strong>${rep ? rep.name : ''}</strong> closed <span class="deal-name">${a.deal}</span> for <span class="amount">${fmtFull(a.amount)}</span>`;
+    tag = `<span class="activity-tag stage-closed-won">Won</span>`;
+  } else if (a.type === 'closed-lost') {
+    text = `<strong>${rep ? rep.name : ''}</strong> lost <span class="deal-name">${a.deal}</span> (<span style="color: var(--accent-red);">${fmtFull(a.amount)}</span>)`;
+    tag = `<span class="activity-tag stage-closed-lost">Lost</span>`;
+  } else if (a.type === 'stage-change') {
+    text = `<strong>${rep ? rep.name : ''}</strong> moved <span class="deal-name">${a.deal}</span> from ${a.from} to ${a.to}`;
+    tag = `<span class="activity-tag stage-qualified">Moved</span>`;
+  }
+  return `<div class="activity-item">
+    <img src="${rep ? rep.avatar : ''}" class="activity-avatar" alt="">
+    <div class="activity-content">
+      <div class="activity-text">${text} ${tag}</div>
+      <div class="activity-time">${a.time}</div>
+    </div>
+  </div>`;
+}
+
+function renderActivity() {
+  const repFilter = document.getElementById('activity-rep-filter').value;
+  let acts = data.activities;
+  if (repFilter !== 'all') acts = acts.filter(a => a.rep === repFilter);
+  document.getElementById('activity-full').innerHTML = acts.map(a => renderActivityItem(a)).join('');
+}
+
+// ================================================================
+// RENDER: TEAM MEMBERS
+// ================================================================
+
+function renderTeam() {
+  const period = 'monthly';
+  document.getElementById('team-tbody').innerHTML = data.reps.map(r => {
+    const won = r.dealsWon[period];
+    const lost = r.dealsLost[period];
+    const wr = (won + lost) > 0 ? Math.round((won / (won + lost)) * 100) : 0;
+    const wrColor = wr >= 70 ? 'var(--accent-green)' : wr >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+    return `<tr>
+      <td>
+        <div class="rep-cell">
+          <img src="${r.avatar}" class="rep-avatar" alt="${r.name}">
+          <div class="rep-info">
+            <div class="rep-name">${r.name}</div>
+          </div>
+        </div>
+      </td>
+      <td style="color: var(--text-secondary);">${r.title}</td>
+      <td style="font-weight: 600;">${fmtFull(r.revenue[period])}</td>
+      <td>${won}</td>
+      <td>
+        <div class="progress-bar-wrapper"><div class="progress-bar-fill" style="width: ${wr}%; background: ${wrColor};"></div></div>
+        ${wr}%
+      </td>
+      <td>${fmt(r.pipelineValue)} <span style="color: var(--text-tertiary); font-size: 11px;">(${r.pipelineCount} deals)</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ================================================================
+// INIT
+// ================================================================
+
+function populateRepFilters() {
+  const options = data.reps.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
+  document.getElementById('rep-filter').innerHTML = '<option value="all">All Reps</option>' + options;
+  document.getElementById('pipeline-rep-filter').innerHTML = '<option value="all">All Reps</option>' + options;
+  document.getElementById('activity-rep-filter').innerHTML = '<option value="all">All Reps</option>' + options;
+}
+
+function updatePipelineBadge() {
+  const activeDeals = data.deals.filter(d => !d.stage.startsWith('closed-')).length;
+  const badge = document.getElementById('pipeline-badge');
+  if (badge) badge.textContent = activeDeals;
+}
+
+function init() {
+  populateRepFilters();
+  renderOverview();
+  renderTeam();
+  updatePipelineBadge();
+}
+
+init();
+</script>
+</body>
+</html>

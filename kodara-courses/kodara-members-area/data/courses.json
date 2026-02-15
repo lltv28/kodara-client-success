@@ -1,0 +1,528 @@
+{
+  "courses": [
+    {
+      "id": "ai-systems-mastery",
+      "title": "AI Systems Mastery",
+      "subtitle": "Build and deploy intelligent automation systems that scale your business operations",
+      "description": "Learn how to leverage AI-powered systems to automate workflows, enhance decision-making, and create digital labor that works 24/7. This comprehensive course covers everything from foundational concepts to advanced implementation strategies.",
+      "thumbnail": "",
+      "difficulty": "beginner",
+      "category": ["featured", "beginner"],
+      "tags": ["AI Systems", "Automation", "Digital Labor"],
+      "duration": "4h 30m",
+      "lessonCount": 8,
+      "moduleCount": 3,
+      "date": "2025-12-01",
+      "popular": true,
+      "students": 1247,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "Introduction to AI-Powered Business Systems",
+          "subtitle": "Understanding the landscape of intelligent automation",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "18:30",
+          "order": 1,
+          "actionItems": [
+            { "id": "action-1", "label": "Map your current business workflows end-to-end" },
+            { "id": "action-2", "label": "Identify 3 high-impact automation opportunities" },
+            { "id": "action-3", "label": "Create an Impact-Effort Matrix for your top opportunities" }
+          ],
+          "content": "<h2>Part 1: The AI Revolution in Business</h2><p>The way businesses operate is fundamentally changing. AI-powered systems are no longer a luxury—they're a necessity for companies that want to scale efficiently and maintain a competitive edge.</p><p>In this lesson, we'll explore the core concepts behind AI business systems and why they matter for your organization.</p><h3>Key Frameworks</h3><ul><li><strong>The Digital Labor Model</strong> — How AI agents can perform tasks traditionally requiring human intervention</li><li><strong>The Automation Spectrum</strong> — Understanding where AI fits from simple rules to complex decision-making</li><li><strong>The Scale Equation</strong> — Why AI systems create non-linear growth opportunities</li></ul><blockquote><p>\"The companies that will dominate the next decade aren't the ones with the most employees—they're the ones with the most intelligent systems.\" — Kodara Founder</p></blockquote><h2>Part 2: Identifying Automation Opportunities</h2><p>Before building any system, you need to identify where AI can create the most impact in your business. We use the <strong>Impact-Effort Matrix</strong> to prioritize automation opportunities.</p><ul><li>Map your current workflows end-to-end</li><li>Identify repetitive, rule-based tasks that consume time</li><li>Score each opportunity on potential impact vs implementation effort</li><li>Start with high-impact, low-effort wins to build momentum</li></ul>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Mapping Your Business Processes",
+          "subtitle": "Creating a blueprint for intelligent automation",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "22:15",
+          "order": 2,
+          "actionItems": [
+            { "id": "action-1", "label": "Interview 2 stakeholders about their daily processes" },
+            { "id": "action-2", "label": "Create your first process map using standard notation" },
+            { "id": "action-3", "label": "Document the data flows between your key systems" }
+          ],
+          "content": "<h2>Part 1: Process Discovery</h2><p>Every successful automation starts with a deep understanding of your existing processes. In this lesson, you'll learn how to document, analyze, and optimize your workflows before introducing AI.</p><ul><li>Interview stakeholders to uncover hidden processes</li><li>Create process maps using standard notation</li><li>Identify bottlenecks, redundancies, and decision points</li><li>Document data flows between systems</li></ul><h2>Part 2: The Kodara Process Framework</h2><p>Our proprietary framework breaks any business process into five components:</p><ul><li><strong>Triggers</strong> — What initiates the process</li><li><strong>Inputs</strong> — What data or resources are needed</li><li><strong>Transformation</strong> — What happens to convert inputs to outputs</li><li><strong>Outputs</strong> — What the process produces</li><li><strong>Feedback</strong> — How you measure and improve the process</li></ul><blockquote><p>\"You can't automate what you don't understand. Process mapping isn't glamorous, but it's the foundation everything else is built on.\" — Kodara Founder</p></blockquote>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Building Your First AI Agent",
+          "subtitle": "From concept to deployment in under an hour",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:40",
+          "order": 3,
+          "actionItems": [
+            { "id": "action-1", "label": "Define your first agent's goals and constraints" },
+            { "id": "action-2", "label": "Set up guardrails and fallback behaviors" },
+            { "id": "action-3", "label": "Deploy a test agent and evaluate its output" }
+          ],
+          "content": "<h2>Part 1: Agent Architecture</h2><p>AI agents are the building blocks of digital labor. Unlike simple scripts, agents can reason, adapt, and handle edge cases intelligently.</p><ul><li>Understanding agent loops: Observe → Think → Act</li><li>Choosing the right AI model for your use case</li><li>Defining agent goals, constraints, and capabilities</li><li>Setting up guardrails and fallback behaviors</li></ul><h2>Part 2: Hands-On Build</h2><p>Follow along as we build a customer qualification agent that can:</p><ul><li>Analyze incoming leads from multiple sources</li><li>Score leads based on your ideal customer profile</li><li>Route qualified leads to the right team member</li><li>Send personalized follow-up sequences</li></ul>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Data Intelligence Fundamentals",
+          "subtitle": "Turning raw data into actionable business insights",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "28:10",
+          "order": 4,
+          "content": "<h2>Part 1: Data as a Strategic Asset</h2><p>Most businesses sit on goldmines of data they never use. This lesson teaches you to extract, structure, and leverage your data for competitive advantage.</p><ul><li>Identifying your data sources and their value</li><li>Data cleaning and normalization basics</li><li>Building a single source of truth</li><li>Privacy and compliance considerations</li></ul>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Scaling with Digital Labor",
+          "subtitle": "Deploying AI workers across your organization",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "31:00",
+          "order": 5,
+          "actionItems": [
+            { "id": "action-1", "label": "Calculate the ROI of digital vs human labor for one process" },
+            { "id": "action-2", "label": "Identify 3 roles suitable for digital labor" }
+          ],
+          "content": "<h2>Part 1: The Digital Workforce</h2><p>Digital labor represents the next evolution of business scaling. Instead of hiring linearly, you deploy AI agents that can handle increasing workloads without proportional cost increases.</p><ul><li>Calculating the ROI of digital vs human labor</li><li>Identifying roles suitable for digital labor</li><li>Managing a hybrid human-AI workforce</li><li>Measuring digital labor performance</li></ul>"
+        },
+        {
+          "id": "lesson-6",
+          "title": "Integration Architecture",
+          "subtitle": "Connecting your AI systems with existing tools",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "25:45",
+          "order": 6,
+          "content": "<h2>Part 1: System Integration Patterns</h2><p>Your AI systems need to communicate with your existing tech stack. This lesson covers the architectural patterns that make this seamless.</p><ul><li>API-first design principles</li><li>Event-driven architectures for real-time processing</li><li>Data synchronization strategies</li><li>Error handling and retry mechanisms</li></ul>"
+        },
+        {
+          "id": "lesson-7",
+          "title": "Analytics & Performance Monitoring",
+          "subtitle": "Measuring what matters in your AI operations",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "20:30",
+          "order": 7,
+          "content": "<h2>Part 1: KPIs for AI Systems</h2><p>What gets measured gets managed. Learn the key performance indicators that tell you whether your AI systems are delivering real business value.</p><ul><li>Accuracy and reliability metrics</li><li>Speed and throughput measurements</li><li>Cost-per-task analysis</li><li>Business impact tracking</li></ul>"
+        },
+        {
+          "id": "lesson-8",
+          "title": "Advanced Optimization & Next Steps",
+          "subtitle": "Taking your AI systems to the next level",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "27:20",
+          "order": 8,
+          "content": "<h2>Part 1: Continuous Improvement</h2><p>AI systems should get better over time. This final lesson teaches you the frameworks for continuous optimization and expansion.</p><ul><li>A/B testing your AI workflows</li><li>Feedback loops for model improvement</li><li>Scaling horizontally across departments</li><li>Planning your AI roadmap</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "digital-labor-blueprint",
+      "title": "Digital Labor Blueprint",
+      "subtitle": "Replace repetitive tasks with AI-powered digital workers",
+      "description": "A step-by-step blueprint for identifying, building, and deploying digital labor solutions that free your team to focus on high-value work. Perfect for operations leaders and founders ready to scale without scaling headcount.",
+      "thumbnail": "",
+      "difficulty": "intermediate",
+      "category": ["intermediate"],
+      "tags": ["Digital Labor", "Operations", "Scaling"],
+      "duration": "3h 15m",
+      "lessonCount": 6,
+      "moduleCount": 2,
+      "date": "2025-11-15",
+      "popular": false,
+      "students": 893,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "The Digital Labor Revolution",
+          "subtitle": "Why the future of work is automated",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "24:00",
+          "order": 1,
+          "actionItems": [
+            { "id": "action-1", "label": "List 5 repetitive tasks in your business" },
+            { "id": "action-2", "label": "Research one digital labor case study in your industry" }
+          ],
+          "content": "<h2>Understanding Digital Labor</h2><p>Digital labor is the deployment of AI systems that perform tasks traditionally handled by human workers. This lesson sets the foundation for your digital labor strategy.</p><ul><li>Defining digital labor in the modern context</li><li>Case studies of successful digital labor deployment</li><li>Common misconceptions and how to avoid them</li></ul>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Audit Your Operations",
+          "subtitle": "Find the hidden automation opportunities",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "30:15",
+          "order": 2,
+          "actionItems": [
+            { "id": "action-1", "label": "Run a 1-week time-tracking audit on your team" },
+            { "id": "action-2", "label": "Categorize all tasks as creative vs repetitive" },
+            { "id": "action-3", "label": "Calculate the true cost of your top 3 manual processes" }
+          ],
+          "content": "<h2>The Operations Audit</h2><p>Before deploying digital labor, you need a clear picture of where human effort is being spent inefficiently.</p><ul><li>Time-tracking analysis techniques</li><li>Identifying task categories: creative vs repetitive</li><li>Calculating the true cost of manual processes</li></ul>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Designing AI Workflows",
+          "subtitle": "Architecture for reliable automation",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:00",
+          "order": 3,
+          "content": "<h2>Workflow Architecture</h2><p>Great digital labor solutions start with great workflow design. Learn the principles of building reliable, scalable AI workflows.</p>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Implementation Playbook",
+          "subtitle": "Deploy your first digital worker this week",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "28:30",
+          "order": 4,
+          "content": "<h2>Hands-On Implementation</h2><p>Follow our step-by-step playbook to get your first digital worker up and running.</p>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Quality Control & Monitoring",
+          "subtitle": "Ensuring your digital workers perform flawlessly",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "22:00",
+          "order": 5,
+          "content": "<h2>Quality Assurance for AI</h2><p>Digital workers need oversight. Learn how to build monitoring systems that catch issues before they impact your business.</p>"
+        },
+        {
+          "id": "lesson-6",
+          "title": "Scaling Your Digital Workforce",
+          "subtitle": "From one worker to an entire digital team",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "26:45",
+          "order": 6,
+          "content": "<h2>Scaling Strategies</h2><p>Once your first digital worker is proven, it's time to scale across your organization.</p>"
+        }
+      ]
+    },
+    {
+      "id": "data-intelligence-masterclass",
+      "title": "Data Intelligence Masterclass",
+      "subtitle": "Transform your data into your most powerful competitive advantage",
+      "description": "Go beyond basic analytics to build truly intelligent data systems. This advanced course teaches you to create data pipelines, predictive models, and decision engines that give your business an unfair advantage.",
+      "thumbnail": "",
+      "difficulty": "advanced",
+      "category": ["advanced"],
+      "tags": ["Data Intelligence", "Analytics", "AI"],
+      "duration": "5h 45m",
+      "lessonCount": 7,
+      "moduleCount": 3,
+      "date": "2025-10-20",
+      "popular": false,
+      "students": 654,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "Data Strategy Foundations",
+          "subtitle": "Building a data-first organization",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "32:00",
+          "order": 1,
+          "actionItems": [
+            { "id": "action-1", "label": "Inventory all data sources in your organization" },
+            { "id": "action-2", "label": "Assess current data quality for your top 3 sources" }
+          ],
+          "content": "<h2>The Data-First Mindset</h2><p>Data intelligence starts with culture. Learn how to shift your organization's approach to data from reactive reporting to proactive intelligence.</p>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Building Data Pipelines",
+          "subtitle": "Automated data collection and processing",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "38:15",
+          "order": 2,
+          "content": "<h2>Pipeline Architecture</h2><p>Learn to build robust data pipelines that automatically collect, clean, and structure your business data.</p>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Predictive Analytics",
+          "subtitle": "Forecasting with AI models",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "45:00",
+          "order": 3,
+          "content": "<h2>Prediction Engines</h2><p>Move from descriptive to predictive analytics. Build models that forecast customer behavior, revenue, and market trends.</p>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Decision Intelligence",
+          "subtitle": "AI-assisted decision making at scale",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:30",
+          "order": 4,
+          "content": "<h2>Decision Engines</h2><p>Build systems that don't just provide data—they recommend actions and automate decisions.</p>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Real-Time Intelligence",
+          "subtitle": "Live dashboards and instant insights",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "28:00",
+          "order": 5,
+          "content": "<h2>Real-Time Systems</h2><p>Build dashboards and alerts that give you instant visibility into your business performance.</p>"
+        },
+        {
+          "id": "lesson-6",
+          "title": "Data Security & Governance",
+          "subtitle": "Protecting your most valuable asset",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "25:00",
+          "order": 6,
+          "content": "<h2>Data Governance</h2><p>As your data capabilities grow, so does your responsibility. Learn the frameworks for data security, privacy, and compliance.</p>"
+        },
+        {
+          "id": "lesson-7",
+          "title": "Advanced Analytics in Practice",
+          "subtitle": "Real-world case studies and implementation",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "40:00",
+          "order": 7,
+          "content": "<h2>Case Studies</h2><p>See how leading companies have implemented data intelligence systems and the results they've achieved.</p>"
+        }
+      ]
+    },
+    {
+      "id": "ai-scheduler-deep-dive",
+      "title": "AI Scheduler Deep Dive",
+      "subtitle": "Master the Kodara AI Scheduler to automate your entire booking pipeline",
+      "description": "A focused, product-specific course that teaches you to configure, optimize, and scale the Kodara AI Scheduler. From basic setup to advanced customization, you'll become a scheduling automation expert.",
+      "thumbnail": "",
+      "difficulty": "beginner",
+      "category": ["beginner", "featured"],
+      "tags": ["AI Scheduler", "Product", "Automation"],
+      "duration": "2h 50m",
+      "lessonCount": 5,
+      "moduleCount": 2,
+      "date": "2026-01-10",
+      "popular": false,
+      "students": 2103,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "Getting Started with AI Scheduler",
+          "subtitle": "Setup and configuration walkthrough",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "22:00",
+          "order": 1,
+          "actionItems": [
+            { "id": "action-1", "label": "Set up your AI Scheduler account" },
+            { "id": "action-2", "label": "Connect your calendar integration" },
+            { "id": "action-3", "label": "Configure your first booking type" }
+          ],
+          "content": "<h2>Quick Start Guide</h2><p>Get your AI Scheduler up and running in under 30 minutes. This lesson walks you through initial setup, calendar integration, and basic configuration.</p>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Customizing Your Scheduling Logic",
+          "subtitle": "Rules, priorities, and smart routing",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "28:00",
+          "order": 2,
+          "content": "<h2>Custom Rules</h2><p>Learn to create sophisticated scheduling rules that match your business processes.</p>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Integration with Your Tech Stack",
+          "subtitle": "CRM, calendar, and communication tools",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:00",
+          "order": 3,
+          "content": "<h2>Integrations</h2><p>Connect your AI Scheduler with the tools you already use.</p>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Advanced Features & Optimization",
+          "subtitle": "Power user techniques for maximum efficiency",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "30:00",
+          "order": 4,
+          "content": "<h2>Advanced Techniques</h2><p>Unlock the full potential of your AI Scheduler with advanced features and optimization strategies.</p>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Measuring & Improving Results",
+          "subtitle": "KPIs, reporting, and continuous optimization",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "25:00",
+          "order": 5,
+          "content": "<h2>Performance Tracking</h2><p>Set up dashboards and reports to track your scheduling performance and identify improvement opportunities.</p>"
+        }
+      ]
+    },
+    {
+      "id": "global-data-certification",
+      "title": "Global Data Certification",
+      "subtitle": "Get certified in Kodara's global data platform and analytics suite",
+      "description": "Earn your Kodara Global Data certification. This course covers the entire data platform from ingestion to visualization, preparing you to leverage global datasets for business intelligence.",
+      "thumbnail": "",
+      "difficulty": "intermediate",
+      "category": ["intermediate"],
+      "tags": ["Global Data", "Certification", "Analytics"],
+      "duration": "6h 20m",
+      "lessonCount": 9,
+      "moduleCount": 4,
+      "date": "2025-09-05",
+      "popular": false,
+      "students": 567,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "Platform Overview",
+          "subtitle": "Understanding the Global Data ecosystem",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "20:00",
+          "order": 1,
+          "content": "<h2>Platform Overview</h2><p>Get familiar with the Kodara Global Data platform and its capabilities.</p>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Data Ingestion",
+          "subtitle": "Connecting and importing data sources",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:00",
+          "order": 2,
+          "content": "<h2>Data Ingestion</h2><p>Learn to connect and import data from multiple sources into the platform.</p>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Data Transformation",
+          "subtitle": "Cleaning, enriching, and structuring data",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "40:00",
+          "order": 3,
+          "content": "<h2>Data Transformation</h2><p>Master the tools for cleaning, enriching, and structuring your data.</p>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Query & Analysis",
+          "subtitle": "Writing queries and building analyses",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "45:00",
+          "order": 4,
+          "content": "<h2>Querying Data</h2><p>Learn the query language and analysis tools available in the platform.</p>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Visualization & Dashboards",
+          "subtitle": "Creating impactful data visualizations",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "38:00",
+          "order": 5,
+          "content": "<h2>Visualization</h2><p>Build beautiful, insightful dashboards that communicate your data story.</p>"
+        },
+        {
+          "id": "lesson-6",
+          "title": "Automation & Scheduling",
+          "subtitle": "Automating reports and data workflows",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "30:00",
+          "order": 6,
+          "content": "<h2>Automation</h2><p>Automate your data workflows with scheduled reports and triggered actions.</p>"
+        },
+        {
+          "id": "lesson-7",
+          "title": "Global Data APIs",
+          "subtitle": "Programmatic access to the platform",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "42:00",
+          "order": 7,
+          "content": "<h2>API Access</h2><p>Learn to use the Global Data APIs for programmatic access and integration.</p>"
+        },
+        {
+          "id": "lesson-8",
+          "title": "Security & Compliance",
+          "subtitle": "Data governance and access controls",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "25:00",
+          "order": 8,
+          "content": "<h2>Security</h2><p>Implement proper security measures and compliance frameworks.</p>"
+        },
+        {
+          "id": "lesson-9",
+          "title": "Certification Exam Prep",
+          "subtitle": "Review and practice for the certification exam",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:00",
+          "order": 9,
+          "content": "<h2>Exam Preparation</h2><p>Review key concepts and practice with sample questions to prepare for certification.</p>"
+        }
+      ]
+    },
+    {
+      "id": "founder-scaling-playbook",
+      "title": "Founder's Scaling Playbook",
+      "subtitle": "The systematic approach to scaling your business with AI infrastructure",
+      "description": "Designed specifically for founders and CEOs, this course provides the strategic framework for building AI infrastructure that scales your business from 6 to 8 figures without proportionally scaling your team.",
+      "thumbnail": "",
+      "difficulty": "advanced",
+      "category": ["advanced", "featured"],
+      "tags": ["Founders", "Scaling", "Strategy"],
+      "duration": "4h 10m",
+      "lessonCount": 6,
+      "moduleCount": 2,
+      "date": "2026-01-25",
+      "popular": false,
+      "students": 412,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "The Scaling Bottleneck",
+          "subtitle": "Why most businesses hit a ceiling and how AI breaks through it",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "28:00",
+          "order": 1,
+          "actionItems": [
+            { "id": "action-1", "label": "Identify your current scaling bottleneck" },
+            { "id": "action-2", "label": "Map your growth constraints vs AI solutions" }
+          ],
+          "content": "<h2>Breaking Through</h2><p>Most businesses hit a scaling ceiling because they rely on linear growth strategies. This lesson introduces the AI-powered scaling framework.</p>"
+        },
+        {
+          "id": "lesson-2",
+          "title": "Building Your AI Infrastructure",
+          "subtitle": "The tech stack for exponential growth",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "35:00",
+          "order": 2,
+          "content": "<h2>Infrastructure Design</h2><p>Learn to design and build the AI infrastructure that supports exponential business growth.</p>"
+        },
+        {
+          "id": "lesson-3",
+          "title": "Team & AI Collaboration Models",
+          "subtitle": "Structuring your organization for human-AI synergy",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "32:00",
+          "order": 3,
+          "content": "<h2>Collaboration Models</h2><p>Design organizational structures that maximize the synergy between your human team and AI systems.</p>"
+        },
+        {
+          "id": "lesson-4",
+          "title": "Revenue Operations Automation",
+          "subtitle": "Automating the revenue engine",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "40:00",
+          "order": 4,
+          "content": "<h2>RevOps Automation</h2><p>Automate your entire revenue operations pipeline from lead generation to customer success.</p>"
+        },
+        {
+          "id": "lesson-5",
+          "title": "Measuring ROI on AI Investments",
+          "subtitle": "Making the business case for AI",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "25:00",
+          "order": 5,
+          "content": "<h2>ROI Analysis</h2><p>Learn to measure and communicate the return on investment for your AI initiatives.</p>"
+        },
+        {
+          "id": "lesson-6",
+          "title": "Your 90-Day AI Scaling Plan",
+          "subtitle": "A concrete action plan for the next quarter",
+          "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "duration": "30:00",
+          "order": 6,
+          "actionItems": [
+            { "id": "action-1", "label": "Draft your 30-day AI implementation milestones" },
+            { "id": "action-2", "label": "Draft your 60-day scaling targets" },
+            { "id": "action-3", "label": "Draft your 90-day optimization goals" }
+          ],
+          "content": "<h2>Action Plan</h2><p>Leave this course with a detailed 90-day plan for implementing AI scaling strategies in your business.</p>"
+        }
+      ]
+    }
+  ],
+  "adminPassword": "kodara2025"
+}
