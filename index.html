@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alisa Larsen — AI Product Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --shadow-avatar: 0px 20px 6px rgba(12,48,70,0), 0px 13px 5px rgba(12,48,70,0.02), 0px 7px 4px rgba(12,48,70,0.07), 0px 3px 3px rgba(12,48,70,0.12), 0px 1px 2px rgba(12,48,70,0.14);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Instrument Sans',sans-serif;
+      font-variation-settings:'wdth' 100;
+      color:var(--alpha-light-600);
+      background:var(--b-w-white);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    /* ── Orbs ── */
+    .orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+
+    /* ── Page structure ── */
+    .pg {
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:100px 48px;
+      overflow:hidden;
+      page-break-after:always;
+      break-after:page;
+    }
+    .pg:last-child { page-break-after:auto; break-after:auto; }
+    .pg-inner { position:relative; z-index:1; max-width:1200px; width:100%; }
+
+    .sec-num { font-size:14px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--alpha-light-300); margin-bottom:24px; }
+
+    /* ── Typography (30% larger) ── */
+    h1 { font-size:70px; line-height:80px; letter-spacing:-1.5px; font-weight:400; color:var(--alpha-light-900); }
+    h2 { font-size:50px; line-height:60px; letter-spacing:-0.8px; font-weight:400; color:var(--alpha-light-900); margin-bottom:24px; }
+    h3 { font-size:29px; line-height:38px; letter-spacing:-0.3px; font-weight:500; color:var(--alpha-light-900); margin-bottom:20px; }
+    h4 { font-size:20px; line-height:28px; font-weight:600; color:var(--alpha-light-900); margin-bottom:12px; }
+    p { font-size:20px; line-height:34px; font-weight:400; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+    .lead { font-size:22px; line-height:36px; max-width:800px; }
+
+    /* ── Chip ── */
+    .chip { display:inline-flex; align-items:center; gap:8px; background:var(--alpha-brand-50); border-radius:999px; padding:7px 18px; font-size:16px; font-weight:600; color:var(--alpha-brand-950); letter-spacing:0.2px; }
+
+    /* ── Cards ── */
+    .glass { background:var(--alpha-dark-800); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; box-shadow:var(--shadow-card); }
+    .glass-subtle { background:var(--alpha-dark-300); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; }
+    .tint { background:var(--alpha-light-25); border-radius:16px; padding:28px; }
+
+    .divider { width:48px; height:1px; background:var(--alpha-light-200); margin:24px 0; }
+
+    /* ── Grids ── */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+
+    /* ── Stats ── */
+    .stat { text-align:center; padding:28px 16px; }
+    .stat-num { font-size:57px; line-height:66px; font-weight:400; letter-spacing:-1px; color:var(--alpha-light-900); margin-bottom:8px; }
+    .stat-label { font-size:17px; line-height:24px; font-weight:500; color:var(--alpha-light-500); }
+
+    /* ── Moment ── */
+    .moment { background:var(--alpha-light-25); border-radius:16px; padding:32px 36px; border-left:3px solid var(--alpha-brand-200); margin-top:36px; }
+    .moment-tag { font-size:14px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--alpha-brand-950); margin-bottom:14px; }
+    .moment p { font-style:italic; }
+
+    /* ── Feature list ── */
+    .fl { list-style:none; display:flex; flex-direction:column; gap:16px; }
+    .fl li { display:flex; align-items:flex-start; gap:14px; font-size:18px; line-height:28px; font-weight:500; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+    .fl.sm { gap:12px; }
+    .fl.sm li { font-size:17px; line-height:26px; }
+    .fi { flex-shrink:0; width:28px; height:28px; border-radius:6px; background:var(--alpha-brand-50); display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .fi svg { width:14px; height:14px; }
+
+    /* ── Bullet list (simple) ── */
+    .bl { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .bl li { font-size:18px; line-height:28px; font-weight:400; color:var(--alpha-light-600); padding-left:24px; position:relative; letter-spacing:-0.15px; }
+    .bl li::before { content:''; position:absolute; left:0; top:11px; width:8px; height:8px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+    .bl.muted li { color:var(--alpha-light-500); }
+    .bl.muted li::before { background:var(--alpha-light-100); border-color:var(--alpha-light-300); }
+
+    /* ── Comparison ── */
+    .comp-col ul { list-style:none; display:flex; flex-direction:column; gap:14px; }
+    .comp-col li { font-size:18px; line-height:27px; font-weight:400; padding-left:26px; position:relative; letter-spacing:-0.15px; }
+    .comp-generic li { color:var(--alpha-light-400); }
+    .comp-generic li::before { content:''; position:absolute; left:0; top:9px; width:10px; height:10px; border-radius:2px; background:var(--alpha-light-200); }
+    .comp-alisa li { color:var(--alpha-light-600); }
+    .comp-alisa li::before { content:''; position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+
+    /* ── Pricing ── */
+    .price-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:36px; }
+    .price-card { border-radius:16px; padding:36px; border:1px solid var(--alpha-light-100); position:relative; overflow:hidden; }
+    .price-card.feat { background:var(--alpha-dark-900); backdrop-filter:blur(14px); border-color:var(--alpha-brand-200); box-shadow:var(--shadow-modal); }
+    .price-card.feat::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,rgba(16,104,68,0.4),rgba(16,104,68,0.06)); }
+    .price-big { font-size:60px; line-height:68px; font-weight:400; letter-spacing:-1.5px; color:var(--alpha-light-900); margin:16px 0 8px; }
+    .price-big span { font-size:24px; letter-spacing:0; }
+    .price-note { font-size:17px; color:var(--alpha-light-500); }
+    .price-plan { font-size:17px; color:var(--alpha-light-400); margin-top:4px; }
+    .strike { text-decoration:line-through; color:var(--alpha-light-300); font-size:22px; }
+
+    /* ── Email block ── */
+    .email-block { background:var(--alpha-light-25); border-radius:12px; padding:24px 28px; margin-bottom:16px; }
+    .email-block .email-subj { font-size:18px; font-weight:600; color:var(--alpha-light-900); margin-bottom:8px; letter-spacing:-0.15px; }
+    .email-block .email-arg { font-size:17px; line-height:26px; color:var(--alpha-light-600); margin-bottom:8px; }
+    .email-block .email-cta { font-size:15px; font-weight:600; color:var(--alpha-brand-950); }
+    .email-block .email-belief { font-size:14px; font-weight:600; color:var(--alpha-light-300); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+
+    /* ── Social card ── */
+    .social-card { background:var(--alpha-light-25); border-radius:12px; padding:20px 24px; margin-bottom:14px; }
+    .social-card .sq { font-size:17px; line-height:26px; color:var(--alpha-light-900); font-weight:400; font-style:italic; margin-bottom:10px; }
+    .social-card .sm-row { display:flex; gap:16px; align-items:center; }
+    .social-card .sm-meta { font-size:14px; font-weight:600; color:var(--alpha-light-400); letter-spacing:0.3px; text-transform:uppercase; }
+    .social-card .sm-format { font-size:14px; font-weight:500; color:var(--alpha-brand-950); }
+
+    /* ── Ladder row ── */
+    .ladder-row { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--alpha-light-50); }
+    .ladder-row:last-child { border-bottom:none; }
+    .ladder-label { font-size:18px; font-weight:500; }
+    .ladder-val { font-size:18px; font-weight:500; color:var(--alpha-light-900); }
+
+    /* ── Package item ── */
+    .pkg-item { padding:24px; }
+    .pkg-item p { font-size:17px; line-height:26px; color:var(--alpha-light-500); }
+
+    /* ── Buttons ── */
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 32px; background:linear-gradient(to bottom,#737373,#404040); border-radius:8px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:18px; font-weight:500; color:rgba(255,255,255,0.8); letter-spacing:-0.15px; position:relative; overflow:hidden; transition:opacity 150ms; }
+    .btn::after { content:''; position:absolute; inset:0; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; pointer-events:none; }
+    .btn:hover { opacity:0.9; }
+    .btn-brand { background:linear-gradient(to bottom,rgba(16,104,68,0.82),rgba(16,104,68,0.96)); }
+
+    /* ── Save PDF ── */
+    .save-pdf { position:fixed; top:24px; right:24px; z-index:200; display:flex; align-items:center; gap:10px; padding:10px 20px; background:var(--alpha-dark-800); backdrop-filter:blur(12px); border:1px solid var(--alpha-light-100); border-radius:8px; box-shadow:var(--shadow-card); cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:16px; font-weight:500; color:var(--alpha-light-900); transition:background 150ms; }
+    .save-pdf:hover { background:var(--alpha-dark-900); }
+    .save-pdf svg { width:18px; height:18px; color:var(--alpha-light-600); }
+
+    /* ── Nav dots ── */
+    .nav { position:fixed; right:24px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:6px; z-index:100; }
+    .nav-dot { width:6px; height:6px; border-radius:999px; background:var(--alpha-light-200); border:none; cursor:pointer; transition:all 250ms ease-out; padding:0; }
+    .nav-dot.active { background:var(--alpha-brand-950); height:16px; }
+
+    /* ── Scroll reveal ── */
+    .rv { opacity:0; transform:translateY(20px); transition:opacity 550ms ease-out, transform 550ms ease-out; }
+    .rv.vis { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+
+    /* ── Hero orb ── */
+    .hero-orb { width:100px; height:100px; border-radius:999px; background:linear-gradient(145deg,rgba(16,104,68,0.14),rgba(16,104,68,0.04)); border:1px solid var(--alpha-light-50); box-shadow:var(--shadow-avatar); display:flex; align-items:center; justify-content:center; position:relative; margin:0 auto 32px; }
+    .hero-orb::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:rgba(16,104,68,0.05); filter:blur(50px); z-index:-1; }
+    .hero-orb svg { width:42px; height:42px; color:var(--alpha-brand-950); }
+
+    /* ── Scroll cue ── */
+    .scroll-cue { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--alpha-light-300); letter-spacing:0.5px; animation:bob 2.2s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+    .scroll-cue-arrow { width:16px; height:16px; border-right:1.5px solid var(--alpha-light-300); border-bottom:1.5px solid var(--alpha-light-300); transform:rotate(45deg); }
+
+    /* ── Page footer (print only) ── */
+    .pf { position:absolute; bottom:28px; left:0; right:0; text-align:center; font-size:13px; font-weight:500; color:var(--alpha-light-200); letter-spacing:0.3px; z-index:1; }
+    @media screen { .pf { display:none; } }
+
+    /* ── Responsive ── */
+    @media (max-width:1000px) {
+      h1{font-size:44px;line-height:54px} h2{font-size:34px;line-height:42px}
+      .pg{padding:72px 24px;min-height:auto}
+      .g2,.g3,.price-grid{grid-template-columns:1fr}
+      .g4{grid-template-columns:1fr 1fr}
+      .nav{display:none}
+      .stat-num{font-size:40px} .price-big{font-size:44px}
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      @page { size:A4 landscape; margin:0; }
+      html,body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; color-adjust:exact!important; }
+      .rv { opacity:1!important; transform:none!important; transition:none!important; }
+      .nav,.scroll-cue,.save-pdf { display:none!important; }
+      .pg { min-height:0; height:auto; padding:40px 48px; page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; overflow:visible; }
+      .pg:last-child { page-break-after:auto; break-after:auto; }
+      .glass,.glass-subtle,.tint,.price-card.feat,.chip,.fi,.email-block,.social-card,.hero-orb,.moment,.stat { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+      .orb { opacity:0.6; -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+      .pf { display:block; }
+      h2{font-size:42px;line-height:50px}
+    }
+  </style>
+</head>
+<body>
+
+<button class="save-pdf" onclick="window.print()" title="Save as PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+  Save as PDF
+</button>
+<nav class="nav" id="nav"></nav>
+
+<!-- ═══════ PAGE 1: COVER ═══════ -->
+<div class="pg" id="p01">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,104,68,0.06);top:8%;left:-6%"></div>
+  <div class="orb" style="width:320px;height:320px;background:rgba(0,180,212,0.04);bottom:16%;right:-2%"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+    </div>
+    <div class="chip rv d1">AI Product Strategy</div>
+    <h1 class="rv d2" style="margin-top:24px">Voice Teacher's<br>AI Studio Assistant</h1>
+    <p class="lead rv d3" style="margin:24px auto 0;color:var(--alpha-light-500)">A complete product strategy for Alisa Larsen &mdash; turning 30 years of vocal pedagogy into AI-powered leverage for teachers and singers.</p>
+    <div class="g4 rv d4" style="margin-top:56px">
+      <div class="glass-subtle stat"><div class="stat-num">30+</div><div class="stat-label">Years experience</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">158</div><div class="stat-label">Lessons in app</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">12</div><div class="stat-label">Step methodology</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">500h</div><div class="stat-label">Yoga certified</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="scroll-cue-arrow"></div></div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 1</div>
+</div>
+
+<!-- ═══════ PAGE 2: CREDIBILITY ═══════ -->
+<div class="pg" id="p02">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.05);top:10%;left:50%;transform:translateX(-50%)"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">Your credibility</div>
+    <h2 class="rv d1">Why Alisa is the one to build this</h2>
+    <p class="lead rv d2" style="margin-bottom:36px">Your experience isn't just a selling point &mdash; it's the entire moat. No competitor can replicate 30 years of methodology trained into AI.</p>
+    <div class="g2 rv d3" style="gap:20px">
+      <div class="tint pkg-item"><h4>Opera-trained vocalist</h4><p>Carnegie Hall performance. Deep understanding of technique across classical, contemporary, belt, and mixed styles. Transitioned from opera to teaching all styles.</p></div>
+      <div class="tint pkg-item"><h4>500-hour yoga certification</h4><p>Somatic and nervous system integration no other vocal AI can claim. Breath work, body awareness, and regulation built into every recommendation.</p></div>
+      <div class="tint pkg-item"><h4>158 lessons in proprietary app</h4><p>A massive content library already exists. The AI training data is real, tested, and proven with actual students over years. 100+ students taught.</p></div>
+      <div class="tint pkg-item"><h4>12-step vocal methodology</h4><p>A complete, structured framework: primal sounds, energetic lines of force, honeypot exercise, mixed belt technique. The "Fall In Love With Your Voice" program &mdash; a 12-month immersive experience combining vocal technique, nervous system regulation, breath work, yoga, and embodied performance.</p></div>
+      <div class="tint pkg-item"><h4>College-level teaching + ongoing certification</h4><p>Teaches at Snow College. Currently pursuing brain-based singing certification with Andrew Byrne. Academic credibility alongside real-world coaching.</p></div>
+      <div class="tint pkg-item"><h4>7+ year client relationships</h4><p>Multiple documented transformations: Stephanie O., Joanna H., Sara A., Kaydee D. Students who stay for years &mdash; proof the methodology creates lasting change. Currently developing "Alisa AI" to assist teachers.</p></div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 2</div>
+</div>
+
+<!-- ═══════ PAGE 3: EXISTING PRODUCTS + MARKET ═══════ -->
+<div class="pg" id="p03">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.04);bottom:12%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">Current landscape</div>
+    <h2 class="rv d1">Existing products &amp; market conditions</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="tint" style="padding:32px">
+        <h3>Current product lineup</h3>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Full 12-month program</span><span class="ladder-val">$8,000 ($5,500 decision-maker)</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">6-month option</span><span class="ladder-val">$2,750</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Async feedback + community + app</span><span class="ladder-val">$297/mo</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Community + app</span><span class="ladder-val">$197/mo</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">App-only access</span><span class="ladder-val">$130/mo</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-400);font-style:italic">Teacher certification</span><span class="ladder-val" style="color:var(--alpha-light-400);font-style:italic">In development</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-400);font-style:italic">Teaching apprenticeships</span><span class="ladder-val" style="color:var(--alpha-light-400);font-style:italic">In development</span></div>
+        </div>
+      </div>
+      <div class="glass">
+        <h3>Market conditions</h3>
+        <ul class="bl">
+          <li>Post-COVID normalization of online teaching and learning</li>
+          <li>Voice teachers seeking studio restructuring after pandemic pivot</li>
+          <li>Growing acceptance of AI tools in creative fields</li>
+          <li>Rising cost of living making hourly rates insufficient</li>
+          <li>Younger generation expects on-demand resources</li>
+          <li>Increasing interest in somatic/nervous system approaches to voice</li>
+          <li>YouTube oversaturation creating confusion for singers</li>
+          <li>Aging population wanting to reclaim creative expression</li>
+          <li>Teacher shortage in specialized vocal pedagogy</li>
+          <li>People seeking joy and authentic expression over perfection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 3</div>
+</div>
+
+<!-- ═══════ PAGE 4: AUDIENCE 1 DIVIDER ═══════ -->
+<div class="pg" id="p04" style="text-align:center">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,104,68,0.05);top:30%;left:50%;transform:translateX(-50%)"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="chip rv" style="margin-bottom:28px">Audience 1</div>
+    <h1 class="rv d1">Voice Teachers</h1>
+    <p class="lead rv d2" style="margin:24px auto 0;color:var(--alpha-light-500)">Private studio owners, music store instructors, and independent voice teachers &mdash; ages 40s to 70s, teaching 1:1 for $37&ndash;$75/hour. Feeling like "broken records," trading time for money, maxed out schedules, limited income despite deep expertise.</p>
+    <p class="rv d3" style="margin-top:16px;font-size:18px;color:var(--alpha-light-400)">Secondary: Aspiring voice teachers wanting certification or apprenticeship.</p>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 4</div>
+</div>
+
+<!-- ═══════ PAGE 5: TEACHER REPETITIVE WORK + STRENGTHS ═══════ -->
+<div class="pg" id="p05">
+  <div class="orb" style="width:350px;height:350px;background:rgba(26,26,26,0.03);top:8%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">01 &mdash; Context</div>
+    <h2 class="rv d1">What teachers do every week</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>The repetitive work</h4>
+        <ul class="bl">
+          <li>Creating custom lesson plans for each student every week</li>
+          <li>Diagnosing vocal issues and prescribing exercises for individual voices</li>
+          <li>Explaining the same technical concepts repeatedly (support, breath, resonance, vowel placement)</li>
+          <li>Assessing student progress and adjusting curriculum</li>
+          <li>Designing warm-up sequences tailored to student goals</li>
+          <li>Creating practice assignments between lessons</li>
+          <li>Providing feedback on student recordings</li>
+          <li>Troubleshooting specific passages in songs</li>
+          <li>Adapting exercises for different skill levels and voice types</li>
+          <li>Documenting student progress and session notes</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>What they already do well</h4>
+        <ul class="bl">
+          <li>Deep understanding of vocal anatomy, technique, and pedagogy</li>
+          <li>Ability to diagnose vocal issues by ear</li>
+          <li>Knowledge of multiple teaching methodologies</li>
+          <li>Experience adapting to individual learning styles</li>
+          <li>Proven track record of student results</li>
+          <li>Strong intuition about what exercises work for which problems</li>
+          <li>Ability to demonstrate technique</li>
+          <li>Understanding of repertoire across styles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 5</div>
+</div>
+
+<!-- ═══════ PAGE 6: TEACHER FRUSTRATIONS + ALTERNATIVES ═══════ -->
+<div class="pg" id="p06">
+  <div class="orb" style="width:360px;height:360px;background:rgba(26,26,26,0.03);bottom:10%;left:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">02 &mdash; Frustrations</div>
+    <h2 class="rv d1">What they've tried &mdash; and why it hasn't worked</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>Alternatives they've tried</h4>
+        <ul class="bl muted">
+          <li>Hiring assistants &mdash; expensive ($20&ndash;$30/hr) and hard to train on nuanced pedagogy</li>
+          <li>Pre-recorded courses &mdash; too generic, students still need personalized guidance</li>
+          <li>Templates and worksheets &mdash; don't account for individual voices</li>
+          <li>DIY systems &mdash; time-consuming to build, still end up customizing everything</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>Their core frustrations</h4>
+        <ul class="bl">
+          <li>Repeating themselves endlessly across students</li>
+          <li>Income ceiling from hourly rates &mdash; can't scale without sacrificing quality</li>
+          <li>Burnout from back-to-back lessons with no prep time</li>
+          <li>Students need more touchpoints than weekly lessons allow</li>
+          <li>The better they are at their craft, the more time they spend preparing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 6</div>
+</div>
+
+<!-- ═══════ PAGE 7: TEACHER PAIN — INCOME CEILING ═══════ -->
+<div class="pg" id="p07">
+  <div class="orb" style="width:360px;height:360px;background:rgba(26,26,26,0.03);top:8%;right:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">03 &mdash; The pain</div>
+    <h2 class="rv d1">The income ceiling no one talks about</h2>
+    <p class="lead rv d2">The work that makes you a great teacher &mdash; personalization, deep listening, custom planning &mdash; is the same work that traps you in the hourly model.</p>
+    <div class="g3 rv d3" style="margin-top:36px">
+      <div class="glass-subtle stat"><div class="stat-num">$62.5k</div><div class="stat-label">$50/hr &times; 25 students &times; 50 wks<br>Before taxes, rent, materials</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">7.5h</div><div class="stat-label">Weekly planning time<br>15 min &times; 30 students</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">$19.5k</div><div class="stat-label">Annual opportunity cost<br>250&ndash;390 hrs/yr of planning</div></div>
+    </div>
+    <div class="g2 rv d4" style="margin-top:24px">
+      <div class="tint" style="padding:24px">
+        <ul class="bl" style="gap:12px">
+          <li>To earn $80k&ndash;$100k requires raising rates so high you price out most students</li>
+          <li>Post-COVID: cost of living up 25&ndash;30%, but teachers can't raise rates proportionally without losing students</li>
+          <li>Teachers in their 50s&ndash;70s facing retirement with insufficient savings</li>
+          <li>Younger teachers can't afford to stay in the profession long-term</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0">
+        <div class="moment-tag">The "I need that" moment</div>
+        <p>"Sunday night, 25 students tomorrow, your brain is fried from yesterday's back-to-back teaching marathon, and you just want someone who thinks like you to hand you the roadmap so you can show up and teach with presence instead of scrambling."</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 7</div>
+</div>
+
+<!-- ═══════ PAGE 8: TEACHER SOLUTION ═══════ -->
+<div class="pg" id="p08">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.05);bottom:8%;left:-7%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">04 &mdash; The solution</div>
+    <h2 class="rv d1">AI Studio Assistant for voice teachers</h2>
+    <p class="lead rv d2" style="margin-bottom:28px">An AI trained on your 30+ years of methodology that handles the repetitive cognitive work &mdash; so teachers can focus on presence.</p>
+    <div class="g2 rv d3">
+      <div class="glass">
+        <h4>What it generates</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Complete lesson plans: 15&ndash;20 min structured outlines with exercises, focus areas, and teaching cues per student</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Warm-up sequences: pitch range, starting exercises, register progression, specific technical focuses</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Practice assignments: step-by-step instructions, repetition counts, troubleshooting tips for common mistakes</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Diagnostic assessments: identifies technical issues, suggests 3&ndash;5 exercises with rationale, modification options by skill level</li>
+        </ul>
+      </div>
+      <div class="glass">
+        <h4>What it tracks and builds</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Song coaching: technical breakdown, why it's difficult, 2&ndash;3 targeted exercises, practice strategy per phrase</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Progress tracking: documents improvements, flags recurring challenges, suggests next-step focuses, maintains continuity</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Curriculum maps: logical skill progression, milestone checkpoints, repertoire suggestions aligned with development</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Progress reports: translates technical improvements into understandable wins, includes practice recommendations, celebrates growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 8</div>
+</div>
+
+<!-- ═══════ PAGE 9: TEACHER DIFFERENTIATION ═══════ -->
+<div class="pg" id="p09">
+  <div class="orb" style="width:320px;height:320px;background:rgba(16,104,68,0.04);top:18%;left:8%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">05 &mdash; Differentiation</div>
+    <h2 class="rv d1">This isn't ChatGPT</h2>
+    <p class="lead rv d2" style="margin-bottom:32px">Generic AI doesn't know your methodology, exercises, somatic approach, or how to think like a master teacher.</p>
+    <div class="g2 rv d3" style="gap:28px">
+      <div class="glass-subtle comp-col comp-generic">
+        <h4 style="color:var(--alpha-light-400);margin-bottom:20px">Generic AI says...</h4>
+        <ul>
+          <li>"Practice scales to improve range"</li>
+          <li>"Relax your throat and breathe deeply"</li>
+          <li>"Do lip trills as a warm-up"</li>
+          <li>"Sing the passage slowly, then speed up"</li>
+          <li>No nervous system or trauma awareness</li>
+          <li>No pedagogical reasoning or "why"</li>
+        </ul>
+      </div>
+      <div class="glass comp-col comp-alisa">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:20px">Alisa's AI says...</h4>
+        <ul>
+          <li>Prescribes honeypot, primal sounds, energetic lines of force, mixed belt technique</li>
+          <li>Integrates nervous system regulation before technique</li>
+          <li>Suggests yoga/breath work when student needs grounding</li>
+          <li>Provides the "why" behind every exercise recommendation</li>
+          <li>Uses Alisa's specific metaphors, imagery, and teaching language</li>
+          <li>Accounts for voice type, age, style differences, and emotional blocks</li>
+          <li>Speaks teacher-to-teacher with specific exercise names and terminology</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tint rv d4" style="margin-top:28px;padding:24px 28px">
+      <h4 style="margin-bottom:8px">The manual alternative</h4>
+      <p style="font-size:17px;line-height:26px;color:var(--alpha-light-500)">Teachers currently spend 5&ndash;7.5 hours/week planning for 30 students. Hiring an assistant costs $20&ndash;$30/hr but can't replicate pedagogical expertise. Pre-made curriculum doesn't customize. Most teachers have tried templates, notebooks, or systems but still end up customizing everything. They either sacrifice personalization (burnout prevention) or sacrifice income/personal time (burnout guarantee).</p>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 9</div>
+</div>
+
+<!-- ═══════ PAGE 10: TEACHER BELIEF LADDER ═══════ -->
+<div class="pg" id="p10">
+  <div class="orb" style="width:360px;height:360px;background:rgba(16,104,68,0.04);bottom:15%;right:5%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">06 &mdash; Belief ladder</div>
+    <h2 class="rv d1">Pain &rarr; Pointing &rarr; Selling</h2>
+    <div class="g3 rv d2" style="gap:24px;margin-top:32px">
+      <div class="glass-subtle" style="padding:28px">
+        <h4 style="color:var(--alpha-light-400)">1 &mdash; Pain</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">$50/hr &times; 25 students = $62,500/yr before taxes, rent, materials</li>
+          <li style="font-size:16px;line-height:24px">To earn $80&ndash;100k means pricing out most students</li>
+          <li style="font-size:16px;line-height:24px">The work that makes you great is the same work that traps you</li>
+          <li style="font-size:16px;line-height:24px">Post-COVID: cost of living up 25&ndash;30%, rates can't keep up</li>
+          <li style="font-size:16px;line-height:24px">50s&ndash;70s teachers facing retirement with insufficient savings</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950)">2 &mdash; Pointing</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Capture expertise once, AI executes the repetitive cognitive work</li>
+          <li style="font-size:16px;line-height:24px">AI does the "thinking work" you've done 10,000 times, freeing you for "presence work"</li>
+          <li style="font-size:16px;line-height:24px">Students still need you live &mdash; but not for 10 hrs/wk of planning</li>
+          <li style="font-size:16px;line-height:24px">Early adopters seeing 40&ndash;60% time savings = 4&ndash;6 hours back/week</li>
+          <li style="font-size:16px;line-height:24px">Reinvest in higher-ticket offerings, group programs, or life outside the studio</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px;border-color:var(--alpha-brand-200)">
+        <h4 style="color:var(--alpha-brand-950)">3 &mdash; Selling</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">AI trained on 30+ years of Alisa's vocal pedagogy</li>
+          <li style="font-size:16px;line-height:24px">Speaks your language: 12-step framework, primal sounds, somatic integration</li>
+          <li style="font-size:16px;line-height:24px">100+ students taught, 158 lessons, proprietary exercises documented</li>
+          <li style="font-size:16px;line-height:24px">All of that intelligence in your pocket</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 10</div>
+</div>
+
+<!-- ═══════ PAGE 11: TEACHER PRICING ═══════ -->
+<div class="pg" id="p11">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.05);top:25%;right:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">07 &mdash; Pricing strategy</div>
+    <h2 class="rv d1">For voice teachers &mdash; $497</h2>
+    <div class="price-grid rv d2">
+      <div class="price-card feat">
+        <div class="chip">Founding member</div>
+        <div class="price-big">$397</div>
+        <p class="price-note"><span class="strike">$497</span> &mdash; first 50 users or 60 days</p>
+        <p class="price-plan">or 3 payments of $179</p>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500);margin-top:8px">Payment plan aligns with how teachers think: monthly studio expenses, not annual investments. Makes the decision easier without cheapening perceived value.</p>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500)">Launch strategy: early adopters provide testimonials, use cases, and feedback to refine AI training. Raise price publicly with announcement celebrating founding members and showcasing their results.</p>
+      </div>
+      <div class="price-card tint">
+        <h4 style="font-size:22px;margin-bottom:16px">Why $497 is a steal</h4>
+        <ul class="fl sm" style="margin-bottom:20px">
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Hiring an assistant: $20&ndash;$30/hr = $10,400&ndash;$15,600/yr for 10 hrs/wk (can't replicate pedagogical expertise)</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Pre-made curriculum: $200&ndash;$600 but doesn't customize to individual students</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Opportunity cost: 250&ndash;390 hrs/yr at $50/hr = $12,500&ndash;$19,500 in planning time</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Lost billable time: $375&ndash;$562/week. AI pays for itself in under 2 weeks</li>
+        </ul>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500);margin-top:12px">Teachers in this demographic regularly invest $300&ndash;$800 in professional development. Price signals serious professional tool, not toy, while remaining accessible to independent studio owners. AI delivers expert-level customization in seconds, not hours.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 11</div>
+</div>
+
+<!-- ═══════ PAGE 12: TEACHER PACKAGE ═══════ -->
+<div class="pg" id="p12">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.04);bottom:12%;left:8%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">08 &mdash; Package</div>
+    <h2 class="rv d1">What's included &mdash; and what's not</h2>
+    <div class="g2 rv d2" style="gap:20px;margin-top:28px">
+      <div class="tint pkg-item"><h4>Quick-Start Guide</h4><p>15-minute video walkthrough: how to input student info, generate first lesson plan, customize output, and integrate into existing workflow.</p></div>
+      <div class="tint pkg-item"><h4>12-Step Methodology Overview</h4><p>PDF + 20-minute video explaining the framework behind the AI so teachers understand the "why" and can teach from it, not just use it.</p></div>
+      <div class="tint pkg-item"><h4>Exercise Library (20&ndash;30 demos)</h4><p>Video library of Alisa demonstrating core exercises the AI recommends: primal sounds, honeypot, energetic lines of force, mixed belt technique. Teachers can show students or refresh their own memory.</p></div>
+      <div class="tint pkg-item"><h4>10 Sample Lesson Plans</h4><p>Real AI-generated plans for common profiles: beginner with breath issues, intermediate with register breaks, advanced working on belt, returning singer after years away. Shows quality and range immediately.</p></div>
+      <div class="tint pkg-item"><h4>Monthly Group Q&A Calls</h4><p>Live 60-minute calls where Alisa answers questions about using the AI, troubleshoots edge cases, shares new use cases, and builds community among teacher users.</p></div>
+      <div class="tint pkg-item"><h4>Private Teacher Community</h4><p>Facebook group or Slack channel for teachers using the AI to share wins, ask questions, swap strategies, and support each other.</p></div>
+    </div>
+    <div class="g2 rv d3" style="gap:20px;margin-top:20px">
+      <div class="tint" style="padding:24px;border-left:3px solid rgba(220,38,38,0.2)">
+        <h4 style="color:var(--alpha-light-400)">What to leave out</h4>
+        <ul class="bl muted" style="gap:8px">
+          <li style="font-size:16px;line-height:24px">Full app (158 lessons) &mdash; that's the $5,500 program; including it cannibalizes high-ticket and overwhelms teachers</li>
+          <li style="font-size:16px;line-height:24px">Teacher certification/apprenticeship &mdash; separate, higher-commitment offerings; bundling dilutes both</li>
+          <li style="font-size:16px;line-height:24px">Daily yoga challenges &mdash; not relevant to the core problem; adds bloat without value</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0;border-left-color:var(--alpha-brand-200)">
+        <div class="moment-tag">The complete product</div>
+        <p style="font-style:normal;font-size:17px;line-height:26px">Voice Teacher's AI Studio Assistant: the AI tool trained on Alisa's 30-year methodology, plus the training, examples, and community support to use it confidently from day one. Teachers walk away with a working AI assistant that generates expert-level lesson plans in seconds, the knowledge to understand and customize the output, and a community of peers using the same tool to scale their studios without burning out.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 12</div>
+</div>
+
+<!-- ═══════ PAGE 13: TEACHER EMAILS 1-4 ═══════ -->
+<div class="pg" id="p13">
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);bottom:18%;right:4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">09 &mdash; Launch emails (teachers 1&ndash;4)</div>
+    <h2 class="rv d1" style="margin-bottom:28px">7-email belief ladder</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 1 &mdash; Pain</div><div class="email-subj">"Sunday night, 25 students tomorrow, and your brain is fried"</div><div class="email-arg">The work that makes you a great teacher (personalization) is the same work trapping you in the hourly model.</div><div class="email-cta">CTA: Reply and tell me your biggest lesson planning frustration</div></div>
+        <div class="email-block"><div class="email-belief">Email 2 &mdash; Pain</div><div class="email-subj">"Why 25-30 students/week is the invisible wall"</div><div class="email-arg">Math doesn't lie: 30 students &times; $50/hour &times; 50 weeks = $75k before taxes, studio rent, materials. Maxed out with zero room to grow.</div><div class="email-cta">CTA: Read the full breakdown of the teacher income trap</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 3 &mdash; Pointing</div><div class="email-subj">"The bottleneck isn't your students, it's your prep time"</div><div class="email-arg">AI-powered leverage means capturing your expertise once and having it execute the repetitive cognitive work while you focus on presence work only you can do.</div><div class="email-cta">CTA: Watch 3-minute demo of AI generating a lesson plan in 30 seconds</div></div>
+        <div class="email-block"><div class="email-belief">Email 4 &mdash; Pointing</div><div class="email-subj">"Why generic AI can't plan your lessons (and what can)"</div><div class="email-arg">ChatGPT doesn't know your methodology, your exercises, your somatic approach, or how to think like a master teacher with 30 years of experience.</div><div class="email-cta">CTA: See the difference &mdash; side-by-side comparison</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 13</div>
+</div>
+
+<!-- ═══════ PAGE 14: TEACHER EMAILS 5-7 ═══════ -->
+<div class="pg" id="p14">
+  <div class="pg-inner">
+    <div class="sec-num rv">10 &mdash; Launch emails (teachers 5&ndash;7)</div>
+    <div class="g2 rv d1" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 5 &mdash; Selling</div><div class="email-subj">"I built this for teachers who are tired of recreating the wheel"</div><div class="email-arg">Trained on 30+ years of Alisa's vocal pedagogy. Generates lesson plans, warm-ups, practice assignments, and progress tracking in seconds. Speaks your language, not generic advice.</div><div class="email-cta">CTA: Get founding member access for $397 (regular $497) &mdash; doors close in 72 hours</div></div>
+        <div class="email-block"><div class="email-belief">Email 6 &mdash; Selling</div><div class="email-subj">"If you had 6 extra hours next week, what would you do?"</div><div class="email-arg">Early adopters in other coaching fields seeing 40&ndash;60% time savings on prep work. That's time for higher-ticket offerings, group programs, or simply life outside the studio.</div><div class="email-cta">CTA: Claim your founding member spot before midnight (payment plan available)</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 7 &mdash; Selling</div><div class="email-subj">"Founding member access closes at midnight (no extensions)"</div><div class="email-arg">After tonight, price goes to $497 and you'll miss the founding member bonuses. This is your last chance to lock in $397.</div><div class="email-cta">CTA: Join now before doors close (link to checkout)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 14</div>
+</div>
+
+<!-- ═══════ PAGE 15: TEACHER SOCIAL MEDIA ═══════ -->
+<div class="pg" id="p15">
+  <div class="orb" style="width:350px;height:350px;background:rgba(16,104,68,0.04);top:12%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">11 &mdash; Social media (teachers)</div>
+    <h2 class="rv d1" style="margin-bottom:28px">7 talking points</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="social-card"><p class="sq">"I taught a 70-year-old voice teacher this morning who's been teaching for 50 years and she said the thing she's most tired of is explaining the same concepts over and over."</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Text post</span></div></div>
+        <div class="social-card"><p class="sq">"30 students &times; $50/hr &times; 50 weeks = $75,000 before taxes, studio rent, and materials. That's the ceiling."</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Carousel with income breakdown graphics</span></div></div>
+        <div class="social-card"><p class="sq">"What if the solution to teacher burnout isn't teaching fewer students, it's removing the bottleneck?"</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Short video (30 seconds)</span></div></div>
+        <div class="social-card"><p class="sq">"I asked ChatGPT to create a lesson plan for breath support issues. It gave me generic scales. My AI gave me the honeypot exercise, primal sounds, and energetic lines of force."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Text post with screenshot comparison</span></div></div>
+      </div>
+      <div>
+        <div class="social-card"><p class="sq">"Teachers in other fields are getting 4-6 hours back per week with AI-powered leverage. Imagine what you'd do with 6 extra hours."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Story poll</span></div></div>
+        <div class="social-card"><p class="sq">"I built something for voice teachers who are tired of spending Sunday nights planning 25 lessons for Monday. Doors open this week."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Text post with link in bio</span></div></div>
+        <div class="social-card"><p class="sq">"Founding member access closes in 48 hours. After that, price goes up and bonuses disappear. If you've been waiting, this is it."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Story countdown sticker</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 15</div>
+</div>
+
+<!-- ═══════ PAGE 16: AUDIENCE 2 DIVIDER ═══════ -->
+<div class="pg" id="p16" style="text-align:center">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,104,68,0.05);top:30%;left:50%;transform:translateX(-50%)"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="chip rv" style="margin-bottom:28px">Audience 2</div>
+    <h1 class="rv d1">Singers</h1>
+    <p class="lead rv d2" style="margin:24px auto 0;color:var(--alpha-light-500)">Adult singers ages 40s to 70s, predominantly female. Mix of beginners who've never had training, experienced singers who feel blocked, former singers returning after years, songwriters wanting to sing their own material, people with performance anxiety, and those who've been told they "can't sing" or have been shushed.</p>
+    <p class="rv d3" style="margin-top:16px;font-size:18px;color:var(--alpha-light-400)">Secondary: Younger singers building confidence. People healing from trauma through voice.</p>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 16</div>
+</div>
+
+<!-- ═══════ PAGE 17: SINGER REPETITIVE WORK + STRENGTHS ═══════ -->
+<div class="pg" id="p17">
+  <div class="orb" style="width:350px;height:350px;background:rgba(26,26,26,0.03);top:10%;left:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">12 &mdash; Context</div>
+    <h2 class="rv d1">What singers struggle with every day</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>The repetitive struggle</h4>
+        <ul class="bl">
+          <li>Figuring out what to practice each day without clear direction</li>
+          <li>Searching YouTube for exercises that may or may not be right</li>
+          <li>Trying to self-diagnose (why am I cracking? why does this feel tight?)</li>
+          <li>Creating practice routines from scratch every session</li>
+          <li>Applying generic advice to their specific voice and challenges</li>
+          <li>Troubleshooting song passages alone without expert guidance</li>
+          <li>Building confidence to sing in front of others through trial and error</li>
+          <li>Managing performance anxiety and nervous system on their own</li>
+          <li>Coordinating breath, support, resonance, and emotion without integrated guidance</li>
+          <li>Tracking their own progress and knowing what to work on next</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>What they already bring</h4>
+        <ul class="bl">
+          <li>They know they love singing</li>
+          <li>Musical taste &mdash; they can hear when something sounds good</li>
+          <li>Many have years of listening experience</li>
+          <li>They understand their own emotional blocks and fears</li>
+          <li>Self-aware about their challenges</li>
+          <li>Motivated and willing to practice</li>
+          <li>They have songs they want to sing</li>
+          <li>They know what styles move them</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 17</div>
+</div>
+
+<!-- ═══════ PAGE 18: SINGER FRUSTRATIONS ═══════ -->
+<div class="pg" id="p18">
+  <div class="orb" style="width:360px;height:360px;background:rgba(26,26,26,0.03);bottom:10%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">13 &mdash; Frustrations</div>
+    <h2 class="rv d1">What they've tried &mdash; and why it hasn't worked</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>Alternatives they've tried</h4>
+        <ul class="bl muted">
+          <li>Traditional private lessons &mdash; isolating, expensive ($75&ndash;$150/hr), inconsistent feedback</li>
+          <li>YouTube tutorials &mdash; generic, overwhelming, contradictory advice from dozens of creators</li>
+          <li>Singing in the car alone &mdash; no feedback, bad habits reinforced</li>
+          <li>Group classes at community centers &mdash; $80&ndash;$150/mo but not personalized</li>
+          <li>Avoiding singing altogether &mdash; fear of judgment</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>Their core frustrations</h4>
+        <ul class="bl">
+          <li>Don't know if they're practicing correctly</li>
+          <li>Fear of damaging their voice</li>
+          <li>Can't afford ongoing private lessons</li>
+          <li>Feel stuck and don't know how to progress</li>
+          <li>Performance anxiety sabotages their technical skills</li>
+          <li>Past criticism or being shushed created blocks</li>
+          <li>Inconsistent practice because they don't know what to do</li>
+          <li>You can't see your own vocal folds, can't hear yourself accurately</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 18</div>
+</div>
+
+<!-- ═══════ PAGE 19: SINGER PAIN ═══════ -->
+<div class="pg" id="p19">
+  <div class="pg-inner">
+    <div class="sec-num rv">14 &mdash; The pain</div>
+    <h2 class="rv d1">Practicing alone, guessing if they're doing it right</h2>
+    <div class="g3 rv d2" style="margin-top:36px">
+      <div class="glass-subtle stat"><div class="stat-num">$7.2k</div><div class="stat-label">Annual cost of weekly<br>private lessons at $150/hr</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">0</div><div class="stat-label">Personalized feedback<br>from YouTube</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">73%</div><div class="stat-label">Practice inconsistently<br>because they don't know what to work on</div></div>
+    </div>
+    <div class="g2 rv d3" style="margin-top:24px">
+      <div class="tint" style="padding:24px">
+        <ul class="bl" style="gap:10px">
+          <li>Traditional private lessons cost $75&ndash;$150/hour = $3,600&ndash;$7,200/year</li>
+          <li>YouTube is free but generic, contradictory, doesn't account for trauma history</li>
+          <li>Past criticism, being shushed, or performance anxiety creates blocks that generic technique can't address</li>
+          <li>Without guidance for your nervous system, your history, and your specific voice, you're stuck or spending thousands</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0">
+        <div class="moment-tag">The "I need that" moment</div>
+        <p>"Tuesday evening, 30 minutes to practice before dinner, you open your mouth and immediately feel that familiar tightness, no idea what exercise would help, tired of scrolling random YouTube videos that may or may not be right for your voice."</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 19</div>
+</div>
+
+<!-- ═══════ PAGE 20: SINGER SOLUTION ═══════ -->
+<div class="pg" id="p20">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.05);bottom:10%;right:-5%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">15 &mdash; The solution</div>
+    <h2 class="rv d1">Personal Vocal Coach AI for singers</h2>
+    <p class="lead rv d2" style="margin-bottom:28px">An AI that knows your voice, your challenges, and your nervous system &mdash; available 24/7 for less than a single private lesson.</p>
+    <div class="g2 rv d3">
+      <div class="glass">
+        <h4>Daily coaching</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Daily practice plans (15&ndash;45 min) with specific exercises, warm-ups, and focus areas based on your challenges</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Personalized warm-ups: appropriate pitch range, exercises for your specific challenges, proper register progression</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Song-specific coaching: technical breakdown, why it's difficult, exercises to fix it, step-by-step practice strategy</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Real-time troubleshooting: "why does this feel tight?" gets a specific answer with exercises to fix it</li>
+        </ul>
+      </div>
+      <div class="glass">
+        <h4>Growth and confidence</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Vocal diagnosis: identifies problems like breath support, tension, register transitions with 3&ndash;5 exercises and modifications</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Progress tracking: documents what you've worked on, identifies challenge patterns, recommends focus areas</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Performance prep: nervous system regulation exercises, mental rehearsal scripts, step-by-step exposure therapy</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Personalized mindset work: addresses your unique inner critic, reframes your relationship with your voice</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 20</div>
+</div>
+
+<!-- ═══════ PAGE 21: SINGER DIFFERENTIATION ═══════ -->
+<div class="pg" id="p21">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.04);top:20%;right:10%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">16 &mdash; Differentiation</div>
+    <h2 class="rv d1">This isn't YouTube</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass-subtle comp-col comp-generic">
+        <h4 style="color:var(--alpha-light-400);margin-bottom:20px">Generic advice says...</h4>
+        <ul>
+          <li>"Relax your throat" &mdash; but doesn't say how</li>
+          <li>Random warm-up videos for any voice</li>
+          <li>"Just breathe from your diaphragm"</li>
+          <li>Contradictory tips from dozens of creators</li>
+          <li>No awareness of past criticism, being shushed, or trauma</li>
+          <li>Zero personalization for your specific voice</li>
+          <li>No understanding of why something is difficult for <em>you</em></li>
+        </ul>
+      </div>
+      <div class="glass comp-col comp-alisa">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:20px">Alisa's AI says...</h4>
+        <ul>
+          <li>Three breath exercises, a regulation technique, and warm-ups for <em>your</em> voice type</li>
+          <li>Speaks in Alisa's warm, permission-granting voice</li>
+          <li>Uses Belinda the Brontosaurus, the honeypot, "singing from the inside out"</li>
+          <li>Knows when you need grounding before technique</li>
+          <li>Addresses perfectionism, comparison, fear of judgment</li>
+          <li>Integrates technique with joy, play, and authentic expression (not just drills)</li>
+          <li>Accounts for past criticism, being shushed, and performance anxiety</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tint rv d3" style="margin-top:28px;padding:24px 28px">
+      <h4 style="margin-bottom:8px">The manual alternative</h4>
+      <p style="font-size:17px;line-height:26px;color:var(--alpha-light-500)">Private lessons cost $75&ndash;$150/hour = $300&ndash;$600/month for weekly sessions (unaffordable for most). YouTube is free but generic, overwhelming, contradictory, and doesn't account for your specific voice or challenges. Singing alone without feedback reinforces bad habits and creates uncertainty. Most singers either pay too much, practice incorrectly, or avoid practicing altogether.</p>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 21</div>
+</div>
+
+<!-- ═══════ PAGE 22: SINGER BELIEF LADDER ═══════ -->
+<div class="pg" id="p22">
+  <div class="pg-inner">
+    <div class="sec-num rv">17 &mdash; Belief ladder</div>
+    <h2 class="rv d1">Pain &rarr; Pointing &rarr; Selling</h2>
+    <div class="g3 rv d2" style="gap:24px;margin-top:32px">
+      <div class="glass-subtle" style="padding:28px">
+        <h4 style="color:var(--alpha-light-400)">1 &mdash; Pain</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Can't see your own vocal folds, can't hear yourself accurately</li>
+          <li style="font-size:16px;line-height:24px">Private lessons: $3,600&ndash;$7,200/year for weekly sessions</li>
+          <li style="font-size:16px;line-height:24px">YouTube: free but generic, contradictory, no account for trauma</li>
+          <li style="font-size:16px;line-height:24px">Past criticism or being shushed creates blocks generic technique can't address</li>
+          <li style="font-size:16px;line-height:24px">Without personalized guidance: stuck or spending thousands</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950)">2 &mdash; Pointing</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">AI delivers customized practice plans, troubleshooting, and song coaching</li>
+          <li style="font-size:16px;line-height:24px">"Why does this feel tight?" gets a specific answer with exercises</li>
+          <li style="font-size:16px;line-height:24px">Not replacing human connection &mdash; making expert guidance accessible</li>
+          <li style="font-size:16px;line-height:24px">No longer guessing alone or paying $150/hr for simple answers</li>
+          <li style="font-size:16px;line-height:24px">Early adopters seeing 3&ndash;5x more consistent practice and faster progress</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px;border-color:var(--alpha-brand-200)">
+        <h4 style="color:var(--alpha-brand-950)">3 &mdash; Selling</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Trained on Alisa's 30-year Fall In Love With Your Voice methodology</li>
+          <li style="font-size:16px;line-height:24px">Speaks in Alisa's warm, permission-granting voice</li>
+          <li style="font-size:16px;line-height:24px">Integrates technique with nervous system regulation and trauma-informed practices</li>
+          <li style="font-size:16px;line-height:24px">Helped hundreds overcome fear, find authentic voice, sing with joy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 22</div>
+</div>
+
+<!-- ═══════ PAGE 23: SINGER PRICING ═══════ -->
+<div class="pg" id="p23">
+  <div class="orb" style="width:400px;height:400px;background:rgba(16,104,68,0.04);top:8%;left:-6%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">18 &mdash; Pricing strategy</div>
+    <h2 class="rv d1">For singers &mdash; $67/mo</h2>
+    <div class="price-grid rv d2">
+      <div class="price-card feat">
+        <div class="chip">Founding member</div>
+        <div class="price-big">$47<span>/mo</span></div>
+        <p class="price-note"><span class="strike">$67/mo</span> &mdash; first 100 members or 30 days</p>
+        <p class="price-plan">Annual: $597/yr (saves $207)</p>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500);margin-top:8px">Founding rate locked in for life as long as subscription remains active. Monthly recurring feels manageable and cancellable (reduces risk perception) while building long-term customer value. Annual option appeals to committed learners who want to signal commitment to themselves.</p>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500)">Early adopters provide testimonials, success stories, and feedback to refine AI for different voice types. Raise price publicly celebrating founding members' vocal transformations.</p>
+      </div>
+      <div class="price-card tint">
+        <h4 style="font-size:22px;margin-bottom:16px">Why $67/mo</h4>
+        <ul class="fl sm" style="margin-bottom:20px">
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Private lessons: $75&ndash;$150/hr = $300&ndash;$600/mo. AI coaching is 78&ndash;89% cheaper</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Group classes: $80&ndash;$150/mo but lack personalization</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>YouTube: free but generic, contradictory, no trauma awareness</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>At $67/mo: unlimited daily plans, troubleshooting, song coaching for less than one lesson</li>
+        </ul>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500);margin-top:12px">Adult learners in this demographic regularly spend $50&ndash;$100/month on fitness apps, streaming services, and hobby subscriptions. Sits below existing app-only ($130/mo) and community tiers ($197&ndash;$297/mo), positioning as accessible entry point. AI delivers personalized expert coaching 24/7 for the cost of one dinner out per month.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 23</div>
+</div>
+
+<!-- ═══════ PAGE 24: SINGER PACKAGE ═══════ -->
+<div class="pg" id="p24">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.04);bottom:12%;right:8%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">19 &mdash; Package</div>
+    <h2 class="rv d1">What's included &mdash; and what's not</h2>
+    <div class="g2 rv d2" style="gap:20px;margin-top:28px">
+      <div class="tint pkg-item"><h4>Quick-Start Guide for Singers</h4><p>10-minute video: how to describe your voice and challenges, generate your first practice session, use song coaching, and get the most from daily plans.</p></div>
+      <div class="tint pkg-item"><h4>Fall In Love With Your Voice Overview</h4><p>PDF + 15-minute video explaining Alisa's 12-step methodology, the connection between nervous system and voice, and why this approach works when generic technique doesn't.</p></div>
+      <div class="tint pkg-item"><h4>20 Essential Exercise Demos</h4><p>Video library of Alisa demonstrating core exercises: primal sounds, breath work, mixed belt technique, nervous system regulation. See and hear correct execution.</p></div>
+      <div class="tint pkg-item"><h4>30-Day Practice Jumpstart Plan</h4><p>Structured first month: daily prompts, progressive challenges, and milestone check-ins to build consistency and confidence from day one.</p></div>
+      <div class="tint pkg-item"><h4>Monthly Live Group Sessions</h4><p>60-minute Zoom sessions: Alisa leads group warm-ups, answers questions, provides live feedback, and creates community among singers using the AI.</p></div>
+      <div class="tint pkg-item"><h4>Private Singer Community</h4><p>Facebook group or Circle community for singers to share progress, celebrate wins, ask questions, and support each other's vocal journeys.</p></div>
+    </div>
+    <div class="g2 rv d3" style="gap:20px;margin-top:20px">
+      <div class="tint" style="padding:24px;border-left:3px solid rgba(220,38,38,0.2)">
+        <h4 style="color:var(--alpha-light-400)">What to leave out</h4>
+        <ul class="bl muted" style="gap:8px">
+          <li style="font-size:16px;line-height:24px">Full app (158 lessons) &mdash; that's the $197&ndash;$297/mo tiers; cannibalizes higher offerings, overwhelms beginners</li>
+          <li style="font-size:16px;line-height:24px">Async personal feedback from Alisa &mdash; that's the $297/mo tier; eliminates upsell path, devalues Alisa's direct time</li>
+          <li style="font-size:16px;line-height:24px">Full 12-month curriculum &mdash; that's the $5,500 offering; destroys high-ticket program, too much for AI-only users</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0;border-left-color:var(--alpha-brand-200)">
+        <div class="moment-tag">The complete product</div>
+        <p style="font-style:normal;font-size:17px;line-height:26px">Your Personal Vocal Coach AI: the AI tool trained on Alisa's Fall In Love With Your Voice methodology, plus the training, demonstrations, and community support to practice with confidence every day. Singers walk away with a personal vocal coach available 24/7 that knows their voice, their challenges, and their nervous system, the knowledge to trust the guidance, and a community of fellow singers on the same journey.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 24</div>
+</div>
+
+<!-- ═══════ PAGE 25: SINGER EMAILS 1-4 ═══════ -->
+<div class="pg" id="p25">
+  <div class="pg-inner">
+    <div class="sec-num rv">20 &mdash; Launch emails (singers 1&ndash;4)</div>
+    <h2 class="rv d1" style="margin-bottom:28px">7-email belief ladder</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 1 &mdash; Pain</div><div class="email-subj">"You have 30 minutes to practice and no idea what to work on"</div><div class="email-arg">Most singers practice alone, guessing if they're doing it right, reinforcing bad habits, and wondering why they're not improving.</div><div class="email-cta">CTA: Reply and tell me your biggest practice frustration</div></div>
+        <div class="email-block"><div class="email-belief">Email 2 &mdash; Pain</div><div class="email-subj">"Why does getting better at singing have to cost $7,200/year?"</div><div class="email-arg">Private lessons: $75&ndash;$150/hour requiring $3,600&ndash;$7,200/year. YouTube: free but generic and contradictory. You're either paying too much or practicing incorrectly.</div><div class="email-cta">CTA: Read why the current options are broken</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 3 &mdash; Pointing</div><div class="email-subj">"The practice session you've been wishing for"</div><div class="email-arg">AI-powered personal coaching means customized practice plans, real-time troubleshooting, and song-specific guidance for your voice, your challenges, your nervous system &mdash; available 24/7.</div><div class="email-cta">CTA: Watch 3-minute demo of AI generating a personalized practice session</div></div>
+        <div class="email-block"><div class="email-belief">Email 4 &mdash; Pointing</div><div class="email-subj">"Why generic vocal exercises can't fix your specific voice"</div><div class="email-arg">YouTube doesn't know your voice type, your trauma history, your performance anxiety, or whether that tightness you feel is normal or harmful. Personalized AI does.</div><div class="email-cta">CTA: See the difference &mdash; coaching trained on 30 years of methodology vs generic</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 25</div>
+</div>
+
+<!-- ═══════ PAGE 26: SINGER EMAILS 5-7 ═══════ -->
+<div class="pg" id="p26">
+  <div class="pg-inner">
+    <div class="sec-num rv">21 &mdash; Launch emails (singers 5&ndash;7)</div>
+    <div class="g2 rv d1" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 5 &mdash; Selling</div><div class="email-subj">"I built this for singers who are tired of guessing"</div><div class="email-arg">Trained on my 30-year Fall In Love With Your Voice methodology. Generates daily practice plans, diagnoses vocal issues, provides song coaching, integrates nervous system work, speaks in my warm permission-granting voice.</div><div class="email-cta">CTA: Get founding member access for $47/month (regular $67) &mdash; doors close in 72 hours</div></div>
+        <div class="email-block"><div class="email-belief">Email 6 &mdash; Selling</div><div class="email-subj">"If you practiced with confidence every day for 3 months, where would you be?"</div><div class="email-arg">Early users seeing 3&ndash;5x more consistent practice because they know exactly what to do each day and trust they're practicing correctly. Confidence builds on itself.</div><div class="email-cta">CTA: Lock in founding member rate before midnight (annual option saves $207)</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 7 &mdash; Selling</div><div class="email-subj">"Your $47/month rate disappears at midnight (no extensions)"</div><div class="email-arg">After tonight, price goes to $67/month and you'll miss the founding member bonuses. This is your last chance to lock in the lifetime rate.</div><div class="email-cta">CTA: Join now before doors close (link to checkout)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 26</div>
+</div>
+
+<!-- ═══════ PAGE 27: SINGER SOCIAL MEDIA ═══════ -->
+<div class="pg" id="p27">
+  <div class="orb" style="width:350px;height:350px;background:rgba(16,104,68,0.04);bottom:12%;left:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">22 &mdash; Social media (singers)</div>
+    <h2 class="rv d1" style="margin-bottom:28px">8 talking points</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="social-card"><p class="sq">"A student told me she practices in her car because she's afraid her family will hear her. Then she asked if she's doing the exercises right. She has no idea."</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Text post</span></div></div>
+        <div class="social-card"><p class="sq">"$150/hour &times; 4 lessons/month &times; 12 months = $7,200/year. That's what consistent vocal coaching costs. Most people can't afford that."</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Carousel</span></div></div>
+        <div class="social-card"><p class="sq">"What if the solution to inconsistent practice isn't more discipline, it's knowing exactly what to work on today?"</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Short video (30 sec)</span></div></div>
+        <div class="social-card"><p class="sq">"I asked ChatGPT about throat tension. It said 'relax and practice scales.' My AI gave me three breath exercises, a nervous system regulation technique, and two warm-ups for my voice type."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Screenshot comparison</span></div></div>
+      </div>
+      <div>
+        <div class="social-card"><p class="sq">"Singers using personalized AI coaching are practicing 3-5x more consistently because they finally know what to do each day. Imagine where your voice would be in 3 months."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Story poll</span></div></div>
+        <div class="social-card"><p class="sq">"I built something for singers who are tired of guessing if they're practicing correctly. Your personal vocal coach AI. Doors open this week."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Text post + link in bio</span></div></div>
+        <div class="social-card"><p class="sq">"Founding member rate ($47/month locked in for life) ends in 48 hours. After that it's $67/month. If you've been waiting, this is it."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Story countdown</span></div></div>
+        <div class="social-card"><p class="sq">"Someone asked if this replaces private lessons. No. It replaces guessing alone in your practice room. It replaces scrolling YouTube for an hour. It replaces avoiding practice because you don't know what to do."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Text post</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 27</div>
+</div>
+
+<!-- ═══════ PAGE 28: CLOSING ═══════ -->
+<div class="pg" id="p28">
+  <div class="orb" style="width:400px;height:400px;background:rgba(16,104,68,0.06);bottom:20%;left:35%"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:38px;height:38px;color:var(--alpha-brand-950)"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+    </div>
+    <h2 class="rv d1" style="margin-bottom:20px">Two products, one ecosystem</h2>
+    <p class="lead rv d2" style="margin:0 auto 36px;text-align:center">Voice Teacher's AI Studio Assistant and Personal Vocal Coach AI &mdash; powered by 30 years of Alisa.</p>
+    <div class="g2 rv d3" style="max-width:900px;margin:0 auto 48px;gap:24px;text-align:left">
+      <div class="tint" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:10px">Teacher product</h4>
+        <p style="font-size:18px;line-height:28px;color:var(--alpha-light-500)">$397 founding / $497 regular. One-time purchase. AI Studio Assistant + methodology training + exercise library + 10 sample plans + monthly Q&A + teacher community.</p>
+      </div>
+      <div class="tint" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:10px">Singer product</h4>
+        <p style="font-size:18px;line-height:28px;color:var(--alpha-light-500)">$47/mo founding / $67/mo regular. Subscription (annual $597). Personal Vocal Coach AI + 30-day jumpstart + exercise demos + monthly live sessions + singer community.</p>
+      </div>
+    </div>
+    <div class="rv d4" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button class="btn">Start with the teacher product</button>
+      <button class="btn btn-brand">Explore the singer product</button>
+    </div>
+    <p class="rv d5" style="margin-top:56px;font-size:14px;color:var(--alpha-light-300);letter-spacing:0.3px">Strategy prepared by Kodara</p>
+  </div>
+  <div class="pf">Alisa Larsen &mdash; AI Product Strategy &middot; Page 28</div>
+</div>
+
+<script>
+  const rvEls=document.querySelectorAll('.rv');
+  const rvObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');rvObs.unobserve(x.target)}})},{threshold:0.1});
+  rvEls.forEach(el=>rvObs.observe(el));
+
+  const pgs=document.querySelectorAll('.pg[id]');
+  const nav=document.getElementById('nav');
+  pgs.forEach((pg,i)=>{const d=document.createElement('button');d.className='nav-dot';d.setAttribute('aria-label','Page '+(i+1));d.addEventListener('click',()=>pg.scrollIntoView({behavior:'smooth'}));nav.appendChild(d)});
+  const dots=nav.querySelectorAll('.nav-dot');
+  const pgObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const i=Array.from(pgs).indexOf(x.target);dots.forEach((d,j)=>d.classList.toggle('active',j===i))}})},{threshold:0.3});
+  pgs.forEach(p=>pgObs.observe(p));
+  if(dots.length)dots[0].classList.add('active');
+</script>
+</body>
+</html>
