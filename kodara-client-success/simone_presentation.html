@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Simone &mdash; AI Product Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --b-w-white: #ffffff;
+  --alpha-light-25: rgba(26,26,26,0.04);
+  --alpha-light-50: rgba(26,26,26,0.06);
+  --alpha-light-100: rgba(26,26,26,0.09);
+  --alpha-light-200: rgba(26,26,26,0.20);
+  --alpha-light-300: rgba(26,26,26,0.28);
+  --alpha-light-400: rgba(26,26,26,0.36);
+  --alpha-light-500: rgba(26,26,26,0.48);
+  --alpha-light-600: rgba(26,26,26,0.60);
+  --alpha-light-900: rgba(26,26,26,0.80);
+  --alpha-dark-300: rgba(255,255,255,0.28);
+  --alpha-dark-600: rgba(255,255,255,0.60);
+  --alpha-dark-800: rgba(255,255,255,0.75);
+  --alpha-dark-900: rgba(255,255,255,0.80);
+  --alpha-brand-50: rgba(16,104,68,0.06);
+  --alpha-brand-100: rgba(16,104,68,0.08);
+  --alpha-brand-200: rgba(16,104,68,0.12);
+  --alpha-brand-950: rgba(16,104,68,0.92);
+  --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+  --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+  --shadow-avatar: 0px 20px 6px rgba(12,48,70,0), 0px 13px 5px rgba(12,48,70,0.02), 0px 7px 4px rgba(12,48,70,0.07), 0px 3px 3px rgba(12,48,70,0.12), 0px 1px 2px rgba(12,48,70,0.14);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Instrument Sans',sans-serif;
+  font-variation-settings:'wdth' 100;
+  color:var(--alpha-light-600);
+  background:var(--b-w-white);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+.pg {
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:100px 48px;
+  overflow:hidden;
+  page-break-after:always;
+  break-after:page;
+}
+.pg:last-child { page-break-after:auto; break-after:auto; }
+.pg-inner { position:relative; z-index:1; max-width:1200px; width:100%; }
+.sec-num { font-size:14px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--alpha-light-300); margin-bottom:24px; }
+h1 { font-size:70px; line-height:80px; letter-spacing:-1.5px; font-weight:400; color:var(--alpha-light-900); }
+h2 { font-size:50px; line-height:60px; letter-spacing:-0.8px; font-weight:400; color:var(--alpha-light-900); margin-bottom:24px; }
+h3 { font-size:29px; line-height:38px; letter-spacing:-0.3px; font-weight:500; color:var(--alpha-light-900); margin-bottom:20px; }
+h4 { font-size:20px; line-height:28px; font-weight:600; color:var(--alpha-light-900); margin-bottom:12px; }
+p { font-size:20px; line-height:34px; font-weight:400; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+.lead { font-size:22px; line-height:36px; max-width:800px; }
+.chip { display:inline-flex; align-items:center; gap:8px; background:var(--alpha-brand-50); border-radius:999px; padding:7px 18px; font-size:16px; font-weight:600; color:var(--alpha-brand-950); letter-spacing:0.2px; }
+.glass { background:var(--alpha-dark-800); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; box-shadow:var(--shadow-card); }
+.glass-subtle { background:var(--alpha-dark-300); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; }
+.tint { background:var(--alpha-light-25); border-radius:16px; padding:28px; }
+.divider { width:48px; height:1px; background:var(--alpha-light-200); margin:24px 0; }
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.stat { text-align:center; padding:28px 16px; }
+.stat-num { font-size:57px; line-height:66px; font-weight:400; letter-spacing:-1px; color:var(--alpha-light-900); margin-bottom:8px; }
+.stat-label { font-size:17px; line-height:24px; font-weight:500; color:var(--alpha-light-500); }
+.moment { background:var(--alpha-light-25); border-radius:16px; padding:32px 36px; border-left:3px solid var(--alpha-brand-200); margin-top:36px; }
+.moment-tag { font-size:14px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--alpha-brand-950); margin-bottom:14px; }
+.moment p { font-style:italic; }
+.fl { list-style:none; display:flex; flex-direction:column; gap:16px; }
+.fl li { display:flex; align-items:flex-start; gap:14px; font-size:18px; line-height:28px; font-weight:500; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+.fl.sm { gap:12px; }
+.fl.sm li { font-size:17px; line-height:26px; }
+.fi { flex-shrink:0; width:28px; height:28px; border-radius:6px; background:var(--alpha-brand-50); display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.fi svg { width:14px; height:14px; }
+.bl { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.bl li { font-size:18px; line-height:28px; font-weight:400; color:var(--alpha-light-600); padding-left:24px; position:relative; letter-spacing:-0.15px; }
+.bl li::before { content:''; position:absolute; left:0; top:11px; width:8px; height:8px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+.bl.muted li { color:var(--alpha-light-500); }
+.bl.muted li::before { background:var(--alpha-light-100); border-color:var(--alpha-light-300); }
+.comp-col ul { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.comp-col li { font-size:18px; line-height:27px; font-weight:400; padding-left:26px; position:relative; letter-spacing:-0.15px; }
+.comp-generic li { color:var(--alpha-light-400); }
+.comp-generic li::before { content:''; position:absolute; left:0; top:9px; width:10px; height:10px; border-radius:2px; background:var(--alpha-light-200); }
+.comp-alisa li { color:var(--alpha-light-600); }
+.comp-alisa li::before { content:''; position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+.price-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:36px; }
+.price-card { border-radius:16px; padding:36px; border:1px solid var(--alpha-light-100); position:relative; overflow:hidden; }
+.price-card.feat { background:var(--alpha-dark-900); backdrop-filter:blur(14px); border-color:var(--alpha-brand-200); box-shadow:var(--shadow-modal); }
+.price-card.feat::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,rgba(16,104,68,0.4),rgba(16,104,68,0.06)); }
+.price-big { font-size:60px; line-height:68px; font-weight:400; letter-spacing:-1.5px; color:var(--alpha-light-900); margin:16px 0 8px; }
+.price-big span { font-size:24px; letter-spacing:0; }
+.price-note { font-size:17px; color:var(--alpha-light-500); }
+.price-plan { font-size:17px; color:var(--alpha-light-400); margin-top:4px; }
+.strike { text-decoration:line-through; color:var(--alpha-light-300); font-size:22px; }
+.email-block { background:var(--alpha-light-25); border-radius:12px; padding:24px 28px; margin-bottom:16px; }
+.email-block .email-subj { font-size:18px; font-weight:600; color:var(--alpha-light-900); margin-bottom:8px; letter-spacing:-0.15px; }
+.email-block .email-arg { font-size:17px; line-height:26px; color:var(--alpha-light-600); margin-bottom:8px; }
+.email-block .email-cta { font-size:15px; font-weight:600; color:var(--alpha-brand-950); }
+.email-block .email-belief { font-size:14px; font-weight:600; color:var(--alpha-light-300); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+.social-card { background:var(--alpha-light-25); border-radius:12px; padding:20px 24px; margin-bottom:14px; }
+.social-card .sq { font-size:17px; line-height:26px; color:var(--alpha-light-900); font-weight:400; font-style:italic; margin-bottom:10px; }
+.social-card .sm-row { display:flex; gap:16px; align-items:center; }
+.social-card .sm-meta { font-size:14px; font-weight:600; color:var(--alpha-light-400); letter-spacing:0.3px; text-transform:uppercase; }
+.social-card .sm-format { font-size:14px; font-weight:500; color:var(--alpha-brand-950); }
+.ladder-row { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--alpha-light-50); }
+.ladder-row:last-child { border-bottom:none; }
+.ladder-label { font-size:18px; font-weight:500; }
+.ladder-val { font-size:18px; font-weight:500; color:var(--alpha-light-900); }
+.pkg-item { padding:24px; }
+.pkg-item p { font-size:17px; line-height:26px; color:var(--alpha-light-500); }
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 32px; background:linear-gradient(to bottom,#737373,#404040); border-radius:8px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:18px; font-weight:500; color:rgba(255,255,255,0.8); letter-spacing:-0.15px; position:relative; overflow:hidden; transition:opacity 150ms; }
+.btn::after { content:''; position:absolute; inset:0; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; pointer-events:none; }
+.btn:hover { opacity:0.9; }
+.btn-brand { background:linear-gradient(to bottom,rgba(16,104,68,0.82),rgba(16,104,68,0.96)); }
+.save-pdf { position:fixed; top:24px; right:24px; z-index:200; display:flex; align-items:center; gap:10px; padding:10px 20px; background:var(--alpha-dark-800); backdrop-filter:blur(12px); border:1px solid var(--alpha-light-100); border-radius:8px; box-shadow:var(--shadow-card); cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:16px; font-weight:500; color:var(--alpha-light-900); transition:background 150ms; }
+.save-pdf:hover { background:var(--alpha-dark-900); }
+.save-pdf svg { width:18px; height:18px; color:var(--alpha-light-600); }
+.nav { position:fixed; right:24px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:6px; z-index:100; }
+.nav-dot { width:6px; height:6px; border-radius:999px; background:var(--alpha-light-200); border:none; cursor:pointer; transition:all 250ms ease-out; padding:0; }
+.nav-dot.active { background:var(--alpha-brand-950); height:16px; }
+.rv { opacity:0; transform:translateY(20px); transition:opacity 550ms ease-out, transform 550ms ease-out; }
+.rv.vis { opacity:1; transform:translateY(0); }
+.d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+.hero-orb { width:100px; height:100px; border-radius:999px; background:linear-gradient(145deg,rgba(16,104,68,0.14),rgba(16,104,68,0.04)); border:1px solid var(--alpha-light-50); box-shadow:var(--shadow-avatar); display:flex; align-items:center; justify-content:center; position:relative; margin:0 auto 32px; }
+.hero-orb::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:rgba(16,104,68,0.05); filter:blur(50px); z-index:-1; }
+.hero-orb svg { width:42px; height:42px; color:var(--alpha-brand-950); }
+.scroll-cue { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--alpha-light-300); letter-spacing:0.5px; animation:bob 2.2s ease-in-out infinite; }
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+.scroll-cue-arrow { width:16px; height:16px; border-right:1.5px solid var(--alpha-light-300); border-bottom:1.5px solid var(--alpha-light-300); transform:rotate(45deg); }
+.pf { position:absolute; bottom:28px; left:0; right:0; text-align:center; font-size:13px; font-weight:500; color:var(--alpha-light-200); letter-spacing:0.3px; z-index:1; }
+@media screen { .pf { display:none; } }
+@media (max-width:1000px) {
+  h1{font-size:44px;line-height:54px} h2{font-size:34px;line-height:42px}
+  .pg{padding:72px 24px;min-height:auto}
+  .g2,.g3,.price-grid{grid-template-columns:1fr}
+  .g4{grid-template-columns:1fr 1fr}
+  .nav{display:none}
+  .stat-num{font-size:40px} .price-big{font-size:44px}
+}
+@media print {
+  @page { size:A4 landscape; margin:0; }
+  html,body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; color-adjust:exact!important; }
+  .rv { opacity:1!important; transform:none!important; transition:none!important; }
+  .nav,.scroll-cue,.save-pdf { display:none!important; }
+  .pg { min-height:0; height:auto; padding:40px 48px; page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; overflow:visible; }
+  .pg:last-child { page-break-after:auto; break-after:auto; }
+  .glass,.glass-subtle,.tint,.price-card.feat,.chip,.fi,.email-block,.social-card,.hero-orb,.moment,.stat { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  .orb { opacity:0.6; -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  .pf { display:block; }
+  h2{font-size:42px;line-height:50px}
+}
+</style>
+</head>
+<body>
+
+<!-- Save PDF button -->
+<button class="save-pdf" onclick="window.print()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Save PDF
+</button>
+
+<!-- Nav dots -->
+<div class="nav" id="nav"></div>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — COVER -->
+<!-- ============================================================ -->
+<section class="pg" id="cover">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.06);top:-120px;right:-80px;"></div>
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);bottom:-60px;left:-40px;"></div>
+  <div class="pg-inner" style="text-align:center;">
+    <div class="hero-orb rv d1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    </div>
+    <div class="chip rv d2">AI Product Strategy</div>
+    <h1 class="rv d2" style="margin:28px auto 20px;max-width:900px;">Bulletproof COO&nbsp;AI</h1>
+    <p class="lead rv d3" style="margin:0 auto 48px;max-width:740px;">A done-for-you business operating system that studies your business, then generates your strategic plan, delegation frameworks, meeting structures, and onboarding systems.</p>
+    <div class="g4 rv d4" style="max-width:880px;margin:0 auto;">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years of frameworks</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">VVMMOO</div>
+        <div class="stat-label">Proven methodology</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5&ndash;20</div>
+        <div class="stat-label">Person teams served</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$120K</div>
+        <div class="stat-label">COO value delivered</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll<div class="scroll-cue-arrow"></div></div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 1</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — THE PAIN -->
+<!-- ============================================================ -->
+<section class="pg" id="pain">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.05);top:-100px;left:-60px;"></div>
+  <div class="orb" style="width:260px;height:260px;background:rgba(16,104,68,0.04);bottom:-40px;right:-30px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">01 &mdash; The Pain</div>
+    <h2 class="rv d1">You&rsquo;re not burned out because you work too&nbsp;much</h2>
+    <p class="lead rv d2" style="margin-bottom:40px;">You&rsquo;re burned out because you&rsquo;re still running your business like it&rsquo;s day one&mdash;and every major decision still runs through&nbsp;you.</p>
+
+    <div class="g3 rv d3">
+      <div class="tint">
+        <h4>Still the bottleneck</h4>
+        <ul class="bl">
+          <li>You have a team, clients, and revenue&mdash;but every major decision still runs through you</li>
+          <li>Every fire, you&rsquo;re the one putting it out</li>
+          <li>Every plan, you&rsquo;re the one pushing it across the finish line</li>
+        </ul>
+      </div>
+      <div class="tint">
+        <h4>Lack of structure</h4>
+        <ul class="bl">
+          <li>93% of employees don&rsquo;t understand how their work connects to company strategy (Harvard)</li>
+          <li>When your team doesn&rsquo;t see the big picture, they can&rsquo;t make decisions&mdash;so they keep coming back to you</li>
+          <li>Working 80&ndash;90 hours a week, not getting paid what you should, and the business still can&rsquo;t run without you</li>
+        </ul>
+      </div>
+      <div class="tint">
+        <h4>No time to document</h4>
+        <ul class="bl">
+          <li>You&rsquo;ve read the books (E-Myth, Traction, Good to Great)&mdash;you know you need systems</li>
+          <li>You&rsquo;ve tried templates, courses, consultants&mdash;they all require YOU to do the heavy lifting</li>
+          <li>Every quarter you delay, you&rsquo;re leaving money on the table and burning out faster</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="moment rv d4">
+      <div class="moment-tag">&ldquo;I Need That&rdquo; Moment</div>
+      <p>&ldquo;You just hired someone who seems great, but two weeks in they&rsquo;re asking you 47 questions a day because nothing is documented, and you realize you&rsquo;re spending more time managing them than you were just doing the work yourself&mdash;and you&rsquo;re about to lose your mind.&rdquo;</p>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 2</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 — THE SOLUTION (8 Capabilities) -->
+<!-- ============================================================ -->
+<section class="pg" id="solution">
+  <div class="orb" style="width:350px;height:350px;background:rgba(16,104,68,0.05);top:-80px;right:-60px;"></div>
+  <div class="orb" style="width:280px;height:280px;background:rgba(16,104,68,0.04);bottom:-70px;left:-50px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">02 &mdash; The Solution</div>
+    <h2 class="rv d1">8 capabilities, zero manual&nbsp;work</h2>
+    <p class="lead rv d2" style="margin-bottom:36px;">Bulletproof COO AI observes your business, then builds your entire operating system&mdash;so you don&rsquo;t have to.</p>
+
+    <div class="g2 rv d3">
+      <div class="glass">
+        <h4 style="margin-bottom:20px;">Observe &amp; Plan</h4>
+        <ul class="fl sm">
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Observes and learns your business for 1&ndash;2 weeks by analyzing your calendar, emails, Slack messages, meeting recordings, existing docs, and short voice memos where you brain-dump what&rsquo;s in your head
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Generates a complete company VVMMOO (Vision, Values, Methods, Measures, Obstacles, Opportunities) based on what you&rsquo;re actually doing and saying&mdash;not what you wish you were doing
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Creates department-level VVMMOOs for each business area that reflect how your business actually operates, with role-specific methods and measures pulled from real work patterns
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Writes individual contributor VVMMOOs for every team member based on their current responsibilities, communication patterns, and how they actually spend their time
+          </li>
+        </ul>
+      </div>
+      <div class="glass">
+        <h4 style="margin-bottom:20px;">Execute &amp; Scale</h4>
+        <ul class="fl sm">
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Builds a 13-week action plan with weekly priorities and pre-filled WAR meeting agendas by analyzing what&rsquo;s already on your roadmap, in your CRM, and in your team&rsquo;s task lists
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Produces one-on-one prep forms and coaching prompts for each direct report by identifying recurring issues, growth opportunities, and communication gaps from your actual interactions
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Generates onboarding plans for new hires by documenting how your current team was trained (pulled from emails, recordings, and existing processes)
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Creates delegation frameworks by identifying what&rsquo;s currently on your plate that could be owned by someone else, then writes the handoff plan with decision-making parameters
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 3</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 — DIFFERENTIATION -->
+<!-- ============================================================ -->
+<section class="pg" id="differentiation">
+  <div class="orb" style="width:400px;height:400px;background:rgba(16,104,68,0.05);bottom:-100px;right:-80px;"></div>
+  <div class="orb" style="width:260px;height:260px;background:rgba(16,104,68,0.04);top:-60px;left:-40px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">03 &mdash; Differentiation</div>
+    <h2 class="rv d1">Why this isn&rsquo;t &ldquo;just another AI&nbsp;tool&rdquo;</h2>
+
+    <div class="g2 rv d2" style="margin-bottom:36px;">
+      <div class="tint comp-col comp-generic">
+        <h4 style="color:var(--alpha-light-400);margin-bottom:16px;">Generic AI says&hellip;</h4>
+        <ul>
+          <li>Create a strategic plan for your business</li>
+          <li>Delegate more tasks to your team</li>
+          <li>Set up weekly team meetings</li>
+          <li>Document your processes</li>
+          <li>Use project management software</li>
+        </ul>
+      </div>
+      <div class="tint comp-col comp-alisa">
+        <h4 style="margin-bottom:16px;">Simone&rsquo;s AI says&hellip;</h4>
+        <ul>
+          <li>You don&rsquo;t train it&mdash;it trains itself by studying your business like a world-class COO would during their first two weeks on the job</li>
+          <li>Trained on Simone&rsquo;s VVMMOO methodology, so it knows the difference between what you&rsquo;re doing (often firefighting) and what you should be doing (strategic work), and it builds the plan to close that gap</li>
+          <li>Understands the nuance of delegation (three levels, five C&rsquo;s) and won&rsquo;t just tell you to &ldquo;delegate more&rdquo;&mdash;it tells you exactly what to delegate, to whom, and how to hand it off without it coming back broken</li>
+          <li>Outputs are based on your actual business&mdash;not generic templates&mdash;it uses your language, your priorities, your team structure, and your real constraints</li>
+          <li>Includes Simone&rsquo;s coaching voice to challenge you when you&rsquo;re holding onto work that isn&rsquo;t yours (e.g., &ldquo;Is this really yours to do?&rdquo; &ldquo;What would a $30M CEO do here?&rdquo;)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass-subtle rv d3">
+      <h4 style="margin-bottom:16px;">Manual alternative</h4>
+      <div class="g2">
+        <ul class="bl muted">
+          <li>Hiring a COO or integrator: $80K&ndash;$150K/year, plus 3&ndash;6 months to onboard, and they still need you to document everything first</li>
+          <li>DIY with templates: 40+ hours of work you don&rsquo;t have, and the plan is outdated the moment you finish it because your business keeps moving</li>
+        </ul>
+        <ul class="bl muted">
+          <li>Hiring a consultant: $10K&ndash;$20K and 3&ndash;6 months of meetings where you&rsquo;re still doing most of the thinking and documentation</li>
+          <li>Trying to get your team to document processes: they don&rsquo;t know what you know, so you end up rewriting everything anyway</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 4</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 — BELIEF LADDER -->
+<!-- ============================================================ -->
+<section class="pg" id="belief-ladder">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.05);top:-80px;right:-50px;"></div>
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);bottom:-80px;left:-70px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">04 &mdash; Belief Ladder</div>
+    <h2 class="rv d1">Three levels of buyer&nbsp;belief</h2>
+
+    <div class="g3 rv d2">
+      <!-- PAIN column -->
+      <div class="glass">
+        <div class="chip" style="margin-bottom:20px;">Level 1 &mdash; Pain</div>
+        <ul class="fl sm">
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            You&rsquo;re burned out because you&rsquo;re still running your business like it&rsquo;s day one&mdash;every decision runs through you, every fire you&rsquo;re the one putting it out
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            The bottleneck isn&rsquo;t your team&mdash;it&rsquo;s the lack of structure. 93% of employees don&rsquo;t understand how their work connects to strategy (Harvard)
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            You already know what needs to happen&mdash;you just don&rsquo;t have 40 hours to document it. Every quarter you delay, you&rsquo;re leaving money on the table
+          </li>
+        </ul>
+      </div>
+      <!-- POINTING column -->
+      <div class="glass">
+        <div class="chip" style="margin-bottom:20px;">Level 2 &mdash; Pointing</div>
+        <ul class="fl sm">
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            The best COOs shadow you for two weeks, document everything, then hand you back 20&ndash;30 hours a week. AI can do the same thing&mdash;faster and without the $120K salary
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            The difference: you don&rsquo;t have to prompt it. It studies you, then does the work&mdash;in 1&ndash;2 weeks instead of 6 months
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Opportunities unlocked: shift from 90% in the business to 90% on it. Team becomes autonomous. Business becomes scalable, sellable, and owner-independent
+          </li>
+        </ul>
+      </div>
+      <!-- SELLING column -->
+      <div class="glass">
+        <div class="chip" style="margin-bottom:20px;">Level 3 &mdash; Selling</div>
+        <ul class="fl sm">
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Observes your business for 1&ndash;2 weeks, then generates your complete VVMMOO, delegation frameworks, meeting agendas, onboarding plans, and weekly scorecards&mdash;without you building any of it manually
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Trained on Simone&rsquo;s 10+ years of frameworks (VVMMOO, WAR meetings, V2A one-on-ones, three levels of delegation, five C&rsquo;s) so it knows what you should be doing and builds the plan to close that gap
+          </li>
+          <li>
+            <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Includes Simone&rsquo;s coaching voice to challenge you when you&rsquo;re holding onto work that isn&rsquo;t yours&mdash;you&rsquo;re not just getting a document, you&rsquo;re becoming the CEO your business needs
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 5</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 6 — PRICING STRATEGY -->
+<!-- ============================================================ -->
+<section class="pg" id="pricing">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.05);top:-90px;left:-70px;"></div>
+  <div class="orb" style="width:260px;height:260px;background:rgba(16,104,68,0.04);bottom:-50px;right:-40px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">05 &mdash; Pricing Strategy</div>
+    <h2 class="rv d1">Positioned to convert, anchored to&nbsp;value</h2>
+
+    <div class="price-grid rv d2">
+      <div class="price-card feat">
+        <div class="chip">Founding Member Rate</div>
+        <div class="price-big">$697</div>
+        <div class="price-note">First 50 buyers &middot; <span class="strike">$997</span></div>
+        <div class="price-plan">Or 3 &times; $349 ($1,047 total, 5% premium)</div>
+        <div class="divider"></div>
+        <p style="font-size:17px;line-height:26px;">Raise after 50 sales or 30 days. Full price $997.</p>
+      </div>
+      <div class="price-card">
+        <h4>Why $997</h4>
+        <ul class="bl" style="margin-top:8px;">
+          <li>Sits between a course ($200&ndash;$500) and a mastermind or done-for-you service ($3K&ndash;$15K)</li>
+          <li>Passes the 10&times; test: saves 40+ hours of CEO time per quarter at $200/hr opportunity cost = $8K+ in value</li>
+          <li>Eliminates the need for a $10K&ndash;$20K consultant engagement</li>
+          <li>High enough to signal serious business tool, low enough that a $1M+ business says yes without a committee</li>
+          <li>Positions as premium software with expert methodology baked in&mdash;not just another SaaS subscription</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass-subtle rv d3" style="margin-top:28px;">
+      <h4 style="margin-bottom:14px;">Price anchoring</h4>
+      <div class="g3">
+        <div>
+          <p style="font-size:17px;line-height:26px;"><strong style="color:var(--alpha-light-900);">COO hire:</strong> $80K&ndash;$150K/year</p>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:26px;"><strong style="color:var(--alpha-light-900);">Consultant:</strong> $10K&ndash;$20K for planning</p>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:26px;"><strong style="color:var(--alpha-light-900);">DIY:</strong> 40 hrs/quarter &times; $200/hr = $8K in lost CEO time</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:17px;line-height:26px;">AI product delivers 80% of what a $120K COO would do in their first 90 days, for less than 1% of the annual cost. One quarter of saved time pays for the product 8&times; over.</p>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 6</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 7 — PACKAGE DETAILS -->
+<!-- ============================================================ -->
+<section class="pg" id="package">
+  <div class="orb" style="width:360px;height:360px;background:rgba(16,104,68,0.05);bottom:-100px;left:-80px;"></div>
+  <div class="orb" style="width:280px;height:280px;background:rgba(16,104,68,0.04);top:-60px;right:-50px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">06 &mdash; Package Details</div>
+    <h2 class="rv d1">What&rsquo;s included&mdash;and what&rsquo;s&nbsp;not</h2>
+
+    <div class="g2 rv d2" style="margin-bottom:28px;">
+      <div class="glass">
+        <h4 style="margin-bottom:16px;">Core Product</h4>
+        <p style="font-size:17px;line-height:26px;">Bulletproof COO AI is a done-for-you business operating system that studies your business for 1&ndash;2 weeks, then generates your strategic plan, delegation frameworks, meeting structures, and onboarding systems&mdash;plus the training and templates you need to implement it all immediately. Buyers walk away with a complete, customized operating system (VVMMOO, WAR meetings, delegation plans, onboarding docs) built specifically for their business, ready to use, and backed by 10+ years of proven methodology.</p>
+      </div>
+      <div>
+        <div class="glass" style="margin-bottom:20px;">
+          <h4 style="margin-bottom:14px;">Exclusions</h4>
+          <ul class="bl muted">
+            <li>Full Bulletproof Business Builder program or mastermind access&mdash;would cannibalize the $3K&ndash;$15K ongoing programs</li>
+            <li>One-on-one advisory or coaching calls&mdash;keeps the product scalable and digital</li>
+            <li>Advanced hiring frameworks or team optimization modules&mdash;too broad, would bloat the product</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="rv d3" style="margin-bottom:16px;">6 Inclusions</h4>
+    <div class="g3 rv d3">
+      <div class="tint pkg-item">
+        <h4>VVMMOO Masterclass</h4>
+        <p>Video training (60&ndash;90 minutes): walks through the methodology behind the AI so buyers understand what the AI is building and why it matters.</p>
+      </div>
+      <div class="tint pkg-item">
+        <h4>WAR Meeting Toolkit</h4>
+        <p>Templates + 15-minute video: pre-built agendas, scoreboard templates, and facilitation guide.</p>
+      </div>
+      <div class="tint pkg-item">
+        <h4>Delegation Decision Tree</h4>
+        <p>One-page framework + examples: visual guide to the three levels of delegation and five C&rsquo;s.</p>
+      </div>
+      <div class="tint pkg-item">
+        <h4>CEO Time Audit Template</h4>
+        <p>Spreadsheet + 10-minute walkthrough video: helps buyers track where their time currently goes.</p>
+      </div>
+      <div class="tint pkg-item">
+        <h4>Onboarding SOP Library</h4>
+        <p>5&ndash;10 example documents: real onboarding plans, training checklists, and 30/60/90-day goal templates.</p>
+      </div>
+      <div class="tint pkg-item">
+        <h4>Private Slack Channel or Monthly Group Q&amp;A</h4>
+        <p>90 days of access: founding members get 90 days to ask questions, troubleshoot, and share wins.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 7</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 8 — LAUNCH EMAILS 1-4 -->
+<!-- ============================================================ -->
+<section class="pg" id="emails-1">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.05);top:-70px;right:-60px;"></div>
+  <div class="orb" style="width:240px;height:240px;background:rgba(16,104,68,0.04);bottom:-50px;left:-40px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">07 &mdash; Launch Emails 1&ndash;4</div>
+    <h2 class="rv d1">Email sequence&mdash;first&nbsp;half</h2>
+
+    <div class="g2 rv d2">
+      <!-- Email 1 -->
+      <div class="email-block">
+        <div class="email-belief">Email 1 &middot; Belief 1 (Pain + Desire)</div>
+        <div class="email-subj">&ldquo;You already know what to do (so why isn&rsquo;t it done?)&rdquo;</div>
+        <div class="email-arg">You&rsquo;re not burned out because you work too much&mdash;you&rsquo;re burned out because you&rsquo;re still running your business like it&rsquo;s day one, and every decision runs through you.</div>
+        <div class="email-cta">CTA: Reply and tell me the one thing you know you should delegate but haven&rsquo;t</div>
+      </div>
+      <!-- Email 2 -->
+      <div class="email-block">
+        <div class="email-belief">Email 2 &middot; Belief 1 (Pain, external proof)</div>
+        <div class="email-subj">&ldquo;93% of employees don&rsquo;t understand company strategy (Harvard study)&rdquo;</div>
+        <div class="email-arg">The bottleneck isn&rsquo;t your team&rsquo;s capability&mdash;it&rsquo;s the lack of structure that works without you, and that&rsquo;s why they keep coming back with questions.</div>
+        <div class="email-cta">CTA: Read the full breakdown (link to blog post or video expanding on this)</div>
+      </div>
+      <!-- Email 3 -->
+      <div class="email-block">
+        <div class="email-belief">Email 3 &middot; Belief 2 (Mechanism)</div>
+        <div class="email-subj">&ldquo;What a $120K COO does in their first two weeks&rdquo;</div>
+        <div class="email-arg">The best COOs don&rsquo;t ask you to train them&mdash;they shadow you for two weeks, document everything, then start taking work off your plate&mdash;and now AI can do the same thing.</div>
+        <div class="email-cta">CTA: Watch a 3-minute demo of how this works</div>
+      </div>
+      <!-- Email 4 -->
+      <div class="email-block">
+        <div class="email-belief">Email 4 &middot; Belief 2 (Dismissing alternatives)</div>
+        <div class="email-subj">&ldquo;You&rsquo;ve tried templates. They&rsquo;re still sitting in your Google Drive.&rdquo;</div>
+        <div class="email-arg">Every other solution requires YOU to do the heavy lifting&mdash;but what you need is something that studies your business and operationalizes it FOR you.</div>
+        <div class="email-cta">CTA: See the difference between a chatbot and an AI that does the work</div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 8</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 9 — LAUNCH EMAILS 5-7 -->
+<!-- ============================================================ -->
+<section class="pg" id="emails-2">
+  <div class="orb" style="width:320px;height:320px;background:rgba(16,104,68,0.05);bottom:-80px;right:-60px;"></div>
+  <div class="orb" style="width:260px;height:260px;background:rgba(16,104,68,0.04);top:-50px;left:-50px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">08 &mdash; Launch Emails 5&ndash;7</div>
+    <h2 class="rv d1">Email sequence&mdash;closing&nbsp;half</h2>
+
+    <div class="g2 rv d2">
+      <!-- Email 5 -->
+      <div class="email-block">
+        <div class="email-belief">Email 5 &middot; Belief 3 (Product intro)</div>
+        <div class="email-subj">&ldquo;I built the COO I wish I&rsquo;d had 10 years ago&rdquo;</div>
+        <div class="email-arg">This AI observes your business for 1&ndash;2 weeks, then generates your VVMMOO, delegation frameworks, meeting agendas, and onboarding plans&mdash;without you having to build any of it manually.</div>
+        <div class="email-cta">CTA: Founding member pricing ends in 48 hours&mdash;grab your spot here</div>
+      </div>
+      <!-- Email 6 -->
+      <div class="email-block">
+        <div class="email-belief">Email 6 &middot; Belief 3 (Handling objections)</div>
+        <div class="email-subj">&ldquo;Here&rsquo;s exactly what happens after you sign up&rdquo;</div>
+        <div class="email-arg">You connect your calendar and email, record a few voice memos, and the AI does the rest&mdash;no prompts, no training, no 40-hour documentation project.</div>
+        <div class="email-cta">CTA: Join the first 50 founders at $697</div>
+      </div>
+      <!-- Email 7 -->
+      <div class="email-block">
+        <div class="email-belief">Email 7 &middot; Belief 1 + 3 (Urgency)</div>
+        <div class="email-subj">&ldquo;It&rsquo;s Sunday night. Q2 starts tomorrow. Do you have a plan?&rdquo;</div>
+        <div class="email-arg">Every quarter you delay, you&rsquo;re leaving money on the table and burning out faster&mdash;this is the moment to stop winging it and start leading like the CEO your business needs.</div>
+        <div class="email-cta">CTA: Founding member pricing closes tonight at midnight</div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 9</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 10 — SOCIAL MEDIA -->
+<!-- ============================================================ -->
+<section class="pg" id="social">
+  <div class="orb" style="width:370px;height:370px;background:rgba(16,104,68,0.05);top:-90px;left:-70px;"></div>
+  <div class="orb" style="width:250px;height:250px;background:rgba(16,104,68,0.04);bottom:-60px;right:-40px;"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv d1">09 &mdash; Social Media</div>
+    <h2 class="rv d1">10 launch posts</h2>
+
+    <div class="g2 rv d2">
+      <div>
+        <!-- Post 1 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;You already know what to do. You just don&rsquo;t have 40 hours to document it all.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1</span>
+            <span class="sm-format">Text post</span>
+          </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;The best COOs don&rsquo;t ask you to train them. They shadow you for two weeks, then start taking work off your plate.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Mechanism &middot; Belief 2</span>
+            <span class="sm-format">Short video (30&ndash;60s)</span>
+          </div>
+        </div>
+        <!-- Post 3 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;You&rsquo;ve read E-Myth. You&rsquo;ve tried Traction. You know you need systems. So why don&rsquo;t you have them?&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1</span>
+            <span class="sm-format">Text post</span>
+          </div>
+        </div>
+        <!-- Post 4 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;93% of employees don&rsquo;t understand how their work connects to company strategy. (Harvard study.)&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1</span>
+            <span class="sm-format">Carousel</span>
+          </div>
+        </div>
+        <!-- Post 5 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;What if you could hire a world-class COO for two weeks, have them study your business, then hand you back 20&ndash;30 hours a week?&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Mechanism &middot; Belief 2+3</span>
+            <span class="sm-format">Short video (60s)</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Post 6 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;Your competitors are moving faster because they&rsquo;ve built systems. You&rsquo;re still building everything manually.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1</span>
+            <span class="sm-format">Text post</span>
+          </div>
+        </div>
+        <!-- Post 7 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;I spent 10+ years helping business owners build VVMMOOs, delegation frameworks, and meeting structures. Now I&rsquo;ve trained an AI to do it in 1&ndash;2 weeks.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Selling &middot; Belief 3</span>
+            <span class="sm-format">Story</span>
+          </div>
+        </div>
+        <!-- Post 8 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;The difference between a chatbot and an AI agent: a chatbot answers questions. An agent does the work.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Mechanism &middot; Belief 2</span>
+            <span class="sm-format">Text post or carousel</span>
+          </div>
+        </div>
+        <!-- Post 9 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;It&rsquo;s Sunday night. Q2 starts tomorrow. Your team is asking what the priorities are. Do you have a plan?&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1</span>
+            <span class="sm-format">Text post (posted Sunday evening)</span>
+          </div>
+        </div>
+        <!-- Post 10 -->
+        <div class="social-card">
+          <div class="sq">&ldquo;You don&rsquo;t need more hustle. You need more clarity. And you don&rsquo;t have 40 hours to create it.&rdquo;</div>
+          <div class="sm-row">
+            <span class="sm-meta">Pain &middot; Belief 1+3</span>
+            <span class="sm-format">Story or reel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 10</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 11 — CLOSING -->
+<!-- ============================================================ -->
+<section class="pg" id="closing">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.06);top:-120px;left:-80px;"></div>
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);bottom:-80px;right:-60px;"></div>
+  <div class="pg-inner" style="text-align:center;">
+    <div class="hero-orb rv d1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    </div>
+    <h2 class="rv d2">Bulletproof COO&nbsp;AI</h2>
+    <p class="lead rv d3" style="margin:0 auto 40px;max-width:780px;">A done-for-you business operating system that studies your business for 1&ndash;2 weeks, then generates your strategic plan, delegation frameworks, meeting structures, and onboarding systems&mdash;plus the training and templates you need to implement it all immediately. Buyers walk away with a complete, customized operating system (VVMMOO, WAR meetings, delegation plans, onboarding docs) built specifically for their business, ready to use, and backed by 10+ years of proven methodology.</p>
+
+    <div class="g3 rv d3" style="max-width:700px;margin:0 auto 40px;">
+      <div class="stat">
+        <div class="stat-num" style="font-size:40px;">$697</div>
+        <div class="stat-label">Founding member rate</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="font-size:40px;">8</div>
+        <div class="stat-label">AI capabilities</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="font-size:40px;">10+</div>
+        <div class="stat-label">Years of methodology</div>
+      </div>
+    </div>
+
+    <div class="rv d4" style="margin-bottom:32px;">
+      <button class="btn btn-brand" style="font-size:20px;padding:18px 44px;">Launch Bulletproof COO AI</button>
+    </div>
+
+    <p class="rv d5" style="font-size:16px;color:var(--alpha-light-300);margin-top:24px;">Strategy prepared by Kodara</p>
+  </div>
+  <div class="pf">Simone &mdash; AI Product Strategy &middot; Page 11</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+// Nav dots
+const nav=document.getElementById('nav');
+document.querySelectorAll('.pg[id]').forEach((_,i)=>{const b=document.createElement('button');b.className='nav-dot';b.addEventListener('click',()=>document.querySelectorAll('.pg[id]')[i].scrollIntoView({behavior:'smooth'}));nav.appendChild(b)});
+
+// Scroll reveal + active dot
+const pgs=document.querySelectorAll('.pg[id]');
+const dots=document.querySelectorAll('.nav-dot');
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const idx=[...pgs].indexOf(e.target);dots.forEach((d,i)=>d.classList.toggle('active',i===idx))}}),{threshold:0.35});
+pgs.forEach(p=>obs.observe(p));
+
+const rvObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvObs.unobserve(e.target)}}),{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+</script>
+</body>
+</html>
