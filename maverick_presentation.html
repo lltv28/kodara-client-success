@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverick Hann — AI Product Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --shadow-avatar: 0px 20px 6px rgba(12,48,70,0), 0px 13px 5px rgba(12,48,70,0.02), 0px 7px 4px rgba(12,48,70,0.07), 0px 3px 3px rgba(12,48,70,0.12), 0px 1px 2px rgba(12,48,70,0.14);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Instrument Sans',sans-serif;
+      font-variation-settings:'wdth' 100;
+      color:var(--alpha-light-600);
+      background:var(--b-w-white);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    /* ── Orbs ── */
+    .orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+
+    /* ── Page structure ── */
+    .pg {
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:100px 48px;
+      overflow:hidden;
+      page-break-after:always;
+      break-after:page;
+    }
+    .pg:last-child { page-break-after:auto; break-after:auto; }
+    .pg-inner { position:relative; z-index:1; max-width:1200px; width:100%; }
+
+    .sec-num { font-size:14px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--alpha-light-300); margin-bottom:24px; }
+
+    /* ── Typography (30% larger) ── */
+    h1 { font-size:70px; line-height:80px; letter-spacing:-1.5px; font-weight:400; color:var(--alpha-light-900); }
+    h2 { font-size:50px; line-height:60px; letter-spacing:-0.8px; font-weight:400; color:var(--alpha-light-900); margin-bottom:24px; }
+    h3 { font-size:29px; line-height:38px; letter-spacing:-0.3px; font-weight:500; color:var(--alpha-light-900); margin-bottom:20px; }
+    h4 { font-size:20px; line-height:28px; font-weight:600; color:var(--alpha-light-900); margin-bottom:12px; }
+    p { font-size:20px; line-height:34px; font-weight:400; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+    .lead { font-size:22px; line-height:36px; max-width:800px; }
+
+    /* ── Chip ── */
+    .chip { display:inline-flex; align-items:center; gap:8px; background:var(--alpha-brand-50); border-radius:999px; padding:7px 18px; font-size:16px; font-weight:600; color:var(--alpha-brand-950); letter-spacing:0.2px; }
+
+    /* ── Cards ── */
+    .glass { background:var(--alpha-dark-800); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; box-shadow:var(--shadow-card); }
+    .glass-subtle { background:var(--alpha-dark-300); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; }
+    .tint { background:var(--alpha-light-25); border-radius:16px; padding:28px; }
+
+    .divider { width:48px; height:1px; background:var(--alpha-light-200); margin:24px 0; }
+
+    /* ── Grids ── */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+
+    /* ── Stats ── */
+    .stat { text-align:center; padding:28px 16px; }
+    .stat-num { font-size:57px; line-height:66px; font-weight:400; letter-spacing:-1px; color:var(--alpha-light-900); margin-bottom:8px; }
+    .stat-label { font-size:17px; line-height:24px; font-weight:500; color:var(--alpha-light-500); }
+
+    /* ── Moment ── */
+    .moment { background:var(--alpha-light-25); border-radius:16px; padding:32px 36px; border-left:3px solid var(--alpha-brand-200); margin-top:36px; }
+    .moment-tag { font-size:14px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--alpha-brand-950); margin-bottom:14px; }
+    .moment p { font-style:italic; }
+
+    /* ── Feature list ── */
+    .fl { list-style:none; display:flex; flex-direction:column; gap:16px; }
+    .fl li { display:flex; align-items:flex-start; gap:14px; font-size:18px; line-height:28px; font-weight:500; color:var(--alpha-light-600); letter-spacing:-0.15px; }
+    .fl.sm { gap:12px; }
+    .fl.sm li { font-size:17px; line-height:26px; }
+    .fi { flex-shrink:0; width:28px; height:28px; border-radius:6px; background:var(--alpha-brand-50); display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .fi svg { width:14px; height:14px; }
+
+    /* ── Bullet list (simple) ── */
+    .bl { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .bl li { font-size:18px; line-height:28px; font-weight:400; color:var(--alpha-light-600); padding-left:24px; position:relative; letter-spacing:-0.15px; }
+    .bl li::before { content:''; position:absolute; left:0; top:11px; width:8px; height:8px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+    .bl.muted li { color:var(--alpha-light-500); }
+    .bl.muted li::before { background:var(--alpha-light-100); border-color:var(--alpha-light-300); }
+
+    /* ── Comparison ── */
+    .comp-col ul { list-style:none; display:flex; flex-direction:column; gap:14px; }
+    .comp-col li { font-size:18px; line-height:27px; font-weight:400; padding-left:26px; position:relative; letter-spacing:-0.15px; }
+    .comp-generic li { color:var(--alpha-light-400); }
+    .comp-generic li::before { content:''; position:absolute; left:0; top:9px; width:10px; height:10px; border-radius:2px; background:var(--alpha-light-200); }
+    .comp-maverick li { color:var(--alpha-light-600); }
+    .comp-maverick li::before { content:''; position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+
+    /* ── Pricing ── */
+    .price-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:36px; }
+    .price-card { border-radius:16px; padding:36px; border:1px solid var(--alpha-light-100); position:relative; overflow:hidden; }
+    .price-card.feat { background:var(--alpha-dark-900); backdrop-filter:blur(14px); border-color:var(--alpha-brand-200); box-shadow:var(--shadow-modal); }
+    .price-card.feat::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,rgba(16,104,68,0.4),rgba(16,104,68,0.06)); }
+    .price-big { font-size:60px; line-height:68px; font-weight:400; letter-spacing:-1.5px; color:var(--alpha-light-900); margin:16px 0 8px; }
+    .price-big span { font-size:24px; letter-spacing:0; }
+    .price-note { font-size:17px; color:var(--alpha-light-500); }
+    .price-plan { font-size:17px; color:var(--alpha-light-400); margin-top:4px; }
+    .strike { text-decoration:line-through; color:var(--alpha-light-300); font-size:22px; }
+
+    /* ── Email block ── */
+    .email-block { background:var(--alpha-light-25); border-radius:12px; padding:24px 28px; margin-bottom:16px; }
+    .email-block .email-subj { font-size:18px; font-weight:600; color:var(--alpha-light-900); margin-bottom:8px; letter-spacing:-0.15px; }
+    .email-block .email-arg { font-size:17px; line-height:26px; color:var(--alpha-light-600); margin-bottom:8px; }
+    .email-block .email-cta { font-size:15px; font-weight:600; color:var(--alpha-brand-950); }
+    .email-block .email-belief { font-size:14px; font-weight:600; color:var(--alpha-light-300); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; }
+
+    /* ── Social card ── */
+    .social-card { background:var(--alpha-light-25); border-radius:12px; padding:20px 24px; margin-bottom:14px; }
+    .social-card .sq { font-size:17px; line-height:26px; color:var(--alpha-light-900); font-weight:400; font-style:italic; margin-bottom:10px; }
+    .social-card .sm-row { display:flex; gap:16px; align-items:center; }
+    .social-card .sm-meta { font-size:14px; font-weight:600; color:var(--alpha-light-400); letter-spacing:0.3px; text-transform:uppercase; }
+    .social-card .sm-format { font-size:14px; font-weight:500; color:var(--alpha-brand-950); }
+
+    /* ── Ladder row ── */
+    .ladder-row { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--alpha-light-50); }
+    .ladder-row:last-child { border-bottom:none; }
+    .ladder-label { font-size:18px; font-weight:500; }
+    .ladder-val { font-size:18px; font-weight:500; color:var(--alpha-light-900); }
+
+    /* ── Package item ── */
+    .pkg-item { padding:24px; }
+    .pkg-item p { font-size:17px; line-height:26px; color:var(--alpha-light-500); }
+
+    /* ── Buttons ── */
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 32px; background:linear-gradient(to bottom,#737373,#404040); border-radius:8px; border:none; cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:18px; font-weight:500; color:rgba(255,255,255,0.8); letter-spacing:-0.15px; position:relative; overflow:hidden; transition:opacity 150ms; }
+    .btn::after { content:''; position:absolute; inset:0; border:1.5px solid rgba(255,255,255,0.25); border-radius:8px; pointer-events:none; }
+    .btn:hover { opacity:0.9; }
+    .btn-brand { background:linear-gradient(to bottom,rgba(16,104,68,0.82),rgba(16,104,68,0.96)); }
+
+    /* ── Save PDF ── */
+    .save-pdf { position:fixed; top:24px; right:24px; z-index:200; display:flex; align-items:center; gap:10px; padding:10px 20px; background:var(--alpha-dark-800); backdrop-filter:blur(12px); border:1px solid var(--alpha-light-100); border-radius:8px; box-shadow:var(--shadow-card); cursor:pointer; font-family:'Instrument Sans',sans-serif; font-variation-settings:'wdth' 100; font-size:16px; font-weight:500; color:var(--alpha-light-900); transition:background 150ms; }
+    .save-pdf:hover { background:var(--alpha-dark-900); }
+    .save-pdf svg { width:18px; height:18px; color:var(--alpha-light-600); }
+
+    /* ── Nav dots ── */
+    .nav { position:fixed; right:24px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:6px; z-index:100; }
+    .nav-dot { width:6px; height:6px; border-radius:999px; background:var(--alpha-light-200); border:none; cursor:pointer; transition:all 250ms ease-out; padding:0; }
+    .nav-dot.active { background:var(--alpha-brand-950); height:16px; }
+
+    /* ── Scroll reveal ── */
+    .rv { opacity:0; transform:translateY(20px); transition:opacity 550ms ease-out, transform 550ms ease-out; }
+    .rv.vis { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+
+    /* ── Hero orb ── */
+    .hero-orb { width:100px; height:100px; border-radius:999px; background:linear-gradient(145deg,rgba(16,104,68,0.14),rgba(16,104,68,0.04)); border:1px solid var(--alpha-light-50); box-shadow:var(--shadow-avatar); display:flex; align-items:center; justify-content:center; position:relative; margin:0 auto 32px; }
+    .hero-orb::before { content:''; position:absolute; width:220px; height:220px; border-radius:50%; background:rgba(16,104,68,0.05); filter:blur(50px); z-index:-1; }
+    .hero-orb svg { width:42px; height:42px; color:var(--alpha-brand-950); }
+
+    /* ── Scroll cue ── */
+    .scroll-cue { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--alpha-light-300); letter-spacing:0.5px; animation:bob 2.2s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+    .scroll-cue-arrow { width:16px; height:16px; border-right:1.5px solid var(--alpha-light-300); border-bottom:1.5px solid var(--alpha-light-300); transform:rotate(45deg); }
+
+    /* ── Page footer (print only) ── */
+    .pf { position:absolute; bottom:28px; left:0; right:0; text-align:center; font-size:13px; font-weight:500; color:var(--alpha-light-200); letter-spacing:0.3px; z-index:1; }
+    @media screen { .pf { display:none; } }
+
+    /* ── Responsive ── */
+    @media (max-width:1000px) {
+      h1{font-size:44px;line-height:54px} h2{font-size:34px;line-height:42px}
+      .pg{padding:72px 24px;min-height:auto}
+      .g2,.g3,.price-grid{grid-template-columns:1fr}
+      .g4{grid-template-columns:1fr 1fr}
+      .nav{display:none}
+      .stat-num{font-size:40px} .price-big{font-size:44px}
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      @page { size:A4 landscape; margin:0; }
+      html,body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; color-adjust:exact!important; }
+      .rv { opacity:1!important; transform:none!important; transition:none!important; }
+      .nav,.scroll-cue,.save-pdf { display:none!important; }
+      .pg { min-height:0; height:auto; padding:40px 48px; page-break-after:always; break-after:page; page-break-inside:avoid; break-inside:avoid; overflow:visible; }
+      .pg:last-child { page-break-after:auto; break-after:auto; }
+      .glass,.glass-subtle,.tint,.price-card.feat,.chip,.fi,.email-block,.social-card,.hero-orb,.moment,.stat { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+      .orb { opacity:0.6; -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+      .pf { display:block; }
+      h2{font-size:42px;line-height:50px}
+    }
+  </style>
+</head>
+<body>
+
+<button class="save-pdf" onclick="window.print()" title="Save as PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+  Save as PDF
+</button>
+<nav class="nav" id="nav"></nav>
+
+<!-- ═══════ PAGE 1: COVER ═══════ -->
+<div class="pg" id="p01">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,104,68,0.06);top:8%;left:-6%"></div>
+  <div class="orb" style="width:320px;height:320px;background:rgba(0,180,212,0.04);bottom:16%;right:-2%"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+    </div>
+    <div class="chip rv d1">AI Product Strategy</div>
+    <h1 class="rv d2" style="margin-top:24px">First Nations<br>Grant Application AI</h1>
+    <p class="lead rv d3" style="margin:24px auto 0;color:var(--alpha-light-500)">A complete product strategy for Maverick Hann &amp; Iskotew Training &mdash; turning 30+ years of grant writing expertise into AI-powered leverage for Indigenous communities.</p>
+    <div class="g4 rv d4" style="margin-top:56px">
+      <div class="glass-subtle stat"><div class="stat-num">30+</div><div class="stat-label">Years combined<br>grant writing experience</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">$M+</div><div class="stat-label">Secured in funding<br>for Indigenous communities</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">200+</div><div class="stat-label">Indigenous funding<br>programs tracked</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">12&ndash;15</div><div class="stat-label">Emergency services<br>training programs delivered</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="scroll-cue-arrow"></div></div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 1</div>
+</div>
+
+<!-- ═══════ PAGE 2: CREDIBILITY ═══════ -->
+<div class="pg" id="p02">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.05);top:10%;left:50%;transform:translateX(-50%)"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">Your credibility</div>
+    <h2 class="rv d1">Why Iskotew is the one to build this</h2>
+    <p class="lead rv d2" style="margin-bottom:36px">Your track record isn't just a selling point &mdash; it's the entire moat. No competitor can replicate 30+ years of Indigenous grant writing expertise trained into AI.</p>
+    <div class="g2 rv d3" style="gap:20px">
+      <div class="tint pkg-item"><h4>30+ years combined experience</h4><p>Deep grant writing and community advocacy experience across the team. Hands-on knowledge of what funders actually want to see in successful Indigenous applications.</p></div>
+      <div class="tint pkg-item"><h4>Millions secured in funding</h4><p>Proven track record securing funding from federal (ISC, Natural Resources Canada), provincial (Alberta Labour and Immigration, Saskatchewan programs), corporate (Shell Canada, oil/gas), and foundations (Mastercard Foundation).</p></div>
+      <div class="tint pkg-item"><h4>Indigenous-led, culturally grounded</h4><p>51% Indigenous woman-owned, Treaty 6 territory. Dual entity: Iskotew Training Inc. (for-profit) + The Iskot&ecirc;w Foundation (non-profit). Built by and for Indigenous communities.</p></div>
+      <div class="tint pkg-item"><h4>Emergency services training specialty</h4><p>12&ndash;15 emergency services training programs delivered &mdash; firefighting, FireSmart, medical first response. Deep understanding of community-based program design for Indigenous youth.</p></div>
+      <div class="tint pkg-item"><h4>10% commission-only model</h4><p>No upfront cost to communities. Alignment of incentives &mdash; Iskotew only gets paid when grants are approved. Proof of confidence in the quality of applications produced.</p></div>
+      <div class="tint pkg-item"><h4>Multi-sector grant expertise</h4><p>Handles all sectors: infrastructure, youth programs, emergency services, cultural projects, economic development, housing, health services. Specialty in firefighting/emergency grants but proven across the board.</p></div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 2</div>
+</div>
+
+<!-- ═══════ PAGE 3: EXISTING PRODUCTS + MARKET ═══════ -->
+<div class="pg" id="p03">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.04);bottom:12%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">Current landscape</div>
+    <h2 class="rv d1">Existing services &amp; market conditions</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="tint" style="padding:32px">
+        <h3>Current service lineup</h3>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Grant writing services</span><span class="ladder-val">10% commission</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Emergency services training (youth camps)</span><span class="ladder-val">$1,000/student</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Emergency services training (60-person cohort)</span><span class="ladder-val">$78,000</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-light-600)">Business setup support</span><span class="ladder-val">Custom pricing</span></div>
+          <div class="ladder-row"><span class="ladder-label" style="color:var(--alpha-brand-950);font-weight:600">AI grant writing course</span><span class="ladder-val" style="color:var(--alpha-brand-950);font-weight:600">1-hour intro</span></div>
+        </div>
+      </div>
+      <div class="glass">
+        <h3>Market conditions</h3>
+        <ul class="bl">
+          <li>Federal Indigenous funding tripled from $11B (2015) to $32B (2025)</li>
+          <li>Dozens of new programs launched across ISC, ESDC, NRCan</li>
+          <li>Corporate reconciliation commitments creating new funding streams</li>
+          <li>Foundation focus on Indigenous-led projects increasing</li>
+          <li>Application complexity increasing &mdash; funders want detailed budgets, outcomes, evaluation plans</li>
+          <li>Competition rising as more Nations build grant capacity</li>
+          <li>Grant portals require technical literacy many communities lack</li>
+          <li>Deadlines are tight &mdash; often 2&ndash;4 weeks notice</li>
+          <li>Many Nations leaving money on the table because they can't keep up with application volume</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 3</div>
+</div>
+
+<!-- ═══════ PAGE 4: AUDIENCE ═══════ -->
+<div class="pg" id="p04" style="text-align:center">
+  <div class="orb" style="width:500px;height:500px;background:rgba(16,104,68,0.05);top:30%;left:50%;transform:translateX(-50%)"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="chip rv" style="margin-bottom:28px">Audience</div>
+    <h1 class="rv d1">First Nations Leadership</h1>
+    <p class="lead rv d2" style="margin:24px auto 0;color:var(--alpha-light-500)">Chiefs, Band Councils, Economic Development Officers, and program coordinators across Treaty 6, 7, 8 territories (Alberta, Saskatchewan, Ontario). On-reserve and off-reserve communities ranging from 200 to 5,000+ members. Decision-makers typically 35&ndash;60 years old, managing multiple priorities with limited administrative capacity.</p>
+    <p class="rv d3" style="margin-top:16px;font-size:18px;color:var(--alpha-light-400)">Communities needing 5&ndash;15 grant applications per year but unable to afford full-time staff.</p>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 4</div>
+</div>
+
+<!-- ═══════ PAGE 5: REPETITIVE WORK + STRENGTHS ═══════ -->
+<div class="pg" id="p05">
+  <div class="orb" style="width:350px;height:350px;background:rgba(26,26,26,0.03);top:8%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">01 &mdash; Context</div>
+    <h2 class="rv d1">What communities do every funding cycle</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>The repetitive work</h4>
+        <ul class="bl">
+          <li>Filling out the same types of grant forms: project descriptions, budgets, outcomes, timelines</li>
+          <li>Writing organizational background sections from scratch each time</li>
+          <li>Creating budgets with line-item breakdowns and matching fund calculations</li>
+          <li>Drafting letters of support for every application</li>
+          <li>Preparing Band Council resolutions for funding authorization</li>
+          <li>Building evaluation frameworks with measurable outcomes</li>
+          <li>Adapting the same content for different funders (ISC, provincial, corporate, foundation)</li>
+          <li>Each grant requires 15&ndash;40 hours of work &mdash; repeated monthly, quarterly, annually</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>What they already do well</h4>
+        <ul class="bl">
+          <li>Know their community's needs intimately</li>
+          <li>Understand what programs work and what infrastructure is missing</li>
+          <li>Have relationships with Elders, community members, and partner organizations</li>
+          <li>Can articulate the problem and the vision face-to-face</li>
+          <li>Have often already run smaller versions of projects</li>
+          <li>Years of operational experience in community programs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 5</div>
+</div>
+
+<!-- ═══════ PAGE 6: FRUSTRATIONS + ALTERNATIVES ═══════ -->
+<div class="pg" id="p06">
+  <div class="orb" style="width:360px;height:360px;background:rgba(26,26,26,0.03);bottom:10%;left:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">02 &mdash; Frustrations</div>
+    <h2 class="rv d1">What they've tried &mdash; and why it hasn't worked</h2>
+    <div class="g2 rv d2" style="gap:28px;margin-top:32px">
+      <div class="glass">
+        <h4>Alternatives they've tried</h4>
+        <ul class="bl muted">
+          <li>Hiring external grant writers &mdash; $1,000&ndash;$5,000+ per application, often upfront, no guarantee of success, writers don't understand community context</li>
+          <li>DIY with ChatGPT &mdash; generic output, no knowledge of Indigenous-specific funding streams, hallucinations, doesn't know funder priorities</li>
+          <li>Hiring staff &mdash; $50,000&ndash;$70,000/year for a grant coordinator, hard to recruit in remote areas, still steep learning curve</li>
+          <li>Outsourcing to consultants &mdash; expensive hourly rates ($50&ndash;$150/hour), 20&ndash;40 hours per grant</li>
+        </ul>
+      </div>
+      <div class="glass-subtle">
+        <h4>Their core frustrations</h4>
+        <ul class="bl">
+          <li>Limited administrative capacity across most communities</li>
+          <li>Struggle with basic paperwork completion and online portal literacy</li>
+          <li>Can't keep up with application volume despite qualifying for funding</li>
+          <li>Short-notice deadlines (2&ndash;4 weeks) make thorough applications nearly impossible</li>
+          <li>External writers lack cultural context and understanding of Indigenous governance</li>
+          <li>Generic AI produces unusable output for Indigenous-specific programs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 6</div>
+</div>
+
+<!-- ═══════ PAGE 7: THE PAIN ═══════ -->
+<div class="pg" id="p07">
+  <div class="orb" style="width:360px;height:360px;background:rgba(26,26,26,0.03);top:8%;right:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">03 &mdash; The pain</div>
+    <h2 class="rv d1">Billions available, but capacity is the bottleneck</h2>
+    <p class="lead rv d2">The funding exists. The need is clear. But 20&ndash;40 hours per application means most opportunities get missed.</p>
+    <div class="g3 rv d3" style="margin-top:36px">
+      <div class="glass-subtle stat"><div class="stat-num">$32B</div><div class="stat-label">Annual federal Indigenous<br>funding (tripled since 2015)</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">10&ndash;20%</div><div class="stat-label">Of eligible funding<br>most Nations actually access</div></div>
+      <div class="glass-subtle stat"><div class="stat-num">20&ndash;40h</div><div class="stat-label">Per application<br>to write properly</div></div>
+    </div>
+    <div class="g2 rv d4" style="margin-top:24px">
+      <div class="tint" style="padding:24px">
+        <ul class="bl" style="gap:12px">
+          <li>Early movers stacking 3&ndash;5 grants per project, building multi-year funding pipelines</li>
+          <li>Single Nations securing $400K&ndash;$14M for infrastructure, youth programs, emergency services</li>
+          <li>Communities that apply consistently see 60&ndash;80% approval rates</li>
+          <li>Window is open now, but competition increasing as more Nations build grant capacity</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0">
+        <div class="moment-tag">The "I need that" moment</div>
+        <p>"It's 11 PM, the grant is due in 72 hours, the EDO just got the Band Council resolution signed, and they're staring at a 40-page application portal with no idea how to describe 'expected outcomes' or build a three-year budget for a youth FireSmart program they've never run before."</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 7</div>
+</div>
+
+<!-- ═══════ PAGE 8: THE SOLUTION ═══════ -->
+<div class="pg" id="p08">
+  <div class="orb" style="width:420px;height:420px;background:rgba(16,104,68,0.05);bottom:8%;left:-7%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">04 &mdash; The solution</div>
+    <h2 class="rv d1">Grant Application Generator for First Nations</h2>
+    <p class="lead rv d2" style="margin-bottom:28px">An AI trained on 200+ Indigenous funding programs and millions in successful applications &mdash; generates complete, funder-ready grant packages in under 3 hours.</p>
+    <div class="g2 rv d3">
+      <div class="glass">
+        <h4>What it generates</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Complete, funder-ready grant applications: narrative, budget, timelines, outcomes based on community input</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Project-specific budgets with line-item breakdowns, justifications, and matching fund calculations</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Organizational background sections using the Nation's history, governance structure, and past project success</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Evaluation frameworks with measurable outcomes, data collection methods, and reporting timelines</li>
+        </ul>
+      </div>
+      <div class="glass">
+        <h4>What it also produces</h4>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Letters of support templates customized to specific partners: Elders, schools, health authorities, neighboring Nations</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Project timelines with milestones, deliverables, and risk mitigation strategies aligned to funder requirements</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Band Council resolution templates with proper legal language for funding authorization</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg></span>Executive summaries and cover letters tailored to each funder's priorities and evaluation criteria</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 8</div>
+</div>
+
+<!-- ═══════ PAGE 9: DIFFERENTIATION ═══════ -->
+<div class="pg" id="p09">
+  <div class="orb" style="width:320px;height:320px;background:rgba(16,104,68,0.04);top:18%;left:8%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">05 &mdash; Differentiation</div>
+    <h2 class="rv d1">This isn't ChatGPT</h2>
+    <p class="lead rv d2" style="margin-bottom:32px">Generic AI doesn't know ISC from ESDC, can't write a Band Council resolution, and hallucinates deadlines. This was built for Indigenous grants.</p>
+    <div class="g2 rv d3" style="gap:28px">
+      <div class="glass-subtle comp-col comp-generic">
+        <h4 style="color:var(--alpha-light-400);margin-bottom:20px">Generic AI says...</h4>
+        <ul>
+          <li>"Write a project description for your grant" &mdash; no funder context</li>
+          <li>Hallucinated deadlines and program names</li>
+          <li>No knowledge of Indigenous-specific funding streams</li>
+          <li>Generic budget templates that don't match portal requirements</li>
+          <li>Doesn't know Treaty territory distinctions or governance structures</li>
+          <li>Can't flag common disqualification errors</li>
+          <li>No cultural protocol guidance</li>
+        </ul>
+      </div>
+      <div class="glass comp-col comp-maverick">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:20px">Iskotew's AI says...</h4>
+        <ul>
+          <li>Pre-loaded with 200+ Indigenous-specific funding programs including eligibility, priorities, and evaluation rubrics</li>
+          <li>Trained on successful First Nations grant applications across all sectors</li>
+          <li>Understands Treaty territory context, on-reserve vs off-reserve distinctions</li>
+          <li>Knows funder-specific language: ISC wants "capacity building," foundations want "community-led," corporate wants "sustainable impact"</li>
+          <li>Flags common disqualification errors: missing CRA numbers, incorrect legal names, budget misalignment</li>
+          <li>Includes cultural protocol guidance: when to mention Elders, how to frame land-based teachings</li>
+          <li>Outputs match exact funder templates and portal requirements</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tint rv d4" style="margin-top:28px;padding:24px 28px">
+      <h4 style="margin-bottom:8px">The manual alternative</h4>
+      <p style="font-size:17px;line-height:26px;color:var(--alpha-light-500)">Hiring a grant writer: $1,500&ndash;$5,000 per application, 3&ndash;6 week turnaround, often doesn't understand community context. DIY with staff: 20&ndash;40 hours per application, high error rate, generic ChatGPT produces unusable output. Outsourcing to Maverick's team: 10% commission (works well but capacity-limited, can only handle 15&ndash;20 clients at a time).</p>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 9</div>
+</div>
+
+<!-- ═══════ PAGE 10: BELIEF LADDER ═══════ -->
+<div class="pg" id="p10">
+  <div class="orb" style="width:360px;height:360px;background:rgba(16,104,68,0.04);bottom:15%;right:5%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">06 &mdash; Belief ladder</div>
+    <h2 class="rv d1">Desire &rarr; Pointing &rarr; Selling</h2>
+    <div class="g3 rv d2" style="gap:24px;margin-top:32px">
+      <div class="glass-subtle" style="padding:28px">
+        <h4 style="color:var(--alpha-light-400)">1 &mdash; Desire</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Billions in Indigenous funding available, but most Nations access only 10&ndash;20% of what they qualify for</li>
+          <li style="font-size:16px;line-height:24px">Federal spending tripled to $32B: ISC, NRCan, ESDC, provincial, corporate reconciliation, Mastercard $235M</li>
+          <li style="font-size:16px;line-height:24px">Early movers stacking 3&ndash;5 grants per project, securing $400K&ndash;$14M</li>
+          <li style="font-size:16px;line-height:24px">Communities applying consistently see 60&ndash;80% approval rates</li>
+          <li style="font-size:16px;line-height:24px">Window open now, but competition increasing</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950)">2 &mdash; Pointing</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Bottleneck isn't funding availability &mdash; it's application capacity</li>
+          <li style="font-size:16px;line-height:24px">Average grant: 20&ndash;40 hours. Most Nations need 10&ndash;20 per year. Staff and consultants don't scale</li>
+          <li style="font-size:16px;line-height:24px">AI generates funder-ready applications in 2&ndash;3 hours instead of 20&ndash;40</li>
+          <li style="font-size:16px;line-height:24px">Communities using AI submit 3&ndash;5x more applications with the same staff</li>
+          <li style="font-size:16px;line-height:24px">Higher approval rates because applications are complete, polished, and aligned to funder language</li>
+        </ul>
+      </div>
+      <div class="glass" style="padding:28px;border-color:var(--alpha-brand-200)">
+        <h4 style="color:var(--alpha-brand-950)">3 &mdash; Selling</h4>
+        <ul class="bl" style="gap:10px;margin-top:12px">
+          <li style="font-size:16px;line-height:24px">Built by an Indigenous-led team with 30+ years of grant writing experience</li>
+          <li style="font-size:16px;line-height:24px">Pre-loaded with 200+ Indigenous funding programs, trained on millions in successful applications</li>
+          <li style="font-size:16px;line-height:24px">Complete, submission-ready packages in under 3 hours</li>
+          <li style="font-size:16px;line-height:24px">Costs less than one external grant writer &mdash; no commission, no upfront fees for first 30 days</li>
+          <li style="font-size:16px;line-height:24px">Backed by Maverick's team: monthly coaching calls and access to grant writing experts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 10</div>
+</div>
+
+<!-- ═══════ PAGE 11: PRICING STRATEGY ═══════ -->
+<div class="pg" id="p11">
+  <div class="orb" style="width:380px;height:380px;background:rgba(16,104,68,0.05);top:25%;right:-4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">07 &mdash; Pricing strategy</div>
+    <h2 class="rv d1">$297/mo or $997 lifetime</h2>
+    <div class="price-grid rv d2">
+      <div class="price-card feat">
+        <div class="chip">Founding member</div>
+        <div class="price-big">$197<span>/mo</span></div>
+        <p class="price-note"><span class="strike">$297/mo</span> &mdash; first 50 Nations, 3 months</p>
+        <p class="price-plan">Annual: $2,997/yr (saves $564)</p>
+        <p class="price-plan">Lifetime: $997 one-time (increases to $1,497 after 90 days)</p>
+        <div class="divider"></div>
+        <ul class="fl sm">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited grant applications per month</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Access to 200+ funding program database</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Monthly expert coaching calls</li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>All templates (BCR, letters, budgets)</li>
+        </ul>
+      </div>
+      <div class="price-card tint">
+        <h4 style="font-size:22px;margin-bottom:16px">Why these numbers</h4>
+        <ul class="fl sm" style="margin-bottom:20px">
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>External grant writer: $1,500&ndash;$5,000 per application, 3&ndash;6 week turnaround, often culturally disconnected</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>Current commission model: 10% on approved grants &mdash; typically $2,000&ndash;$10,000+ per grant</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>DIY with staff: 20&ndash;40 hours at $25&ndash;$35/hr = $500&ndash;$1,400 in labor per grant</li>
+          <li><span class="fi" style="font-size:13px;font-weight:700;color:var(--alpha-brand-950)">$</span>AI at $297/mo pays for itself with one application, delivers 10x value at 3+ per year</li>
+        </ul>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500);margin-top:12px">Monthly subscription removes barrier for communities with limited cash flow. $997 lifetime creates urgency for decision-makers wanting to lock in access. Both sit well below the cost of a single external grant writer while delivering unlimited applications.</p>
+        <div class="divider"></div>
+        <p style="font-size:16px;line-height:24px;color:var(--alpha-light-500)">Launch strategy: first 50 Nations at $197/mo for 3 months to build case studies and testimonials. Raise to $297 after 50 signups. Lifetime increases to $1,497 after 90 days or 25 purchases.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 11</div>
+</div>
+
+<!-- ═══════ PAGE 12: PACKAGE DETAILS ═══════ -->
+<div class="pg" id="p12">
+  <div class="orb" style="width:340px;height:340px;background:rgba(16,104,68,0.04);bottom:12%;left:8%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">08 &mdash; Package</div>
+    <h2 class="rv d1">What's included &mdash; and what's not</h2>
+    <div class="g2 rv d2" style="gap:20px;margin-top:28px">
+      <div class="tint pkg-item"><h4>Grant Search Prompt Library</h4><p>20+ pre-built prompts for finding federal, provincial, corporate, and foundation funding specific to Indigenous communities. Already exists in internal procedures, repackaged as a user resource.</p></div>
+      <div class="tint pkg-item"><h4>Funder Database</h4><p>Searchable list of 200+ Indigenous-specific funding programs with eligibility criteria, deadlines, priorities, and direct links. The core value-add that justifies why this isn't just ChatGPT.</p></div>
+      <div class="tint pkg-item"><h4>Video Walkthrough Series</h4><p>8 short videos (5&ndash;10 minutes each) showing how to use the AI for different grant types: infrastructure, youth programs, emergency services, cultural projects, economic development. Record once, reuse forever.</p></div>
+      <div class="tint pkg-item"><h4>Monthly Group Coaching Call</h4><p>60-minute live Q&A with Maverick and team. Review AI outputs, troubleshoot applications, discuss funder priorities. Builds community, increases retention, low time cost per user.</p></div>
+      <div class="tint pkg-item"><h4>Grant Application Templates</h4><p>Band Council resolution template, letter of support template, budget worksheet, project timeline framework. Already exist in internal processes, formatted for client use.</p></div>
+      <div class="tint pkg-item"><h4>Success Story Library</h4><p>10&ndash;15 examples of successful grant applications (redacted/anonymized) showing what funders approved, with annotations explaining why they worked. Builds trust, shows proof, educates users.</p></div>
+    </div>
+    <div class="g2 rv d3" style="gap:20px;margin-top:20px">
+      <div class="tint" style="padding:24px;border-left:3px solid rgba(220,38,38,0.2)">
+        <h4 style="color:var(--alpha-light-400)">What to leave out</h4>
+        <ul class="bl muted" style="gap:8px">
+          <li style="font-size:16px;line-height:24px">Full 1-hour AI grant writing course ($47&ndash;$97 standalone) &mdash; keep separate as low-ticket entry product or upsell for deeper AI training</li>
+          <li style="font-size:16px;line-height:24px">Done-for-you grant writing service (10% commission model) &mdash; this is the premium tier, don't cannibalize it; position AI as DIY, done-for-you as upgrade</li>
+          <li style="font-size:16px;line-height:24px">Emergency services training programs &mdash; completely different business line; including it would confuse positioning and dilute the grant-focused value</li>
+        </ul>
+      </div>
+      <div class="moment" style="margin-top:0;border-left-color:var(--alpha-brand-200)">
+        <div class="moment-tag">The complete product</div>
+        <p style="font-style:normal;font-size:17px;line-height:26px">First Nations Grant AI is a complete grant application system that generates funder-ready proposals, budgets, and supporting documents in under 3 hours, backed by a database of 200+ Indigenous funding programs, monthly expert coaching, and proven templates used to secure millions in funding. What the buyer walks away with: unlimited grant applications per month, access to all funding program data, monthly live support, and every template needed to submit complete applications without hiring external writers.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 12</div>
+</div>
+
+<!-- ═══════ PAGE 13: LAUNCH EMAILS 1-4 ═══════ -->
+<div class="pg" id="p13">
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);bottom:18%;right:4%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">09 &mdash; Launch emails 1&ndash;4</div>
+    <h2 class="rv d1" style="margin-bottom:28px">7-email belief ladder</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 1 &mdash; Desire</div><div class="email-subj">"32 billion reasons to pay attention right now"</div><div class="email-arg">Federal Indigenous funding tripled to $32B annually, but most Nations are only accessing 10&ndash;20% of what they qualify for because application capacity is the bottleneck.</div><div class="email-cta">CTA: Reply with "interested" if you want to see the grant opportunities your Nation qualifies for right now</div></div>
+        <div class="email-block"><div class="email-belief">Email 2 &mdash; Pain</div><div class="email-subj">"It's not the idea. It's the paperwork."</div><div class="email-arg">Communities know what they need &mdash; youth programs, infrastructure, emergency services &mdash; but 20&ndash;40 hours per application means most opportunities get missed, especially short-notice deadlines.</div><div class="email-cta">CTA: No ask, just acknowledgment and validation of the struggle</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 3 &mdash; Pointing</div><div class="email-subj">"How some communities are stacking 3-5 grants per project"</div><div class="email-arg">Early movers are using AI-powered systems to submit 3&ndash;5x more applications with the same staff. Higher approval rates because applications are complete and aligned to funder language.</div><div class="email-cta">CTA: Watch 4-minute video showing how AI generates a complete grant application in under 3 hours</div></div>
+        <div class="email-block"><div class="email-belief">Email 4 &mdash; Selling</div><div class="email-subj">"We got tired of turning communities away"</div><div class="email-arg">Iskotew can only handle 15&ndash;20 grant clients at a time. So we built an AI trained on 200+ Indigenous funding programs and millions in successful applications. Does the work in 2&ndash;3 hours instead of 20&ndash;40.</div><div class="email-cta">CTA: Book a 15-minute demo to see it generate a real application for your community</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 13</div>
+</div>
+
+<!-- ═══════ PAGE 14: LAUNCH EMAILS 5-7 ═══════ -->
+<div class="pg" id="p14">
+  <div class="orb" style="width:300px;height:300px;background:rgba(16,104,68,0.04);top:14%;left:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">10 &mdash; Launch emails 5&ndash;7</div>
+    <div class="g2 rv d1" style="gap:20px">
+      <div>
+        <div class="email-block"><div class="email-belief">Email 5 &mdash; Selling</div><div class="email-subj">"Inside the Grant AI (screenshots)"</div><div class="email-arg">Step-by-step walkthrough with screenshots showing how it produces budgets, timelines, narratives, letters of support, and Band Council resolution templates.</div><div class="email-cta">CTA: Start your 30-day trial. First 50 Nations get founding rate ($197/month for 3 months)</div></div>
+        <div class="email-block"><div class="email-belief">Email 6 &mdash; Urgency</div><div class="email-subj">"What's the deadline on that grant again?"</div><div class="email-arg">Every month without this tool is 2&ndash;4 missed grant opportunities. Average grant is $50K&ndash;$400K. The math is brutal.</div><div class="email-cta">CTA: Lock in founding rate before it goes to $297/month (48 hours left)</div></div>
+      </div>
+      <div>
+        <div class="email-block"><div class="email-belief">Email 7 &mdash; Final Call</div><div class="email-subj">"Founding rate closes tonight at midnight"</div><div class="email-arg">50 Nations already in. Founding rate ($197/month) ends tonight, goes to $297 tomorrow. Here's what you get in the first 30 days.</div><div class="email-cta">CTA: Secure your spot, get access within 24 hours, first coaching call scheduled within 7 days</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 14</div>
+</div>
+
+<!-- ═══════ PAGE 15: SOCIAL MEDIA ═══════ -->
+<div class="pg" id="p15">
+  <div class="orb" style="width:350px;height:350px;background:rgba(16,104,68,0.04);top:12%;right:-3%"></div>
+  <div class="pg-inner">
+    <div class="sec-num rv">11 &mdash; Social media</div>
+    <h2 class="rv d1" style="margin-bottom:28px">10 talking points</h2>
+    <div class="g2 rv d2" style="gap:20px">
+      <div>
+        <div class="social-card"><p class="sq">"$32 billion in Indigenous funding available right now. Most Nations are accessing less than 20% of it. The bottleneck isn't the money. It's the paperwork."</p><div class="sm-row"><span class="sm-meta">Desire &middot; Belief 1</span><span class="sm-format">Text post with infographic ($11B vs $32B)</span></div></div>
+        <div class="social-card"><p class="sq">"A single grant application takes 20-40 hours to write properly. Most EDOs need to submit 10-20 per year. Do the math. That's a full-time job just doing paperwork."</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Text post, conversational tone</span></div></div>
+        <div class="social-card"><p class="sq">"The Nations winning right now aren't working harder. They're using AI to do in 3 hours what used to take 3 weeks."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Short video (30 seconds), talking to camera</span></div></div>
+        <div class="social-card"><p class="sq">"We can only take 15-20 grant clients at a time. We had to turn away 40+ communities last year. So we built something that scales."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Text post with photo at desk</span></div></div>
+        <div class="social-card"><p class="sq">"Hiring a grant writer: $1,500-$5,000 per application. Using AI trained on successful Indigenous grants: $297/month, unlimited applications. The math is pretty simple."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Carousel (cost breakdown, what you get, CTA)</span></div></div>
+      </div>
+      <div>
+        <div class="social-card"><p class="sq">"Generic ChatGPT doesn't know the difference between ISC and ESDC funding. It doesn't know what a Band Council resolution looks like. It hallucinates deadlines. That's why we built this."</p><div class="sm-row"><span class="sm-meta">Pointing &middot; Belief 2</span><span class="sm-format">Text post, educational tone</span></div></div>
+        <div class="social-card"><p class="sq">"Show me a community that submits 10+ grant applications per year and I'll show you a community with $500K-$2M in annual funding. Consistency wins."</p><div class="sm-row"><span class="sm-meta">Desire &middot; Belief 1</span><span class="sm-format">Text post with success story</span></div></div>
+        <div class="social-card"><p class="sq">"We trained this AI on millions of dollars in successful First Nations grant applications. It knows what ISC wants to see. It knows what foundations prioritize. It speaks funder language."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Short video, AI vs ChatGPT side by side</span></div></div>
+        <div class="social-card"><p class="sq">"First 50 Nations get founding member pricing. After that, it goes up. If you've been waiting for a sign, this is it."</p><div class="sm-row"><span class="sm-meta">Selling &middot; Belief 3</span><span class="sm-format">Story post with countdown timer</span></div></div>
+        <div class="social-card"><p class="sq">"Every grant deadline you miss is $50K-$400K your community doesn't get. How many did you miss last year because you didn't have time to write the application?"</p><div class="sm-row"><span class="sm-meta">Pain &middot; Belief 1</span><span class="sm-format">Text post, direct question</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 15</div>
+</div>
+
+<!-- ═══════ PAGE 16: CLOSING ═══════ -->
+<div class="pg" id="p16">
+  <div class="orb" style="width:400px;height:400px;background:rgba(16,104,68,0.06);bottom:20%;left:35%"></div>
+  <div class="pg-inner" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:38px;height:38px;color:var(--alpha-brand-950)"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+    </div>
+    <h2 class="rv d1" style="margin-bottom:20px">One product, unlimited impact</h2>
+    <p class="lead rv d2" style="margin:0 auto 36px;text-align:center">First Nations Grant AI &mdash; powered by 30+ years of Iskotew's grant writing expertise and built for the communities that need it most.</p>
+    <div class="rv d3" style="max-width:700px;margin:0 auto 48px;text-align:left">
+      <div class="tint" style="padding:28px">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:10px">First Nations Grant AI</h4>
+        <p style="font-size:18px;line-height:28px;color:var(--alpha-light-500)">$197/mo founding / $297/mo regular. Lifetime: $997 founding / $1,497 regular. Complete grant application system + 200+ funder database + video walkthroughs + monthly coaching + all templates + success story library. Unlimited applications per month.</p>
+      </div>
+    </div>
+    <div class="rv d4" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-brand">Get founding member access</button>
+      <button class="btn">Book a 15-minute demo</button>
+    </div>
+    <p class="rv d5" style="margin-top:56px;font-size:14px;color:var(--alpha-light-300);letter-spacing:0.3px">Strategy prepared by Kodara</p>
+  </div>
+  <div class="pf">Maverick Hann &mdash; AI Product Strategy &middot; Page 16</div>
+</div>
+
+<script>
+  const rvEls=document.querySelectorAll('.rv');
+  const rvObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');rvObs.unobserve(x.target)}})},{threshold:0.1});
+  rvEls.forEach(el=>rvObs.observe(el));
+
+  const pgs=document.querySelectorAll('.pg[id]');
+  const nav=document.getElementById('nav');
+  pgs.forEach((pg,i)=>{const d=document.createElement('button');d.className='nav-dot';d.setAttribute('aria-label','Page '+(i+1));d.addEventListener('click',()=>pg.scrollIntoView({behavior:'smooth'}));nav.appendChild(d)});
+  const dots=nav.querySelectorAll('.nav-dot');
+  const pgObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const i=Array.from(pgs).indexOf(x.target);dots.forEach((d,j)=>d.classList.toggle('active',j===i))}})},{threshold:0.3});
+  pgs.forEach(p=>pgObs.observe(p));
+  if(dots.length)dots[0].classList.add('active');
+</script>
+</body>
+</html>

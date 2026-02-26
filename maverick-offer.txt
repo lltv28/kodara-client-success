@@ -1,0 +1,253 @@
+Based on the context available, here's the complete output:
+
+---
+
+## CONTEXT IDENTIFICATION
+
+**1. The client and their business**
+Maverick Hann, Director of Iskotew Training Inc. and Executive Director of The Iskotêw Foundation. Indigenous-led (51% Indigenous woman-owned), Treaty 6 territory. Dual entity: for-profit training company + non-profit foundation. Specializes in emergency services training (firefighting, FireSmart, medical first response) for Indigenous youth and communities. Also provides professional grant writing services to First Nations across North America.
+
+**2. Their audience**
+First Nations leadership (Chiefs, Band Councils, Economic Development Officers) and Indigenous organizations across Treaty 6, 7, 8 territories (Alberta, Saskatchewan, Ontario). On-reserve and off-reserve. Communities range from 200 to 5,000+ members. Often remote or rural. Decision-makers are typically 35-60 years old, managing multiple priorities with limited administrative capacity.
+
+**3. The repetitive work the audience does**
+Grant applications. Every funding cycle (monthly, quarterly, annually), they're filling out the same types of forms: project descriptions, budgets, outcomes, timelines, organizational background, letters of support, Band Council resolutions. Each grant requires 15-40 hours of work. They're doing this for infrastructure, youth programs, emergency services, cultural projects, economic development, housing, health services. Same process, different funder, over and over.
+
+**4. What the audience already does well**
+They know their community's needs intimately. They understand what programs work, what infrastructure is missing, what youth need. They have relationships with Elders, community members, and partner organizations. They can articulate the problem and the vision when speaking face-to-face. They've often already run smaller versions of projects or have years of operational experience.
+
+**5. The client's credibility**
+30+ years combined team experience in grant writing and community advocacy. Secured millions of dollars in funding for Indigenous communities. Worked with federal (Indigenous Services Canada, Natural Resources Canada), provincial (Alberta Labour and Immigration, Saskatchewan programs), corporate (Shell Canada, oil/gas companies), and foundation funders (Mastercard Foundation). Delivered approximately 12-15 emergency services training programs. Indigenous-led, culturally grounded, Treaty 6-based. 10% commission-only model (no upfront cost). Specialty in Firefighting/Emergency Services grants but handles all sectors.
+
+**6. The client's existing products or services**
+Grant writing services: 10% commission on approved grants, full end-to-end support (research, writing, submission, follow-up). Emergency services training: 2-day to 24-week programs ($1,000/student for youth camps, $78,000 for 60-person cohorts). Business setup support: incorporation, business plans, strategic planning. AI grant writing course: 1-hour intro for Indigenous communities on using ChatGPT for grants.
+
+**7. The audience's current frustrations and alternatives**
+Hiring external grant writers: $1,000-$5,000+ per application, often upfront, no guarantee of success, writers don't understand community context. DIY with ChatGPT: generic output, no knowledge of Indigenous-specific funding streams, hallucinations, doesn't know funder priorities. Hiring staff: $50,000-$70,000/year for a grant coordinator, hard to recruit in remote areas, still learning curve. Outsourcing to consultants: expensive hourly rates ($50-$150/hour), 20-40 hours per grant. Many communities struggle with basic paperwork completion, unfamiliar with online portals, limited administrative capacity.
+
+**8. Current market conditions**
+Federal Indigenous funding tripled from $11 billion (2015) to $32 billion (2025). Dozens of new programs launched. Corporate reconciliation commitments creating new funding streams. Foundation focus on Indigenous-led projects. But: application complexity increasing, competition rising, funders want detailed budgets/outcomes/evaluation plans. Communities are overwhelmed. Grant portals require technical literacy. Deadlines are tight (often 2-4 weeks notice). Many Nations are leaving money on the table because they can't keep up with application volume.
+
+---
+
+# PART 1: AI PRODUCT IDEATION
+
+PRODUCT CONCEPT: Grant Application Generator for First Nations
+
+WHO IT'S FOR:
+   * First Nations leadership, EDOs, and program coordinators applying for government, corporate, or foundation funding
+   * Communities with limited administrative capacity who need 5-15 grant applications per year but can't afford full-time staff
+
+WHAT IT DOES (the work it actually performs):
+   * Generates complete, funder-ready grant applications (narrative, budget, timelines, outcomes) based on community input
+   * Produces project-specific budgets with line-item breakdowns, justifications, and matching fund calculations
+   * Writes organizational background sections using the Nation's history, governance structure, and past project success
+   * Creates evaluation frameworks with measurable outcomes, data collection methods, and reporting timelines
+   * Drafts letters of support templates customized to specific partners (Elders, schools, health authorities, neighboring Nations)
+   * Builds project timelines with milestones, deliverables, and risk mitigation strategies aligned to funder requirements
+   * Generates Band Council resolution templates with proper legal language for funding authorization
+   * Produces executive summaries and cover letters tailored to each funder's priorities and evaluation criteria
+
+WHAT MAKES IT DIFFERENT FROM GENERIC AI:
+   * Pre-loaded with 200+ Indigenous-specific funding programs (ISC, provincial, corporate, foundation) including eligibility criteria, priorities, and evaluation rubrics
+   * Trained on successful First Nations grant applications across sectors (infrastructure, youth, emergency services, culture, economic development)
+   * Understands Treaty territory context, on-reserve vs off-reserve distinctions, and Indigenous governance structures
+   * Knows funder-specific language (ISC wants "capacity building," foundations want "community-led," corporate wants "sustainable impact")
+   * Flags common disqualification errors (missing CRA numbers, incorrect legal names, budget misalignment)
+   * Includes cultural protocol guidance (when to mention Elders, how to frame land-based teachings, reconciliation language)
+   * Outputs match exact funder templates and portal requirements (character limits, required attachments, submission formats)
+
+THE MANUAL ALTERNATIVE:
+   * Hiring a grant writer: $1,500-$5,000 per application, 3-6 week turnaround, often doesn't understand community context
+   * DIY with staff: 20-40 hours per application, high error rate, generic ChatGPT produces unusable output for Indigenous-specific programs
+   * Outsourcing to Maverick's team: 10% commission (works well but capacity-limited, can only handle 15-20 clients at a time)
+
+THE "I NEED THAT" MOMENT:
+   * It's 11 PM, the grant is due in 72 hours, the EDO just got the Band Council resolution signed, and they're staring at a 40-page application portal with no idea how to describe "expected outcomes" or build a three-year budget for a youth FireSmart program they've never run before.
+
+---
+
+# PART 2: THE BELIEF LADDER
+
+1 - MOTIVATION - DESIRE
+   * Billions in Indigenous funding available right now, but most Nations are only accessing 10-20% of what they qualify for
+   * Federal Indigenous spending tripled to $32 billion annually
+      * ISC, Natural Resources Canada, ESDC, provincial programs
+      * Corporate reconciliation commitments (oil/gas, mining, utilities)
+      * Foundation focus (Mastercard $235M, community foundations, private donors)
+   * Early movers are stacking 3-5 grants per project and building multi-year funding pipelines
+      * Single Nations securing $400K-$14M for infrastructure, youth programs, emergency services
+      * Communities that apply consistently see 60-80% approval rates
+   * Window is open now, but competition is increasing as more Nations build grant capacity
+
+2 - POINTING - AI-POWERED Grant Application Systems
+   * The bottleneck isn't funding availability, it's application capacity
+      * Average grant takes 20-40 hours to write properly
+      * Most Nations need 10-20 applications per year to fund priorities
+      * Hiring staff ($50K-$70K/year) or consultants ($1,500-$5,000/application) doesn't scale
+   * AI can now generate funder-ready applications in 2-3 hours instead of 20-40
+      * Trained on successful Indigenous grant applications
+      * Pre-loaded with funder priorities, templates, and evaluation criteria
+      * Produces budgets, timelines, outcomes, and narratives that match what funders want to see
+   * Communities using AI grant tools are submitting 3-5x more applications with the same staff
+      * Higher approval rates because applications are complete, polished, and aligned to funder language
+      * Faster turnaround means catching short-notice opportunities (2-4 week deadlines)
+
+3 - SELLING - First Nations Grant AI by Iskotew Training
+   * Built specifically for Indigenous communities by an Indigenous-led team with 30+ years of grant writing experience
+   * Pre-loaded with 200+ Indigenous funding programs and trained on millions of dollars in successful First Nations applications
+   * Produces complete, submission-ready grant packages (narrative, budget, timelines, letters, resolutions) in under 3 hours
+   * Costs less than one external grant writer ($297/month or $97/application) with no commission, no upfront fees for first 30 days
+   * Backed by Maverick's team: if the AI output needs refinement, you get 1-hour monthly coaching calls and access to grant writing experts
+
+---
+
+# PART 1: PRICING STRATEGY
+
+RECOMMENDED PRICE: $297/month subscription OR $997 one-time lifetime access
+
+WHY THIS NUMBER:
+   * Monthly subscription removes barrier to entry for communities with limited cash flow, aligns with how they already budget (monthly operational costs vs. large capital purchases)
+   * $997 lifetime option creates urgency for decision-makers who want to lock in access and avoid recurring costs, positions as serious professional tool
+   * Both price points sit well below the cost of a single external grant writer ($1,500-$5,000 per application) while delivering unlimited applications
+
+PRICE ANCHOR:
+   * Manual alternative: hiring external grant writer costs $1,500-$5,000 per application, 3-6 week turnaround, often culturally disconnected
+   * Maverick's current service: 10% commission on approved grants (typically $2,000-$10,000+ per grant depending on award size)
+   * DIY with staff: 20-40 hours per application at $25-$35/hour internal cost = $500-$1,400 in labor per grant
+   * AI product at $297/month pays for itself with one grant application, delivers 10x value if used for 3+ applications per year
+
+PAYMENT PLAN:
+   * Monthly subscription: $297/month, cancel anytime (recommended primary offer)
+   * Annual prepay option: $2,997/year (saves $564, equivalent to 10 months for 12)
+   * Lifetime access: $997 one-time (positioned as "founding member" rate during launch, increases to $1,497 after 90 days)
+
+LAUNCH PRICING:
+   * First 50 Nations: $197/month for first 3 months, then $297/month ongoing (33% discount to build case studies and testimonials)
+   * Lifetime founding rate: $997 (increases to $1,497 after launch period)
+   * Strategic reason: need early adopters to provide feedback, testimonials, and success stories showing grant approvals using the tool
+   * Raise monthly to $297 after 50 signups, raise lifetime to $1,497 after 90 days or 25 lifetime purchases (whichever comes first)
+
+---
+
+# PART 2: WARM LEAD MESSAGING
+
+## 2A: LAUNCH EMAIL SEQUENCE
+
+EMAIL 1: The funding window nobody's talking about
+   * Subject line: "32 billion reasons to pay attention right now"
+   * Belief: Motivation (Belief 1, desire driver)
+   * Core argument: Federal Indigenous funding tripled to $32B annually, but most Nations are only accessing 10-20% of what they qualify for because application capacity is the bottleneck
+   * CTA: Reply with "interested" if you want to see the grant opportunities your Nation qualifies for right now
+
+EMAIL 2: Why good programs don't get funded
+   * Subject line: "It's not the idea. It's the paperwork."
+   * Belief: Motivation (Belief 1, pain driver)
+   * Core argument: Communities know what they need (youth programs, infrastructure, emergency services), but 20-40 hours per application means most opportunities get missed, especially short-notice deadlines
+   * CTA: No ask, just acknowledgment and validation of the struggle
+
+EMAIL 3: The Nations that are winning
+   * Subject line: "How some communities are stacking 3-5 grants per project"
+   * Belief: Pointing (Belief 2, approach)
+   * Core argument: Early movers are using AI-powered systems to submit 3-5x more applications with the same staff, higher approval rates because applications are complete and aligned to funder language
+   * CTA: Watch 4-minute video showing how AI generates a complete grant application in under 3 hours
+
+EMAIL 4: What we built (and why)
+   * Subject line: "We got tired of turning communities away"
+   * Belief: Selling (Belief 3, product intro)
+   * Core argument: Iskotew can only handle 15-20 grant clients at a time, so we built an AI trained on 200+ Indigenous funding programs and millions in successful applications, does the work in 2-3 hours instead of 20-40
+   * CTA: Book a 15-minute demo to see it generate a real application for your community
+
+EMAIL 5: How it actually works
+   * Subject line: "Inside the Grant AI (screenshots)"
+   * Belief: Selling (Belief 3, proof and walkthrough)
+   * Core argument: Step-by-step walkthrough with screenshots showing how it produces budgets, timelines, narratives, letters of support, and Band Council resolution templates
+   * CTA: Start your 30-day trial, first 50 Nations get founding rate ($197/month for 3 months)
+
+EMAIL 6: The cost of waiting
+   * Subject line: "What's the deadline on that grant again?"
+   * Belief: Motivation + urgency (Belief 1 reinforcement)
+   * Core argument: Every month without this tool is 2-4 missed grant opportunities, average grant is $50K-$400K, the math is brutal
+   * CTA: Lock in founding rate before it goes to $297/month (48 hours left)
+
+EMAIL 7: Final call and what happens next
+   * Subject line: "Founding rate closes tonight at midnight"
+   * Belief: Selling (Belief 3, urgency and next steps)
+   * Core argument: 50 Nations already in, founding rate ($197/month) ends tonight, goes to $297 tomorrow, here's what you get in the first 30 days
+   * CTA: Secure your spot, get access within 24 hours, first coaching call scheduled within 7 days
+
+## 2B: SOCIAL MEDIA TALKING POINTS
+
+"$32 billion in Indigenous funding available right now. Most Nations are accessing less than 20% of it. The bottleneck isn't the money. It's the paperwork."
+   * Core point: Funding exists, capacity is the problem
+   * Supports: Belief 1 (motivation, desire)
+   * Format: Text post with infographic showing $11B (2015) vs $32B (2025)
+
+"A single grant application takes 20-40 hours to write properly. Most EDOs need to submit 10-20 per year. Do the math. That's a full-time job just doing paperwork."
+   * Core point: Time cost is unsustainable
+   * Supports: Belief 1 (motivation, pain)
+   * Format: Text post, conversational tone
+
+"The Nations winning right now aren't working harder. They're using AI to do in 3 hours what used to take 3 weeks."
+   * Core point: Early movers are benefiting from AI tools
+   * Supports: Belief 2 (pointing, approach)
+   * Format: Short video (30 seconds), Maverick talking to camera
+
+"We can only take 15-20 grant clients at a time. We had to turn away 40+ communities last year. So we built something that scales."
+   * Core point: Demand exceeds capacity, AI solves this
+   * Supports: Belief 3 (selling, product origin story)
+   * Format: Text post with photo of Maverick at desk with grant applications
+
+"Hiring a grant writer: $1,500-$5,000 per application. Using AI trained on successful Indigenous grants: $297/month, unlimited applications. The math is pretty simple."
+   * Core point: Cost comparison, value proposition
+   * Supports: Belief 3 (selling, pricing anchor)
+   * Format: Carousel post (slide 1: cost breakdown, slide 2: what you get, slide 3: CTA)
+
+"Generic ChatGPT doesn't know the difference between ISC and ESDC funding. It doesn't know what a Band Council resolution looks like. It hallucinates deadlines. That's why we built this."
+   * Core point: Generic AI fails for Indigenous grants, specialized tool needed
+   * Supports: Belief 2 (pointing, why alternatives fall short)
+   * Format: Text post, educational tone
+
+"Show me a community that submits 10+ grant applications per year and I'll show you a community with $500K-$2M in annual funding. Consistency wins."
+   * Core point: Volume of applications correlates with funding success
+   * Supports: Belief 1 (motivation, desire)
+   * Format: Text post with success story example
+
+"We trained this AI on millions of dollars in successful First Nations grant applications. It knows what ISC wants to see. It knows what foundations prioritize. It speaks funder language."
+   * Core point: AI is trained on proven success, not generic templates
+   * Supports: Belief 3 (selling, differentiation)
+   * Format: Short video showing AI output vs generic ChatGPT output side by side
+
+"First 50 Nations get founding member pricing. After that, it goes up. If you've been waiting for a sign, this is it."
+   * Core point: Launch urgency, limited-time offer
+   * Supports: Belief 3 (selling, urgency)
+   * Format: Story post with countdown timer
+
+"Every grant deadline you miss is $50K-$400K your community doesn't get. How many did you miss last year because you didn't have time to write the application?"
+   * Core point: Cost of inaction is measurable and painful
+   * Supports: Belief 1 (motivation, pain)
+   * Format: Text post, direct question to audience
+
+---
+
+# PART 3: PACKAGING RECOMMENDATIONS
+
+THE CORE:
+   * First Nations Grant AI: generates complete, funder-ready grant applications (narrative, budget, timelines, outcomes, letters, resolutions) in 2-3 hours
+
+RECOMMENDED INCLUSIONS:
+   * Grant Search Prompt Library: 20+ pre-built prompts for finding federal, provincial, corporate, and foundation funding specific to Indigenous communities (already exists in internal procedures, repackage as user resource)
+   * Funder Database: searchable list of 200+ Indigenous-specific funding programs with eligibility criteria, deadlines, priorities, and direct links (core value-add, justifies why this isn't just ChatGPT)
+   * Video Walkthrough Series: 8 short videos (5-10 minutes each) showing how to use the AI for different grant types (infrastructure, youth programs, emergency services, cultural projects, economic development) (record once, reuse forever)
+   * Monthly Group Coaching Call: 60-minute live Q&A with Maverick and team, review AI outputs, troubleshoot applications, discuss funder priorities (builds community, increases retention, low time cost per user)
+   * Grant Application Templates: Band Council resolution template, letter of support template, budget worksheet, project timeline framework (already exist in internal processes, format for client use)
+   * Success Story Library: 10-15 examples of successful grant applications (redacted/anonymized) showing what funders approved, with annotations explaining why they worked (builds trust, shows proof, educates users)
+
+WHAT TO LEAVE OUT:
+   * Full 1-hour AI grant writing course ($47-$97 standalone product): keep this separate as a low-ticket entry product or upsell for people who want deeper AI training beyond just using the tool
+   * Done-for-you grant writing service (10% commission model): this is the premium tier, don't cannibalize it by including it in the AI product, position AI as DIY option and done-for-you as premium upgrade
+   * Emergency services training programs: completely different business line, including it would confuse positioning and dilute the grant-focused value proposition
+
+THE COMPLETE PRODUCT (how to describe it as one thing):
+   * First Nations Grant AI is a complete grant application system that generates funder-ready proposals, budgets, and supporting documents in under 3 hours, backed by a database of 200+ Indigenous funding programs, monthly expert coaching, and proven templates used to secure millions in funding.
+   * What the buyer walks away with: unlimited grant applications per month, access to all funding program data, monthly live support, and every template needed to submit complete applications without hiring external writers.
