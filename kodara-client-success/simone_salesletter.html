@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="onyx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simone Douglas — Bulletproof COO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="theme-fonts" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --shadow-avatar: 0px 20px 6px rgba(12,48,70,0), 0px 13px 5px rgba(12,48,70,0.02), 0px 7px 4px rgba(12,48,70,0.07), 0px 3px 3px rgba(12,48,70,0.12), 0px 1px 2px rgba(12,48,70,0.14);
+    }
+
+    /* ═══ THEME: Sage ═══ */
+    [data-theme="sage"] {
+      --page-bg: #FDFCFA;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-brand-50:  rgba(16,104,68, 0.06);
+      --alpha-brand-100: rgba(16,104,68, 0.08);
+      --alpha-brand-200: rgba(16,104,68, 0.12);
+      --alpha-brand-950: rgba(16,104,68, 0.92);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --orb-primary: rgba(16,104,68, 0.05);
+      --orb-secondary: rgba(0,180,212, 0.04);
+      --cta-from: #737373;
+      --cta-to: #404040;
+    }
+    [data-theme="sage"] body { font-family:'Instrument Sans',sans-serif; background:#FDFCFA; color:rgba(26,26,26,0.60); }
+    [data-theme="sage"] h1,
+    [data-theme="sage"] h2 { font-family:'DM Serif Display',serif; }
+
+    /* ═══ THEME: Onyx ═══ */
+    [data-theme="onyx"] {
+      --b-w-white: #0C0C0E;
+      --page-bg: #0C0C0E;
+      --alpha-light-25:  rgba(255,255,255, 0.04);
+      --alpha-light-50:  rgba(255,255,255, 0.06);
+      --alpha-light-100: rgba(255,255,255, 0.10);
+      --alpha-light-200: rgba(255,255,255, 0.20);
+      --alpha-light-300: rgba(255,255,255, 0.28);
+      --alpha-light-400: rgba(255,255,255, 0.36);
+      --alpha-light-500: rgba(255,255,255, 0.48);
+      --alpha-light-600: rgba(255,255,255, 0.60);
+      --alpha-light-900: rgba(255,255,255, 0.85);
+      --alpha-brand-50:  rgba(191,155,81, 0.08);
+      --alpha-brand-100: rgba(191,155,81, 0.12);
+      --alpha-brand-200: rgba(191,155,81, 0.18);
+      --alpha-brand-950: rgba(191,155,81, 0.92);
+      --alpha-dark-300: rgba(255,255,255, 0.04);
+      --alpha-dark-600: rgba(255,255,255, 0.06);
+      --alpha-dark-800: rgba(255,255,255, 0.08);
+      --alpha-dark-900: rgba(255,255,255, 0.10);
+      --orb-primary: rgba(191,155,81, 0.06);
+      --orb-secondary: rgba(255,200,120, 0.04);
+      --cta-from: #BF9B51;
+      --cta-to: #8C6E33;
+    }
+    [data-theme="onyx"] body { font-family:'Inter',sans-serif; background:#0C0C0E; color:rgba(255,255,255,0.60); }
+    [data-theme="onyx"] h1,
+    [data-theme="onyx"] h2 { font-family:'Playfair Display',serif; }
+    [data-theme="onyx"] .cta-btn { background:linear-gradient(to bottom, #BF9B51, #8C6E33); }
+    [data-theme="onyx"] .cta-btn::after { border-color:rgba(255,255,255, 0.15); }
+    [data-theme="onyx"] .price-card.feat::before { background:linear-gradient(90deg,rgba(191,155,81,0.4),rgba(191,155,81,0.06)); }
+
+    /* ═══ THEME: Ember ═══ */
+    [data-theme="ember"] {
+      --page-bg: #FFFFFF;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-brand-50:  rgba(234,88,48, 0.06);
+      --alpha-brand-100: rgba(234,88,48, 0.10);
+      --alpha-brand-200: rgba(234,88,48, 0.15);
+      --alpha-brand-950: rgba(234,88,48, 0.92);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --orb-primary: rgba(234,88,48, 0.05);
+      --orb-secondary: rgba(255,160,50, 0.04);
+      --cta-from: #2D2D2D;
+      --cta-to: #1A1A1A;
+    }
+    [data-theme="ember"] body { font-family:'Inter',sans-serif; background:#FFFFFF; color:rgba(26,26,26,0.60); }
+    [data-theme="ember"] h1,
+    [data-theme="ember"] h2 { font-family:'Space Grotesk',sans-serif; font-weight:500; letter-spacing:-1.5px; }
+    [data-theme="ember"] .cta-btn { background:linear-gradient(to bottom, #2D2D2D, #1A1A1A); }
+
+    /* ═══ THEME: Indigo ═══ */
+    [data-theme="indigo"] {
+      --page-bg: #FAFAFD;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-brand-50:  rgba(79,55,139, 0.06);
+      --alpha-brand-100: rgba(79,55,139, 0.10);
+      --alpha-brand-200: rgba(79,55,139, 0.14);
+      --alpha-brand-950: rgba(79,55,139, 0.90);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --orb-primary: rgba(79,55,139, 0.05);
+      --orb-secondary: rgba(200,80,140, 0.04);
+      --cta-from: #6B4FA0;
+      --cta-to: #4F378B;
+    }
+    [data-theme="indigo"] body { font-family:'Instrument Sans',sans-serif; background:#FAFAFD; color:rgba(26,26,26,0.60); }
+    [data-theme="indigo"] h1,
+    [data-theme="indigo"] h2 { font-family:'Fraunces',serif; }
+    [data-theme="indigo"] .cta-btn { background:linear-gradient(to bottom, #6B4FA0, #4F378B); }
+
+    /* ═══ THEME: Slate ═══ */
+    [data-theme="slate"] {
+      --page-bg: #FFFFFF;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-brand-50:  rgba(37,99,235, 0.06);
+      --alpha-brand-100: rgba(37,99,235, 0.08);
+      --alpha-brand-200: rgba(37,99,235, 0.12);
+      --alpha-brand-950: rgba(37,99,235, 0.90);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --orb-primary: rgba(37,99,235, 0.04);
+      --orb-secondary: rgba(0,180,212, 0.03);
+      --cta-from: #2563EB;
+      --cta-to: #1D4ED8;
+    }
+    [data-theme="slate"] body { font-family:'Inter',sans-serif; background:#FFFFFF; color:rgba(26,26,26,0.60); }
+    [data-theme="slate"] h1,
+    [data-theme="slate"] h2 { font-family:'Inter',sans-serif; }
+    [data-theme="slate"] .cta-btn { background:linear-gradient(to bottom, #2563EB, #1D4ED8); }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',sans-serif;
+      font-variation-settings:'wdth' 100;
+      color:var(--alpha-light-600);
+      background:var(--page-bg, var(--b-w-white));
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    /* ── Default heading font ── */
+    h1, h2 { font-family:'Playfair Display',serif; }
+
+    /* ── Orbs ── */
+    .orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+
+    /* ── Section structure ── */
+    .section { position:relative; padding:80px 48px; overflow:hidden; }
+    .section-inner { position:relative; z-index:1; max-width:1000px; width:100%; margin:0 auto; }
+    .section-inner.narrow { max-width:720px; }
+
+    /* ── Typography ── */
+    h1 { font-size:56px; line-height:66px; letter-spacing:-0.5px; font-weight:400; color:var(--alpha-light-900); }
+    h2 { font-size:40px; line-height:50px; letter-spacing:-0.3px; font-weight:400; color:var(--alpha-light-900); margin-bottom:24px; }
+    h3 { font-size:29px; line-height:38px; letter-spacing:-0.3px; font-weight:500; color:var(--alpha-light-900); margin-bottom:20px; font-family:'Inter',sans-serif; }
+    h4 { font-size:20px; line-height:28px; font-weight:600; color:var(--alpha-light-900); margin-bottom:12px; }
+    p { font-size:19px; line-height:33px; font-weight:400; color:var(--alpha-light-600); letter-spacing:-0.15px; margin-bottom:28px; }
+    p:last-child { margin-bottom:0; }
+    .lead { font-size:21px; line-height:35px; max-width:720px; }
+    strong { color:var(--alpha-light-900); font-weight:600; }
+
+    /* ── Chip ── */
+    .chip { display:inline-flex; align-items:center; gap:8px; background:var(--alpha-brand-50); border-radius:999px; padding:7px 18px; font-size:16px; font-weight:600; color:var(--alpha-brand-950); letter-spacing:0.2px; font-family:'Inter',sans-serif; }
+
+    /* ── Credibility bar ── */
+    .cred-bar { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin-top:32px; }
+    .cred-item { font-size:15px; font-weight:600; color:var(--alpha-light-500); letter-spacing:0.1px; }
+    .cred-sep { font-size:15px; color:var(--alpha-light-200); }
+
+    /* ── Section divider ── */
+    .section-divider { width:48px; height:4px; border-radius:999px; background:var(--alpha-brand-50); border:1px solid var(--alpha-brand-200); margin:0 auto; }
+
+    /* ── Inline stat ── */
+    .stat-inline { text-align:center; margin:48px auto; padding:36px 0; }
+    .stat-inline .stat-num { font-size:42px; line-height:50px; font-weight:400; letter-spacing:-1px; color:var(--alpha-light-900); font-family:'Playfair Display',serif; }
+    .stat-inline .stat-label { font-size:16px; line-height:24px; font-weight:500; color:var(--alpha-light-500); margin-top:8px; display:block; max-width:440px; margin-left:auto; margin-right:auto; }
+
+    /* ── Pull quote ── */
+    .pull-quote { font-size:29px; line-height:40px; font-weight:400; color:var(--alpha-light-900); text-align:center; max-width:700px; margin:48px auto; padding:32px 0; border-top:1px solid var(--alpha-light-50); border-bottom:1px solid var(--alpha-light-50); font-style:normal; font-family:'Playfair Display',serif; }
+
+    /* ── Cards ── */
+    .glass { background:var(--alpha-dark-800); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; box-shadow:var(--shadow-card); }
+    .glass-subtle { background:var(--alpha-dark-300); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid var(--alpha-light-50); border-radius:16px; padding:32px; }
+    .tint { background:var(--alpha-light-25); border-radius:16px; padding:28px; }
+    .divider { width:48px; height:1px; background:var(--alpha-light-200); margin:24px 0; }
+
+    /* ── Grids (accent only) ── */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+    /* ── Moment / Quote ── */
+    .moment { background:var(--alpha-light-25); border-radius:16px; padding:32px 36px; border-left:3px solid var(--alpha-brand-200); margin:40px 0; }
+    .moment-tag { font-size:14px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--alpha-brand-950); margin-bottom:14px; }
+    .moment p { font-style:italic; margin-bottom:0; }
+    .moment .moment-attr { font-style:normal; font-size:15px; color:var(--alpha-light-400); margin-top:12px; }
+
+    /* ── Feature list ── */
+    .fl { list-style:none; display:flex; flex-direction:column; gap:16px; }
+    .fl li { display:flex; align-items:flex-start; gap:14px; font-size:18px; line-height:28px; font-weight:500; color:var(--alpha-light-600); letter-spacing:-0.15px; margin-bottom:0; }
+    .fl.sm { gap:12px; }
+    .fl.sm li { font-size:17px; line-height:26px; }
+    .fi { flex-shrink:0; width:28px; height:28px; border-radius:6px; background:var(--alpha-brand-50); display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .fi svg { width:14px; height:14px; }
+
+    /* ── Transform pairs ── */
+    .transform-pair { margin-bottom:32px; max-width:720px; }
+    .transform-before { font-size:18px; line-height:28px; color:var(--alpha-light-400); padding-left:20px; border-left:2px solid var(--alpha-light-200); margin-bottom:12px; }
+    .transform-after { font-size:18px; line-height:28px; color:var(--alpha-light-900); font-weight:500; padding-left:20px; border-left:2px solid var(--alpha-brand-950); }
+
+    /* ── Steps ── */
+    .step { display:flex; gap:20px; align-items:flex-start; margin-bottom:28px; }
+    .step-num { flex-shrink:0; width:40px; height:40px; border-radius:999px; background:var(--alpha-brand-50); border:1px solid var(--alpha-brand-200); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:600; color:var(--alpha-brand-950); }
+    .step-body h4 { margin-bottom:6px; }
+    .step-body p { font-size:18px; line-height:30px; margin-bottom:0; }
+
+    /* ── Comparison ── */
+    .comp-col ul { list-style:none; display:flex; flex-direction:column; gap:14px; }
+    .comp-col li { font-size:18px; line-height:27px; font-weight:400; padding-left:26px; position:relative; letter-spacing:-0.15px; margin-bottom:0; }
+    .comp-without li { color:var(--alpha-light-400); }
+    .comp-without li::before { content:''; position:absolute; left:0; top:9px; width:10px; height:10px; border-radius:2px; background:var(--alpha-light-200); }
+    .comp-with li { color:var(--alpha-light-600); }
+    .comp-with li::before { content:''; position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:999px; background:var(--alpha-brand-50); border:2px solid var(--alpha-brand-950); }
+
+    /* ── Testimonial strip ── */
+    .testimonial-strip { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .testimonial-card {
+      background:var(--alpha-dark-800); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      border:1px solid var(--alpha-light-50); border-radius:16px; padding:28px;
+      box-shadow:var(--shadow-card); display:flex; flex-direction:column; gap:16px;
+    }
+    .testimonial-stars { font-size:16px; letter-spacing:2px; color:var(--alpha-brand-950); }
+    .testimonial-quote { font-size:17px; line-height:28px; font-weight:400; color:var(--alpha-light-600); font-style:italic; flex:1; margin-bottom:0; }
+    .testimonial-footer { display:flex; align-items:center; gap:12px; padding-top:16px; border-top:1px solid var(--alpha-light-50); }
+    .testimonial-avatar { width:40px; height:40px; border-radius:999px; background:var(--alpha-brand-50); border:1px solid var(--alpha-light-50); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:600; color:var(--alpha-brand-950); }
+    .testimonial-name { font-size:15px; font-weight:600; color:var(--alpha-light-900); }
+    .testimonial-role { font-size:14px; font-weight:400; color:var(--alpha-light-400); }
+
+    /* ── Pricing ── */
+    .price-card { border-radius:16px; padding:36px; border:1px solid var(--alpha-light-100); position:relative; overflow:hidden; }
+    .price-card.feat { background:var(--alpha-dark-900); backdrop-filter:blur(14px); border-color:var(--alpha-brand-200); box-shadow:var(--shadow-modal); }
+    .price-card.feat::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,rgba(191,155,81,0.4),rgba(191,155,81,0.06)); }
+    .price-big { font-size:60px; line-height:68px; font-weight:400; letter-spacing:-1.5px; color:var(--alpha-light-900); margin:16px 0 8px; font-family:'Playfair Display',serif; }
+    .price-big span { font-size:24px; letter-spacing:0; font-family:'Inter',sans-serif; }
+    .price-note { font-size:17px; color:var(--alpha-light-500); margin-bottom:4px; }
+    .price-plan { font-size:17px; color:var(--alpha-light-400); margin-top:4px; margin-bottom:0; }
+    .strike { text-decoration:line-through; color:var(--alpha-light-300); font-size:22px; }
+
+    /* ── CTA button ── */
+    .cta-btn {
+      display:inline-block; padding:16px 40px;
+      background:linear-gradient(to bottom, var(--cta-from, #BF9B51), var(--cta-to, #8C6E33));
+      color:rgba(255,255,255,0.90);
+      font-family:'Inter',sans-serif; font-variation-settings:'wdth' 100;
+      font-size:18px; font-weight:600; border-radius:12px; text-decoration:none;
+      position:relative; cursor:pointer;
+      transition:transform 150ms ease-out, box-shadow 150ms ease-out; border:none;
+    }
+    .cta-btn:hover { transform:translateY(-1px); box-shadow:0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.03), 0px 1px 2px rgba(0,0,0,0.04); }
+    .cta-btn::after { content:''; position:absolute; inset:0; border:1.5px solid rgba(255,255,255,0.15); border-radius:12px; filter:blur(0.2px); pointer-events:none; }
+
+    /* ── CTA block ── */
+    .cta-block { text-align:center; margin:56px 0; }
+    .cta-block .cta-supporting { font-size:17px; line-height:26px; color:var(--alpha-light-500); margin-bottom:20px; max-width:500px; margin-left:auto; margin-right:auto; }
+    .cta-block .cta-micro { font-size:15px; color:var(--alpha-light-400); margin-top:12px; margin-bottom:0; }
+
+    /* ── Hero orb ── */
+    .hero-orb { width:80px; height:80px; border-radius:999px; background:linear-gradient(145deg,rgba(191,155,81,0.14),rgba(191,155,81,0.04)); border:1px solid var(--alpha-light-50); box-shadow:var(--shadow-avatar); display:flex; align-items:center; justify-content:center; position:relative; margin:0 auto 28px; }
+    .hero-orb::before { content:''; position:absolute; width:180px; height:180px; border-radius:50%; background:rgba(191,155,81,0.05); filter:blur(50px); z-index:-1; }
+    .hero-orb svg { width:34px; height:34px; color:var(--alpha-brand-950); }
+
+    /* ── FAQ ── */
+    .faq-item { margin-bottom:16px; }
+    .faq-item:last-child { margin-bottom:0; }
+    .faq-item h4 { margin-bottom:8px; }
+    .faq-item p { font-size:17px; line-height:28px; margin-bottom:0; }
+
+    /* ── Save PDF ── */
+    .save-pdf { position:fixed; top:24px; right:24px; z-index:200; display:flex; align-items:center; gap:10px; padding:10px 20px; background:var(--alpha-dark-800); backdrop-filter:blur(12px); border:1px solid var(--alpha-light-100); border-radius:8px; box-shadow:var(--shadow-card); cursor:pointer; font-family:'Inter',sans-serif; font-variation-settings:'wdth' 100; font-size:16px; font-weight:500; color:var(--alpha-light-900); transition:background 150ms; }
+    .save-pdf:hover { background:var(--alpha-dark-900); }
+    .save-pdf svg { width:18px; height:18px; color:var(--alpha-light-600); }
+
+    /* ── Sticky CTA ── */
+    .sticky-cta { position:fixed; bottom:0; left:0; right:0; z-index:100; background:var(--alpha-dark-900); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-top:1px solid var(--alpha-light-50); padding:12px 24px; transform:translateY(100%); transition:transform 300ms ease-out; }
+    .sticky-cta.visible { transform:translateY(0); }
+    .sticky-cta-inner { max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .sticky-cta-text { font-size:15px; font-weight:500; color:var(--alpha-light-600); }
+
+    /* ── Scroll reveal ── */
+    .rv { opacity:0; transform:translateY(20px); transition:opacity 550ms ease-out, transform 550ms ease-out; }
+    .rv.vis { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:80ms}.d2{transition-delay:160ms}.d3{transition-delay:240ms}.d4{transition-delay:320ms}.d5{transition-delay:400ms}
+
+    /* ── Scroll cue ── */
+    .scroll-cue { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; font-size:14px; font-weight:500; color:var(--alpha-light-300); letter-spacing:0.5px; animation:bob 2.2s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+    .scroll-cue-arrow { width:16px; height:16px; border-right:1.5px solid var(--alpha-light-300); border-bottom:1.5px solid var(--alpha-light-300); transform:rotate(45deg); }
+
+    /* ── Footer ── */
+    .site-footer { text-align:center; padding:48px 24px; font-size:14px; font-weight:500; color:var(--alpha-light-300); }
+
+    /* ── Theme switcher ── */
+    .theme-switcher {
+      position:fixed; bottom:24px; right:24px; z-index:9999;
+      display:flex; align-items:center; gap:6px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(26,26,26,0.75);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 8px 32px rgba(0,0,0,0.25);
+      transition:opacity 0.3s ease;
+    }
+    .theme-switcher .ts-label {
+      font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+      color:rgba(255,255,255,0.55); margin-right:4px; user-select:none;
+    }
+    .theme-switcher button {
+      width:22px; height:22px; border-radius:50%;
+      border:2px solid transparent; cursor:pointer;
+      transition:border-color 0.2s ease, transform 0.2s ease;
+      padding:0; outline:none;
+    }
+    .theme-switcher button:hover { transform:scale(1.15); }
+    .theme-switcher button.active {
+      border-color:#fff; box-shadow:0 0 0 2px rgba(255,255,255,0.25);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width:800px) {
+      h1{font-size:38px;line-height:46px}
+      h2{font-size:30px;line-height:38px}
+      .section{padding:56px 24px}
+      .g2,.testimonial-strip{grid-template-columns:1fr}
+      .price-big{font-size:44px}
+      .pull-quote{font-size:23px;line-height:34px}
+      .cred-bar{flex-direction:column;gap:4px}
+      .cred-sep{display:none}
+      .sticky-cta-inner{flex-direction:column;gap:8px;text-align:center}
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      @page { size:A4 portrait; margin:0; }
+      html,body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; color-adjust:exact!important; }
+      .rv { opacity:1!important; transform:none!important; transition:none!important; }
+      .save-pdf,.sticky-cta,.scroll-cue,.theme-switcher { display:none!important; }
+      .section { padding:48px 48px; }
+      .glass,.glass-subtle,.tint,.price-card.feat,.chip,.fi,.hero-orb,.moment,.testimonial-card { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+      .orb { opacity:0.6; -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="save-pdf" onclick="window.print()" title="Save as PDF">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+  Save as PDF
+</button>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<div class="section" id="hero" style="padding-top:120px;padding-bottom:120px;min-height:100vh;display:flex;align-items:center;justify-content:center">
+  <div class="orb" style="width:600px;height:600px;background:rgba(191,155,81,0.06);top:-10%;right:-10%"></div>
+  <div class="orb" style="width:350px;height:350px;background:rgba(255,200,120,0.04);bottom:12%;left:-5%"></div>
+  <div class="section-inner" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <div class="chip rv d1">For Business Owners</div>
+    <h1 class="rv d2" style="margin-top:24px;max-width:780px;margin-left:auto;margin-right:auto">Your business runs on you. It doesn&rsquo;t have to.</h1>
+    <p class="lead rv d3" style="margin:24px auto 0;max-width:620px;text-align:center">
+      We extract what&rsquo;s in your head and turn it into a complete operating system your team can run &mdash; so your next hire succeeds, your team stops waiting on you for every decision, and your business doesn&rsquo;t collapse when you step away.
+    </p>
+    <div style="margin-top:36px">
+      <a href="#pricing" class="cta-btn rv d4">See How It Works</a>
+    </div>
+    <p class="rv d5" style="margin-top:14px;font-size:15px;color:var(--alpha-light-400);margin-bottom:0">
+      No documentation needed &middot; No new software to learn &middot; 30-day guarantee
+    </p>
+    <div class="cred-bar rv d5">
+      <span class="cred-item">10+ years of methodology</span>
+      <span class="cred-sep">&middot;</span>
+      <span class="cred-item">Built for owner-run teams</span>
+      <span class="cred-sep">&middot;</span>
+      <span class="cred-item">No existing systems required</span>
+      <span class="cred-sep">&middot;</span>
+      <span class="cred-item">You talk, we build</span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="scroll-cue-arrow"></div></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     EMOTIONAL HOOK
+     ═══════════════════════════════════════════ -->
+<div class="section" id="hook">
+  <div class="section-inner narrow">
+    <p>You finally found someone you thought could take some of the weight off. They seemed sharp, experienced, ready to step up. Three weeks in, they&rsquo;re in your office ten times a day &mdash; not because they&rsquo;re incompetent, but because nothing is written down. No role expectations, no standards, no decision-making boundaries. They&rsquo;re trying to figure out the job by reading your mind.</p>
+
+    <p>After two months, you&rsquo;re spending more time managing them than you were just doing everything yourself. After four months, one of you quits. And you tell yourself what you always tell yourself: <strong>&ldquo;I just can&rsquo;t find good people.&rdquo;</strong></p>
+
+    <p>But here&rsquo;s the truth nobody says out loud: the problem wasn&rsquo;t them. The problem was there was nothing for them to work with. Everything that matters about how your business runs lives in one place &mdash; your head &mdash; and you&rsquo;ve never had time to get it out.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PROBLEM STACKING
+     ═══════════════════════════════════════════ -->
+<div class="section" id="problem">
+  <div class="section-inner narrow">
+    <h2 class="rv">You built this business with your own hands. That&rsquo;s the good news. It&rsquo;s also the problem.</h2>
+
+    <p>You built something that works. It works because of your standards, your judgment, your willingness to do whatever it takes. You should be proud of that. But here&rsquo;s what nobody says out loud: the reason it works is also the reason you&rsquo;re trapped. <strong>Your business doesn&rsquo;t run. You run. Everything else waits.</strong></p>
+
+    <p>Your team comes to you for every decision &mdash; not because they&rsquo;re incapable, but because there&rsquo;s no structure telling them what to do when you&rsquo;re not in the room. The standards are in your head. The expectations are in your head. The &ldquo;way we do things&rdquo; is in your head. And it&rsquo;s been that way for so long that you&rsquo;ve accepted it as normal.</p>
+
+    <div class="stat-inline rv">
+      <span class="stat-num">$50K&ndash;$100K</span>
+      <span class="stat-label">The average cost of a failed hire at the management level &mdash; including salary, lost time, and re-hiring</span>
+    </div>
+
+    <p>But it&rsquo;s not normal. It&rsquo;s a ceiling. It shows up as the hire who couldn&rsquo;t figure out the job because nothing was written down. The opportunity you passed on because you couldn&rsquo;t step away. The vacation you cut short because your phone wouldn&rsquo;t stop ringing. The growing sense that you&rsquo;ve built something you can&rsquo;t leave &mdash; and can&rsquo;t sell &mdash; because it&rsquo;s not really a business. It&rsquo;s a job you own.</p>
+
+    <p>And here&rsquo;s the part that&rsquo;s hardest to admit: <strong>you say you want a team that runs without you, but every time someone tries to step up, you take the work back.</strong> Because their way isn&rsquo;t your way. Because &ldquo;good enough&rdquo; isn&rsquo;t good enough when your name is on the door. You&rsquo;re not stuck because you don&rsquo;t have systems. You&rsquo;re stuck because being the person who holds it all together has become your identity &mdash; and letting go feels like losing something you can&rsquo;t name.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FAILED ALTERNATIVES
+     ═══════════════════════════════════════════ -->
+<div class="section" id="alternatives">
+  <div class="section-inner narrow">
+    <h2 class="rv">You&rsquo;ve tried to fix this before. It didn&rsquo;t work. Here&rsquo;s why.</h2>
+
+    <p>Maybe you tried hiring someone &mdash; a manager, an assistant, a &ldquo;right hand.&rdquo; They walked in, saw the reality &mdash; no documentation, no clear expectations, no structure, no strategic direction &mdash; and felt helpless. Either they went stagnant and weren&rsquo;t worth the money, or you held on so tight they couldn&rsquo;t actually do anything. Either way, it ended badly. And it wasn&rsquo;t their fault. <strong>The failure was the environment they walked into, not the person.</strong></p>
+
+    <p>Maybe someone told you to build systems. &ldquo;Document your processes. Write SOPs. Create an employee handbook.&rdquo; Great advice. When exactly are you supposed to do that? Between your 6 AM start and your 9 PM finish? You already don&rsquo;t have time to do the work that pays the bills, let alone spend 40 hours writing down how you do the work that pays the bills.</p>
+
+    <p>Maybe you tried a consultant. $10K to $20K for someone who asked you a bunch of questions, wrote a plan based on what you <em>told</em> them, and delivered a binder that&rsquo;s still sitting on a shelf somewhere. The plan was based on how things <em>should</em> work, not how they actually work. Nothing changed.</p>
+
+    <p>Maybe you just pushed through. Worked harder. Took on more. Told yourself this is just what it takes to run a business. And for a while, that worked. But the ceiling keeps getting lower, the hours keep getting longer, and the opportunities you&rsquo;re passing up keep getting bigger.</p>
+
+    <blockquote class="pull-quote rv">
+      Every solution you&rsquo;ve tried required the most overloaded person in the company to do all the work. That&rsquo;s why none of them stuck.
+    </blockquote>
+  </div>
+</div>
+
+<div class="section" style="padding:0"><div class="section-inner" style="max-width:200px"><div class="section-divider"></div></div></div>
+
+
+<!-- ═══════════════════════════════════════════
+     REFRAME
+     ═══════════════════════════════════════════ -->
+<div class="section" id="reframe">
+  <div class="section-inner narrow">
+    <h2 class="rv">What if someone could just listen to you talk about your business &mdash; and build the whole system from that?</h2>
+
+    <p>Think about it: you already explain how your business works. You do it every time you train a new employee, every time you correct a mistake, every time you tell someone &ldquo;that&rsquo;s not how we do it here.&rdquo; You explain it in the truck, on the job site, in the hallway, on the phone. That knowledge exists. <strong>It&rsquo;s just never been captured and organized.</strong></p>
+
+    <p>That&rsquo;s what this does. You talk about your business the way you already do &mdash; a few short conversations over a couple of weeks &mdash; and the system gets built from what you say. Not from templates. Not from documentation you don&rsquo;t have. From <em>you</em>.</p>
+
+    <p>The result: a complete operating system your team can actually use. Role expectations. Decision-making boundaries. A simple weekly structure that replaces hallway conversations with something that works. Onboarding materials so your next hire has a real playbook instead of &ldquo;just follow me around and figure it out.&rdquo;</p>
+
+    <p><strong>You don&rsquo;t need to learn new software. You don&rsquo;t need to write anything down. You don&rsquo;t need existing documentation.</strong> The absence of documentation is exactly why you need this. The system gets built from what&rsquo;s in your head &mdash; the place where all of it has been living for the last 20 years.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     CTA #1
+     ═══════════════════════════════════════════ -->
+<div class="section" style="padding:40px 48px">
+  <div class="cta-block rv">
+    <p class="cta-supporting">Your business, systematized from what&rsquo;s in your head &mdash; not from tools you don&rsquo;t use or documentation you don&rsquo;t have.</p>
+    <a href="#pricing" class="cta-btn">See How It Works</a>
+    <p class="cta-micro">No existing systems required &middot; 30-day money-back guarantee</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     CREATOR CREDIBILITY
+     ═══════════════════════════════════════════ -->
+<div class="section" id="simone">
+  <div class="section-inner narrow">
+    <h2 class="rv">Built by someone who&rsquo;s spent a decade inside businesses like yours</h2>
+
+    <p>Simone Douglas has spent 10+ years working with business owners who are great at what they do and terrible at managing people &mdash; and she says that with love, because she&rsquo;s seen the pattern hundreds of times. Skilled professionals who built something real through hard work and high standards, but never learned how to lead a team because nobody taught them and they never had time to figure it out.</p>
+
+    <p>She&rsquo;s the person owners call when they&rsquo;re drowning in decisions their team should be making, when their new hire is floundering because nothing is documented, when they realize they can&rsquo;t take a week off without the business falling apart. She doesn&rsquo;t hand them a binder. She gets inside their business, understands how it actually works, and builds the structure their team needs to operate without the owner at the center of every decision.</p>
+
+    <p>Through the Bulletproof Business Builder program, she&rsquo;s helped owners go from &ldquo;I can&rsquo;t take a day off&rdquo; to &ldquo;I took two weeks off and nothing fell apart.&rdquo; Not by replacing them, but by capturing what they know and putting it into a structure their team can follow.</p>
+
+    <!-- Standalone moment — placeholder testimonial woven into credibility section -->
+    <div class="moment rv">
+      <!-- PLACEHOLDER: Replace with real client testimonial -->
+      <div class="moment-tag">Transformation</div>
+      <p>&ldquo;I&rsquo;d been running everything myself for 15 years. Tried hiring a manager twice &mdash; both times it failed because there was nothing written down and I couldn&rsquo;t let go. Simone&rsquo;s approach was different. She didn&rsquo;t ask me to build systems. She pulled what was in my head, organized it, and gave my team something they could actually work with. Six months later, I took a full week off. First time in a decade.&rdquo;</p>
+      <p class="moment-attr">&mdash; David R., service business owner (8-person team)</p>
+    </div>
+
+    <p>Now she&rsquo;s taken everything she&rsquo;s learned &mdash; every conversation, every framework, every &ldquo;aha&rdquo; moment from working inside owner-dependent businesses &mdash; and built a system that can do in two weeks what used to take six months of advisory work. No fancy software required. No existing documentation needed. Just a few conversations and the knowledge that&rsquo;s already in your head.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     OFFER INTRODUCTION
+     ═══════════════════════════════════════════ -->
+<div class="section" id="offer">
+  <div class="orb" style="width:400px;height:400px;background:rgba(191,155,81,0.05);top:5%;right:-8%"></div>
+  <div class="section-inner narrow">
+    <div class="chip rv" style="margin-bottom:20px">Introducing</div>
+    <h2 class="rv">Bulletproof COO</h2>
+    <p class="lead rv">The operating system your business has never had &mdash; built from what&rsquo;s in your head, not from documentation you don&rsquo;t have. So your team knows what to do, your next hire has a real playbook, and you stop being the answer to every question.</p>
+
+    <p>Here&rsquo;s what happens: you have a few short conversations over 1 to 2 weeks. You talk about your business the way you&rsquo;d explain it to a sharp new hire. The system listens, organizes, and builds. No software to learn. No forms to fill out. If you can explain how your business works, you can do this.</p>
+
+    <div class="tint rv" style="margin:40px 0;padding:32px">
+      <h4>What you walk away with</h4>
+      <ul class="fl" style="margin-top:16px">
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Role expectations for every employee</strong> &mdash; what they own, what they don&rsquo;t, and clear decision-making boundaries so they stop coming to you for every answer.</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Your standards, documented</strong> &mdash; the &ldquo;way you do things&rdquo; that&rsquo;s lived in your head for 20 years, captured and organized so anyone on your team can follow it without guessing.</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>A simple team rhythm</strong> &mdash; a 20-minute weekly structure that replaces hallway conversations with something that actually works. Not corporate meetings. Not time-wasters. Just clarity.</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Delegation guidelines</strong> &mdash; what stays with you, what goes to your team, and exactly how to hand it off without it coming back broken or done wrong.</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Hire-ready onboarding package</strong> &mdash; so your next employee has a clear playbook from day one instead of spending their first month trying to read your mind.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+     ═══════════════════════════════════════════ -->
+<div class="section" id="how">
+  <div class="section-inner narrow">
+    <h2 class="rv">How it works</h2>
+    <p style="margin-bottom:36px">You talk. We build. No software to learn, no forms to fill out, no documentation required.</p>
+
+    <div class="step rv">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>You have a few short conversations</h4>
+        <p>Over 1 to 2 weeks, you have 3 to 5 guided conversations (15 to 30 minutes each). You talk about your business: how it works, who does what, what the standards are, what drives you crazy. The same things you&rsquo;d tell a sharp new hire on their first day. That&rsquo;s the input.</p>
+      </div>
+    </div>
+    <div class="step rv d1">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>The system listens, organizes, and builds</h4>
+        <p>Everything you say gets captured, organized, and structured using Simone&rsquo;s proven methodology. The system connects to whatever tools you already use &mdash; email, CRM, scheduling software. If all you have is a phone and email, that&rsquo;s enough.</p>
+      </div>
+    </div>
+    <div class="step rv d2">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>You receive your complete operating system</h4>
+        <p>Role expectations for every employee. Decision-making boundaries. Delegation guidelines. A simple weekly team rhythm. Onboarding materials for your next hire. All built from <em>your</em> business, <em>your</em> standards, <em>your</em> way of doing things &mdash; ready to hand to your team.</p>
+      </div>
+    </div>
+    <div class="step rv d3">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>The system grows with you</h4>
+        <p>Your business doesn&rsquo;t stay still, and neither does the system. Monthly updates keep everything current as you hire, as roles evolve, and as the business grows. You&rsquo;re not buying a binder that collects dust. You&rsquo;re getting a living structure that stays relevant.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     DIFFERENTIATION
+     ═══════════════════════════════════════════ -->
+<div class="section" id="difference">
+  <div class="section-inner narrow">
+    <h2 class="rv">This isn&rsquo;t a template. It isn&rsquo;t a course. And it doesn&rsquo;t require you to already have your act together.</h2>
+
+    <p>Most business systems assume you already have documentation, meeting notes, process guides, and a team that uses collaboration software. You don&rsquo;t. And that&rsquo;s not a failure &mdash; that&rsquo;s reality for most owner-run businesses. The Bulletproof COO is built specifically for that reality.</p>
+
+    <p>It doesn&rsquo;t need you to have Slack. It doesn&rsquo;t need existing SOPs. It doesn&rsquo;t need meeting recordings or documented processes. <strong>The absence of all that infrastructure is exactly the problem it solves.</strong> It starts with what you actually have &mdash; your knowledge, your voice, your way of doing things &mdash; and builds everything else from scratch.</p>
+
+    <p>Here&rsquo;s the difference:</p>
+  </div>
+
+  <div class="section-inner" style="margin-top:24px">
+    <div class="g2 rv" style="gap:28px;max-width:900px;margin:0 auto">
+      <div class="glass-subtle comp-col comp-without">
+        <h4 style="color:var(--alpha-light-400);margin-bottom:20px">Every Other Approach</h4>
+        <ul>
+          <li>Assumes you already have documentation to work from</li>
+          <li>Requires you to fill out templates and forms</li>
+          <li>Needs tools you don&rsquo;t use (Slack, project management software)</li>
+          <li>Generic advice: &ldquo;just delegate more&rdquo; / &ldquo;build systems&rdquo;</li>
+          <li>Requires 40+ hours of your time before anything changes</li>
+          <li>Delivers a plan based on how things <em>should</em> work</li>
+          <li>Same output for every business</li>
+        </ul>
+      </div>
+      <div class="glass comp-col comp-with">
+        <h4 style="color:var(--alpha-brand-950);margin-bottom:20px">Bulletproof COO</h4>
+        <ul>
+          <li>Starts from zero &mdash; no existing documentation needed</li>
+          <li>You talk, it builds. No forms, no writing, no templates</li>
+          <li>Works with whatever you already use (even just email and phone)</li>
+          <li>Specific to YOUR business: your standards, your language, your people</li>
+          <li>3 to 5 conversations over 1&ndash;2 weeks. That&rsquo;s your commitment</li>
+          <li>Built from how things <em>actually</em> work, not how they should</li>
+          <li>Every output is custom to your business and team</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     REAL-WORLD IMPACT
+     ═══════════════════════════════════════════ -->
+<div class="section" id="impact">
+  <div class="section-inner narrow">
+    <h2 class="rv">What actually changes when your team has structure instead of guesswork</h2>
+
+    <p>This is what it looks like when the knowledge in your head finally exists somewhere your team can access it:</p>
+
+    <div style="margin:40px 0">
+      <div class="transform-pair rv">
+        <div class="transform-before">Instead of your team standing in your doorway ten times a day because nothing is written down...</div>
+        <div class="transform-after">They check the role guide, see the decision-making boundary, and handle it themselves.</div>
+      </div>
+      <div class="transform-pair rv">
+        <div class="transform-before">Instead of your new hire spending their first month trying to read your mind...</div>
+        <div class="transform-after">They have a clear playbook with your standards, your expectations, and a 30/60/90-day ramp-up plan.</div>
+      </div>
+      <div class="transform-pair rv">
+        <div class="transform-before">Instead of redoing your employee&rsquo;s work because &ldquo;that&rsquo;s not how we do it&rdquo;...</div>
+        <div class="transform-after">&ldquo;How we do it&rdquo; is documented. They follow it. You stop being quality control on everything.</div>
+      </div>
+      <div class="transform-pair rv">
+        <div class="transform-before">Instead of hallway conversations being the only way information moves...</div>
+        <div class="transform-after">A 20-minute weekly check-in gives your team more clarity than a week of interruptions.</div>
+      </div>
+      <div class="transform-pair rv">
+        <div class="transform-before">Instead of passing on opportunities because you can&rsquo;t step away from the business...</div>
+        <div class="transform-after">You take on new ventures, new clients, or just take a vacation &mdash; because the business runs with or without you in the building.</div>
+      </div>
+    </div>
+
+    <!-- Standalone moment — placeholder testimonial woven into impact section -->
+    <div class="moment rv">
+      <!-- PLACEHOLDER: Replace with real client testimonial -->
+      <div class="moment-tag">Results</div>
+      <p>&ldquo;I used to say &lsquo;we talk all the time, we don&rsquo;t need meetings.&rsquo; Turns out what I called &lsquo;talking&rsquo; was my team interrupting me 30 times a day because they had no other way to get answers. Once the structure was in place, the interruptions dropped to almost nothing. My team didn&rsquo;t suddenly get smarter &mdash; they just finally had what they needed to do their jobs.&rdquo;</p>
+      <p class="moment-attr">&mdash; Melissa T., service business owner (7-person team)</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIAL STRIP
+     ═══════════════════════════════════════════ -->
+<div class="section" id="testimonials">
+  <div class="orb" style="width:350px;height:350px;background:rgba(255,200,120,0.04);bottom:10%;right:-3%"></div>
+  <div class="section-inner">
+    <h2 class="rv" style="text-align:center">Business owners who stopped doing everything themselves</h2>
+    <p class="rv" style="text-align:center;max-width:600px;margin:0 auto 40px">
+      Service businesses, trades, practices, and agencies that went from &ldquo;nothing works without me&rdquo; to &ldquo;my team handles it.&rdquo;
+    </p>
+    <div class="testimonial-strip rv">
+
+      <!-- PLACEHOLDER: Replace with real client testimonial -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-quote">&ldquo;I&rsquo;d tried hiring two managers before this. Both times they came in, saw there was no structure, and either went stagnant or quit. Once we had the operating system in place, I hired again &mdash; and for the first time, the person actually had something to work with. She&rsquo;s still here a year later.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">James K.</div>
+            <div class="testimonial-role">Contractor, 8-person team</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: Replace with real client testimonial -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-quote">&ldquo;I was honest-to-God convinced I was the only one who could do any of this. Turns out my team was capable the whole time &mdash; they just didn&rsquo;t know what I expected because I&rsquo;d never spelled it out. Now they do. And I don&rsquo;t get called on weekends anymore.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">R</div>
+          <div>
+            <div class="testimonial-name">Rachel M.</div>
+            <div class="testimonial-role">Dental practice owner, 6-person team</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: Replace with real client testimonial -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-quote">&ldquo;The whole thing took a few conversations. I talked, they built the system. My wife asked me what was different because I stopped checking my phone at dinner. It&rsquo;s not that I&rsquo;m working less &mdash; it&rsquo;s that I&rsquo;m not carrying the whole business in my head anymore.&rdquo;</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">D</div>
+          <div>
+            <div class="testimonial-name">David R.</div>
+            <div class="testimonial-role">HVAC business owner, 9-person team</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     CTA #2
+     ═══════════════════════════════════════════ -->
+<div class="section" style="padding:40px 48px">
+  <div class="cta-block rv">
+    <p class="cta-supporting">Everything your team needs to operate without you &mdash; built from a few conversations, not 40 hours of documentation.</p>
+    <a href="#pricing" class="cta-btn">Get Started</a>
+    <p class="cta-micro">30-day money-back guarantee &middot; No existing systems required</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     OBJECTION HANDLING
+     ═══════════════════════════════════════════ -->
+<div class="section" id="objections">
+  <div class="section-inner narrow">
+    <h2 class="rv">You might be thinking</h2>
+
+    <p>You might be thinking: <em>&ldquo;Nobody can understand my business well enough to build a system for it.&rdquo;</em></p>
+
+    <p>That&rsquo;s what every owner says &mdash; because every other approach has been generic templates and consultants who asked a few questions, then delivered something that didn&rsquo;t match reality. This is different because the input is <em>you</em>. Your words. Your standards. Your way of doing things. The system isn&rsquo;t guessing what your business needs. It&rsquo;s building from what you tell it &mdash; the same way you&rsquo;d train a really sharp employee, except this time it actually gets captured and organized.</p>
+
+    <p>You might also be thinking: <em>&ldquo;I don&rsquo;t have time for another project.&rdquo;</em></p>
+
+    <p>This isn&rsquo;t a project. There&rsquo;s nothing to implement, no software to learn, no forms to fill out. You have a few conversations. You talk about your business. The system does the building. Your total time commitment is 3 to 5 conversations over 1 to 2 weeks &mdash; less time than you&rsquo;ll spend this week answering questions your team should be handling on their own.</p>
+
+    <p>You might also be thinking: <em>&ldquo;I&rsquo;ve tried this before. Hired someone, paid for a consultant, bought a course. None of it stuck.&rdquo;</em></p>
+
+    <p>It didn&rsquo;t stick because every previous approach required YOU to do the heavy lifting. Write the documentation. Fill out the templates. Implement the plan. You&rsquo;re the most time-starved person in the company &mdash; asking you to add a 40-hour documentation project was never going to work. This approach is fundamentally different: you talk, the system builds. That&rsquo;s why it actually gets done.</p>
+
+    <p>And if you&rsquo;re thinking: <em>&ldquo;Is this really worth the investment?&rdquo;</em></p>
+
+    <p>Consider what you&rsquo;ve already spent on hires that didn&rsquo;t work out because there was no structure. On consultants who delivered a binder that collected dust. On the opportunities you passed on because you couldn&rsquo;t step away. One failed hire at the management level costs $50K to $100K. One missed opportunity costs more. The Bulletproof COO creates the infrastructure that makes your next hire succeed and your next opportunity possible. And you&rsquo;re covered by a 30-day money-back guarantee.</p>
+  </div>
+</div>
+
+<div class="section" style="padding:0"><div class="section-inner" style="max-width:200px"><div class="section-divider"></div></div></div>
+
+
+<!-- ═══════════════════════════════════════════
+     WHAT'S INCLUDED
+     ═══════════════════════════════════════════ -->
+<div class="section" id="included">
+  <div class="section-inner narrow">
+    <h2 class="rv">Everything that&rsquo;s included</h2>
+
+    <p>The system, the support, and the structure &mdash; built from your business, delivered ready to hand to your team.</p>
+
+    <div class="tint rv" style="margin:36px 0;padding:32px">
+      <ul class="fl sm">
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Guided extraction process</strong> &mdash; 3 to 5 voice conversations over 1&ndash;2 weeks where you talk about your business and the system captures, organizes, and builds from what you say</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Complete operating system</strong> &mdash; role expectations, decision-making boundaries, delegation guidelines, your standards documented, and a simple weekly team rhythm</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Hire-ready onboarding package</strong> &mdash; so your next employee has a real playbook from day one, with your standards, your expectations, and a 30/60/90-day plan</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Quick-start implementation guide</strong> &mdash; a clear, step-by-step plan for rolling the system out to your team over 2&ndash;4 weeks. What to share first, how to introduce it, what to expect</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>Monthly system updates</strong> &mdash; as your business changes, as you hire, as roles evolve &mdash; the system stays current instead of collecting dust ($200/month ongoing)</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><strong>90-day founding member community</strong> &mdash; monthly group call with Simone plus a private community for Q&amp;A, troubleshooting, and implementation support</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PRICING
+     ═══════════════════════════════════════════ -->
+<div class="section" id="pricing">
+  <div class="orb" style="width:500px;height:500px;background:rgba(191,155,81,0.05);top:-5%;left:50%;transform:translateX(-50%)"></div>
+  <div class="section-inner narrow" style="text-align:center">
+    <h2 class="rv">Less than the cost of one failed hire. And it makes every future hire succeed.</h2>
+
+    <p class="rv" style="max-width:600px;margin:0 auto 36px;text-align:center">A failed manager costs $50K&ndash;$100K in salary, lost time, and re-hiring. A consultant charges $10K&ndash;$20K and delivers a binder that sits on a shelf. This builds the infrastructure your business actually needs &mdash; from what&rsquo;s already in your head.</p>
+
+    <div class="price-card feat rv" style="max-width:480px;margin:0 auto;text-align:center">
+      <div class="chip">Founding Member</div>
+      <div class="price-big">$1,997</div>
+      <p class="price-note"><span class="strike">$2,500</span> regular setup fee</p>
+      <p class="price-plan">+ $200/month ongoing system updates</p>
+      <p class="price-plan" style="font-size:15px;color:var(--alpha-light-300);margin-top:8px">or 3 setup payments of $897</p>
+      <div class="divider" style="margin:24px auto"></div>
+      <ul class="fl sm" style="text-align:left">
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Guided extraction process (3&ndash;5 conversations)</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Complete operating system for your business</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Role expectations &amp; decision-making boundaries</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Delegation guidelines &amp; handoff plans</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Hire-ready onboarding package</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Simple weekly team rhythm structure</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>Monthly system updates as your business evolves</li>
+        <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>90-day founding member community &amp; group calls</li>
+      </ul>
+      <a href="#cta" class="cta-btn" style="margin-top:28px;width:100%;display:block;text-align:center">Get Started &mdash; $1,997 Setup</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     GUARANTEE
+     ═══════════════════════════════════════════ -->
+<div class="section" id="guarantee">
+  <div class="section-inner narrow" style="text-align:center">
+    <div class="glass rv" style="max-width:580px;margin:0 auto;padding:40px 36px">
+      <h3 style="margin-bottom:16px">30-Day Money-Back Guarantee</h3>
+      <p style="font-size:18px;line-height:30px;margin-bottom:16px">Have the conversations. Review the complete operating system we build from them. If it doesn&rsquo;t accurately reflect your business &mdash; your standards, your roles, your way of doing things &mdash; we&rsquo;ll refund your setup fee in full. No forms. No hoops. Just an email.</p>
+      <p style="font-size:16px;line-height:26px;color:var(--alpha-light-400);margin-bottom:0">We can offer this because the system is built from YOUR words. It&rsquo;s not generic. It&rsquo;s not templated. It&rsquo;s your business, captured and organized. The quality of the output is a direct reflection of the knowledge you already have &mdash; and after 20+ years, you have plenty.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════════ -->
+<div class="section" id="faq">
+  <div class="section-inner narrow">
+    <h2 class="rv">Frequently asked</h2>
+    <div style="margin-top:24px">
+      <div class="tint faq-item rv">
+        <h4>I don&rsquo;t have any documentation, SOPs, or systems in place. Will this still work?</h4>
+        <p>That&rsquo;s exactly who this is built for. The entire point is that everything lives in your head and nowhere else. You don&rsquo;t need existing documentation. You don&rsquo;t need Slack or project management software. You just need to be willing to talk about how your business works. The system creates all the documentation from scratch, from your conversations.</p>
+      </div>
+      <div class="tint faq-item rv">
+        <h4>How much of my time does this take?</h4>
+        <p>3 to 5 guided conversations over 1&ndash;2 weeks, each about 15&ndash;30 minutes. That&rsquo;s your total commitment during the build phase. After that, a brief monthly check-in to keep the system current. Less time than you&rsquo;ll spend this week answering questions your team should be handling on their own.</p>
+      </div>
+      <div class="tint faq-item rv">
+        <h4>What does the $200/month cover?</h4>
+        <p>Your business doesn&rsquo;t stay the same &mdash; you hire new people, roles evolve, you add services. The monthly includes a guided update session to keep your operating system current, plus ongoing access to the system for generating new role guides, updating expectations, and adapting as you grow. Without this, the system becomes outdated within months &mdash; like every binder and plan that&rsquo;s collected dust before.</p>
+      </div>
+      <div class="tint faq-item rv">
+        <h4>I&rsquo;ve tried hiring a manager before and it didn&rsquo;t work. How is this different?</h4>
+        <p>Your last hire probably failed not because they weren&rsquo;t capable, but because there was no infrastructure for them to work within &mdash; no documented expectations, no clear decision-making boundaries, no standards guide. They were trying to do the job by reading your mind. This creates the infrastructure FIRST, so your next hire (or your current team) has something real to work with.</p>
+      </div>
+      <div class="tint faq-item rv">
+        <h4>I&rsquo;m not great with technology. Do I need to learn AI or new software?</h4>
+        <p>No. You don&rsquo;t need to learn anything new. You don&rsquo;t write prompts. You don&rsquo;t use a dashboard. You have conversations and the system gets built. If you can leave a voicemail, you can do this. The technology works behind the scenes &mdash; what you experience is just talking about your business.</p>
+      </div>
+      <div class="tint faq-item rv">
+        <h4>What about the security of my business information?</h4>
+        <p>Your information is encrypted, processed only for building your operating system, and never shared with anyone else. You can request full deletion at any time. We take this seriously because we know you&rsquo;re sharing the details of how your business actually runs &mdash; and that information deserves protection.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════ -->
+<div class="section" id="cta" style="padding-top:100px;padding-bottom:100px">
+  <div class="orb" style="width:550px;height:550px;background:rgba(191,155,81,0.06);top:10%;left:50%;transform:translateX(-50%)"></div>
+  <div class="section-inner narrow" style="text-align:center">
+    <div class="hero-orb rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <h2 class="rv">Everything your business needs is already in your head. Let&rsquo;s get it out.</h2>
+    <p class="lead rv d1" style="margin:16px auto 0;max-width:600px;text-align:center">You&rsquo;ve spent years building something real. The knowledge, the standards, the &ldquo;way things should be done&rdquo; &mdash; it&rsquo;s all there. It just needs to be captured, organized, and put into a structure your team can run. A few conversations. That&rsquo;s all it takes.</p>
+    <div style="margin-top:32px">
+      <a href="#pricing" class="cta-btn rv d2">Get Started &mdash; $1,997 Setup</a>
+    </div>
+    <p class="rv d3" style="margin-top:14px;font-size:15px;color:var(--alpha-light-400);margin-bottom:0">
+      Founding member rate &middot; Limited to first 25 &middot; 30-day money-back guarantee
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<div class="site-footer">Built by Kodara</div>
+
+
+<!-- ═══════════════════════════════════════════
+     STICKY CTA BAR
+     ═══════════════════════════════════════════ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <span class="sticky-cta-text">Your business, systematized &mdash; from $1,997</span>
+    <a href="#pricing" class="cta-btn" style="padding:10px 28px;font-size:15px">Get Started</a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     THEME SWITCHER
+     ═══════════════════════════════════════════ -->
+<div class="theme-switcher" aria-label="Theme switcher">
+  <span class="ts-label">Theme</span>
+  <button data-set-theme="sage"   style="background:#106844" title="Sage"   aria-label="Sage theme"></button>
+  <button data-set-theme="onyx"   style="background:#BF9B51" title="Onyx"   aria-label="Onyx theme" class="active"></button>
+  <button data-set-theme="ember"  style="background:#EA5830" title="Ember"  aria-label="Ember theme"></button>
+  <button data-set-theme="indigo" style="background:#4F378B" title="Indigo" aria-label="Indigo theme"></button>
+  <button data-set-theme="slate"  style="background:#2563EB" title="Slate"  aria-label="Slate theme"></button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════ -->
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  // Sticky CTA bar
+  const hero = document.getElementById('hero');
+  const pricing = document.getElementById('pricing');
+  const sticky = document.getElementById('stickyCta');
+
+  const stickyObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.target === hero) {
+        if (!e.isIntersecting) sticky.classList.add('visible');
+        else sticky.classList.remove('visible');
+      }
+      if (e.target === pricing) {
+        if (e.isIntersecting) sticky.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  stickyObs.observe(hero);
+  stickyObs.observe(pricing);
+
+  // Theme switcher
+  const themeFonts = {
+    sage:   'https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&display=swap',
+    onyx:   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap',
+    ember:  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap',
+    indigo: 'https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap',
+    slate:  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+  };
+
+  document.querySelectorAll('.theme-switcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.setTheme;
+      document.documentElement.dataset.theme = t;
+      document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const fontLink = document.getElementById('theme-fonts');
+      if (fontLink && themeFonts[t]) fontLink.href = themeFonts[t];
+      sessionStorage.setItem('kodara-theme', t);
+    });
+  });
+
+  // Restore saved theme
+  const savedTheme = sessionStorage.getItem('kodara-theme');
+  if (savedTheme) {
+    document.documentElement.dataset.theme = savedTheme;
+    document.querySelectorAll('.theme-switcher button').forEach(b => {
+      b.classList.toggle('active', b.dataset.setTheme === savedTheme);
+    });
+    const fl = document.getElementById('theme-fonts');
+    if (fl && themeFonts[savedTheme]) fl.href = themeFonts[savedTheme];
+  }
+</script>
+</body>
+</html>
