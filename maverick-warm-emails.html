@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverick Hann — Warm Email Sequence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+
+    /* Decorative background orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+
+    /* Layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--alpha-dark-800);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--alpha-light-50);
+      padding: 16px 24px;
+      margin: -48px -24px 48px;
+    }
+    .top-bar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-subtitle {
+      font-size: 12px;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 24px 0 48px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--alpha-light-500);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Sequence overview nav */
+    .sequence-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .nav-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--alpha-dark-300);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+    .nav-chip:hover {
+      background: var(--alpha-dark-600);
+      border-color: var(--alpha-light-100);
+    }
+    .nav-chip-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .nav-chip-label {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: -0.15px;
+      color: var(--alpha-light-600);
+      font-weight: 500;
+    }
+    .nav-chip-phase {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-400);
+      flex-shrink: 0;
+    }
+
+    /* Cadence table */
+    .cadence-section {
+      margin-bottom: 48px;
+    }
+    .cadence-section h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 16px;
+    }
+    .cadence-table {
+      width: 100%;
+      background: var(--alpha-light-25);
+      border-radius: 16px;
+      padding: 4px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+    }
+    .cadence-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table td {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--alpha-light-600);
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .cadence-table .phase-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-light-50);
+      color: var(--alpha-light-600);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Email card */
+    .email-card {
+      position: relative;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 32px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+
+    .email-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 0;
+    }
+    .email-num-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .email-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .email-phase {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: -0.15px;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 8px;
+      color: var(--alpha-light-600);
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+    }
+    .copy-btn:hover {
+      background: var(--alpha-light-50);
+      border-color: var(--alpha-light-200);
+    }
+    .copy-btn.copied {
+      background: var(--alpha-brand-50);
+      border-color: rgba(16,104,68,0.15);
+      color: var(--alpha-brand-950);
+    }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .email-subject-bar {
+      padding: 16px 24px 0;
+    }
+    .email-subject-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .email-subject {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+    }
+
+    .email-divider {
+      margin: 16px 24px 0;
+      border: none;
+      border-top: 1px solid var(--alpha-light-50);
+    }
+
+    .email-body {
+      padding: 20px 24px 24px;
+    }
+    .email-body p {
+      margin-bottom: 16px;
+      line-height: 24px;
+      color: var(--alpha-light-600);
+    }
+    .email-body p:last-child { margin-bottom: 0; }
+    .email-body strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+    .email-body ul, .email-body ol {
+      list-style: none;
+      margin: 0 0 16px 0;
+      padding: 0;
+      color: var(--alpha-light-600);
+      line-height: 24px;
+    }
+    .email-body li { margin-bottom: 6px; }
+    .email-body li::before { content: "- "; }
+    .email-body li:last-child { margin-bottom: 0; }
+    .email-body em {
+      color: var(--alpha-light-600);
+      font-style: normal;
+    }
+
+    .email-cta {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-top: 0;
+    }
+    .email-cta p {
+      color: var(--alpha-light-600) !important;
+      margin-bottom: 0 !important;
+      font-weight: 400;
+    }
+    .email-cta strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+
+    .email-signoff {
+      margin-top: 20px;
+      color: var(--alpha-light-600);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .email-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .email-subject-bar { padding: 12px 16px 0; }
+      .email-divider { margin: 12px 16px 0; }
+      .email-body { padding: 16px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+
+
+    /* Section divider */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 200ms ease-out, background 150ms ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>
+      <div class="top-bar-title">Iskotew First Nations Grant AI</div>
+      <div class="top-bar-subtitle">Warm Email Sequence &middot; 10 Emails &middot; 25-Day Campaign</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Warm Email Sequence</h1>
+    <p>10 emails for people already in your network &mdash; Chiefs, Band Council members, EDOs, program coordinators, and community contacts. Personal, conversational, reply-based CTAs.</p>
+  </div>
+
+  <!-- Sequence Nav -->
+  <div class="section-label">Jump to email</div>
+  <div class="sequence-nav">
+    <a href="#email-1" class="nav-chip"><span class="nav-chip-num">1</span><span class="nav-chip-label">They tripled the budget and nobody told you</span><span class="nav-chip-phase">Desire &middot; Day 1</span></a>
+    <a href="#email-2" class="nav-chip"><span class="nav-chip-num">2</span><span class="nav-chip-label">Your youth program isn't the problem</span><span class="nav-chip-phase">Pain &middot; Day 3</span></a>
+    <a href="#email-3" class="nav-chip"><span class="nav-chip-num">3</span><span class="nav-chip-label">Same staff. 3x the applications.</span><span class="nav-chip-phase">Pointing &middot; Day 5</span></a>
+    <a href="#email-4" class="nav-chip"><span class="nav-chip-num">4</span><span class="nav-chip-label">We had to turn away 40 communities last year</span><span class="nav-chip-phase">Product intro &middot; Day 8</span></a>
+    <a href="#email-5" class="nav-chip"><span class="nav-chip-num">5</span><span class="nav-chip-label">Here's everything inside (no surprises)</span><span class="nav-chip-phase">Product details &middot; Day 10</span></a>
+    <a href="#email-6" class="nav-chip"><span class="nav-chip-num">6</span><span class="nav-chip-label">$1,500 per application or $197 per month</span><span class="nav-chip-phase">Value anchor &middot; Day 13</span></a>
+    <a href="#email-7" class="nav-chip"><span class="nav-chip-num">7</span><span class="nav-chip-label">How much was that missed deadline worth?</span><span class="nav-chip-phase">Pain + urgency &middot; Day 16</span></a>
+    <a href="#email-8" class="nav-chip"><span class="nav-chip-num">8</span><span class="nav-chip-label">The question everyone asks (and the honest answer)</span><span class="nav-chip-phase">Objection handling &middot; Day 19</span></a>
+    <a href="#email-9" class="nav-chip"><span class="nav-chip-num">9</span><span class="nav-chip-label">Here's what happens after you sign up</span><span class="nav-chip-phase">Future pacing &middot; Day 22</span></a>
+    <a href="#email-10" class="nav-chip"><span class="nav-chip-num">10</span><span class="nav-chip-label">Not going to keep emailing you about this</span><span class="nav-chip-phase">Final CTA &middot; Day 25</span></a>
+  </div>
+
+  <!-- Cadence Table -->
+  <div class="cadence-section">
+    <h2>Sending cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr><th>#</th><th>Send</th><th>Subject line</th><th>Phase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="day-badge">Day 1</span></td><td>They tripled the budget and nobody told you</td><td><span class="phase-badge">Desire</span></td></tr>
+        <tr><td>2</td><td><span class="day-badge">Day 3</span></td><td>Your youth program isn't the problem</td><td><span class="phase-badge">Pain</span></td></tr>
+        <tr><td>3</td><td><span class="day-badge">Day 5</span></td><td>Same staff. 3x the applications.</td><td><span class="phase-badge">Pointing</span></td></tr>
+        <tr><td>4</td><td><span class="day-badge">Day 8</span></td><td>We had to turn away 40 communities last year</td><td><span class="phase-badge">Product intro</span></td></tr>
+        <tr><td>5</td><td><span class="day-badge">Day 10</span></td><td>Here's everything inside (no surprises)</td><td><span class="phase-badge">Product details</span></td></tr>
+        <tr><td>6</td><td><span class="day-badge">Day 13</span></td><td>$1,500 per application or $197 per month</td><td><span class="phase-badge">Value anchor</span></td></tr>
+        <tr><td>7</td><td><span class="day-badge">Day 16</span></td><td>How much was that missed deadline worth?</td><td><span class="phase-badge">Pain + urgency</span></td></tr>
+        <tr><td>8</td><td><span class="day-badge">Day 19</span></td><td>The question everyone asks (and the honest answer)</td><td><span class="phase-badge">Objection handling</span></td></tr>
+        <tr><td>9</td><td><span class="day-badge">Day 22</span></td><td>Here's what happens after you sign up</td><td><span class="phase-badge">Future pacing</span></td></tr>
+        <tr><td>10</td><td><span class="day-badge">Day 25</span></td><td>Not going to keep emailing you about this</td><td><span class="phase-badge">Final CTA</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ EMAIL 1 ============ -->
+  <div class="section-label">Emails 1&ndash;3 &mdash; Build belief before product</div>
+
+  <div class="email-card" id="email-1">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">1</span>
+        <span class="email-phase">Desire &middot; Day 1</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-1-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">They tripled the budget and nobody told you</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-1-body">
+      <p>Hey [First Name],</p>
+      <p>Quick question - did you know federal Indigenous funding went from $11 billion to $32 billion in the last decade?</p>
+      <p>That's not a typo. Tripled.</p>
+      <p>ISC, ESDC, Natural Resources Canada, provincial programs, corporate reconciliation dollars, Mastercard Foundation - new funding streams are opening every quarter.</p>
+      <p>But here's what's actually happening on the ground: most Nations are accessing maybe 10-20% of what they qualify for.</p>
+      <p>Not because the money isn't there. Not because the programs don't exist.</p>
+      <p>Because nobody has time to fill out the applications.</p>
+      <p>I've been doing grant writing for First Nations communities for over 30 years now, and I've never seen this much money available with this few people able to access it.</p>
+      <p>We're working on something at Iskotew that I think could change that. Not ready to share everything yet - but I wanted to put this on your radar.</p>
+      <div class="email-cta">
+        <p><strong>If your Nation is leaving funding on the table because of capacity, reply and let me know. I want to make sure you're one of the first to hear what we've built.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Talk soon,<br>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 2 ============ -->
+  <div class="email-card" id="email-2">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">2</span>
+        <span class="email-phase">Pain &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-2-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Your youth program isn't the problem</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-2-body">
+      <p>Hey [First Name],</p>
+      <p>I want to tell you something I've seen over and over in 30+ years of grant work.</p>
+      <p>The communities that don't get funded? They don't have bad ideas. They don't have weak programs. They don't lack vision.</p>
+      <p>They lack paperwork capacity.</p>
+      <p>Think about it. A single grant application takes 20-40 hours to write properly. The narrative. The budget with line-item breakdowns. The evaluation framework. The letters of support. The Band Council resolution. The outcomes section written in the exact language that specific funder wants to see.</p>
+      <p>Now multiply that by 10-15 applications per year - which is the minimum if you actually want to fund your priorities.</p>
+      <p>That's 200-600 hours of grant writing. A full-time job.</p>
+      <p>And most communities are asking their EDO or program coordinator to do this on top of everything else they're already responsible for.</p>
+      <p>So what happens? The short-notice deadlines get missed. The ones with complicated portals get skipped. The applications that do get submitted are rushed and incomplete.</p>
+      <p>Good programs don't get funded. Not because they shouldn't - because the application never made it across the finish line.</p>
+      <p>I've been thinking a lot about this problem. Because it's the same one that limits how many communities we can serve at Iskotew too.</p>
+      <div class="email-cta">
+        <p><strong>If this hits close to home - reply and tell me how many grants your team is realistically able to submit per year versus how many you should be submitting. I'd genuinely like to know.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 3 ============ -->
+  <div class="email-card" id="email-3">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">3</span>
+        <span class="email-phase">Pointing &middot; Day 5</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-3-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Same staff. 3x the applications.</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-3-body">
+      <p>Hey [First Name],</p>
+      <p>I want to share something I've been watching closely over the past year.</p>
+      <p>Some Nations are pulling ahead. Not because they hired more staff. Not because they got a bigger budget. Not because they found some magic consultant.</p>
+      <p>They started using AI-powered systems built specifically for Indigenous grant applications.</p>
+      <p>And the results are hard to ignore:</p>
+      <ul>
+        <li>Applications that used to take 20-40 hours are getting done in 2-3 hours</li>
+        <li>Same EDO, same office, same budget - but submitting 3-5x more applications per year</li>
+        <li>Higher approval rates because the applications are complete, polished, and use the exact language funders look for</li>
+      </ul>
+      <p>One community I'm aware of stacked 3 different grants on a single youth emergency services project - ISC, provincial, and corporate. Over $400K total. They never would have submitted all three under the old process.</p>
+      <p>The early movers are building funding pipelines. Multiple grants per project. Multi-year commitments. And the communities that wait are competing against increasingly polished applications from the communities that didn't.</p>
+      <p>This is the direction things are heading.</p>
+      <div class="email-cta">
+        <p><strong>If you want to see how this actually works - a real grant application generated in under 3 hours - reply and I'll send you a short walkthrough.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 4 ============ -->
+  <div class="section-label">Emails 4&ndash;6 &mdash; Introduce and justify the offer</div>
+
+  <div class="email-card" id="email-4">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">4</span>
+        <span class="email-phase">Product intro &middot; Day 8</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-4-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">We had to turn away 40 communities last year</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-4-body">
+      <p>Hey [First Name],</p>
+      <p>I need to be honest about something.</p>
+      <p>Iskotew can handle about 15-20 grant writing clients at a time. That's our max. Quality work, deep community understanding, proper follow-up - it takes real time.</p>
+      <p>Last year we had to turn away over 40 communities that needed help.</p>
+      <p>Forty communities. With real projects. Real needs. Youth programs that didn't get launched. Infrastructure that didn't get built. Emergency services training that didn't happen.</p>
+      <p>Because we couldn't write the applications fast enough.</p>
+      <p>That's when we decided to build something different.</p>
+      <p>We took everything we've learned from 30+ years of grant writing - every successful application, every funder relationship, every budget template, every evaluation framework - and we built an AI system specifically for First Nations grant applications.</p>
+      <p>Not generic ChatGPT. That doesn't work. It doesn't know the difference between ISC and ESDC funding streams. It doesn't understand Band Council resolutions. It hallucinates deadlines and eligibility criteria.</p>
+      <p>We built the <strong>First Nations Grant AI</strong> - trained on successful Indigenous grant applications across every sector. Pre-loaded with 200+ Indigenous-specific funding programs. Understands Treaty territory context, on-reserve vs. off-reserve distinctions, and what each funder actually wants to see.</p>
+      <p>It generates complete, submission-ready grant packages - narrative, budget, timelines, outcomes, letters of support, BCR templates - in under 3 hours.</p>
+      <div class="email-cta">
+        <p><strong>If you want to see what it produces, reply with the word "SHOW ME" and I'll send you a real example output.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 5 ============ -->
+  <div class="email-card" id="email-5">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">5</span>
+        <span class="email-phase">Product details &middot; Day 10</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-5-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's everything inside (no surprises)</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-5-body">
+      <p>Hey [First Name],</p>
+      <p>A few of you replied asking exactly what comes with the First Nations Grant AI, so let me lay it all out. No fluff.</p>
+      <p><strong>The AI Grant Application Generator:</strong></p>
+      <ul>
+        <li>Generates complete, funder-ready grant applications - narrative, project description, budget with line-item breakdowns and justifications, timelines with milestones, evaluation frameworks, outcomes sections</li>
+        <li>Drafts letters of support customized to specific partners (Elders, schools, health authorities, neighboring Nations)</li>
+        <li>Produces Band Council resolution templates with proper legal language</li>
+        <li>Writes executive summaries and cover letters tailored to each funder's priorities</li>
+      </ul>
+      <p><strong>The Funder Database:</strong></p>
+      <ul>
+        <li>200+ Indigenous-specific funding programs - federal, provincial, corporate, and foundation</li>
+        <li>Eligibility criteria, deadlines, priorities, and direct application links</li>
+        <li>Updated regularly so you're not chasing programs that closed last quarter</li>
+      </ul>
+      <p><strong>The Support System:</strong></p>
+      <ul>
+        <li>Monthly group coaching call (60 minutes live with our team)</li>
+        <li>Grant search prompt library - 20+ pre-built prompts for finding funding</li>
+        <li>Video walkthrough series showing how to use it for different grant types</li>
+        <li>Templates for everything - budgets, timelines, BCRs, letters of support</li>
+      </ul>
+      <p><strong>What this means in practice:</strong><br>Your EDO sits down on Monday morning. Opens the tool. Selects the funder. Inputs your community information and project details. By lunch, they have a complete, polished application ready for review.</p>
+      <p>That's 2-3 hours instead of 20-40. Same quality. Same funder-specific language. Same attention to what gets applications approved.</p>
+      <p><strong>Launch pricing for the first 50 Nations:</strong></p>
+      <ul>
+        <li>$197/month for the first 3 months (goes to $297/month after that)</li>
+        <li>Or $997 one-time for lifetime access (goes to $1,497 after launch)</li>
+      </ul>
+      <div class="email-cta">
+        <p><strong>Reply with any questions - or if you want me to walk you through it personally, just say the word.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 6 ============ -->
+  <div class="email-card" id="email-6">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">6</span>
+        <span class="email-phase">Value anchor &middot; Day 13</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-6-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">$1,500 per application or $197 per month</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-6-body">
+      <p>Hey [First Name],</p>
+      <p>Let me show you some numbers that changed how I think about this industry.</p>
+      <p><strong>Option A: Hire an external grant writer</strong></p>
+      <ul>
+        <li>$1,500-$5,000 per application</li>
+        <li>3-6 week turnaround</li>
+        <li>Usually doesn't understand your community context</li>
+        <li>One application. One fee. Every time.</li>
+      </ul>
+      <p><strong>Option B: Do it in-house</strong></p>
+      <ul>
+        <li>20-40 hours per application</li>
+        <li>At $25-$35/hour internal labor cost = $500-$1,400 per grant</li>
+        <li>Plus the opportunity cost of your EDO not doing their other work</li>
+        <li>High error rate without grant writing experience</li>
+      </ul>
+      <p><strong>Option C: Hire a full-time grant coordinator</strong></p>
+      <ul>
+        <li>$50,000-$70,000/year salary</li>
+        <li>Hard to recruit in remote communities</li>
+        <li>Still has a learning curve</li>
+        <li>Still limited to maybe 10-15 applications per year</li>
+      </ul>
+      <p><strong>Option D: First Nations Grant AI</strong></p>
+      <ul>
+        <li>$197/month during launch (first 50 Nations)</li>
+        <li>Unlimited applications</li>
+        <li>2-3 hours per application instead of 20-40</li>
+        <li>Trained on what actually gets approved</li>
+        <li>Monthly coaching support from our team</li>
+        <li>Pays for itself with the first grant you submit</li>
+      </ul>
+      <p>If your community submits even 3 grants per year, the AI tool costs less than writing a single one the old way.</p>
+      <p>If you submit 10+, the savings aren't even close.</p>
+      <p>This isn't about replacing your team. It's about giving them a tool that does the heavy lifting so they can focus on the parts only they can do - the community knowledge, the relationships, the vision.</p>
+      <div class="email-cta">
+        <p><strong>Reply if you want to talk through what this would look like for your specific community. Happy to do a quick call.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 7 ============ -->
+  <div class="section-label">Emails 7&ndash;10 &mdash; Handle objections and drive action</div>
+
+  <div class="email-card" id="email-7">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">7</span>
+        <span class="email-phase">Pain + urgency &middot; Day 16</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-7-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">How much was that missed deadline worth?</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-7-body">
+      <p>Hey [First Name],</p>
+      <p>Quick question. No judgment.</p>
+      <p>How many grant deadlines did your community miss last year?</p>
+      <p>Not because you didn't know about them. Not because you weren't eligible. But because by the time you saw the opportunity, there were 2 weeks to submit a 40-page application and your team was already buried in three other things.</p>
+      <p>I ask because I see it constantly. A community qualifies for a $200K youth program grant. The deadline is in 3 weeks. Their EDO is already working on two other applications, managing a housing project, and covering for someone on leave.</p>
+      <p>So the application doesn't get submitted. $200K stays on the table. The youth program doesn't happen.</p>
+      <p>Now multiply that across every missed deadline in a year.</p>
+      <p>$50K here. $150K there. A $400K infrastructure grant that would have funded the water treatment project. A $75K emergency services training program your community desperately needs.</p>
+      <p>Conservative estimate? Most Nations I work with are leaving $500K-$2M per year unfunded. Not because the money isn't available. Because the paperwork can't get done fast enough.</p>
+      <p>The First Nations Grant AI changes that equation. When a new opportunity drops with a tight deadline, your team can generate a complete, polished application in one sitting. Not in 3 weeks. In 3 hours.</p>
+      <p>The founding rate ($197/month for the first 3 months) is still open, but we're past the halfway mark on our first 50 spots.</p>
+      <div class="email-cta">
+        <p><strong>Reply and tell me - what's the one grant you missed last year that still bothers you? I want to hear about it.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 8 ============ -->
+  <div class="email-card" id="email-8">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">8</span>
+        <span class="email-phase">Objection handling &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-8-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">The question everyone asks (and the honest answer)</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-8-body">
+      <p>Hey [First Name],</p>
+      <p>The most common reply I've gotten to these emails is some version of:</p>
+      <p><em>"This sounds good, Maverick. But our community is different. Our needs are specific. Will it actually work for us?"</em></p>
+      <p>Fair question. Here's my honest answer.</p>
+      <p>Generic AI? No. It won't work for your community. ChatGPT doesn't know what a Band Council resolution looks like. It doesn't know that ISC wants "capacity building" language while foundations want "community-led" framing. It will hallucinate deadlines, miss eligibility criteria, and produce applications that any experienced funder would spot as AI-generated in 30 seconds.</p>
+      <p>That's exactly why we didn't build generic AI.</p>
+      <p>The First Nations Grant AI was built by our team at Iskotew - Indigenous-led, Treaty 6-based, 30+ years of grant writing for First Nations communities across sectors.</p>
+      <p>It knows:</p>
+      <ul>
+        <li>The difference between on-reserve and off-reserve funding streams</li>
+        <li>Treaty territory context and governance structures</li>
+        <li>Cultural protocol - when to reference Elders, how to frame land-based teachings</li>
+        <li>What each specific funder evaluates and prioritizes</li>
+        <li>Common disqualification errors (wrong CRA numbers, legal name mismatches, budget misalignment)</li>
+      </ul>
+      <p>You input your community's information - your Nation's history, governance, past projects, what you're trying to build. The AI uses that context plus its training on successful Indigenous applications to generate something that sounds like it came from a grant writer who actually knows your community.</p>
+      <p>Is it perfect out of the box every time? No. That's why we include monthly coaching calls and expert support. But it gets you 85-90% of the way there in a fraction of the time.</p>
+      <div class="email-cta">
+        <p><strong>If you're still on the fence, reply and tell me what type of grant your community needs most right now. I'll show you exactly what the tool would produce for that specific scenario. No charge, no commitment.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 9 ============ -->
+  <div class="email-card" id="email-9">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">9</span>
+        <span class="email-phase">Future pacing &middot; Day 22</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-9-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's what happens after you sign up</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-9-body">
+      <p>Hey [First Name],</p>
+      <p>Some people have asked me what the first month actually looks like if they come on board. So let me walk through it.</p>
+      <p><strong>Day 1-2: You get access.</strong><br>You receive login credentials and the quick-start guide. Takes about 15 minutes to input your community's core information - Nation name, Treaty territory, governance structure, population, past projects, current priorities.</p>
+      <p><strong>Day 3-7: Your first application.</strong><br>Pick the grant that matters most right now. Run it through the system. In 2-3 hours you'll have a complete draft - narrative, budget, timelines, outcomes, supporting documents. Review it. Edit it. Make it yours. Submit it.</p>
+      <p><strong>Day 7-14: Your first coaching call.</strong><br>Jump on our monthly group call with other Nations using the tool. Get feedback on your output. Learn tips from our team. Ask questions. See what other communities are working on.</p>
+      <p><strong>Day 14-30: Build momentum.</strong><br>Now that you've done one, do two more. That short-notice provincial deadline that would have been impossible before? Run it through the system Tuesday morning, review it Tuesday afternoon, submit it Wednesday. That corporate reconciliation fund you've been meaning to apply to for two years? Finally get it done.</p>
+      <p><strong>By the end of month one,</strong> you've submitted 2-4 grant applications that would have taken your team 60-160 hours the old way. You've done it in 6-12 hours total.</p>
+      <p>That's not theoretical. That's what the tool was built to do.</p>
+      <p>Founding member spots are filling up. $197/month for the first 3 months, then $297/month. Or $997 one-time for lifetime access.</p>
+      <div class="email-cta">
+        <p><strong>Reply "I'M IN" and I'll get you set up within 24 hours. Or reply with any questions - I'll answer every one personally.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 10 ============ -->
+  <div class="email-card" id="email-10">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">10</span>
+        <span class="email-phase">Final CTA &middot; Day 25</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-10-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Not going to keep emailing you about this</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-10-body">
+      <p>Hey [First Name],</p>
+      <p>This is the last email I'm sending about the First Nations Grant AI launch.</p>
+      <p>Not because I don't think it's important. I do. I've spent 30 years watching communities miss out on funding they deserve because of paperwork bottlenecks, and this is the first solution I've seen that actually fixes the problem at scale.</p>
+      <p>But I also respect your inbox.</p>
+      <p>So here's where things stand:</p>
+      <ul>
+        <li>We're almost at 50 founding members</li>
+        <li>After that, the price goes from $197/month to $297/month</li>
+        <li>The $997 lifetime access rate goes to $1,497</li>
+      </ul>
+      <p>If you've been reading these emails and thinking "yeah, I need this" - now's the time.</p>
+      <p>If the timing isn't right, I completely understand. We'll still be here. The tool will still be available. It'll just cost more.</p>
+      <p>And if grant writing isn't your biggest challenge right now, that's fine too. We've got emergency services training programs, business setup support, and our traditional grant writing services whenever you need them.</p>
+      <p>But if your community is leaving money on the table because your team can't keep up with the application volume - and you know it - this tool was built for exactly that situation.</p>
+      <p>$197/month. Unlimited applications. Monthly coaching. 200+ funders in the database. Complete grant packages in under 3 hours. Built by an Indigenous team for Indigenous communities.</p>
+      <div class="email-cta">
+        <p><strong>Reply "LET'S GO" and I'll personally get you set up. Or reply with whatever's holding you back - I'd rather have an honest conversation than wonder.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Appreciate you reading this far.</p>
+        <p>Maverick</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Back to top button -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Copy single email
+  function copyEmail(btn, bodyId) {
+    const el = document.getElementById(bodyId);
+    // Get the card to also grab subject
+    const card = el.closest('.email-card');
+    const subject = card.querySelector('.email-subject').textContent;
+    const bodyText = getPlainText(el);
+    const full = 'Subject: ' + subject + '\n\n' + bodyText;
+
+    navigator.clipboard.writeText(full).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Extract clean plain text from email body
+  function getPlainText(el) {
+    let text = '';
+    el.childNodes.forEach(node => {
+      if (node.nodeType === 3) {
+        text += node.textContent;
+      } else if (node.nodeType === 1) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === 'p' || tag === 'div') {
+          text += getPlainText(node) + '\n\n';
+        } else if (tag === 'ul' || tag === 'ol') {
+          node.querySelectorAll('li').forEach(li => {
+            text += '- ' + li.textContent.trim() + '\n';
+          });
+          text += '\n';
+        } else if (tag === 'br') {
+          text += '\n';
+        } else if (tag === 'hr') {
+          // skip
+        } else {
+          text += getPlainText(node);
+        }
+      }
+    });
+    return text.replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  // Back to top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
