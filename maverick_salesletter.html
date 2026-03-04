@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverick Hann — First Nations Grant AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Base */
+      --b-w-white: #ffffff;
+
+      /* Alpha Light (rgba 26,26,26) */
+      --alpha-light-25: rgba(26, 26, 26, 0.04);
+      --alpha-light-50: rgba(26, 26, 26, 0.06);
+      --alpha-light-100: rgba(26, 26, 26, 0.09);
+      --alpha-light-200: rgba(26, 26, 26, 0.20);
+      --alpha-light-300: rgba(26, 26, 26, 0.28);
+      --alpha-light-400: rgba(26, 26, 26, 0.36);
+      --alpha-light-500: rgba(26, 26, 26, 0.48);
+      --alpha-light-600: rgba(26, 26, 26, 0.60);
+      --alpha-light-900: rgba(26, 26, 26, 0.80);
+
+      /* Alpha Dark (rgba 255,255,255) */
+      --alpha-dark-300: rgba(255, 255, 255, 0.28);
+      --alpha-dark-600: rgba(255, 255, 255, 0.60);
+      --alpha-dark-800: rgba(255, 255, 255, 0.75);
+      --alpha-dark-900: rgba(255, 255, 255, 0.80);
+
+      /* Brand (rgba 16,104,68) */
+      --alpha-brand-50: rgba(16, 104, 68, 0.06);
+      --alpha-brand-100: rgba(16, 104, 68, 0.08);
+      --alpha-brand-200: rgba(16, 104, 68, 0.12);
+      --alpha-brand-950: rgba(16, 104, 68, 0.92);
+
+      /* Neutrals */
+      --neutral-50: #fafafa;
+      --neutral-200: #e5e5e5;
+      --neutral-300: #d4d4d4;
+      --neutral-500: #737373;
+      --neutral-700: #404040;
+
+      /* Shadows */
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --shadow-avatar: 0px 20px 6px rgba(12,48,70,0), 0px 13px 5px rgba(12,48,70,0.02), 0px 7px 4px rgba(12,48,70,0.07), 0px 3px 3px rgba(12,48,70,0.12), 0px 1px 2px rgba(12,48,70,0.14);
+
+      /* Spacing */
+      --space-0: 0px;
+      --space-1: 1px;
+      --space-2: 2px;
+      --space-4: 4px;
+      --space-6: 6px;
+      --space-8: 8px;
+      --space-10: 10px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-28: 28px;
+
+      /* Radii */
+      --radius-4: 4px;
+      --radius-6: 6px;
+      --radius-8: 8px;
+      --radius-12: 12px;
+      --radius-16: 16px;
+      --radius-24: 24px;
+      --radius-full: 999px;
+
+      /* Page */
+      --page-bg: #FDFCFA;
+
+      /* Orbs */
+      --orb-primary: rgba(16, 104, 68, 0.05);
+      --orb-secondary: rgba(0, 180, 212, 0.04);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      font-variation-settings: 'wdth' 100;
+      color: var(--alpha-light-600);
+      background: var(--page-bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2 {
+      font-family: 'DM Serif Display', serif;
+    }
+
+    h1 {
+      font-size: 56px;
+      line-height: 66px;
+      letter-spacing: -0.5px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+    }
+
+    h2 {
+      font-size: 40px;
+      line-height: 50px;
+      letter-spacing: -0.3px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      margin-bottom: var(--space-24);
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 33px;
+      font-weight: 400;
+      color: var(--alpha-light-600);
+      letter-spacing: -0.15px;
+      margin-bottom: var(--space-28);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lead {
+      font-size: 21px;
+      line-height: 35px;
+      max-width: 720px;
+      margin: var(--space-24) auto 0;
+      text-align: center;
+    }
+
+    strong {
+      color: var(--alpha-light-900);
+      font-weight: 600;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    /* ===== UTILITIES ===== */
+    .text-center {
+      text-align: center;
+    }
+
+    /* ===== SECTION STRUCTURE ===== */
+    .section {
+      position: relative;
+      padding: 80px 48px;
+      overflow: hidden;
+    }
+
+    .section--hero {
+      padding-top: 120px;
+      padding-bottom: 120px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section--flush {
+      padding: 0;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-inner--divider {
+      max-width: 200px;
+    }
+
+    /* ===== HERO ===== */
+    .hero-headline {
+      margin-top: var(--space-24);
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta-wrap {
+      margin-top: 36px;
+    }
+
+    .hero-micro {
+      margin-top: 14px;
+      font-size: 15px;
+      color: var(--alpha-light-400);
+      margin-bottom: 0;
+    }
+
+    /* ===== ORB ===== */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== CHIP ===== */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      background: var(--alpha-brand-50);
+      border-radius: 999px;
+      padding: var(--space-8) var(--space-20);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--alpha-brand-950);
+      font-family: 'Instrument Sans', sans-serif;
+      font-variation-settings: 'wdth' 100;
+    }
+
+    /* ===== STAT INLINE ===== */
+    .stat-inline {
+      text-align: center;
+      margin: 48px auto;
+      padding: 36px 0;
+    }
+
+    .stat-inline .stat-num {
+      font-size: 42px;
+      line-height: 50px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      color: var(--alpha-light-900);
+      font-family: 'DM Serif Display', serif;
+      display: block;
+    }
+
+    .stat-inline .stat-label {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: var(--alpha-light-500);
+      margin-top: var(--space-8);
+      display: block;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== PULL QUOTE ===== */
+    .pull-quote {
+      font-size: 29px;
+      line-height: 40px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      text-align: center;
+      max-width: 700px;
+      margin: 48px auto;
+      padding: 32px 0;
+      border-top: 1px solid var(--alpha-light-50);
+      border-bottom: 1px solid var(--alpha-light-50);
+      font-family: 'DM Serif Display', serif;
+      font-style: normal;
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      width: 48px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      border: 1px solid var(--alpha-brand-200);
+      margin: 0 auto;
+    }
+
+    /* ===== CTA BUTTON ===== */
+    .cta-btn {
+      display: inline-block;
+      padding: var(--space-16) 40px;
+      background: linear-gradient(to bottom, var(--neutral-500), var(--neutral-700));
+      color: var(--alpha-dark-900);
+      font-family: 'Instrument Sans', sans-serif;
+      font-variation-settings: 'wdth' 100;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .cta-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      filter: blur(0.2px);
+      pointer-events: none;
+    }
+
+    /* ===== CTA BLOCK ===== */
+    .cta-block {
+      text-align: center;
+      margin: 56px 0;
+    }
+
+    .cta-block .cta-supporting {
+      font-size: 17px;
+      line-height: 26px;
+      color: var(--alpha-light-500);
+      margin-bottom: var(--space-20);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-block .cta-micro {
+      font-size: 15px;
+      color: var(--alpha-light-400);
+      margin-top: var(--space-12);
+    }
+
+    /* ===== CREDIBILITY BAR ===== */
+    .cred-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .cred-item {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--alpha-light-500);
+    }
+
+    .cred-sep {
+      font-size: 15px;
+      color: var(--alpha-light-200);
+    }
+
+    /* ===== HERO ORB ===== */
+    .hero-orb {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(16, 104, 68, 0.14), rgba(16, 104, 68, 0.04));
+      border: 1px solid var(--alpha-light-50);
+      box-shadow: var(--shadow-avatar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto var(--space-28);
+    }
+
+    .hero-orb::before {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(16, 104, 68, 0.04);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ===== DELIVERABLE ===== */
+    .deliverable {
+      margin-bottom: var(--space-20);
+    }
+
+    .deliverable strong {
+      color: var(--alpha-light-900);
+      font-weight: 600;
+    }
+
+    .deliverable-header {
+      margin-bottom: var(--space-12);
+    }
+
+    /* ===== CLOSE SECTION ===== */
+    .close-text {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .close-cta-wrap {
+      margin-top: 36px;
+    }
+
+    .sign-off-label {
+      margin-top: 48px;
+      font-size: 17px;
+      color: var(--alpha-light-500);
+      margin-bottom: 0;
+    }
+
+    .sign-off-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      margin-bottom: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      text-align: center;
+      padding: 48px var(--space-24);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--alpha-light-300);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 38px;
+        line-height: 46px;
+      }
+
+      h2 {
+        font-size: 30px;
+        line-height: 38px;
+      }
+
+      .section {
+        padding: 56px var(--space-24);
+      }
+
+      .pull-quote {
+        font-size: 23px;
+        line-height: 34px;
+      }
+
+      .cred-bar {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .cred-sep {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+<!-- HERO -->
+<section class="section section--hero" id="hero">
+  <div class="orb" style="width:600px;height:600px;background:var(--orb-primary);top:-10%;right:-10%"></div>
+  <div class="orb" style="width:350px;height:350px;background:var(--orb-secondary);bottom:12%;left:-5%"></div>
+  <div class="section-inner text-center">
+    <div class="hero-orb">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;color:var(--alpha-brand-950)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+    </div>
+    <div class="chip">Indigenous Grant Writing</div>
+    <h1 class="hero-headline">There's over $32 billion in Indigenous funding available right now.</h1>
+    <p class="lead">
+      Federal spending has tripled. ISC, NRCan, ESDC, provincial programs, corporate reconciliation funds. The money is there. But most Nations are only accessing 10 to 20 percent of what they actually qualify for.
+    </p>
+    <div class="hero-cta-wrap">
+      <a href="#" class="cta-btn">Get Access Now</a>
+    </div>
+    <p class="hero-micro">
+      Cancel anytime &middot; 30-day money-back guarantee
+    </p>
+    <div class="cred-bar">
+      <span class="cred-item">30+ years experience</span>
+      <span class="cred-sep">&middot;</span>
+      <span class="cred-item">Millions secured</span>
+      <span class="cred-sep">&middot;</span>
+      <span class="cred-item">Treaty 6 Territory</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-inner">
+    <h2>The real problem isn't funding. It's capacity.</h2>
+
+    <p>It's not that the funding isn't available. It's that you don't have the capacity to apply for it.</p>
+
+    <p>The average grant application takes 20 to 40 hours to complete. Most Nations need to submit 10 to 20 applications per year just to keep up with infrastructure needs, youth programs, emergency services, and cultural projects.</p>
+
+    <div class="stat-inline">
+      <span class="stat-num">200–800 hours</span>
+      <span class="stat-label">The annual grant writing burden for a single Nation — just to keep up with basic funding needs</span>
+    </div>
+
+    <p>Your staff is already maxed out. You're already juggling day-to-day operations, community needs, meetings, emergencies. You don't have an extra 20 hours sitting around to write a single grant application, let alone 10 or 20 of them.</p>
+
+    <p>And hiring external grant writers? They charge $1,500 to $5,000 per application, take 3 to 6 weeks to deliver, and most of them have no idea how to write for Indigenous communities or understand your Nation's priorities.</p>
+
+    <p><strong>So the funding sits there. And your community keeps waiting.</strong></p>
+  </div>
+</section>
+
+<div class="section section--flush"><div class="section-inner section-inner--divider"><div class="section-divider"></div></div></div>
+
+<!-- SOLUTION -->
+<section class="section" id="solution">
+  <div class="section-inner">
+    <h2>What if you could generate a complete, funder-ready grant application in under 3 hours?</h2>
+
+    <p>Not a template you still have to fill in. Not a course that teaches you how to do it yourself. An actual AI system that writes the full application, the budget, the Band Council Resolution, the letters of support — all of it, ready for you to review and submit.</p>
+
+    <p class="deliverable-header"><strong>Here's what you get:</strong></p>
+
+    <p class="deliverable">— <strong>AI-generated grant applications</strong> — complete narratives, budgets, and supporting documents in 2 to 3 hours instead of 20 to 40</p>
+
+    <p class="deliverable">— <strong>Searchable funding database</strong> — 200+ Indigenous-specific funding programs with eligibility criteria, deadlines, and funder priorities so you always know what's available</p>
+
+    <p class="deliverable">— <strong>Pre-built prompt library</strong> — 20+ searches for federal, provincial, corporate, and foundation funding specific to Indigenous communities</p>
+
+    <p class="deliverable">— <strong>Video walkthrough series</strong> — showing you exactly how to use the AI for infrastructure grants, youth programs, emergency services, cultural projects, and economic development</p>
+
+    <p class="deliverable">— <strong>Monthly live coaching calls</strong> — with Maverick and the team to review your applications, troubleshoot, and discuss what funders are prioritizing right now</p>
+
+    <p class="deliverable">— <strong>Proven templates</strong> — Band Council Resolutions, letters of support, budget worksheets, and project timelines in the exact format funders expect</p>
+
+    <p class="deliverable">— <strong>Success story library</strong> — 10 to 15 examples of actual approved applications (anonymized) so you can see what works and why</p>
+
+    <p><strong>No more leaving money on the table. No more paying thousands per application. No more watching other communities secure funding while yours waits.</strong></p>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section class="section" id="credibility">
+  <div class="section-inner">
+    <h2>This isn't generic AI.</h2>
+
+    <p>Now I know what you're probably thinking. <em>"AI can't write grant applications. It doesn't understand our community, our needs, our priorities."</em></p>
+
+    <p>And you're right. Generic AI can't.</p>
+
+    <p>I'm Maverick Hann. I'm the Director of Iskotew Training Inc. and Executive Director of The Iskotêw Foundation, operating out of Treaty 6 Territory. My team and I have over 30 years of combined grant writing experience. We've secured millions in funding for Indigenous communities across Alberta, Saskatchewan, BC, and beyond.</p>
+
+    <p>This AI was built by an Indigenous-led team specifically for Indigenous communities. It's trained on millions of dollars in successful applications. It knows what CIRNAC wants to see versus a provincial program. It understands how to position Nation-led projects. It speaks funder language while keeping your community's voice intact.</p>
+
+    <blockquote class="pull-quote">
+      Communities using this system are submitting 3 to 5 times more applications with the same staff — and seeing higher approval rates.
+    </blockquote>
+
+    <p>You don't need to hire a $5,000 consultant and wait 6 weeks for one application. You don't need to burn out your staff trying to do this manually. And you definitely don't need to keep missing out on funding because you don't have the capacity to apply.</p>
+  </div>
+</section>
+
+<div class="section section--flush"><div class="section-inner section-inner--divider"><div class="section-divider"></div></div></div>
+
+<!-- PRICE ANCHORING -->
+<section class="section" id="pricing-context">
+  <div class="section-inner">
+    <h2>The math on what you're paying now</h2>
+
+    <p>As you probably know, external grant writers charge <strong>$1,500 to $5,000 per application</strong>. Some work on commission and take 10 percent of approved grants — which can be <strong>$2,000 to $10,000 or more per grant</strong>.</p>
+
+    <p>Even if you try to do it yourself with existing staff, you're looking at 20 to 40 hours of labor at $25 to $35 an hour — which is <strong>$500 to $1,400 in time cost per application</strong>.</p>
+
+    <p><strong>And you still only get one application out of it.</strong></p>
+
+    <p>This system costs less than one external grant writer. No commission. No per-application fees. <strong>Unlimited applications per month.</strong></p>
+
+    <p>You're not just getting access to AI. You're getting a complete grant application system that multiplies your capacity. You can submit 5 applications in the time it used to take to write one. You can stack multiple funding sources for the same project and secure $400,000 to $14 million instead of just $50,000.</p>
+
+    <p>And because you're submitting more applications, your approval rate goes up. It's a numbers game. <strong>The communities that apply consistently are the ones that win consistently.</strong></p>
+  </div>
+</section>
+
+<!-- THE OFFER -->
+<section class="section" id="offer">
+  <div class="section-inner">
+    <h2>First 50 Nations get founding member pricing.</h2>
+
+    <p>If this sounds like something that could change the way your Nation accesses funding, I'm opening this up to the first 50 Nations at <strong>$197 a month</strong> for the first 3 months.</p>
+
+    <p>After that, it goes to $297 a month.</p>
+
+    <p>Or you can lock in <strong>lifetime access for $997 one time</strong>. That price increases to $1,497 after 90 days.</p>
+
+    <p>Either way, you get unlimited grant applications per month, access to the full funding database, monthly coaching calls, all the templates, and the entire success story library.</p>
+
+    <p><strong>No risk. First 30 days are on us. If it doesn't work for you, you don't pay.</strong></p>
+
+    <div class="cta-block">
+      <a href="#" class="cta-btn">Get Access Now</a>
+      <p class="cta-micro">30-day money-back guarantee &middot; Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<div class="section section--flush"><div class="section-inner section-inner--divider"><div class="section-divider"></div></div></div>
+
+<!-- FINAL CTA -->
+<section class="section" id="close">
+  <div class="section-inner text-center">
+    <p class="close-text">Every month without this tool is 2 to 4 missed grant opportunities. The window is open. The funding is there. The only question is whether your Nation has the capacity to apply.</p>
+
+    <div class="cta-block close-cta-wrap">
+      <a href="#" class="cta-btn">Get Started Today</a>
+      <p class="cta-micro">First 50 Nations &middot; Founding member rate</p>
+    </div>
+
+    <p class="sign-off-label">Talk soon,</p>
+    <p class="sign-off-name">Maverick</p>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Iskotew Training Inc. &middot; Treaty 6 Territory
+</footer>
+
+</body>
+</html>
