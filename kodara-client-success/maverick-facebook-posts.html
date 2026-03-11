@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverick Hann — Facebook Posts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+
+    /* Decorative background orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+
+    /* Layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--alpha-dark-800);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--alpha-light-50);
+      padding: 16px 24px;
+      margin: -48px -24px 48px;
+    }
+    .top-bar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-subtitle {
+      font-size: 12px;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 24px 0 48px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--alpha-light-500);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Sequence overview nav */
+    .sequence-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .nav-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--alpha-dark-300);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+    .nav-chip:hover {
+      background: var(--alpha-dark-600);
+      border-color: var(--alpha-light-100);
+    }
+    .nav-chip-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .nav-chip-num.bg-type {
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+    }
+    .nav-chip-label {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: -0.15px;
+      color: var(--alpha-light-600);
+      font-weight: 500;
+    }
+    .nav-chip-phase {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-400);
+      flex-shrink: 0;
+    }
+    .nav-chip-format {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .nav-chip-format.long-form {
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+    }
+    .nav-chip-format.background {
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+    }
+
+    /* Cadence table */
+    .cadence-section {
+      margin-bottom: 48px;
+    }
+    .cadence-section h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 16px;
+    }
+    .cadence-table {
+      width: 100%;
+      background: var(--alpha-light-25);
+      border-radius: 16px;
+      padding: 4px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+    }
+    .cadence-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table td {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--alpha-light-600);
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .cadence-table .phase-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-light-50);
+      color: var(--alpha-light-600);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .cadence-table .format-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .cadence-table .format-badge.long-form {
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+    }
+    .cadence-table .format-badge.background {
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+    }
+
+    /* Post card (long-form) */
+    .post-card {
+      position: relative;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 32px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 0;
+    }
+    .post-num-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .post-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .post-num.bg-type {
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+    }
+    .post-phase {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: -0.15px;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 8px;
+      color: var(--alpha-light-600);
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+    }
+    .copy-btn:hover {
+      background: var(--alpha-light-50);
+      border-color: var(--alpha-light-200);
+    }
+    .copy-btn.copied {
+      background: var(--alpha-brand-50);
+      border-color: rgba(16,104,68,0.15);
+      color: var(--alpha-brand-950);
+    }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .post-title-bar {
+      padding: 16px 24px 0;
+    }
+    .post-title-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .post-title {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+    }
+
+    .post-divider {
+      margin: 16px 24px 0;
+      border: none;
+      border-top: 1px solid var(--alpha-light-50);
+    }
+
+    .post-body {
+      padding: 20px 24px 24px;
+    }
+    .post-body p {
+      margin-bottom: 16px;
+      line-height: 24px;
+      color: var(--alpha-light-600);
+    }
+    .post-body p:last-child { margin-bottom: 0; }
+    .post-body strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+    .post-body ul, .post-body ol {
+      list-style: none;
+      margin: 0 0 16px 0;
+      padding: 0;
+      color: var(--alpha-light-600);
+      line-height: 24px;
+    }
+    .post-body li { margin-bottom: 6px; }
+    .post-body li::before { content: "- "; }
+    .post-body li:last-child { margin-bottom: 0; }
+
+    .post-cta {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-top: 0;
+    }
+    .post-cta p {
+      color: var(--alpha-light-600) !important;
+      margin-bottom: 0 !important;
+      font-weight: 400;
+    }
+    .post-cta strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+
+    .post-signoff {
+      margin-top: 20px;
+      color: var(--alpha-light-600);
+    }
+
+    /* Background post card */
+    .bg-post-card {
+      position: relative;
+      margin-bottom: 32px;
+      scroll-margin-top: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .bg-post-inner {
+      background: linear-gradient(135deg, #106844 0%, #0d5236 50%, #14805a 100%);
+      border-radius: 16px;
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      text-align: center;
+      position: relative;
+    }
+    .bg-post-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .bg-post-text {
+      font-size: 22px;
+      line-height: 32px;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      max-width: 480px;
+      position: relative;
+      z-index: 1;
+    }
+    .bg-post-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+    }
+    .bg-post-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bg-post-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .bg-post-phase {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: -0.15px;
+      text-transform: uppercase;
+    }
+    .bg-post-format-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.08);
+      color: rgba(59,130,246,0.9);
+    }
+
+    /* Section divider */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 200ms ease-out, background 150ms ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase, .nav-chip-format { display: none; }
+      .post-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .post-title-bar { padding: 12px 16px 0; }
+      .post-divider { margin: 12px 16px 0; }
+      .post-body { padding: 16px; }
+      .bg-post-inner { padding: 36px 24px; min-height: 180px; }
+      .bg-post-text { font-size: 19px; line-height: 28px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>
+      <div class="top-bar-title">Iskotew First Nations Grant AI</div>
+      <div class="top-bar-subtitle">Facebook Posts &middot; 10 Posts &middot; 19-Day Campaign</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Facebook Post Sequence</h1>
+    <p>10 posts for your warm audience &mdash; alternating long-form text posts and short color-background engagement posts. Comment and DM-based CTAs, no links.</p>
+  </div>
+
+  <!-- Sequence Nav -->
+  <div class="section-label">Jump to post</div>
+  <div class="sequence-nav">
+    <a href="#post-1" class="nav-chip"><span class="nav-chip-num">1</span><span class="nav-chip-label">The Funding Gap Nobody Talks About</span><span class="nav-chip-format long-form">Long-form</span><span class="nav-chip-phase">Desire &middot; Day 1</span></a>
+    <a href="#post-2" class="nav-chip"><span class="nav-chip-num bg-type">2</span><span class="nav-chip-label">What would an extra $500K change?</span><span class="nav-chip-format background">Background</span><span class="nav-chip-phase">Desire &middot; Day 3</span></a>
+    <a href="#post-3" class="nav-chip"><span class="nav-chip-num">3</span><span class="nav-chip-label">The Paperwork Problem</span><span class="nav-chip-format long-form">Long-form</span><span class="nav-chip-phase">Pain &middot; Day 5</span></a>
+    <a href="#post-4" class="nav-chip"><span class="nav-chip-num bg-type">4</span><span class="nav-chip-label">How many hours per grant?</span><span class="nav-chip-format background">Background</span><span class="nav-chip-phase">Engagement &middot; Day 7</span></a>
+    <a href="#post-5" class="nav-chip"><span class="nav-chip-num">5</span><span class="nav-chip-label">Same Staff. 3x the Applications.</span><span class="nav-chip-format long-form">Long-form</span><span class="nav-chip-phase">Pointing &middot; Day 9</span></a>
+    <a href="#post-6" class="nav-chip"><span class="nav-chip-num bg-type">6</span><span class="nav-chip-label">One program fully funded &mdash; what would it be?</span><span class="nav-chip-format background">Background</span><span class="nav-chip-phase">Desire &middot; Day 11</span></a>
+    <a href="#post-7" class="nav-chip"><span class="nav-chip-num">7</span><span class="nav-chip-label">Why We Built This</span><span class="nav-chip-format long-form">Long-form</span><span class="nav-chip-phase">Product intro &middot; Day 13</span></a>
+    <a href="#post-8" class="nav-chip"><span class="nav-chip-num bg-type">8</span><span class="nav-chip-label">How many deadlines missed last year?</span><span class="nav-chip-format background">Background</span><span class="nav-chip-phase">Pain &middot; Day 15</span></a>
+    <a href="#post-9" class="nav-chip"><span class="nav-chip-num">9</span><span class="nav-chip-label">How Much Was That Missed Deadline Worth?</span><span class="nav-chip-format long-form">Long-form</span><span class="nav-chip-phase">Urgency &middot; Day 17</span></a>
+    <a href="#post-10" class="nav-chip"><span class="nav-chip-num bg-type">10</span><span class="nav-chip-label">Best ideas shouldn&rsquo;t die in an unfinished application</span><span class="nav-chip-format background">Background</span><span class="nav-chip-phase">Belief &middot; Day 19</span></a>
+  </div>
+
+  <!-- Cadence Table -->
+  <div class="cadence-section">
+    <h2>Posting cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr><th>#</th><th>Post</th><th>Format</th><th>Title</th><th>Phase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="day-badge">Day 1</span></td><td><span class="format-badge long-form">Long-form</span></td><td>The Funding Gap Nobody Talks About</td><td><span class="phase-badge">Desire</span></td></tr>
+        <tr><td>2</td><td><span class="day-badge">Day 3</span></td><td><span class="format-badge background">Background</span></td><td>What would an extra $500K change?</td><td><span class="phase-badge">Desire</span></td></tr>
+        <tr><td>3</td><td><span class="day-badge">Day 5</span></td><td><span class="format-badge long-form">Long-form</span></td><td>The Paperwork Problem</td><td><span class="phase-badge">Pain</span></td></tr>
+        <tr><td>4</td><td><span class="day-badge">Day 7</span></td><td><span class="format-badge background">Background</span></td><td>How many hours per grant?</td><td><span class="phase-badge">Engagement</span></td></tr>
+        <tr><td>5</td><td><span class="day-badge">Day 9</span></td><td><span class="format-badge long-form">Long-form</span></td><td>Same Staff. 3x the Applications.</td><td><span class="phase-badge">Pointing</span></td></tr>
+        <tr><td>6</td><td><span class="day-badge">Day 11</span></td><td><span class="format-badge background">Background</span></td><td>One program fully funded?</td><td><span class="phase-badge">Desire</span></td></tr>
+        <tr><td>7</td><td><span class="day-badge">Day 13</span></td><td><span class="format-badge long-form">Long-form</span></td><td>Why We Built This</td><td><span class="phase-badge">Product intro</span></td></tr>
+        <tr><td>8</td><td><span class="day-badge">Day 15</span></td><td><span class="format-badge background">Background</span></td><td>How many deadlines missed?</td><td><span class="phase-badge">Pain</span></td></tr>
+        <tr><td>9</td><td><span class="day-badge">Day 17</span></td><td><span class="format-badge long-form">Long-form</span></td><td>How Much Was That Missed Deadline Worth?</td><td><span class="phase-badge">Urgency</span></td></tr>
+        <tr><td>10</td><td><span class="day-badge">Day 19</span></td><td><span class="format-badge background">Background</span></td><td>Unfinished applications</td><td><span class="phase-badge">Belief</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ POST 1 ============ -->
+  <div class="section-label">Posts 1&ndash;5 &mdash; Build belief before product</div>
+
+  <div class="post-card" id="post-1">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">1</span>
+        <span class="post-phase">Desire &middot; Day 1 &middot; Long-form</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this, 'post-1-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <div class="post-title-label">Post title</div>
+      <div class="post-title">The Funding Gap Nobody Talks About</div>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-1-body">
+      <p>Federal Indigenous funding went from $11 billion to $32 billion in the last decade.</p>
+      <p>Tripled.</p>
+      <p>ISC. ESDC. Natural Resources Canada. Provincial programs. Corporate reconciliation dollars. New funding streams opening every quarter.</p>
+      <p>But here's the part nobody wants to say out loud:</p>
+      <p>Most Nations are accessing maybe 10-20% of what they actually qualify for.</p>
+      <p>Not because the money isn't there. Not because the programs don't exist.</p>
+      <p>Because nobody has time to fill out the applications.</p>
+      <p>I've been doing grant writing for First Nations communities for over 30 years. I have never seen this much money available with this few people able to access it.</p>
+      <p>That gap is the problem I've been working on. More on that soon.</p>
+      <div class="post-cta">
+        <p><strong>If your community is leaving funding on the table right now, drop a comment or send me a message. I want to hear what you're seeing on the ground.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ POST 2 ============ -->
+  <div class="bg-post-card" id="post-2">
+    <div class="bg-post-inner">
+      <div class="bg-post-text" id="post-2-body">What would an extra $500K in funding per year change for your community?</div>
+    </div>
+    <div class="bg-post-meta">
+      <div class="bg-post-meta-left">
+        <span class="bg-post-num">2</span>
+        <span class="bg-post-phase">Desire &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyBgPost(this, 'post-2-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ POST 3 ============ -->
+  <div class="post-card" id="post-3">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">3</span>
+        <span class="post-phase">Pain &middot; Day 5 &middot; Long-form</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this, 'post-3-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <div class="post-title-label">Post title</div>
+      <div class="post-title">The Paperwork Problem</div>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-3-body">
+      <p>I want to say something that every EDO and program coordinator already knows but nobody talks about publicly.</p>
+      <p>The communities that don't get funded? They don't have bad ideas. They don't have weak programs. They don't lack vision.</p>
+      <p>They lack paperwork capacity.</p>
+      <p>One grant application. 20-40 hours to do it properly. The narrative. The budget with line-item breakdowns. The evaluation framework. The letters of support. The Band Council resolution. The outcomes section written in whatever language that specific funder wants to see.</p>
+      <p>Now multiply that by 10-15 applications per year. That's what it takes to actually fund your priorities.</p>
+      <p>That's 200-600 hours. A full-time job. And most communities are asking their EDO to do this on top of everything else they already carry.</p>
+      <p>So deadlines get missed. Applications go out rushed and incomplete. Good programs don't get funded.</p>
+      <p>Not because they shouldn't. Because the paperwork didn't make it across the finish line.</p>
+      <div class="post-cta">
+        <p><strong>How many grants is your team realistically submitting per year vs how many you should be? I'd genuinely like to know. Comment below or message me.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ POST 4 ============ -->
+  <div class="bg-post-card" id="post-4">
+    <div class="bg-post-inner">
+      <div class="bg-post-text" id="post-4-body">Real talk &mdash; how many hours does your team spend on a single grant application? Drop a number below</div>
+    </div>
+    <div class="bg-post-meta">
+      <div class="bg-post-meta-left">
+        <span class="bg-post-num">4</span>
+        <span class="bg-post-phase">Engagement &middot; Day 7</span>
+      </div>
+      <button class="copy-btn" onclick="copyBgPost(this, 'post-4-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ POST 5 ============ -->
+  <div class="post-card" id="post-5">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">5</span>
+        <span class="post-phase">Pointing &middot; Day 9 &middot; Long-form</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this, 'post-5-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <div class="post-title-label">Post title</div>
+      <div class="post-title">Same Staff. 3x the Applications.</div>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-5-body">
+      <p>Something I've been watching closely over the past year:</p>
+      <p>Some Nations are pulling ahead. Not because they hired more staff. Not because they got a bigger budget.</p>
+      <p>They started using AI systems built specifically for Indigenous grant applications.</p>
+      <p>The results are hard to ignore:</p>
+      <p>Applications that took 20-40 hours are getting done in 2-3 hours.</p>
+      <p>Same EDO. Same office. Same budget. But submitting 3-5x more applications per year.</p>
+      <p>Higher approval rates because the applications are complete, polished, and use the exact language funders look for.</p>
+      <p>One community stacked 3 different grants on a single youth emergency services project - ISC, provincial, and corporate. Over $400K total. They never would have submitted all three under the old process.</p>
+      <p>The communities that move first are building funding pipelines. The ones that wait are competing against increasingly polished applications from the ones that didn't.</p>
+      <div class="post-cta">
+        <p><strong>If you want to see how this actually works - a real grant application generated in under 3 hours - send me a message and I'll walk you through it.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ POST 6 ============ -->
+  <div class="section-label">Posts 6&ndash;7 &mdash; Introduce the offer</div>
+
+  <div class="bg-post-card" id="post-6">
+    <div class="bg-post-inner">
+      <div class="bg-post-text" id="post-6-body">If you could get one program fully funded this year &mdash; housing, youth, infrastructure, emergency services &mdash; what would it be?</div>
+    </div>
+    <div class="bg-post-meta">
+      <div class="bg-post-meta-left">
+        <span class="bg-post-num">6</span>
+        <span class="bg-post-phase">Desire &middot; Day 11</span>
+      </div>
+      <button class="copy-btn" onclick="copyBgPost(this, 'post-6-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ POST 7 ============ -->
+  <div class="post-card" id="post-7">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">7</span>
+        <span class="post-phase">Product intro &middot; Day 13 &middot; Long-form</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this, 'post-7-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <div class="post-title-label">Post title</div>
+      <div class="post-title">Why We Built This</div>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-7-body">
+      <p>I need to be honest about something.</p>
+      <p>Iskotew can handle about 15-20 grant writing clients at a time. That's our max. Quality work, deep community understanding, proper follow-up - it takes real time.</p>
+      <p>Last year we had to turn away over 40 communities that needed help.</p>
+      <p>Forty communities. With real projects. Real needs. Youth programs that didn't get launched. Infrastructure that didn't get built. Emergency services training that didn't happen.</p>
+      <p>Because we couldn't write the applications fast enough.</p>
+      <p>So we took everything we've learned from 30+ years of grant writing - every successful application, every funder relationship, every budget template, every evaluation framework - and we built an AI system specifically for First Nations grant applications.</p>
+      <p>Not generic ChatGPT. That doesn't work. It doesn't know the difference between ISC and ESDC funding streams. It doesn't understand Band Council resolutions. It hallucinates deadlines.</p>
+      <p>We built the First Nations Grant AI. Trained on successful Indigenous grant applications. Pre-loaded with 200+ Indigenous-specific funding programs. Understands Treaty territory context, on-reserve vs off-reserve distinctions, and what each funder actually wants to see.</p>
+      <p>Complete, submission-ready grant packages in under 3 hours.</p>
+      <div class="post-cta">
+        <p><strong>If you want to see what it produces, message me "SHOW ME" and I'll send you a real example.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ POST 8 ============ -->
+  <div class="section-label">Posts 8&ndash;10 &mdash; Reinforce pain and drive action</div>
+
+  <div class="bg-post-card" id="post-8">
+    <div class="bg-post-inner">
+      <div class="bg-post-text" id="post-8-body">How many grant deadlines did your community miss last year because there just wasn't enough time to write the application?</div>
+    </div>
+    <div class="bg-post-meta">
+      <div class="bg-post-meta-left">
+        <span class="bg-post-num">8</span>
+        <span class="bg-post-phase">Pain &middot; Day 15</span>
+      </div>
+      <button class="copy-btn" onclick="copyBgPost(this, 'post-8-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ POST 9 ============ -->
+  <div class="post-card" id="post-9">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">9</span>
+        <span class="post-phase">Urgency &middot; Day 17 &middot; Long-form</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this, 'post-9-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <div class="post-title-label">Post title</div>
+      <div class="post-title">How Much Was That Missed Deadline Worth?</div>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-9-body">
+      <p>Quick question. No judgment.</p>
+      <p>How many grant deadlines did your community miss last year?</p>
+      <p>Not because you didn't know about them. Not because you weren't eligible. But because by the time you saw the opportunity, there were 2 weeks to submit a 40-page application and your team was already buried.</p>
+      <p>I see it constantly. A community qualifies for a $200K youth program grant. Deadline is 3 weeks out. The EDO is already working on two other applications, managing a housing project, and covering for someone on leave.</p>
+      <p>Application doesn't get submitted. $200K stays on the table. Youth program doesn't happen.</p>
+      <p>Multiply that across every missed deadline in a year.</p>
+      <p>$50K here. $150K there. A $400K infrastructure grant. A $75K emergency services training program.</p>
+      <p>Conservative estimate? Most Nations I work with are leaving $500K-$2M per year unfunded. Not because the money isn't available. Because the paperwork can't get done fast enough.</p>
+      <p>With the First Nations Grant AI, when a new opportunity drops with a tight deadline, your team can generate a complete application in one sitting. Not in 3 weeks. In 3 hours.</p>
+      <div class="post-cta">
+        <p><strong>What's the one grant you missed last year that still bothers you? Tell me in the comments. I want to hear about it.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ POST 10 ============ -->
+  <div class="bg-post-card" id="post-10">
+    <div class="bg-post-inner">
+      <div class="bg-post-text" id="post-10-body">Your community's best ideas shouldn't die in an unfinished application. Agree or disagree?</div>
+    </div>
+    <div class="bg-post-meta">
+      <div class="bg-post-meta-left">
+        <span class="bg-post-num">10</span>
+        <span class="bg-post-phase">Belief &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyBgPost(this, 'post-10-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Back to top button -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Copy long-form post
+  function copyPost(btn, bodyId) {
+    const el = document.getElementById(bodyId);
+    const bodyText = getPlainText(el);
+    navigator.clipboard.writeText(bodyText).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Copy background post
+  function copyBgPost(btn, bodyId) {
+    const el = document.getElementById(bodyId);
+    const text = el.textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Extract clean plain text from post body
+  function getPlainText(el) {
+    let text = '';
+    el.childNodes.forEach(node => {
+      if (node.nodeType === 3) {
+        text += node.textContent;
+      } else if (node.nodeType === 1) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === 'p' || tag === 'div') {
+          text += getPlainText(node) + '\n\n';
+        } else if (tag === 'ul' || tag === 'ol') {
+          node.querySelectorAll('li').forEach(li => {
+            text += '- ' + li.textContent.trim() + '\n';
+          });
+          text += '\n';
+        } else if (tag === 'br') {
+          text += '\n';
+        } else if (tag === 'hr') {
+          // skip
+        } else {
+          text += getPlainText(node);
+        }
+      }
+    });
+    return text.replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  // Back to top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
