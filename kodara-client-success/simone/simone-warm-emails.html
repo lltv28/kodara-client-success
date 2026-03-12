@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simone — Warm Email Sequence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+    .bg-orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+    .page-wrapper { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+    .top-bar { position: sticky; top: 0; z-index: 100; background: var(--alpha-dark-800); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--alpha-light-50); padding: 16px 24px; margin: -48px -24px 48px; }
+    .top-bar-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .top-bar-title { font-size: 14px; font-weight: 600; color: var(--alpha-light-900); letter-spacing: -0.15px; }
+    .top-bar-subtitle { font-size: 12px; color: var(--alpha-light-500); letter-spacing: -0.15px; }
+    .hero { text-align: center; padding: 24px 0 48px; }
+    .hero h1 { font-size: 32px; line-height: 40px; letter-spacing: -0.5px; font-weight: 400; color: var(--alpha-light-900); margin-bottom: 12px; }
+    .hero p { font-size: 14px; line-height: 22px; color: var(--alpha-light-500); max-width: 520px; margin: 0 auto; }
+    .sequence-nav { display: flex; flex-direction: column; gap: 8px; margin-bottom: 48px; }
+    .nav-chip { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--alpha-dark-300); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--alpha-light-50); border-radius: 16px; cursor: pointer; transition: background 150ms ease-out, border-color 150ms ease-out; text-decoration: none; color: inherit; width: 100%; }
+    .nav-chip:hover { background: var(--alpha-dark-600); border-color: var(--alpha-light-100); }
+    .nav-chip-num { width: 28px; height: 28px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .nav-chip-label { font-size: 13px; line-height: 18px; letter-spacing: -0.15px; color: var(--alpha-light-600); font-weight: 500; }
+    .nav-chip-phase { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--alpha-light-400); flex-shrink: 0; }
+    .cadence-section { margin-bottom: 48px; }
+    .cadence-section h2 { font-size: 20px; line-height: 28px; font-weight: 500; color: var(--alpha-light-900); margin-bottom: 16px; }
+    .cadence-table { width: 100%; background: var(--alpha-light-25); border-radius: 16px; padding: 4px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+    .cadence-table th { text-align: left; padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--alpha-light-500); letter-spacing: -0.15px; border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table td { padding: 10px 16px; font-size: 13px; color: var(--alpha-light-600); border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .cadence-table .phase-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-light-50); color: var(--alpha-light-600); border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .email-card { position: relative; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); border-radius: 16px; box-shadow: var(--shadow-card); margin-bottom: 32px; overflow: hidden; scroll-margin-top: 80px; }
+    .email-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; }
+    .email-num-badge { display: flex; align-items: center; gap: 10px; }
+    .email-num { width: 32px; height: 32px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .email-phase { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: -0.15px; text-transform: uppercase; }
+    .copy-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--alpha-light-25); border: 1px solid var(--alpha-light-100); border-radius: 8px; color: var(--alpha-light-600); font-family: var(--font-primary); font-variation-settings: 'wdth' 100; font-size: 12px; font-weight: 500; letter-spacing: -0.15px; cursor: pointer; transition: background 150ms ease-out, border-color 150ms ease-out; }
+    .copy-btn:hover { background: var(--alpha-light-50); border-color: var(--alpha-light-200); }
+    .copy-btn.copied { background: var(--alpha-brand-50); border-color: rgba(16,104,68,0.15); color: var(--alpha-brand-950); }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .email-subject-bar { padding: 16px 24px 0; }
+    .email-subject-label { font-size: 11px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .email-subject { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--alpha-light-900); }
+    .email-divider { margin: 16px 24px 0; border: none; border-top: 1px solid var(--alpha-light-50); }
+    .email-body { padding: 20px 24px 24px; }
+    .email-body p { margin-bottom: 16px; line-height: 24px; color: var(--alpha-light-600); }
+    .email-body p:last-child { margin-bottom: 0; }
+    .email-body strong { color: var(--alpha-light-600); font-weight: 400; }
+    .email-body ul, .email-body ol { list-style: none; margin: 0 0 16px 0; padding: 0; color: var(--alpha-light-600); line-height: 24px; }
+    .email-body li { margin-bottom: 6px; }
+    .email-body li::before { content: "- "; }
+    .email-body li:last-child { margin-bottom: 0; }
+    .email-body em { color: var(--alpha-light-600); font-style: normal; }
+    .email-cta { background: none; border: none; border-radius: 0; padding: 0; margin-top: 0; }
+    .email-cta p { color: var(--alpha-light-600) !important; margin-bottom: 0 !important; font-weight: 400; }
+    .email-cta strong { color: var(--alpha-light-600); font-weight: 400; }
+    .email-signoff { margin-top: 20px; color: var(--alpha-light-600); }
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .email-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .email-subject-bar { padding: 12px 16px 0; }
+      .email-divider { margin: 12px 16px 0; }
+      .email-body { padding: 16px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+    .section-label { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px; padding-left: 4px; }
+    .back-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 999px; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 200ms ease-out, background 150ms ease-out; opacity: 0; pointer-events: none; z-index: 50; }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <span class="top-bar-title">Bulletproof COO</span>
+    <span class="top-bar-subtitle">Warm Email Sequence &middot; 10 Emails &middot; 25-Day Campaign</span>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <div class="hero">
+    <h1>Warm Email Sequence</h1>
+    <p>10 emails for people already in Simone's network &mdash; past clients, mastermind alumni, workshop contacts, and business owner connections. Personal, conversational, reply-based CTAs.</p>
+  </div>
+
+  <!-- Sequence Nav -->
+  <div class="sequence-nav">
+    <a class="nav-chip" href="#email-1">
+      <span class="nav-chip-num">1</span>
+      <span class="nav-chip-label">It wasn't them</span>
+      <span class="nav-chip-phase">Desire &middot; Day 1</span>
+    </a>
+    <a class="nav-chip" href="#email-2">
+      <span class="nav-chip-num">2</span>
+      <span class="nav-chip-label">You want freedom but you keep taking it back</span>
+      <span class="nav-chip-phase">Pain &middot; Day 3</span>
+    </a>
+    <a class="nav-chip" href="#email-3">
+      <span class="nav-chip-num">3</span>
+      <span class="nav-chip-label">Every guru says build systems</span>
+      <span class="nav-chip-phase">Pointing &middot; Day 5</span>
+    </a>
+    <a class="nav-chip" href="#email-4">
+      <span class="nav-chip-num">4</span>
+      <span class="nav-chip-label">You turned down work last month</span>
+      <span class="nav-chip-phase">Product intro &middot; Day 8</span>
+    </a>
+    <a class="nav-chip" href="#email-5">
+      <span class="nav-chip-num">5</span>
+      <span class="nav-chip-label">I spent 10 years doing this by hand</span>
+      <span class="nav-chip-phase">Product details &middot; Day 10</span>
+    </a>
+    <a class="nav-chip" href="#email-6">
+      <span class="nav-chip-num">6</span>
+      <span class="nav-chip-label">$50K for a failed hire or $1,997 for this</span>
+      <span class="nav-chip-phase">Value anchor &middot; Day 13</span>
+    </a>
+    <a class="nav-chip" href="#email-7">
+      <span class="nav-chip-num">7</span>
+      <span class="nav-chip-label">Same ceiling, same bottleneck</span>
+      <span class="nav-chip-phase">Pain + urgency &middot; Day 16</span>
+    </a>
+    <a class="nav-chip" href="#email-8">
+      <span class="nav-chip-num">8</span>
+      <span class="nav-chip-label">The question everyone asks</span>
+      <span class="nav-chip-phase">Objection handling &middot; Day 19</span>
+    </a>
+    <a class="nav-chip" href="#email-9">
+      <span class="nav-chip-num">9</span>
+      <span class="nav-chip-label">Here's what happens after you sign up</span>
+      <span class="nav-chip-phase">Future pacing &middot; Day 22</span>
+    </a>
+    <a class="nav-chip" href="#email-10">
+      <span class="nav-chip-num">10</span>
+      <span class="nav-chip-label">Not going to keep emailing about this</span>
+      <span class="nav-chip-phase">Final CTA &middot; Day 25</span>
+    </a>
+  </div>
+
+  <!-- Cadence Table -->
+  <div class="cadence-section">
+    <h2>Send Cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Send</th>
+          <th>Subject</th>
+          <th>Phase</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="day-badge">Day 1</span></td>
+          <td>It wasn't them</td>
+          <td><span class="phase-badge">Desire</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="day-badge">Day 3</span></td>
+          <td>You want freedom but you keep taking it back</td>
+          <td><span class="phase-badge">Pain</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="day-badge">Day 5</span></td>
+          <td>Every guru says build systems</td>
+          <td><span class="phase-badge">Pointing</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="day-badge">Day 8</span></td>
+          <td>You turned down work last month</td>
+          <td><span class="phase-badge">Product intro</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="day-badge">Day 10</span></td>
+          <td>I spent 10 years doing this by hand</td>
+          <td><span class="phase-badge">Product details</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="day-badge">Day 13</span></td>
+          <td>$50K for a failed hire or $1,997 for this</td>
+          <td><span class="phase-badge">Value anchor</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="day-badge">Day 16</span></td>
+          <td>Same ceiling, same bottleneck</td>
+          <td><span class="phase-badge">Pain + urgency</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="day-badge">Day 19</span></td>
+          <td>The question everyone asks</td>
+          <td><span class="phase-badge">Objection handling</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="day-badge">Day 22</span></td>
+          <td>Here's what happens after you sign up</td>
+          <td><span class="phase-badge">Future pacing</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="day-badge">Day 25</span></td>
+          <td>Not going to keep emailing about this</td>
+          <td><span class="phase-badge">Final CTA</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION: Emails 1-3 -->
+  <div class="section-label">Emails 1&ndash;3 &mdash; Build belief before product</div>
+
+  <!-- Email 1 -->
+  <div class="email-card" id="email-1">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">1</span>
+        <span class="email-phase">Desire &middot; Day 1</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-1-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">It wasn't them</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-1-body">
+      <p>Hey [First Name],</p>
+      <p>I want to tell you something that might sting a little.</p>
+      <p>That last person you hired - the one who seemed sharp, experienced, ready to take some weight off your shoulders?</p>
+      <p>They didn't fail because they weren't good enough.</p>
+      <p>They failed because they walked into your business and found nothing to work with. No documented expectations. No clear standards. No decision-making boundaries. No playbook. Nothing.</p>
+      <p>They spent their first month trying to read your mind. By month two, you were spending more time managing them than you saved by hiring them. By month three or four, one of you quit.</p>
+      <p>And you told yourself: "I just can't find good people."</p>
+      <p>I've been inside businesses like yours for over 10 years now. I've watched this pattern repeat dozens of times. And the truth is always the same: good people can't succeed in a business where everything lives in one person's head.</p>
+      <p>The average cost of a failed hire at this level? $50,000 to $100,000 when you add up salary, lost time, rehiring, and the work that didn't get done while you were training someone who was never set up to win.</p>
+      <p>That's not a people problem. That's an infrastructure problem.</p>
+      <div class="email-cta">
+        <p><strong>Reply and tell me - how many people have you hired in the last five years that didn't work out? I'd genuinely like to know.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 2 -->
+  <div class="email-card" id="email-2">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">2</span>
+        <span class="email-phase">Pain &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-2-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">You want freedom but you keep taking it back</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-2-body">
+      <p>Hey [First Name],</p>
+      <p>I need to say something that might hit close to home.</p>
+      <p>You say you want a team that can work without you. You say you want to step back, take a vacation, stop being the one who handles everything.</p>
+      <p>But the last time someone on your team tried to handle something on their own, you redid it. Because it wasn't up to your standard.</p>
+      <p>Here's what nobody talks about: the reason you haven't let go isn't just because nobody can do it as well as you.</p>
+      <p>It's because being the person who holds everything together IS your identity. Being needed feels like being valued. And the idea of truly handing things off is terrifying - not because you think they'll fail, but because you're afraid quality will slip the moment you're not watching.</p>
+      <p>So you take the work back. Every time.</p>
+      <p>And the ceiling stays exactly where it is. Your business can't get bigger than what you can personally touch. You turn down contracts. You say no to opportunities. You watch competitors grow past you.</p>
+      <p>Both things can't be true at the same time: "I want to grow" and "I'm the only one who can do it right." One is a fact. The other is a story you've been telling yourself because every time someone else handles something, the quality drops.</p>
+      <p>The owners who break through this aren't the ones who lower their standards. They're the ones who find a way to transfer their standards into something their team can actually execute.</p>
+      <div class="email-cta">
+        <p><strong>Forward this to someone who knows you well and ask them if it's true. Then reply and tell me what they said.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 3 -->
+  <div class="email-card" id="email-3">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">3</span>
+        <span class="email-phase">Pointing &middot; Day 5</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-3-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Every guru says build systems</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-3-body">
+      <p>Hey [First Name],</p>
+      <p>You've heard it a thousand times.</p>
+      <p>"Systemize your business." "Document your processes." "Build SOPs."</p>
+      <p>Great advice. One problem: when exactly are you supposed to do that?</p>
+      <p>Between your 6 AM start and your 9 PM finish? On the weekend you already don't have? Instead of the billable work that actually pays the bills?</p>
+      <p>Here's why every approach you've tried has failed:</p>
+      <p>Books told you to build systems. You read the first three chapters and went back to work.</p>
+      <p>Templates asked you to fill them out. You got through the first page. They're still in a folder somewhere.</p>
+      <p>A consultant charged you $10,000 to $20,000 to interview you, write a plan based on what you told them (not what's really happening), and deliver a binder that's been collecting dust ever since.</p>
+      <p>Every single one of these approaches requires the most time-starved, overloaded person in the company - you - to do the heavy lifting.</p>
+      <p>But what if the system could be built just by listening to you?</p>
+      <p>You already explain how your business works all the time. In hallways. On job sites. In the truck on the way to a client. That knowledge exists. It's just never been captured and organized.</p>
+      <p>What if every time you explained how you want something done, it got documented, organized, and turned into a clear guide your team could follow without asking you again?</p>
+      <p>That's possible now. And it doesn't require you to write a single document.</p>
+      <div class="email-cta">
+        <p><strong>If you've tried to build systems before and it didn't stick, reply and tell me what happened. I've heard every version of this story and I want to hear yours.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: Emails 4-6 -->
+  <div class="section-label">Emails 4&ndash;6 &mdash; Introduce and justify the offer</div>
+
+  <!-- Email 4 -->
+  <div class="email-card" id="email-4">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">4</span>
+        <span class="email-phase">Product intro &middot; Day 8</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-4-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">You turned down work last month</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-4-body">
+      <p>Hey [First Name],</p>
+      <p>Quick question.</p>
+      <p>How many opportunities did you say no to in the last year? Not because you couldn't do the work. Not because your team wasn't capable. But because YOU were maxed out, and nothing happens without you.</p>
+      <p>New clients. A second location. A partnership. A contract that would have been great for the business.</p>
+      <p>All of them require more of the one resource you've completely run out of: your personal attention.</p>
+      <p>You've got 8 employees but you're still the only one who can run a job start to finish, talk to a client, and make a judgment call. The business literally cannot grow past what you personally can touch.</p>
+      <p>You keep hoping your team will "step up." But they can't step up into a vacuum. There's no structure for them to step up INTO.</p>
+      <p>I've spent 10+ years inside businesses exactly like yours, helping owners who hate managing build teams that manage themselves. The pattern is always the same: everything lives in the owner's head, nobody else can make decisions, and every hire walks into chaos.</p>
+      <p>The fix isn't hiring someone smarter. It's getting what's in your head into a format your team can actually use. You've been training people by osmosis for years - in hallways, on job sites, over the phone. Osmosis kind of works. But it doesn't scale. And it's the reason you've been stuck at the same size for years.</p>
+      <p>We built something that changes this equation. I'll tell you more about it in my next email.</p>
+      <div class="email-cta">
+        <p><strong>But first - reply and tell me: what's the one opportunity you had to turn down this year that still bothers you?</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 5 -->
+  <div class="email-card" id="email-5">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">5</span>
+        <span class="email-phase">Product details &middot; Day 10</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-5-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">I spent 10 years doing this by hand</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-5-body">
+      <p>Hey [First Name],</p>
+      <p>For the last decade, I've been going into businesses like yours and building operating systems by hand. Sitting with owners. Pulling what's in their heads. Documenting standards, roles, decision-making boundaries, onboarding materials.</p>
+      <p>It works. Owners finally stop being the bottleneck. Their teams start carrying the mental load. Their next hire actually succeeds.</p>
+      <p>But I could only serve a handful of businesses at a time. The work took months. And the owners who needed it most - the ones drowning in 60-hour weeks - often couldn't carve out the time for the process.</p>
+      <p>So I built something different.</p>
+      <p>It's called <strong>Bulletproof COO</strong>. And it takes everything I've learned about turning owner-dependent businesses into self-running teams and delivers it through a process that fits into your actual life.</p>
+      <p>Here's how it works:</p>
+      <p><strong>Your Business, Extracted and Built.</strong> You have 3 to 5 short voice conversations over 1 to 2 weeks. You talk about your business the way you already do - how things work, who does what, what the standards are. The AI listens, organizes, and builds everything your team needs.</p>
+      <p>What comes out:</p>
+      <ul>
+        <li>Role expectations and decision-making boundaries for every team member</li>
+        <li>Your standards documented in enforceable detail</li>
+        <li>Delegation guidelines that tell your team what they can handle, what needs your approval, and what's off-limits</li>
+        <li>A simple weekly team rhythm that replaces hallway conversations with 20 minutes that saves you 10 hours of interruptions</li>
+        <li>A hire-ready onboarding package so your next employee walks into structure, not chaos</li>
+        <li>A clear rollout plan so you know exactly how to hand it to your team</li>
+      </ul>
+      <p>No 50-page intake forms. No learning new software. No 40 hours of documentation. You talk. It builds.</p>
+      <p>Everything it generates is specific to YOUR business. Not templates. Not generic advice. Your standards, your judgment calls, your expectations - captured and organized so your team doesn't just follow steps, they understand the thinking behind them.</p>
+      <div class="email-cta">
+        <p><strong>I'm opening this to 25 founding members. If you want the details on what it costs and what ongoing support looks like, reply and I'll send you everything.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 6 -->
+  <div class="email-card" id="email-6">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">6</span>
+        <span class="email-phase">Value anchor &middot; Day 13</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-6-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">$50K for a failed hire or $1,997 for this</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-6-body">
+      <p>Hey [First Name],</p>
+      <p>A few people replied to my last email asking about pricing. So let me lay out the math, because I think it speaks for itself.</p>
+      <p><strong>Option A: Hire a COO or operations manager.</strong><br>$80,000 to $150,000 per year in salary. Months of onboarding. And if they walk into a business with no documented systems (which is the whole problem), they'll spend their first six months trying to figure out how things work before they can change anything. If it doesn't work out, you're looking at $50,000 to $100,000 lost.</p>
+      <p><strong>Option B: Hire a consultant.</strong><br>$10,000 to $20,000 for someone to interview you, build a plan based on what you said (not what's actually happening), and deliver a binder that collects dust. One-time. No ongoing support. And you still have to implement everything yourself.</p>
+      <p><strong>Option C: Do it yourself.</strong><br>40 to 60 hours of documentation work. At your opportunity cost of $200 to $500 per hour, that's $8,000 to $30,000 in lost revenue. And even if you finish, it's outdated within a month because your business keeps moving.</p>
+      <p><strong>Option D: Bulletproof COO.</strong><br>$1,997 setup for founding members (goes to $2,500 after the first 25). Plus $200 per month ongoing for monthly evolution sessions that keep the system current as your business grows.</p>
+      <p>That's it. No hidden fees. No upsells during the process.</p>
+      <p>For context: $200 per month is less than what you'd pay a part-time admin. And the setup is less than the cost of your last failed hire's first month of salary.</p>
+      <p>If you want to spread the setup out: 3 payments of $897.</p>
+      <p><strong>What founding members also get (first 25 only):</strong></p>
+      <ul>
+        <li>Monthly group call with me directly</li>
+        <li>Private community of founding members</li>
+        <li>First access to every upgrade and improvement</li>
+      </ul>
+      <p>The $200/month covers a guided monthly session where we update everything as your business grows - new hires, role changes, new services, shifting standards. This is why it stays a living system instead of becoming another binder on a shelf.</p>
+      <div class="email-cta">
+        <p><strong>Reply if you have questions about the pricing. Or if you're ready, reply "I'M IN" and I'll get you started.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: Emails 7-10 -->
+  <div class="section-label">Emails 7&ndash;10 &mdash; Handle objections and drive action</div>
+
+  <!-- Email 7 -->
+  <div class="email-card" id="email-7">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">7</span>
+        <span class="email-phase">Pain + urgency &middot; Day 16</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-7-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Same ceiling, same bottleneck</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-7-body">
+      <p>Hey [First Name],</p>
+      <p>Let me ask you something honestly.</p>
+      <p>What did staying stuck cost you last year?</p>
+      <p>Not in frustration. In actual dollars.</p>
+      <p>The contracts you turned down because you didn't have capacity. What were those worth? $50,000? $100,000? More?</p>
+      <p>The hire that didn't work out. Between salary, training time, the work that fell through the cracks while you were managing them, and the cost of starting over - how much did that run you?</p>
+      <p>The quality issues that crept in because you were spread too thin to hold the standard everywhere. What did those rework jobs and unhappy clients cost?</p>
+      <p>The nights and weekends you worked because nobody on your team could make the decisions you would have made. What's that worth to you at this point?</p>
+      <p>Conservative estimate: most owners I work with are leaving $100,000 to $300,000 per year on the table. Not because they're bad at what they do - because their business can't operate without them standing over every piece of it.</p>
+      <p>You've changed your pricing. You've changed your products. You've changed employees. You've changed your schedule.</p>
+      <p>The one thing you haven't changed is how the business operates. Which is to say, it doesn't operate. YOU operate. Everything else waits for you.</p>
+      <p>Another year of this doesn't just cost you money. It costs you the growth, the opportunities, and the quality that's slowly slipping because one person can't hold it all together forever.</p>
+      <p>The structure your business needs already exists - in your head. It just needs to be extracted and built.</p>
+      <div class="email-cta">
+        <p><strong>Founding member spots are filling up. 25 total at $1,997. Reply if you want one before they're gone.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 8 -->
+  <div class="email-card" id="email-8">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">8</span>
+        <span class="email-phase">Objection handling &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-8-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">The question everyone asks</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-8-body">
+      <p>Hey [First Name],</p>
+      <p>The most common reply I've gotten to these emails is some version of:</p>
+      <p><em>"This sounds good, Simone. But my business is different. My industry is specific. Will this actually work for me?"</em></p>
+      <p>Fair question. Here's my honest answer.</p>
+      <p>Generic AI tools? No. ChatGPT doesn't know the difference between a plumbing company and a marketing agency. It'll give you cookie-cutter templates filled with corporate HR language that your team will ignore on day one.</p>
+      <p>That's not what this is.</p>
+      <p>Bulletproof COO is built on my methodology - 10+ years of working inside businesses like yours. Trades. Agencies. Professional services. Health practices. The AI knows the patterns I've seen hundreds of times: where owners hold on too tight, where teams need more clarity, where the handoffs break down, and where quality drops because the standard was never made explicit.</p>
+      <p>But here's what actually makes it work for YOUR specific business: the extraction process.</p>
+      <p>When you do those 3 to 5 voice conversations, you're not filling out a generic form. You're talking about YOUR team, YOUR standards, YOUR way of doing things. The system builds everything from what you say - your language, your expectations, your judgment calls.</p>
+      <p>What comes out doesn't sound like a consultant wrote it. It sounds like you wrote it. Because the content came from you. The AI just organized it into something your team can follow.</p>
+      <p>Is it perfect right out of the gate every time? No. That's why you review everything before it goes to your team. And that's why the $200/month includes ongoing evolution sessions - so when something needs adjusting, when you hire someone new, when a role changes, the system updates with you.</p>
+      <p>Will it work if you have zero existing documentation? Yes. That's exactly the problem it solves. No SOPs? No meeting notes? No process documents? Good. The absence of documentation IS the starting point.</p>
+      <p>Will it work if your team isn't tech-savvy? Yes. Your team gets clear, written guides in plain language. They don't interact with AI at all. They get a playbook that tells them what's expected, how decisions should be made, and what your standards are.</p>
+      <div class="email-cta">
+        <p><strong>If you're still on the fence, reply and tell me what kind of business you run and what your biggest bottleneck is right now. I'll tell you exactly how this would apply to your specific situation. No charge, no commitment.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 9 -->
+  <div class="email-card" id="email-9">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">9</span>
+        <span class="email-phase">Future pacing &middot; Day 22</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-9-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's what happens after you sign up</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-9-body">
+      <p>Hey [First Name],</p>
+      <p>Some people asked me what the first month actually looks like. So let me walk through it step by step.</p>
+      <p><strong>Day 1-3: We get you set up.</strong><br>You get access and we schedule your first voice conversation. Takes about 15 minutes to confirm your business basics - how many employees, what roles exist, what your biggest pain points are.</p>
+      <p><strong>Day 3-10: The extraction conversations.</strong><br>We do 3 to 5 short voice sessions over 1 to 2 weeks. You talk about your business the way you already do. How jobs get done. What you expect from each person. What decisions they should handle on their own and which ones need your sign-off. What "good enough" looks like and what your actual standard is. If you can leave a voicemail, you can do this.</p>
+      <p><strong>Day 10-14: Your operating system is built.</strong><br>The AI takes everything you said and generates your complete package: role expectations, decision-making boundaries, delegation guidelines, documented standards, a weekly team rhythm, and a hire-ready onboarding kit. You review it. You tweak anything that needs adjusting. You make it yours.</p>
+      <p><strong>Day 14-21: Roll it out to your team.</strong><br>You start handing it to your people - with a clear rollout plan so it doesn't feel like a corporate mandate dropped from the sky. Your team gets context, not just instructions. They understand the WHY behind your standards, not just the WHAT.</p>
+      <p><strong>Day 21-30: Watch what changes.</strong><br>Your team starts making decisions they used to bring to you. The questions that interrupted you ten times a day start drying up. When you hand someone a task, they have a reference for how you want it done - instead of guessing and getting it wrong. You start feeling what it's like when the mental load shifts off your shoulders.</p>
+      <p><strong>By the end of month one,</strong> you have something that has never existed in your business before: a structure that lets your team operate at your standard without you standing over every piece of it.</p>
+      <p>Then in month two, we do your first evolution session. We update whatever needs updating based on what you learned during rollout. The system gets sharper. And it keeps getting sharper every month after that.</p>
+      <p>This isn't theoretical. This is what the tool was built to do.</p>
+      <p><strong>Founding member setup: $1,997 (or 3 payments of $897). Monthly ongoing: $200. 25 spots total.</strong></p>
+      <div class="email-cta">
+        <p><strong>Reply "I'M IN" and I'll get you set up within 48 hours. Or reply with any questions - I'll answer every one personally.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email 10 -->
+  <div class="email-card" id="email-10">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">10</span>
+        <span class="email-phase">Final CTA &middot; Day 25</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-10-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Not going to keep emailing about this</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-10-body">
+      <p>Hey [First Name],</p>
+      <p>This is the last email I'm sending about Bulletproof COO.</p>
+      <p>Not because I don't believe in it. I do. I spent 10 years building these systems by hand, and this is the first time I've been able to offer something that works at this level without requiring months of consulting engagement.</p>
+      <p>But I also respect your inbox.</p>
+      <p>So here's where things stand:</p>
+      <ul>
+        <li>Founding member spots are almost full. 25 total at $1,997 setup</li>
+        <li>After that, setup goes to $2,500</li>
+        <li>Monthly stays at $200 either way</li>
+        <li>Payment plan available: 3 payments of $897</li>
+      </ul>
+      <p>Here's what you get:</p>
+      <ul>
+        <li>3 to 5 voice conversations that extract what's in your head</li>
+        <li>A complete operating system built specifically for your business: role expectations, decision-making boundaries, standards, delegation guidelines, weekly team rhythm, hire-ready onboarding package</li>
+        <li>Monthly evolution sessions to keep it current as you grow</li>
+        <li>Founding member access: monthly group call with me plus a private community</li>
+      </ul>
+      <p>If you've been reading these emails and thinking "I need this" - now's the time.</p>
+      <p>If the timing isn't right, I understand. The product will still be here. It'll just cost more.</p>
+      <p>And if being the bottleneck isn't your biggest problem right now, that's fine too. I'd rather be honest about that than try to convince you of something that doesn't fit.</p>
+      <p>But if your business can't grow past what you can personally touch - if you've tried hiring and it didn't work, if you've tried building systems and ran out of time, if you know the knowledge is in your head but you've never had a way to get it out - this was built for exactly that situation.</p>
+      <p>$1,997 setup. $200/month. Your standards, transferred to your team. So your business can finally grow past you.</p>
+      <div class="email-cta">
+        <p><strong>Reply "LET'S GO" and I'll personally get you set up. Or reply with whatever's holding you back - I'd rather have an honest conversation than wonder.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Appreciate you reading this far.</p>
+        <p>Simone</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script>
+  function copyEmail(btn, bodyId) {
+    const el = document.getElementById(bodyId);
+    const card = el.closest('.email-card');
+    const subject = card.querySelector('.email-subject').textContent;
+    const bodyText = getPlainText(el);
+    const full = 'Subject: ' + subject + '\n\n' + bodyText;
+    navigator.clipboard.writeText(full).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+  function getPlainText(el) {
+    let text = '';
+    el.childNodes.forEach(node => {
+      if (node.nodeType === 3) { text += node.textContent; }
+      else if (node.nodeType === 1) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === 'p' || tag === 'div') { text += getPlainText(node) + '\n\n'; }
+        else if (tag === 'ul' || tag === 'ol') { node.querySelectorAll('li').forEach(li => { text += '- ' + li.textContent.trim() + '\n'; }); text += '\n'; }
+        else if (tag === 'br') { text += '\n'; }
+        else if (tag === 'hr') { }
+        else { text += getPlainText(node); }
+      }
+    });
+    return text.replace(/\n{3,}/g, '\n\n').trim();
+  }
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => { backTop.classList.toggle('visible', window.scrollY > 400); });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alisa — Facebook Post Campaign</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+
+    /* Decorative background orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+
+    /* Layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--alpha-dark-800);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--alpha-light-50);
+      padding: 16px 24px;
+      margin: -48px -24px 48px;
+    }
+    .top-bar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-subtitle {
+      font-size: 12px;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 24px 0 48px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--alpha-light-500);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Sequence overview nav */
+    .sequence-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .nav-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--alpha-dark-300);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+    .nav-chip:hover {
+      background: var(--alpha-dark-600);
+      border-color: var(--alpha-light-100);
+    }
+    .nav-chip-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .nav-chip-label {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: -0.15px;
+      color: var(--alpha-light-600);
+      font-weight: 500;
+    }
+    .nav-chip-phase {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-400);
+      flex-shrink: 0;
+    }
+
+    /* Cadence table */
+    .cadence-section {
+      margin-bottom: 48px;
+    }
+    .cadence-section h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 16px;
+    }
+    .cadence-table {
+      width: 100%;
+      background: var(--alpha-light-25);
+      border-radius: 16px;
+      padding: 4px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+    }
+    .cadence-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table td {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--alpha-light-600);
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .cadence-table .phase-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-light-50);
+      color: var(--alpha-light-600);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Copy button */
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 8px;
+      color: var(--alpha-light-600);
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+    }
+    .copy-btn:hover {
+      background: var(--alpha-light-50);
+      border-color: var(--alpha-light-200);
+    }
+    .copy-btn.copied {
+      background: var(--alpha-brand-50);
+      border-color: rgba(16,104,68,0.15);
+      color: var(--alpha-brand-950);
+    }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Post card */
+    .post-card { position: relative; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); border-radius: 16px; box-shadow: var(--shadow-card); margin-bottom: 32px; overflow: hidden; scroll-margin-top: 80px; }
+    .post-card.background-post .post-body { background: var(--alpha-brand-50); border-radius: 0 0 16px 16px; }
+    .post-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; }
+    .post-num-badge { display: flex; align-items: center; gap: 10px; }
+    .post-num { width: 32px; height: 32px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .post-phase { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: -0.15px; text-transform: uppercase; }
+    .post-title-bar { padding: 16px 24px 0; }
+    .post-title { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--alpha-light-900); }
+    .format-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-light-50); color: var(--alpha-light-600); border-radius: 999px; font-size: 11px; font-weight: 500; margin-left: 8px; }
+    .format-badge.bg-format { background: var(--alpha-brand-100); color: var(--alpha-brand-950); }
+    .post-divider { margin: 16px 24px 0; border: none; border-top: 1px solid var(--alpha-light-50); }
+    .post-body { padding: 20px 24px 24px; }
+    .post-body p { margin-bottom: 16px; line-height: 24px; color: var(--alpha-light-600); }
+    .post-body p:last-child { margin-bottom: 0; }
+    .post-cta { margin-top: 16px; }
+    .post-cta p { color: var(--alpha-light-600); font-weight: 400; }
+
+    /* Section divider */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 200ms ease-out, background 150ms ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .post-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .post-title-bar { padding: 12px 16px 0; }
+      .post-divider { margin: 12px 16px 0; }
+      .post-body { padding: 16px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>
+      <div class="top-bar-title">Voice Teacher's AI Studio Assistant</div>
+      <div class="top-bar-subtitle">Facebook Campaign &middot; 10 Posts &middot; 19-Day Campaign</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Facebook Post Campaign</h1>
+    <p>10 posts for voice teachers in Alisa's network &mdash; former students, teaching colleagues, workshop attendees, and social media followers. 5 long-form text posts + 5 short color-background posts. Comment/DM CTAs only.</p>
+  </div>
+
+  <!-- Sequence Nav -->
+  <div class="section-label">Jump to post</div>
+  <div class="sequence-nav">
+    <a href="#post-1" class="nav-chip"><span class="nav-chip-num">1</span><span class="nav-chip-label">The Income Ceiling Nobody Talks About</span><span class="nav-chip-phase">Long-form &middot; Day 1</span></a>
+    <a href="#post-2" class="nav-chip"><span class="nav-chip-num">2</span><span class="nav-chip-label">What would getting 4-6 hours back...</span><span class="nav-chip-phase">Background &middot; Day 3</span></a>
+    <a href="#post-3" class="nav-chip"><span class="nav-chip-num">3</span><span class="nav-chip-label">The Sunday Night Scramble</span><span class="nav-chip-phase">Long-form &middot; Day 5</span></a>
+    <a href="#post-4" class="nav-chip"><span class="nav-chip-num">4</span><span class="nav-chip-label">How many students are you currently teaching?</span><span class="nav-chip-phase">Background &middot; Day 7</span></a>
+    <a href="#post-5" class="nav-chip"><span class="nav-chip-num">5</span><span class="nav-chip-label">What If It Is Not About Working Harder</span><span class="nav-chip-phase">Long-form &middot; Day 9</span></a>
+    <a href="#post-6" class="nav-chip"><span class="nav-chip-num">6</span><span class="nav-chip-label">If you could automate one part...</span><span class="nav-chip-phase">Background &middot; Day 11</span></a>
+    <a href="#post-7" class="nav-chip"><span class="nav-chip-num">7</span><span class="nav-chip-label">Why I Built This</span><span class="nav-chip-phase">Long-form &middot; Day 13</span></a>
+    <a href="#post-8" class="nav-chip"><span class="nav-chip-num">8</span><span class="nav-chip-label">What would you do with $12,500-$19,500...</span><span class="nav-chip-phase">Background &middot; Day 15</span></a>
+    <a href="#post-9" class="nav-chip"><span class="nav-chip-num">9</span><span class="nav-chip-label">The Cost of Waiting Another Year</span><span class="nav-chip-phase">Long-form &middot; Day 17</span></a>
+    <a href="#post-10" class="nav-chip"><span class="nav-chip-num">10</span><span class="nav-chip-label">The work that makes you a great voice teacher...</span><span class="nav-chip-phase">Background &middot; Day 19</span></a>
+  </div>
+
+  <!-- Cadence Table -->
+  <div class="cadence-section">
+    <h2>Posting cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr><th>#</th><th>Day</th><th>Format</th><th>Focus</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="day-badge">Day 1</span></td><td>Long-form</td><td><span class="phase-badge">Desire &mdash; income ceiling awareness</span></td></tr>
+        <tr><td>2</td><td><span class="day-badge">Day 3</span></td><td>Background</td><td><span class="phase-badge">Desire &mdash; gets people dreaming about time back</span></td></tr>
+        <tr><td>3</td><td><span class="day-badge">Day 5</span></td><td>Long-form</td><td><span class="phase-badge">Pain &mdash; Sunday night scramble validation</span></td></tr>
+        <tr><td>4</td><td><span class="day-badge">Day 7</span></td><td>Background</td><td><span class="phase-badge">Engagement &mdash; people share student numbers</span></td></tr>
+        <tr><td>5</td><td><span class="day-badge">Day 9</span></td><td>Long-form</td><td><span class="phase-badge">Pointing &mdash; AI trained on real pedagogy</span></td></tr>
+        <tr><td>6</td><td><span class="day-badge">Day 11</span></td><td>Background</td><td><span class="phase-badge">Desire &mdash; reveals priorities around automation</span></td></tr>
+        <tr><td>7</td><td><span class="day-badge">Day 13</span></td><td>Long-form</td><td><span class="phase-badge">Product intro &mdash; origin story and capabilities</span></td></tr>
+        <tr><td>8</td><td><span class="day-badge">Day 15</span></td><td>Background</td><td><span class="phase-badge">Pain &mdash; reflection on opportunity cost</span></td></tr>
+        <tr><td>9</td><td><span class="day-badge">Day 17</span></td><td>Long-form</td><td><span class="phase-badge">Pain + urgency &mdash; cost of inaction</span></td></tr>
+        <tr><td>10</td><td><span class="day-badge">Day 19</span></td><td>Background</td><td><span class="phase-badge">Belief statement &mdash; drives shares</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ POST 1 ============ -->
+  <div class="section-label">Posts 1&ndash;4 &mdash; Build problem awareness</div>
+
+  <div class="post-card" id="post-1">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">1</span>
+        <span class="post-phase">Desire &middot; Day 1</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-1')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">The Income Ceiling Nobody Talks About</span>
+      <span class="format-badge">Long-form</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-1">
+      <p>I want to talk about something most voice teachers already know but rarely say out loud.</p>
+      <p>There is a ceiling on what we can earn.</p>
+      <p>I have been teaching voice for over 30 years. Opera-trained, Carnegie Hall, 500-hour yoga certification, a 158-lesson app, college teaching experience. And even with all of that, the math works the same way it does for every private voice teacher.</p>
+      <p>Take 30 students at $50 an hour. Multiply that by 50 weeks. That is $75,000 before taxes, before studio rent, before sheet music and materials.</p>
+      <p>Now subtract what it actually costs to live. Costs that have gone up 25-30 percent since COVID.</p>
+      <p>That number is the ceiling. Not because you are not good enough. Not because you do not deserve more. But because there are only so many hours in a week, and every single one of those hours requires you to be in the room.</p>
+      <p>The thing that makes you a great teacher, the personalized attention, the deep listening, the ability to diagnose exactly what a student needs in real time, is the same thing that locks you into an hourly model.</p>
+      <p>I have spent the last two years thinking about how to change that equation. Not by teaching more hours. Not by raising rates to the point where students cannot afford you. Not by burning out.</p>
+      <p>By removing the bottleneck.</p>
+      <p>More on that soon. But first I want to know if this resonates.</p>
+      <p>If you are a voice teacher who has ever done this math and felt a knot in your stomach, drop a comment below. You are not alone.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 2 ============ -->
+  <div class="post-card background-post" id="post-2">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">2</span>
+        <span class="post-phase">Desire &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-2')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">[Background Post]</span>
+      <span class="format-badge bg-format">Background</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-2">
+      <p>What would getting 4-6 hours back every week change about the way you teach, the way you earn, or the way you rest?</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 3 ============ -->
+  <div class="post-card" id="post-3">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">3</span>
+        <span class="post-phase">Pain &middot; Day 5</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-3')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">The Sunday Night Scramble</span>
+      <span class="format-badge">Long-form</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-3">
+      <p>It is Sunday night. You have 25 lessons tomorrow and Tuesday. Your brain is fried from a full week of teaching. And you still need to sit down and plan.</p>
+      <p>Student A has been struggling with breath support for three weeks. Student B just started working on their first aria. Student C is 14 and going through a voice change. Student D has performance anxiety and a recital in two weeks. Student E has been with you for six years and you are running out of fresh material.</p>
+      <p>Every single one of them needs something different. That is what makes you a great teacher. That is also what takes 10-15 minutes per student per week in planning time.</p>
+      <p>Do the math. Thirty students at 10-15 minutes each. That is 5 to 7.5 hours a week just on lesson planning. That is 250 to 390 hours a year.</p>
+      <p>Now put a dollar amount on those hours. At $50 an hour, that is $12,500 to $19,500 worth of your time that you are spending on admin. Every year.</p>
+      <p>You are not getting paid for those hours. You never have been.</p>
+      <p>And the worst part is you cannot skip it. Because if you walk into a lesson unprepared, you know the difference. Your students know the difference. The quality drops. The thing that keeps students coming back for years, the thing that built your reputation, is that level of care.</p>
+      <p>So you sit down on Sunday night and you do it again.</p>
+      <p>I lived this for decades. I am not going to pretend I have always had the answer. But I finally found one.</p>
+      <p>If this is your Sunday night, send me a message. I want to hear what that looks like for you.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 4 ============ -->
+  <div class="post-card background-post" id="post-4">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">4</span>
+        <span class="post-phase">Engagement &middot; Day 7</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-4')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">[Background Post]</span>
+      <span class="format-badge bg-format">Background</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-4">
+      <p>How many students are you currently teaching per week? Genuinely curious.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 5 ============ -->
+  <div class="section-label">Posts 5&ndash;7 &mdash; Introduce the approach and product</div>
+
+  <div class="post-card" id="post-5">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">5</span>
+        <span class="post-phase">Pointing &middot; Day 9</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-5')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">What If It Is Not About Working Harder</span>
+      <span class="format-badge">Long-form</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-5">
+      <p>I want to tell you about something I have been working on.</p>
+      <p>For the last two years I have been asking a question that I think every experienced voice teacher eventually asks. How do I keep the quality of my teaching at the highest level without burning myself out to do it.</p>
+      <p>I tried hiring an assistant. The problem is that a good assistant costs $200-$300 a week, which is $10,400 to $15,600 a year. And even then, they cannot replicate what is in your head. They do not know your methodology. They do not know why you use a particular exercise with a particular student at a particular stage of development.</p>
+      <p>So I went a different direction.</p>
+      <p>I trained an AI on my actual pedagogy. Thirty years of teaching. My 12-step methodology. My proprietary exercises, the honey pot, primal sounds, energetic lines of force. The somatic and nervous system principles I have developed over hundreds of hours of study. The diagnostic frameworks I use to assess where a student is and what they need next.</p>
+      <p>Not ChatGPT. I tried ChatGPT. I asked it to create a lesson plan for a student with breath support issues and register breaks. It gave me generic scales and breathing exercises you could find in any textbook.</p>
+      <p>My AI gave me the honey pot exercise, primal sounds, and energetic lines of force. It gave me the why behind every suggestion. It spoke in teacher-to-teacher language. It accounted for voice type, age, and style.</p>
+      <p>That is the difference between generic AI and something trained on real expertise.</p>
+      <p>I built it for myself first. Then I realized every experienced voice teacher could use something like this.</p>
+      <p>It is called the Voice Teacher's AI Studio Assistant. I will share more about what it does in my next post. But if you are curious now, drop a comment or send me a message.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 6 ============ -->
+  <div class="post-card background-post" id="post-6">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">6</span>
+        <span class="post-phase">Desire &middot; Day 11</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-6')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">[Background Post]</span>
+      <span class="format-badge bg-format">Background</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-6">
+      <p>If you could automate one part of your teaching practice tomorrow, would it be lesson planning, progress reports, or warm-up sequences?</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 7 ============ -->
+  <div class="post-card" id="post-7">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">7</span>
+        <span class="post-phase">Product intro &middot; Day 13</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-7')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">Why I Built This</span>
+      <span class="format-badge">Long-form</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-7">
+      <p>I need to tell you the story of why the Voice Teacher's AI Studio Assistant exists.</p>
+      <p>Two years ago I was teaching a 70-year-old voice teacher. She has been teaching for 50 years. Five decades of pouring into students. And the thing she told me she was most tired of was explaining the same concepts over and over.</p>
+      <p>Not because she did not love teaching. Because the repetition was draining the joy out of it.</p>
+      <p>I recognized myself in her. After 30 years, I know the feeling. You have deep expertise but you spend most of your energy on the logistics of delivering it rather than the art of teaching itself.</p>
+      <p>So I built the Voice Teacher's AI Studio Assistant. Here is what it actually does.</p>
+      <p>It generates customized lesson plans for individual students based on their specific needs, voice type, age, and goals. It creates personalized warm-up sequences. It produces practice assignments that students can follow between lessons. It writes diagnostic assessments. It creates song-specific coaching notes. It generates progress tracking summaries and curriculum maps. It even writes parent and student progress reports.</p>
+      <p>All of it is based on my 30-year methodology. Not generic advice. Real pedagogy with the reasoning behind every recommendation.</p>
+      <p>Teachers in other fields are getting 4-6 hours back per week with AI-powered leverage. Voice teachers deserve the same.</p>
+      <p>I am opening this to 50 founding members at $397. After that, it goes to $497. One-time investment. Not a subscription. Not a monthly fee.</p>
+      <p>If you have been teaching for 5 years or more and you are ready to stop spending your Sunday nights planning 25 lessons for Monday, send me a message. I will tell you exactly how it works.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 8 ============ -->
+  <div class="section-label">Posts 8&ndash;10 &mdash; Reinforce and drive action</div>
+
+  <div class="post-card background-post" id="post-8">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">8</span>
+        <span class="post-phase">Pain &middot; Day 15</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-8')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">[Background Post]</span>
+      <span class="format-badge bg-format">Background</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-8">
+      <p>What would you do with an extra $12,500-$19,500 worth of time back every year?</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 9 ============ -->
+  <div class="post-card" id="post-9">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">9</span>
+        <span class="post-phase">Pain + urgency &middot; Day 17</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-9')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">The Cost of Waiting Another Year</span>
+      <span class="format-badge">Long-form</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-9">
+      <p>I want to be direct about something.</p>
+      <p>Every year you spend 250 to 390 hours on lesson planning alone. That is time you are not being paid for. At your hourly rate, that is $12,500 to $19,500 in opportunity cost. Every single year.</p>
+      <p>That means in the next five years, you will spend somewhere between 1,250 and 1,950 unpaid hours on admin work. That is $62,500 to $97,500 worth of your time.</p>
+      <p>I am not saying that to scare you. I am saying it because I lived it. For decades. And I wish someone had shown me the math earlier.</p>
+      <p>Here is what else happens when you wait.</p>
+      <p>You hit the income ceiling. $50 an hour, 25 students, 50 weeks, $62,500 before taxes. Meanwhile the cost of groceries, rent, gas, and insurance keeps climbing. Up 25-30 percent since COVID and still rising.</p>
+      <p>You start thinking about retirement and realize the numbers are not where they need to be. I know voice teachers in their 60s and 70s who cannot stop teaching because they cannot afford to. Not because they do not want to teach. Because they have no choice.</p>
+      <p>The Voice Teacher's AI Studio Assistant is a $397 one-time investment for the first 50 founding members. Compare that to $10,400-$15,600 per year for a human assistant who still cannot replicate your expertise. Compare it to another year of 250-390 unpaid hours.</p>
+      <p>This is not about replacing you. It is about giving you leverage. The same kind of leverage that teachers in other fields are already using to get 4-6 hours back every week.</p>
+      <p>Founding member spots are limited. If you want in, send me a message. I will walk you through everything.</p>
+    </div>
+  </div>
+
+  <!-- ============ POST 10 ============ -->
+  <div class="post-card background-post" id="post-10">
+    <div class="post-header">
+      <div class="post-num-badge">
+        <span class="post-num">10</span>
+        <span class="post-phase">Belief &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyPost(this,'post-body-10')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="post-title-bar">
+      <span class="post-title">[Background Post]</span>
+      <span class="format-badge bg-format">Background</span>
+    </div>
+    <hr class="post-divider">
+    <div class="post-body" id="post-body-10">
+      <p>The work that makes you a great voice teacher should not be the thing that traps you. You deserve leverage.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Back to top -->
+<a href="#" class="back-top" id="backTop">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg>
+</a>
+
+<script>
+function copyPost(btn, bodyId) {
+  const el = document.getElementById(bodyId);
+  const text = getPlainText(el);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent = 'Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('span').textContent = 'Copy'; }, 2000);
+  });
+}
+function getPlainText(el) {
+  let text = '';
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3) { text += node.textContent; }
+    else if (node.nodeType === 1) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'p' || tag === 'div') { text += getPlainText(node) + '\n\n'; }
+      else if (tag === 'br') { text += '\n'; }
+      else { text += getPlainText(node); }
+    }
+  });
+  return text.replace(/\n{3,}/g, '\n\n').trim();
+}
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => { backTop.classList.toggle('visible', window.scrollY > 400); });
+</script>
+
+</body>
+</html>

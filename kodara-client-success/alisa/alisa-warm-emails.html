@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alisa — Warm Email Sequence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; font-family: var(--font-primary); font-variation-settings: 'wdth' 100; background: var(--b-w-white); color: var(--alpha-light-600); font-size: 14px; line-height: 20px; letter-spacing: -0.15px; font-weight: 500; min-height: 100vh; }
+    .bg-orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+    .page-wrapper { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+    .top-bar { position: sticky; top: 0; z-index: 100; background: var(--alpha-dark-800); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--alpha-light-50); padding: 16px 24px; margin: -48px -24px 48px; }
+    .top-bar-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .top-bar-title { font-size: 14px; font-weight: 600; color: var(--alpha-light-900); letter-spacing: -0.15px; }
+    .top-bar-subtitle { font-size: 12px; color: var(--alpha-light-500); letter-spacing: -0.15px; }
+    .hero { text-align: center; padding: 24px 0 48px; }
+    .hero h1 { font-size: 32px; line-height: 40px; letter-spacing: -0.5px; font-weight: 400; color: var(--alpha-light-900); margin-bottom: 12px; }
+    .hero p { font-size: 14px; line-height: 22px; color: var(--alpha-light-500); max-width: 520px; margin: 0 auto; }
+    .sequence-nav { display: flex; flex-direction: column; gap: 8px; margin-bottom: 48px; }
+    .nav-chip { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--alpha-dark-300); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--alpha-light-50); border-radius: 16px; cursor: pointer; transition: background 150ms ease-out, border-color 150ms ease-out; text-decoration: none; color: inherit; width: 100%; }
+    .nav-chip:hover { background: var(--alpha-dark-600); border-color: var(--alpha-light-100); }
+    .nav-chip-num { width: 28px; height: 28px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .nav-chip-label { font-size: 13px; line-height: 18px; letter-spacing: -0.15px; color: var(--alpha-light-600); font-weight: 500; }
+    .nav-chip-phase { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--alpha-light-400); flex-shrink: 0; }
+    .cadence-section { margin-bottom: 48px; }
+    .cadence-section h2 { font-size: 20px; line-height: 28px; font-weight: 500; color: var(--alpha-light-900); margin-bottom: 16px; }
+    .cadence-table { width: 100%; background: var(--alpha-light-25); border-radius: 16px; padding: 4px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+    .cadence-table th { text-align: left; padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--alpha-light-500); letter-spacing: -0.15px; border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table td { padding: 10px 16px; font-size: 13px; color: var(--alpha-light-600); border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .cadence-table .phase-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-light-50); color: var(--alpha-light-600); border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .email-card { position: relative; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); border-radius: 16px; box-shadow: var(--shadow-card); margin-bottom: 32px; overflow: hidden; scroll-margin-top: 80px; }
+    .email-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; }
+    .email-num-badge { display: flex; align-items: center; gap: 10px; }
+    .email-num { width: 32px; height: 32px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .email-phase { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: -0.15px; text-transform: uppercase; }
+    .copy-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--alpha-light-25); border: 1px solid var(--alpha-light-100); border-radius: 8px; color: var(--alpha-light-600); font-family: var(--font-primary); font-variation-settings: 'wdth' 100; font-size: 12px; font-weight: 500; letter-spacing: -0.15px; cursor: pointer; transition: background 150ms ease-out, border-color 150ms ease-out; }
+    .copy-btn:hover { background: var(--alpha-light-50); border-color: var(--alpha-light-200); }
+    .copy-btn.copied { background: var(--alpha-brand-50); border-color: rgba(16,104,68,0.15); color: var(--alpha-brand-950); }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .email-subject-bar { padding: 16px 24px 0; }
+    .email-subject-label { font-size: 11px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .email-subject { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--alpha-light-900); }
+    .email-divider { margin: 16px 24px 0; border: none; border-top: 1px solid var(--alpha-light-50); }
+    .email-body { padding: 20px 24px 24px; }
+    .email-body p { margin-bottom: 16px; line-height: 24px; color: var(--alpha-light-600); }
+    .email-body p:last-child { margin-bottom: 0; }
+    .email-body strong { color: var(--alpha-light-600); font-weight: 400; }
+    .email-body ul, .email-body ol { list-style: none; margin: 0 0 16px 0; padding: 0; color: var(--alpha-light-600); line-height: 24px; }
+    .email-body li { margin-bottom: 6px; }
+    .email-body li::before { content: "- "; }
+    .email-body li:last-child { margin-bottom: 0; }
+    .email-body em { color: var(--alpha-light-600); font-style: normal; }
+    .email-cta { background: none; border: none; border-radius: 0; padding: 0; margin-top: 0; }
+    .email-cta p { color: var(--alpha-light-600) !important; margin-bottom: 0 !important; font-weight: 400; }
+    .email-cta strong { color: var(--alpha-light-600); font-weight: 400; }
+    .email-signoff { margin-top: 20px; color: var(--alpha-light-600); }
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .email-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .email-subject-bar { padding: 12px 16px 0; }
+      .email-divider { margin: 12px 16px 0; }
+      .email-body { padding: 16px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+    .section-label { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px; padding-left: 4px; }
+    .back-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 999px; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 200ms ease-out, background 150ms ease-out; opacity: 0; pointer-events: none; z-index: 50; }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="page-wrapper">
+
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span class="top-bar-title">Voice Teacher's AI Studio Assistant</span>
+      <span class="top-bar-subtitle">Warm Email Sequence &middot; 10 Emails &middot; 25-Day Campaign</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Warm Email Sequence</h1>
+    <p>10 emails for voice teachers already in Alisa's network — former students, workshop attendees, teaching colleagues, app users, and professional contacts. Personal, conversational, reply-based CTAs.</p>
+  </div>
+
+  <div class="section-label">Jump to email</div>
+
+  <div class="sequence-nav">
+    <a class="nav-chip" href="#email-1">
+      <span class="nav-chip-num">1</span>
+      <span class="nav-chip-label">25 students tomorrow, brain is fried</span>
+      <span class="nav-chip-phase">Desire &middot; Day 1</span>
+    </a>
+    <a class="nav-chip" href="#email-2">
+      <span class="nav-chip-num">2</span>
+      <span class="nav-chip-label">Why you can't grow past 30 students</span>
+      <span class="nav-chip-phase">Pain &middot; Day 3</span>
+    </a>
+    <a class="nav-chip" href="#email-3">
+      <span class="nav-chip-num">3</span>
+      <span class="nav-chip-label">The bottleneck nobody sees</span>
+      <span class="nav-chip-phase">Pointing &middot; Day 5</span>
+    </a>
+    <a class="nav-chip" href="#email-4">
+      <span class="nav-chip-num">4</span>
+      <span class="nav-chip-label">I had to solve this for myself first</span>
+      <span class="nav-chip-phase">Product intro &middot; Day 8</span>
+    </a>
+    <a class="nav-chip" href="#email-5">
+      <span class="nav-chip-num">5</span>
+      <span class="nav-chip-label">Here's what's inside (no surprises)</span>
+      <span class="nav-chip-phase">Product details &middot; Day 10</span>
+    </a>
+    <a class="nav-chip" href="#email-6">
+      <span class="nav-chip-num">6</span>
+      <span class="nav-chip-label">$397 vs. $19,500</span>
+      <span class="nav-chip-phase">Value anchor &middot; Day 13</span>
+    </a>
+    <a class="nav-chip" href="#email-7">
+      <span class="nav-chip-num">7</span>
+      <span class="nav-chip-label">What does next September look like?</span>
+      <span class="nav-chip-phase">Pain + urgency &middot; Day 16</span>
+    </a>
+    <a class="nav-chip" href="#email-8">
+      <span class="nav-chip-num">8</span>
+      <span class="nav-chip-label">The concern I hear most (honest answer)</span>
+      <span class="nav-chip-phase">Objection handling &middot; Day 19</span>
+    </a>
+    <a class="nav-chip" href="#email-9">
+      <span class="nav-chip-num">9</span>
+      <span class="nav-chip-label">Here's what happens after you join</span>
+      <span class="nav-chip-phase">Future pacing &middot; Day 22</span>
+    </a>
+    <a class="nav-chip" href="#email-10">
+      <span class="nav-chip-num">10</span>
+      <span class="nav-chip-label">Not going to keep emailing about this</span>
+      <span class="nav-chip-phase">Final CTA &middot; Day 25</span>
+    </a>
+  </div>
+
+  <div class="cadence-section">
+    <h2>Sending Cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Day</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 — The Sunday Night Feeling</td>
+          <td><span class="day-badge">Day 1</span></td>
+          <td><span class="phase-badge">Desire — opportunity awareness</span></td>
+        </tr>
+        <tr>
+          <td>2 — The Wall Nobody Talks About</td>
+          <td><span class="day-badge">Day 3</span></td>
+          <td><span class="phase-badge">Pain — validation of the struggle</span></td>
+        </tr>
+        <tr>
+          <td>3 — It's Not Your Students</td>
+          <td><span class="day-badge">Day 5</span></td>
+          <td><span class="phase-badge">Pointing — the general approach</span></td>
+        </tr>
+        <tr>
+          <td>4 — Why I Built This</td>
+          <td><span class="day-badge">Day 8</span></td>
+          <td><span class="phase-badge">Product intro — origin story</span></td>
+        </tr>
+        <tr>
+          <td>5 — Everything That's Included</td>
+          <td><span class="day-badge">Day 10</span></td>
+          <td><span class="phase-badge">Product details — full breakdown</span></td>
+        </tr>
+        <tr>
+          <td>6 — The Real Cost</td>
+          <td><span class="day-badge">Day 13</span></td>
+          <td><span class="phase-badge">Value anchor — price comparison</span></td>
+        </tr>
+        <tr>
+          <td>7 — What Another Year Costs</td>
+          <td><span class="day-badge">Day 16</span></td>
+          <td><span class="phase-badge">Pain + urgency — cost of inaction</span></td>
+        </tr>
+        <tr>
+          <td>8 — "Too Nuanced for AI"</td>
+          <td><span class="day-badge">Day 19</span></td>
+          <td><span class="phase-badge">Objection handling — specificity</span></td>
+        </tr>
+        <tr>
+          <td>9 — Your First 30 Days</td>
+          <td><span class="day-badge">Day 22</span></td>
+          <td><span class="phase-badge">Future pacing — onboarding vision</span></td>
+        </tr>
+        <tr>
+          <td>10 — Last One From Me</td>
+          <td><span class="day-badge">Day 25</span></td>
+          <td><span class="phase-badge">Final CTA — respectful close</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="section-label">Emails 1&ndash;3 &mdash; Build belief before product</div>
+
+  <!-- EMAIL 1 -->
+  <div class="email-card" id="email-1">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">1</span>
+        <span class="email-phase">Desire &middot; Day 1</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-1-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">25 students tomorrow, brain is fried</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-1-body">
+      <p>Hey [First Name],</p>
+      <p>Can I be honest with you about something?</p>
+      <p>It's Sunday night. You have 25 students tomorrow. And you're sitting there trying to remember what Sarah worked on last week, whether Michael's passaggio exercise needs to shift up, and what you assigned Diane for practice.</p>
+      <p>You love this work. You've given decades to it. But this part - the planning, the tracking, the mental load of holding 25-30 individual voices in your head at all times - it's exhausting in a way that nobody outside of teaching really understands.</p>
+      <p>I know because I've been doing this for 30 years and I still feel it.</p>
+      <p>The thing is, the part that makes you a great teacher - that deep, personalized attention to each student's voice - is the same part that keeps you chained to your desk on Sunday nights.</p>
+      <p>I've been working on something that might change that. Not ready to share everything yet, but I wanted you to be the first to know it's coming.</p>
+      <div class="email-cta"><p><strong>If the Sunday night scramble is something you deal with, reply and tell me. I want to hear what it actually looks like for you.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 2 -->
+  <div class="email-card" id="email-2">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">2</span>
+        <span class="email-phase">Pain &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-2-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Why you can't grow past 30 students</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-2-body">
+      <p>Hey [First Name],</p>
+      <p>There's an invisible ceiling in private voice teaching that nobody talks about.</p>
+      <p>It hits somewhere between 25 and 30 students per week. You know it's there because you've felt it.</p>
+      <p>At $50-$75 per lesson, 25 students puts you at roughly $62,500-$93,750 a year before taxes. That's before studio rent, insurance, accompanist fees, professional development, and the 25-30% cost-of-living increase we've all absorbed since 2020.</p>
+      <p>Want to make more? You have two options. Raise your rates and risk losing students. Or take on more students and burn out.</p>
+      <p>There is no third option in the current model.</p>
+      <p>Because the bottleneck isn't your talent. It isn't your reputation. It isn't even your schedule. It's the 10-15 minutes of planning, tracking, and preparation you need for every single student, every single week.</p>
+      <p>For 30 students, that's 5-7.5 hours per week. 250-390 hours per year. At your teaching rate, that's $12,500-$19,500 worth of time you're spending on admin instead of teaching or living your life.</p>
+      <p>And if you're in your 50s or 60s, looking at retirement numbers that don't add up, this math hits differently.</p>
+      <div class="email-cta"><p><strong>If you've hit this ceiling - or if you can feel it coming - reply and tell me. I'm working on something specifically for teachers in this position.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 3 -->
+  <div class="email-card" id="email-3">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">3</span>
+        <span class="email-phase">Pointing &middot; Day 5</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-3-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">The bottleneck nobody sees</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-3-body">
+      <p>Hey [First Name],</p>
+      <p>I want to share something I've come to believe after 30 years of teaching voice.</p>
+      <p>The thing that separates a good voice teacher from a great one isn't talent. It isn't credentials. It isn't even ears.</p>
+      <p>It's personalization.</p>
+      <p>Knowing that this student needs a longer warm-up focused on release before they can access their upper register. Knowing that student responds to somatic cues better than anatomical ones. Knowing exactly which exercise to pull out when a 62-year-old mezzo is losing flexibility in her middle voice.</p>
+      <p>That personalization is your superpower. It's why students stay with you for 5, 7, even 10 years.</p>
+      <p>But it also takes enormous mental energy. And there's no shortcut. You can't buy a pre-made curriculum for $300 and hand it to every student. That defeats the entire purpose. You can't hire an assistant for $25/hour because they don't have your pedagogical brain.</p>
+      <p>So you do it all yourself. And the work that makes you irreplaceable is the same work that traps you in an hourly model with a hard ceiling.</p>
+      <p>I've been asking myself: what if there were a way to keep the personalization but dramatically reduce the time it takes to produce it?</p>
+      <p>Not a template. Not a generic tool. Something that actually understands vocal pedagogy the way you and I do.</p>
+      <div class="email-cta"><p><strong>If you've ever tried to systematize your lesson planning and been frustrated by how inadequate the options are, reply and tell me what you tried. I've been through the same thing.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="section-label">Emails 4&ndash;6 &mdash; Introduce and justify the offer</div>
+
+  <!-- EMAIL 4 -->
+  <div class="email-card" id="email-4">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">4</span>
+        <span class="email-phase">Product intro &middot; Day 8</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-4-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">I had to solve this for myself first</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-4-body">
+      <p>Hey [First Name],</p>
+      <p>I want to tell you the real story behind something I've been building.</p>
+      <p>About a year ago, I was doing what I always do - prepping for a full week of students. Customized warm-ups. Individual practice assignments. Progress notes. Diagnostic thinking about each voice.</p>
+      <p>And I realized I was spending more time planning lessons than teaching them.</p>
+      <p>Thirty years of experience. Opera training at Carnegie Hall. A 500-hour yoga certification. A 12-step methodology I developed over decades. A 158-lesson app. College-level teaching.</p>
+      <p>All of that knowledge, sitting in my head, and I was spending 6+ hours a week just getting it onto paper for each student.</p>
+      <p>So I tried ChatGPT. It was terrible. It gave me generic warm-up sequences that could have come from a first-year music ed textbook. It didn't know the difference between a lyric soprano and a dramatic mezzo. It had never heard of somatic release techniques or nervous system regulation in singing. It certainly didn't know my honey pot exercise or my primal sounds work or energetic lines of force.</p>
+      <p>Generic AI doesn't speak our language. It doesn't think the way we think.</p>
+      <p>So I built something that does.</p>
+      <p>I took my entire 12-step methodology, my exercise library, my diagnostic frameworks, my decades of pedagogical thinking - and I created the <strong>Voice Teacher's AI Studio Assistant</strong>. An AI tool trained specifically on how experienced voice teachers actually work.</p>
+      <p>It's not a replacement for your brain. It's an extension of it.</p>
+      <div class="email-cta"><p><strong>If you want to know exactly what it does and how it works, reply with "tell me more" and I'll send you the full breakdown.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 5 -->
+  <div class="email-card" id="email-5">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">5</span>
+        <span class="email-phase">Product details &middot; Day 10</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-5-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's what's inside (no surprises)</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-5-body">
+      <p>Hey [First Name],</p>
+      <p>Several of you replied asking exactly what the Voice Teacher's AI Studio Assistant includes. So let me lay it all out. No fluff.</p>
+      <p><strong>The AI Studio Assistant generates:</strong></p>
+      <ul>
+        <li>Complete customized lesson plans for individual students - 15-20 minute session outlines with specific exercises, focus areas, and teaching cues tailored to that student's voice</li>
+        <li>Personalized warm-up sequences based on each student's voice type, technical challenges, and current development stage</li>
+        <li>Practice assignments with step-by-step instructions your students can actually follow at home</li>
+        <li>Diagnostic assessments that identify specific issues and suggest 3-5 targeted exercises with rationale for each</li>
+        <li>Song-specific coaching notes - how to approach that aria or pop ballad with this particular student</li>
+        <li>Progress tracking summaries so you never lose the thread between lessons</li>
+        <li>Curriculum maps for semester or year-long student development</li>
+        <li>Parent and student progress reports written in plain, non-technical language</li>
+      </ul>
+      <p><strong>What makes this different from generic AI:</strong></p>
+      <ul>
+        <li>Built on my 30+ years of vocal pedagogy and 12-step methodology</li>
+        <li>Includes my proprietary exercises: honey pot, primal sounds, energetic lines of force</li>
+        <li>Understands somatic and nervous system principles in singing</li>
+        <li>Speaks teacher-to-teacher language - not music ed textbook language</li>
+        <li>Accounts for voice types, age-related vocal changes, and style differences</li>
+        <li>Provides the "why" behind every suggestion, not just the "what"</li>
+        <li>Uses the metaphors and teaching language that actually work in the studio</li>
+      </ul>
+      <p><strong>The support package includes:</strong></p>
+      <ol>
+        <li>Quick-Start Guide (15-minute video walkthrough)</li>
+        <li>My 12-Step Methodology Overview (PDF + 20-minute video)</li>
+        <li>Exercise Library with Demonstrations (20-30 core exercises on video)</li>
+        <li>10 Sample Lesson Plans for common student profiles</li>
+        <li>Monthly Group Q&amp;A Calls (60 minutes live with me)</li>
+        <li>Private Teacher Community (so you're not figuring this out alone)</li>
+      </ol>
+      <p><strong>Launch pricing for the first 50 teachers:</strong></p>
+      <ul>
+        <li>$397 one-time (founding member price - regular price will be $497)</li>
+        <li>Or 3 payments of $179</li>
+      </ul>
+      <p>This is a one-time purchase. Not a subscription. You pay once and it's yours.</p>
+      <div class="email-cta"><p><strong>Reply with any questions. Or if you want me to walk you through it personally, just say the word.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 6 -->
+  <div class="email-card" id="email-6">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">6</span>
+        <span class="email-phase">Value anchor &middot; Day 13</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-6-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">$397 vs. $19,500</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-6-body">
+      <p>Hey [First Name],</p>
+      <p>Let me put some numbers side by side. Not to be salesy - just to be honest about what lesson planning actually costs.</p>
+      <p><strong>Option A: Keep doing it yourself</strong></p>
+      <ul>
+        <li>10-15 minutes per student per week</li>
+        <li>30 students = 5-7.5 hours per week</li>
+        <li>250-390 hours per year</li>
+        <li>At your teaching rate ($50-$75/hour), that's $12,500-$19,500 in time you're spending on planning instead of teaching, resting, or living</li>
+      </ul>
+      <p><strong>Option B: Hire a teaching assistant</strong></p>
+      <ul>
+        <li>$20-$30/hour, 10 hours per week = $10,400-$15,600 per year</li>
+        <li>But they can't replicate your pedagogical thinking</li>
+        <li>They don't know why you chose that exercise for that student</li>
+        <li>You still end up reviewing and redoing most of it</li>
+      </ul>
+      <p><strong>Option C: Buy a pre-made curriculum</strong></p>
+      <ul>
+        <li>$200-$600 one-time</li>
+        <li>Doesn't customize to individual students</li>
+        <li>Defeats the entire purpose of personalized teaching</li>
+        <li>Sits on your shelf after the first month</li>
+      </ul>
+      <p><strong>Option D: Voice Teacher's AI Studio Assistant</strong></p>
+      <ul>
+        <li>$397 one-time (founding member price)</li>
+        <li>Generates personalized materials for every student in minutes instead of hours</li>
+        <li>Built on 30 years of actual vocal pedagogy</li>
+        <li>40-60% time savings = 4-6 hours back per week</li>
+        <li>Monthly coaching calls with me</li>
+        <li>Pays for itself the first week you use it</li>
+      </ul>
+      <p>If you teach 25 students and save even 8 minutes per student per week, that's over 3 hours back. Every single week. For a one-time investment that costs less than what most teachers spend on accompanist fees in a month.</p>
+      <p>This isn't about replacing your expertise. It's about stopping the bleed of hours that you spend recreating the wheel.</p>
+      <div class="email-cta"><p><strong>Reply if you want to talk through what this would look like for your specific studio. I'm happy to do a quick call.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="section-label">Emails 7&ndash;10 &mdash; Handle objections and drive action</div>
+
+  <!-- EMAIL 7 -->
+  <div class="email-card" id="email-7">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">7</span>
+        <span class="email-phase">Pain + urgency &middot; Day 16</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-7-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">What does next September look like?</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-7-body">
+      <p>Hey [First Name],</p>
+      <p>I want to ask you something, and I want you to sit with it for a minute before you move on.</p>
+      <p>If nothing changes, what does next September look like?</p>
+      <p>Same number of students. Same Sunday night scramble. Same 5-7 hours a week spent on planning. Same ceiling on what you can earn. Same exhaustion by Thursday.</p>
+      <p>Now run the math forward one year.</p>
+      <p>That's another 250-390 hours spent on lesson prep. Another $12,500-$19,500 in time that could have gone to teaching additional students, professional development, or simply not working on weekends.</p>
+      <p>Another year of watching costs go up while your rates can't keep pace.</p>
+      <p>Another year closer to a retirement that the numbers don't support.</p>
+      <p>I'm not trying to create panic. I'm saying this because I've lived it. I know what it feels like to love this work and also feel trapped by the economics of it.</p>
+      <p>The Voice Teacher's AI Studio Assistant doesn't solve everything. But it solves the planning bottleneck. And the planning bottleneck is the thing standing between you and 4-6 extra hours every week.</p>
+      <p>The founding member price of $397 is only available to the first 50 teachers. After that, it goes to $497. We're past the halfway mark.</p>
+      <div class="email-cta"><p><strong>Reply and tell me - what would you do with 4-6 extra hours every week? I genuinely want to know.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 8 -->
+  <div class="email-card" id="email-8">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">8</span>
+        <span class="email-phase">Objection handling &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-8-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">The concern I hear most (honest answer)</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-8-body">
+      <p>Hey [First Name],</p>
+      <p>The most common response I've gotten to these emails is some version of:</p>
+      <p><em>"Alisa, this sounds interesting. But my teaching is too personalized. Too intuitive. Too nuanced. AI can't replicate what I do."</em></p>
+      <p>You're right. It can't.</p>
+      <p>And that's not what this does.</p>
+      <p>If you've tried ChatGPT or any generic AI tool for lesson planning, I understand your skepticism. Generic AI produces warm-up sequences that read like they came from an undergraduate methods textbook. It doesn't know what to do with a 58-year-old baritone who's losing flexibility in his passaggio. It doesn't understand why you'd use a somatic release exercise before a breath management drill. It has no concept of nervous system regulation in singing.</p>
+      <p>The Voice Teacher's AI Studio Assistant is different because it wasn't built by a tech company. It was built by me - a voice teacher, for voice teachers.</p>
+      <p>It knows my 12-step methodology. It knows honey pot and primal sounds and energetic lines of force. It understands why you'd sequence exercises differently for a 22-year-old musical theater soprano versus a 65-year-old choral alto. It gives you the pedagogical reasoning behind every suggestion.</p>
+      <p>Is it perfect every time? No. You'll adjust things. You'll add your own instincts and observations. That's the point - it gives you a strong, pedagogically sound starting point so you're refining instead of building from scratch.</p>
+      <p>Think of it as having a highly trained teaching assistant who studied with me for 30 years and produces a first draft that's 85-90% there. You add the final 10-15% - the part that only you can provide because you know that student.</p>
+      <p>That's 8 minutes of refining instead of 15 minutes of creating from nothing. For every student. Every week.</p>
+      <div class="email-cta"><p><strong>If you're still unsure, reply and describe your most challenging student. I'll show you exactly what the tool would generate for that scenario. No charge, no obligation.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 9 -->
+  <div class="email-card" id="email-9">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">9</span>
+        <span class="email-phase">Future pacing &middot; Day 22</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-9-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's what happens after you join</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-9-body">
+      <p>Hey [First Name],</p>
+      <p>A few people asked me what the first month actually looks like if they sign up. So let me walk through it.</p>
+      <p><strong>Day 1: You get access.</strong></p>
+      <p>You receive your login and the Quick-Start Guide. Takes about 15 minutes. Watch the walkthrough video. Review the 12-Step Methodology overview so you understand the framework the AI draws from.</p>
+      <p><strong>Days 2-3: Explore the Exercise Library.</strong></p>
+      <p>Watch the video demonstrations of the 20-30 core exercises. You'll recognize many of them. Some will be new. This is the foundation the AI uses when it builds lesson plans.</p>
+      <p><strong>Days 3-5: Your first lesson plan.</strong></p>
+      <p>Pick a student - ideally one you're prepping for that week. Input their voice type, level, current challenges, and what you've been working on. The AI generates a complete 15-20 minute session outline with exercises, focus areas, and teaching cues. Review it. Adjust it. Teach from it.</p>
+      <p><strong>Week 2: Build your student profiles.</strong></p>
+      <p>Start entering your regular students. The more context you give it, the better the output. Within a few sessions, you'll have profiles for your entire studio and the tool will generate increasingly personalized material.</p>
+      <p><strong>Week 2-3: Your first group Q&amp;A call.</strong></p>
+      <p>Join the monthly live call with me and other teachers using the tool. Ask questions. Share what's working. Get tips on prompting for specific scenarios - diagnostics, progress reports, curriculum mapping.</p>
+      <p><strong>Week 3-4: Feel the difference.</strong></p>
+      <p>By now, your Sunday nights look different. You're reviewing and refining AI-generated plans instead of building everything from scratch. Your practice assignments are more detailed because they took 2 minutes to generate instead of 10 to write. Your progress notes are current for the first time in months.</p>
+      <p><strong>By the end of month one,</strong> most teachers report saving 3-5 hours per week on planning. That's time back in your life. Or time to take on 3-4 more students without increasing your workload.</p>
+      <p>The founding member rate is $397 one-time. Or 3 payments of $179. Regular price will be $497 after the first 50 spots fill.</p>
+      <div class="email-cta"><p><strong>Reply "I'M READY" and I'll get you set up within 24 hours. Or reply with any remaining questions - I answer every one personally.</strong></p></div>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+  <!-- EMAIL 10 -->
+  <div class="email-card" id="email-10">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">10</span>
+        <span class="email-phase">Final CTA &middot; Day 25</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-10-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Not going to keep emailing about this</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-10-body">
+      <p>Hey [First Name],</p>
+      <p>This is my last email about the Voice Teacher's AI Studio Assistant launch.</p>
+      <p>Not because I don't believe in it. I do. I built it because I needed it myself, and because I've watched too many brilliant teachers burn out on the admin side of a career they love.</p>
+      <p>But I respect your inbox and your time.</p>
+      <p>Here's where things stand:</p>
+      <ul>
+        <li>We're almost at 50 founding members</li>
+        <li>After that, the price goes from $397 to $497</li>
+        <li>The 3-payment option of $179 is only available at the founding rate</li>
+        <li>Once the 50 spots fill, these prices are gone</li>
+      </ul>
+      <p>If you've been reading these emails and thinking "I need this" - now is the time.</p>
+      <p>If the timing isn't right, I completely understand. The tool will still be available after launch. It will just cost more.</p>
+      <p>And if lesson planning isn't your biggest challenge right now, that's fine too. I'm still here as a colleague and resource. That doesn't change.</p>
+      <p>But if you're spending 5-7 hours a week on planning that an AI trained on 30 years of vocal pedagogy could cut in half - and you know it - this was built for exactly that.</p>
+      <p>$397 one-time. Personalized lesson plans, warm-ups, practice assignments, diagnostics, progress reports, and curriculum maps for every student in your studio. Exercise library with video demonstrations. Monthly live Q&amp;A calls with me. A private community of teachers who teach the way you do.</p>
+      <p>One payment. Not a subscription. Yours to keep.</p>
+      <div class="email-cta"><p><strong>Reply "LET'S DO THIS" and I'll personally get you set up. Or reply with whatever's on your mind - I'd rather have an honest conversation than leave things unsaid.</strong></p></div>
+      <p>It's been good talking with you through these emails. Whatever you decide.</p>
+      <div class="email-signoff"><p>Alisa</p></div>
+    </div>
+  </div>
+
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+function copyEmail(btn, bodyId) {
+  const el = document.getElementById(bodyId);
+  const card = el.closest('.email-card');
+  const subject = card.querySelector('.email-subject').textContent;
+  const bodyText = getPlainText(el);
+  const full = 'Subject: ' + subject + '\n\n' + bodyText;
+  navigator.clipboard.writeText(full).then(() => {
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent = 'Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('span').textContent = 'Copy'; }, 2000);
+  });
+}
+function getPlainText(el) {
+  let text = '';
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3) { text += node.textContent; }
+    else if (node.nodeType === 1) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'p' || tag === 'div') { text += getPlainText(node) + '\n\n'; }
+      else if (tag === 'ul' || tag === 'ol') { node.querySelectorAll('li').forEach(li => { text += '- ' + li.textContent.trim() + '\n'; }); text += '\n'; }
+      else if (tag === 'br') { text += '\n'; }
+      else if (tag === 'hr') { }
+      else { text += getPlainText(node); }
+    }
+  });
+  return text.replace(/\n{3,}/g, '\n\n').trim();
+}
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => { backTop.classList.toggle('visible', window.scrollY > 400); });
+</script>
+
+</body>
+</html>
