@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alisa — Low-Ticket Product Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; font-family: var(--font-primary); font-variation-settings: 'wdth' 100; background: var(--b-w-white); color: var(--alpha-light-600); font-size: 14px; line-height: 20px; letter-spacing: -0.15px; font-weight: 500; min-height: 100vh; }
+    .bg-orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+    .page-wrapper { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
+    .top-bar { position: sticky; top: 0; z-index: 100; background: var(--alpha-dark-800); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--alpha-light-50); padding: 16px 24px; margin: -48px -24px 48px; }
+    .top-bar-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .top-bar-title { font-size: 14px; font-weight: 600; color: var(--alpha-light-900); letter-spacing: -0.15px; }
+    .top-bar-subtitle { font-size: 12px; color: var(--alpha-light-500); letter-spacing: -0.15px; }
+    .hero { text-align: center; padding: 24px 0 48px; }
+    .hero h1 { font-size: 32px; line-height: 40px; letter-spacing: -0.5px; font-weight: 400; color: var(--alpha-light-900); margin-bottom: 12px; }
+    .hero p { font-size: 14px; line-height: 22px; color: var(--alpha-light-500); max-width: 520px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; color: var(--alpha-light-400); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 20px; padding-left: 4px; }
+    .sequence-nav { display: flex; flex-direction: column; gap: 8px; margin-bottom: 48px; }
+    .nav-chip { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--alpha-dark-300); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--alpha-light-50); border-radius: 16px; cursor: pointer; transition: background 150ms ease-out, border-color 150ms ease-out; text-decoration: none; color: inherit; width: 100%; }
+    .nav-chip:hover { background: var(--alpha-dark-600); border-color: var(--alpha-light-100); }
+    .nav-chip-num { width: 28px; height: 28px; border-radius: 999px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .nav-chip-label { font-size: 13px; line-height: 18px; letter-spacing: -0.15px; color: var(--alpha-light-600); font-weight: 500; }
+    .nav-chip-phase { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--alpha-light-400); flex-shrink: 0; }
+    .cadence-section { margin-bottom: 48px; }
+    .cadence-section h2 { font-size: 20px; line-height: 28px; font-weight: 500; color: var(--alpha-light-900); margin-bottom: 16px; }
+    .cadence-table { width: 100%; background: var(--alpha-light-25); border-radius: 16px; padding: 4px; border-collapse: separate; border-spacing: 0; overflow: hidden; }
+    .cadence-table th { text-align: left; padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--alpha-light-500); letter-spacing: -0.15px; border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table td { padding: 10px 16px; font-size: 13px; color: var(--alpha-light-600); border-bottom: 1px solid var(--alpha-light-50); }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-brand-50); color: var(--alpha-brand-950); border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .cadence-table .phase-badge { display: inline-block; padding: 2px 8px; background: var(--alpha-light-50); color: var(--alpha-light-600); border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .back-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 999px; background: var(--b-w-white); border: 1px solid var(--alpha-light-100); box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 200ms ease-out, background 150ms ease-out; opacity: 0; pointer-events: none; z-index: 50; text-decoration: none; }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+
+    /* Product idea card */
+    .idea-card {
+      position: relative;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 32px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+    .idea-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 0;
+    }
+    .idea-num-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .idea-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .idea-audience {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: -0.15px;
+      text-transform: uppercase;
+    }
+    .idea-title-bar {
+      padding: 16px 24px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .idea-title {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+    }
+    .price-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .idea-divider {
+      margin: 16px 24px 0;
+      border: none;
+      border-top: 1px solid var(--alpha-light-50);
+    }
+    .idea-body {
+      padding: 20px 24px 24px;
+    }
+    .idea-body p {
+      margin-bottom: 12px;
+      line-height: 24px;
+      color: var(--alpha-light-600);
+    }
+    .idea-body p:last-child { margin-bottom: 0; }
+    .idea-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--alpha-light-50);
+    }
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-500);
+    }
+    .meta-tag.upsell {
+      background: var(--alpha-brand-50);
+      border-color: rgba(16,104,68,0.10);
+      color: var(--alpha-brand-950);
+    }
+    @media (max-width: 640px) {
+      .idea-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .idea-title-bar { padding: 12px 16px 0; }
+      .idea-divider { margin: 12px 16px 0; }
+      .idea-body { padding: 16px; }
+    }
+
+    /* Strategic notes */
+    .strategic-card {
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .strategic-card h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 24px;
+    }
+    .strategic-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+    .strategic-card h3:first-of-type { margin-top: 0; }
+    .strategic-card p {
+      line-height: 24px;
+      color: var(--alpha-light-600);
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-inner">
+        <span class="top-bar-title">Alisa Larsen</span>
+        <span class="top-bar-subtitle">Low-Ticket Product Ideas &middot; 20 Products &middot; Direct Response Strategy</span>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Low-Ticket Product Ideas</h1>
+      <p>20 low-ticket products to supplement Alisa's core offers. Designed to generate immediate revenue, qualify buyers, offset ad costs, and feed into the AI Studio Assistant ($397), AI Coach ($67/mo), and Fall In Love With Your Voice program ($5,500).</p>
+    </div>
+
+    <!-- Nav -->
+    <div class="section-label">Jump to product</div>
+    <div class="sequence-nav">
+      <a href="#idea-1" class="nav-chip">
+        <span class="nav-chip-num">1</span>
+        <span class="nav-chip-label">7-Day Voice Unlock Challenge</span>
+        <span class="nav-chip-phase">$17</span>
+      </a>
+      <a href="#idea-2" class="nav-chip">
+        <span class="nav-chip-num">2</span>
+        <span class="nav-chip-label">"What's Wrong With My Voice?" Diagnostic Guide</span>
+        <span class="nav-chip-phase">$9</span>
+      </a>
+      <a href="#idea-3" class="nav-chip">
+        <span class="nav-chip-num">3</span>
+        <span class="nav-chip-label">The Perfect 15-Minute Daily Warm-Up</span>
+        <span class="nav-chip-phase">$19</span>
+      </a>
+      <a href="#idea-4" class="nav-chip">
+        <span class="nav-chip-num">4</span>
+        <span class="nav-chip-label">"Sing This Song" Monthly Workshop</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-5" class="nav-chip">
+        <span class="nav-chip-num">5</span>
+        <span class="nav-chip-label">Performance Anxiety SOS Kit</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-6" class="nav-chip">
+        <span class="nav-chip-num">6</span>
+        <span class="nav-chip-label">"Singing From the Inside Out" Mini-Course</span>
+        <span class="nav-chip-phase">$37</span>
+      </a>
+      <a href="#idea-7" class="nav-chip">
+        <span class="nav-chip-num">7</span>
+        <span class="nav-chip-label">Honeypot + Primal Sounds Masterclass</span>
+        <span class="nav-chip-phase">$17</span>
+      </a>
+      <a href="#idea-8" class="nav-chip">
+        <span class="nav-chip-num">8</span>
+        <span class="nav-chip-label">30-Day Practice Calendar</span>
+        <span class="nav-chip-phase">$9</span>
+      </a>
+      <a href="#idea-9" class="nav-chip">
+        <span class="nav-chip-num">9</span>
+        <span class="nav-chip-label">Find Your Voice Type + Starting Plan</span>
+        <span class="nav-chip-phase">$12</span>
+      </a>
+      <a href="#idea-10" class="nav-chip">
+        <span class="nav-chip-num">10</span>
+        <span class="nav-chip-label">"Fear to Freedom: First Song in 14 Days"</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-11" class="nav-chip">
+        <span class="nav-chip-num">11</span>
+        <span class="nav-chip-label">Voice Teacher's Income Calculator</span>
+        <span class="nav-chip-phase">$17</span>
+      </a>
+      <a href="#idea-12" class="nav-chip">
+        <span class="nav-chip-num">12</span>
+        <span class="nav-chip-label">Studio Admin Toolkit</span>
+        <span class="nav-chip-phase">$37</span>
+      </a>
+      <a href="#idea-13" class="nav-chip">
+        <span class="nav-chip-num">13</span>
+        <span class="nav-chip-label">"How to Teach Belt Safely" Workshop</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-14" class="nav-chip">
+        <span class="nav-chip-num">14</span>
+        <span class="nav-chip-label">"The Diagnostic Ear" Framework</span>
+        <span class="nav-chip-phase">$47</span>
+      </a>
+      <a href="#idea-15" class="nav-chip">
+        <span class="nav-chip-num">15</span>
+        <span class="nav-chip-label">"10 Lesson Plans You Can Steal"</span>
+        <span class="nav-chip-phase">$17</span>
+      </a>
+      <a href="#idea-16" class="nav-chip">
+        <span class="nav-chip-num">16</span>
+        <span class="nav-chip-label">"The Sunday Night Solution" Planning Workshop</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-17" class="nav-chip">
+        <span class="nav-chip-num">17</span>
+        <span class="nav-chip-label">Breath Support Bootcamp</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-18" class="nav-chip">
+        <span class="nav-chip-num">18</span>
+        <span class="nav-chip-label">Nervous System Reset for Singers</span>
+        <span class="nav-chip-phase">$17</span>
+      </a>
+      <a href="#idea-19" class="nav-chip">
+        <span class="nav-chip-num">19</span>
+        <span class="nav-chip-label">Register Transitions Decoded Workshop</span>
+        <span class="nav-chip-phase">$27</span>
+      </a>
+      <a href="#idea-20" class="nav-chip">
+        <span class="nav-chip-num">20</span>
+        <span class="nav-chip-label">"Your First AI Lesson Plan in 10 Minutes"</span>
+        <span class="nav-chip-phase">$7</span>
+      </a>
+    </div>
+
+    <!-- Summary Table -->
+    <div class="cadence-section">
+      <h2>Product Summary</h2>
+      <table class="cadence-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Audience</th>
+            <th>Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="day-badge">1</span></td>
+            <td>7-Day Voice Unlock Challenge</td>
+            <td>$17</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">2</span></td>
+            <td>"What's Wrong With My Voice?" Diagnostic Guide</td>
+            <td>$9</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Liquidator</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">3</span></td>
+            <td>The Perfect 15-Minute Daily Warm-Up</td>
+            <td>$19</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">4</span></td>
+            <td>"Sing This Song" Monthly Workshop</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Recurring</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">5</span></td>
+            <td>Performance Anxiety SOS Kit</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">6</span></td>
+            <td>"Singing From the Inside Out" Mini-Course</td>
+            <td>$37</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">7</span></td>
+            <td>Honeypot + Primal Sounds Masterclass</td>
+            <td>$17</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">8</span></td>
+            <td>30-Day Practice Calendar</td>
+            <td>$9</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Liquidator</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">9</span></td>
+            <td>Find Your Voice Type + Starting Plan</td>
+            <td>$12</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Liquidator</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">10</span></td>
+            <td>"Fear to Freedom: First Song in 14 Days"</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Singers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">11</span></td>
+            <td>Voice Teacher's Income Calculator</td>
+            <td>$17</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">12</span></td>
+            <td>Studio Admin Toolkit</td>
+            <td>$37</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">13</span></td>
+            <td>"How to Teach Belt Safely" Workshop</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">14</span></td>
+            <td>"The Diagnostic Ear" Framework</td>
+            <td>$47</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">15</span></td>
+            <td>"10 Lesson Plans You Can Steal"</td>
+            <td>$17</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">16</span></td>
+            <td>"The Sunday Night Solution" Planning Workshop</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Upsell Trigger</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">17</span></td>
+            <td>Breath Support Bootcamp</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Both</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">18</span></td>
+            <td>Nervous System Reset for Singers</td>
+            <td>$17</td>
+            <td><span class="phase-badge">Both</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">19</span></td>
+            <td>Register Transitions Decoded Workshop</td>
+            <td>$27</td>
+            <td><span class="phase-badge">Both</span></td>
+            <td><span class="phase-badge">Tripwire</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">20</span></td>
+            <td>"Your First AI Lesson Plan in 10 Minutes"</td>
+            <td>$7</td>
+            <td><span class="phase-badge">Teachers</span></td>
+            <td><span class="phase-badge">Liquidator</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Products 1-10: Singers -->
+    <div class="section-label">Products 1&ndash;10 &mdash; For singers (B2C)</div>
+
+    <!-- Idea 1 -->
+    <div class="idea-card" id="idea-1">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">1</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">7-Day Voice Unlock Challenge</span>
+        <span class="price-badge">$17</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Daily 10-minute guided video. Each day targets one block: tension, breath, fear, range, resonance, expression, performance. Day 7 they record themselves singing. Quick transformation, massive testimonial engine.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 2 -->
+    <div class="idea-card" id="idea-2">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">2</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"What's Wrong With My Voice?" Diagnostic Audio Guide</span>
+        <span class="price-badge">$9</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Alisa walks through 8 common vocal symptoms (cracking, tightness, breathy tone, pitch issues, fatigue) with a self-assessment checklist and 2-3 exercises per symptom. Solves the "I don't know what to work on" problem that drives the entire funnel.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Liquidator</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 3 -->
+    <div class="idea-card" id="idea-3">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">3</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">The Perfect 15-Minute Daily Warm-Up</span>
+        <span class="price-badge">$19</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Four voice-type-specific warm-up audio tracks (soprano, alto, tenor, lower voice) using proprietary exercises. They press play every morning. Replaces YouTube scrolling. Sticky daily-use product that builds habit and trust.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 4 -->
+    <div class="idea-card" id="idea-4">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">4</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"Sing This Song" Monthly Workshop</span>
+        <span class="price-badge">$27/each</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>One popular song per month, broken down in a 60-90 minute recorded workshop. Technical coaching on every phrase. Songs the demographic loves (Fleetwood Mac, Adele, hymns, jazz standards).</p>
+        <p>Recurring revenue — library grows over time. Could become a $9/mo subscription archive.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Recurring revenue</span>
+          <span class="meta-tag upsell">Feeds into: Community + App ($197/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 5 -->
+    <div class="idea-card" id="idea-5">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">5</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Performance Anxiety SOS Kit</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Nervous system regulation exercises, pre-performance breathing protocol, mental rehearsal audio scripts, and a "day-of" checklist. Combines yoga certification with vocal coaching. Solves a visceral, urgent problem with high perceived value.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: Fall In Love With Your Voice ($5,500)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 6 -->
+    <div class="idea-card" id="idea-6">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">6</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"Singing From the Inside Out" Mini-Course</span>
+        <span class="price-badge">$37</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>5 short videos (10-15 min each) introducing the somatic/nervous system approach. Why technique alone doesn't work. Why your body holds the key. Gives them the philosophy — makes them want the methodology.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: Fall In Love With Your Voice ($5,500)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 7 -->
+    <div class="idea-card" id="idea-7">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">7</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Honeypot + Primal Sounds Masterclass</span>
+        <span class="price-badge">$17</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Deep-dive workshop on two signature exercises. Variations for different voice types, common mistakes, when to use each, video demonstrations. Positions proprietary methods as the thing generic YouTube can't give you.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: App-only access ($130/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 8 -->
+    <div class="idea-card" id="idea-8">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">8</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">30-Day Practice Calendar</span>
+        <span class="price-badge">$9</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Printable/digital calendar with a specific exercise, focus, and 15-minute routine for each day. Progressive difficulty. Built for the singer who wants to practice but doesn't know what to do. Lowest-friction entry point.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Liquidator</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 9 -->
+    <div class="idea-card" id="idea-9">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">9</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Find Your Voice Type + Starting Plan</span>
+        <span class="price-badge">$12</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Guided self-assessment with audio examples. Discover voice type, usable range, and current strengths/weaknesses, then get a personalized 2-week starter plan. Solves the "where do I even begin" problem.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Liquidator</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 10 -->
+    <div class="idea-card" id="idea-10">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">10</span>
+          <span class="idea-audience">Singers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"Fear to Freedom: Your First Song in 14 Days"</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Step-by-step roadmap for choosing, learning, and performing a first song. Includes song selection criteria, daily practice schedule, nervous system prep, and a recording challenge on day 14. Targets "I've always wanted to sing but never have" — huge cold audience potential.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products 11-16: Teachers -->
+    <div class="section-label">Products 11&ndash;16 &mdash; For voice teachers (B2B)</div>
+
+    <!-- Idea 11 -->
+    <div class="idea-card" id="idea-11">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">11</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Voice Teacher's Income Calculator</span>
+        <span class="price-badge">$17</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Spreadsheet + 20-minute video. Calculates true hourly rate (including unpaid prep), shows the ceiling math, maps out 3 scenarios for breaking it. Hits the exact pain from the email sequence. Every teacher who buys this is pre-sold on the AI tool.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 12 -->
+    <div class="idea-card" id="idea-12">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">12</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Studio Admin Toolkit</span>
+        <span class="price-badge">$37</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Done-for-you templates: student intake forms, progress tracking sheets, parent communication emails, cancellation/no-show policies, recital planning checklists, rate increase announcement scripts. High utility, high perceived value.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 13 -->
+    <div class="idea-card" id="idea-13">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">13</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"How to Teach Belt Without Blowing Out Your Students" Workshop</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Recorded 90-minute workshop on teaching belt technique safely using Alisa's somatic approach. One specific, high-demand pedagogical skill. Could be a series: belt, passaggio, vibrato, breath support, aging voices. Each $27.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 14 -->
+    <div class="idea-card" id="idea-14">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">14</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"The Diagnostic Ear" Framework</span>
+        <span class="price-badge">$47</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Mini-course teaching teachers how to listen diagnostically. What to listen for, how to match symptoms to exercises, how to sequence corrections. The intellectual foundation behind the AI tool. Makes teachers better AND makes them want the AI.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 15 -->
+    <div class="idea-card" id="idea-15">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">15</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"10 Lesson Plans You Can Steal"</span>
+        <span class="price-badge">$17</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Ten AI-generated lesson plans for common student profiles (beginner adult, teen with anxiety, returning singer, belt-focused, classical crossover) with Alisa's commentary on why each exercise was chosen. Gives a taste of AI output quality.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 16 -->
+    <div class="idea-card" id="idea-16">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">16</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"The Sunday Night Solution" Planning Workshop</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>60-minute workshop showing Alisa's actual planning process — how she thinks through a week of students, shortcuts, frameworks for faster decisions. Useful standalone. Also makes them realize the AI does this in 2 minutes.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Upsell trigger</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products 17-20: Cross-audience -->
+    <div class="section-label">Products 17&ndash;20 &mdash; Cross-audience</div>
+
+    <!-- Idea 17 -->
+    <div class="idea-card" id="idea-17">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">17</span>
+          <span class="idea-audience">Both</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Breath Support Bootcamp</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>3-day intensive. Day 1: understanding support (real anatomy, not "breathe from your diaphragm"). Day 2: exercises for building support. Day 3: applying support to songs/teaching. Short videos + practice audio tracks. The #1 topic every singer and teacher cares about.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: AI Coach ($67/mo) or AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 18 -->
+    <div class="idea-card" id="idea-18">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">18</span>
+          <span class="idea-audience">Both</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Nervous System Reset for Singers (Audio Series)</span>
+        <span class="price-badge">$17</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Four 20-minute guided audio sessions combining yoga, breath work, and somatic release. Pre-lesson calm-down, pre-performance grounding, post-lesson recovery, daily regulation practice. Leverages yoga certification in a way nobody else offers.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: Fall In Love With Your Voice ($5,500)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 19 -->
+    <div class="idea-card" id="idea-19">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">19</span>
+          <span class="idea-audience">Both</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">Register Transitions Decoded Workshop</span>
+        <span class="price-badge">$27</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Chest to head. Mix voice. Passaggio work. The technical problem that frustrates more singers and teachers than any other. 90-minute recorded workshop with exercises, demonstrations, and voice-type-specific modifications. Evergreen demand.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Tripwire</span>
+          <span class="meta-tag upsell">Feeds into: App-only ($130/mo) or AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idea 20 -->
+    <div class="idea-card" id="idea-20">
+      <div class="idea-header">
+        <div class="idea-num-badge">
+          <span class="idea-num">20</span>
+          <span class="idea-audience">Teachers</span>
+        </div>
+      </div>
+      <div class="idea-title-bar">
+        <span class="idea-title">"Your First AI Lesson Plan in 10 Minutes"</span>
+        <span class="price-badge">$7</span>
+      </div>
+      <hr class="idea-divider">
+      <div class="idea-body">
+        <p>Ultra-low-ticket tripwire. Step-by-step PDF + 10-minute video showing exactly how to generate a lesson plan with the AI tool using 3 real student scenarios. Includes limited trial/demo access. Pure gateway to the $397 product. Run as Facebook ad.</p>
+        <div class="idea-meta">
+          <span class="meta-tag">Liquidator</span>
+          <span class="meta-tag upsell">Feeds into: AI Studio Assistant ($397)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategic Notes -->
+    <div class="section-label">Strategic Notes</div>
+
+    <div class="strategic-card">
+      <h2>Strategic Notes</h2>
+
+      <h3>Best Liquidators (offset ad spend)</h3>
+      <p>#2, #8, #9, #20 — under $12, impulse buys, high volume, qualify buyers instantly.</p>
+
+      <h3>Best Upsell Triggers (lead to core offers)</h3>
+      <p>#11 leads to AI Studio Assistant. #6 leads to 12-month program. #10 leads to AI Coach subscription. #15 and #20 are tripwires to the $397 tool.</p>
+
+      <h3>Best Recurring Revenue</h3>
+      <p>#4 (monthly song workshops) could become a $9/mo archive subscription — low churn, growing library.</p>
+
+      <h3>Best Cold Traffic Offers</h3>
+      <p>#1, #8, #10 for singers. #11, #20 for teachers. Solve immediately recognizable problems without requiring brand awareness.</p>
+    </div>
+
+  </div>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-top" id="backTop">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg>
+  </a>
+
+  <script>
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => { backTop.classList.toggle('visible', window.scrollY > 400); });
+  </script>
+
+</body>
+</html>
