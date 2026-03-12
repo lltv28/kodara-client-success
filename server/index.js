@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { createDb } from './db/setup.js';
 import { authRoutes } from './routes/auth.js';
 import { requireAuth } from './middleware/auth.js';
+import { clientRoutes } from './routes/clients.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SQLiteStore = connectSqlite3(session);
@@ -47,6 +48,8 @@ export function createApp(dbPath) {
 
   // Protected API routes (added in later tasks)
   app.use('/api', requireAuth);
+
+  app.use('/api/clients', clientRoutes(db));
 
   return app;
 }
