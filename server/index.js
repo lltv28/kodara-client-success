@@ -4,11 +4,13 @@ import connectSqlite3 from 'connect-sqlite3';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import Anthropic from '@anthropic-ai/sdk';
 import { createDb } from './db/setup.js';
 import { authRoutes } from './routes/auth.js';
 import { requireAuth } from './middleware/auth.js';
 import { clientRoutes } from './routes/clients.js';
 import { deliverableRoutes } from './routes/deliverables.js';
+import { generateDeliverables } from './services/generation.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SQLiteStore = connectSqlite3(session);
@@ -52,6 +54,13 @@ export function createApp(dbPath) {
 
   app.use('/api/clients', clientRoutes(db));
   app.use('/api/clients/:id', deliverableRoutes(db));
+
+  const anthropicClient = process.env.ANTHROPIC_API_KEY
+    ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+    : null;
+
+  app.locals.generateDeliverables = (clientId, types, dbRef) =>
+    generateDeliverables(clientId, types, dbRef, anthropicClient, app.locals.activeGenerations);
 
   return app;
 }
