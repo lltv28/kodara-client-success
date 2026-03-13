@@ -11,6 +11,7 @@ import { requireAuth } from './middleware/auth.js';
 import { clientRoutes } from './routes/clients.js';
 import { deliverableRoutes } from './routes/deliverables.js';
 import { generateDeliverables } from './services/generation.js';
+import { shareRoutes } from './routes/share.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SQLiteStore = connectSqlite3(session);
@@ -48,6 +49,8 @@ export function createApp(dbPath) {
   // Public routes (no auth required)
   app.get('/api/health', (_req, res) => res.json({ ok: true }));
   app.use('/api/auth', authRoutes(db));
+  app.use('/share', shareRoutes(db));
+  app.use('/share.css', express.static(path.join(__dirname, '..', 'client', 'public', 'share.css')));
 
   // Protected API routes (added in later tasks)
   app.use('/api', requireAuth);
