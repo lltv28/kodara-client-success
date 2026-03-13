@@ -65,6 +65,15 @@ export function createApp(dbPath) {
   app.locals.generateDeliverables = (clientId, types, dbRef) =>
     generateDeliverables(clientId, types, dbRef, anthropicClient, app.locals.activeGenerations);
 
+  // In production, serve the built React app
+  if (process.env.NODE_ENV === 'production') {
+    const distPath = path.join(__dirname, '..', 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  }
+
   return app;
 }
 
