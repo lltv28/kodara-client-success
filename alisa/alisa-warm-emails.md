@@ -1,4 +1,4 @@
-# Alisa Belflower - Warm Email Sequence (10 Emails)
+# Alisa Larsen - Warm Email Sequence (10 Emails)
 ## Voice Teacher's AI Studio Assistant - Warm List Campaign
 
 **Audience:** Voice teachers and vocal coaches already in Alisa's network - former students, workshop attendees, teaching colleagues, social media followers, app users, and professional contacts. They know who she is and respect her pedagogy. These emails are personal and conversational.

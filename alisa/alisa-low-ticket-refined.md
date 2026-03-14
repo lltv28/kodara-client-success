@@ -1,4 +1,4 @@
-# Alisa Belflower — Low-Ticket Offer Analysis & Refinement
+# Alisa Larsen — Low-Ticket Offer Analysis & Refinement
 ## Hormozi $100M Offers Framework Applied
 
 ---
@@ -208,7 +208,7 @@ Four complete warm-up audio tracks — one for each voice type (soprano, alto, t
 - Song licensing/rights could be an issue depending on how material is presented.
 
 **Refined Name (MAGIC):**
-> **Song Breakdown Workshop: [Song Name] with Alisa Belflower**
+> **Song Breakdown Workshop: [Song Name] with Alisa Larsen**
 > (G: learn to sing a specific song | C: Workshop)
 
 **Each month's workshop gets its own title, e.g.:**
