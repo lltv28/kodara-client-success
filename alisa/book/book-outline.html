@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alisa Larsen — Book Outline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+
+    /* Decorative background orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+
+    /* Layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 100px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--alpha-dark-800);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--alpha-light-50);
+      padding: 16px 24px;
+      margin: -48px -24px 48px;
+    }
+    .top-bar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .top-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-subtitle {
+      font-size: 12px;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .pdf-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: var(--alpha-brand-50);
+      border: 1px solid var(--alpha-brand-200);
+      border-radius: 8px;
+      color: var(--alpha-brand-950);
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.15px;
+      cursor: pointer;
+      transition: background 150ms ease-out;
+    }
+    .pdf-btn:hover { background: var(--alpha-brand-100); }
+    .pdf-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 16px 0 48px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--alpha-brand-950);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0.7;
+    }
+    .hero h1 {
+      font-size: 34px;
+      line-height: 42px;
+      letter-spacing: -0.6px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 10px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      line-height: 26px;
+      color: var(--alpha-light-500);
+      margin-bottom: 6px;
+    }
+    .hero-author {
+      font-size: 13px;
+      color: var(--alpha-light-400);
+      margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .hero-stat {
+      padding: 10px 20px;
+      border-right: 1px solid var(--alpha-light-100);
+      text-align: center;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.3px;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-left: 2px;
+    }
+
+    /* Chapter nav — horizontal scroll chips */
+    .chapter-nav-wrap {
+      margin-bottom: 56px;
+    }
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .nav-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      color: var(--alpha-light-600);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;
+      flex-shrink: 0;
+      letter-spacing: -0.1px;
+    }
+    .nav-chip:hover {
+      background: var(--alpha-brand-50);
+      border-color: var(--alpha-brand-200);
+      color: var(--alpha-brand-950);
+    }
+    .nav-chip.active {
+      background: var(--alpha-brand-100);
+      border-color: var(--alpha-brand-200);
+      color: var(--alpha-brand-950);
+    }
+    .nav-chip-special {
+      width: auto;
+      padding: 0 12px;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Part divider */
+    .part-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 28px;
+    }
+    .part-divider:first-of-type { margin-top: 0; }
+    .part-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--alpha-brand-50);
+      border: 1px solid var(--alpha-brand-200);
+      border-radius: 999px;
+      color: var(--alpha-brand-950);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .part-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .part-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--alpha-light-100);
+    }
+
+    /* Chapter card */
+    .chapter-card {
+      position: relative;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .chapter-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .chapter-header-text { flex: 1; min-width: 0; }
+    .chapter-part-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .chapter-title {
+      font-size: 17px;
+      line-height: 24px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.25px;
+    }
+
+    /* Chapter body */
+    .chapter-body {
+      padding: 20px 24px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .chapter-body.single-col {
+      grid-template-columns: 1fr;
+    }
+
+    /* Content block */
+    .content-block {
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .content-block.full-width {
+      grid-column: 1 / -1;
+    }
+    .content-block-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .content-block-text {
+      font-size: 13px;
+      line-height: 20px;
+      color: var(--alpha-light-600);
+    }
+
+    /* Key sections list */
+    .sections-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sections-list li {
+      font-size: 12px;
+      line-height: 18px;
+      color: var(--alpha-light-600);
+      padding-left: 14px;
+      position: relative;
+    }
+    .sections-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--alpha-brand-950);
+      opacity: 0.4;
+    }
+
+    /* Pill list — frameworks, stories */
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      background: var(--alpha-light-50);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-600);
+      line-height: 1.4;
+    }
+    .pill.brand {
+      background: var(--alpha-brand-50);
+      border-color: var(--alpha-brand-200);
+      color: var(--alpha-brand-950);
+    }
+
+    /* Mistake list */
+    .mistake-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .mistake-list li {
+      font-size: 12px;
+      line-height: 18px;
+      color: var(--alpha-light-600);
+      padding-left: 16px;
+      position: relative;
+    }
+    .mistake-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: rgba(16,104,68,0.15);
+    }
+    .mistake-list li strong {
+      color: var(--alpha-light-900);
+      font-weight: 600;
+    }
+
+    /* Takeaway highlight box */
+    .takeaway-box {
+      grid-column: 1 / -1;
+      background: var(--alpha-brand-50);
+      border: 1px solid var(--alpha-brand-200);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .takeaway-box .content-block-label {
+      color: var(--alpha-brand-950);
+      opacity: 0.7;
+    }
+    .takeaway-box .content-block-text {
+      color: var(--alpha-brand-950);
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    /* Bridge box */
+    .bridge-box {
+      grid-column: 1 / -1;
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--b-w-white);
+    }
+    .bridge-arrow {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--alpha-light-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .bridge-arrow svg { width: 10px; height: 10px; color: var(--alpha-light-500); }
+    .bridge-text {
+      font-size: 12px;
+      line-height: 19px;
+      color: var(--alpha-light-500);
+      font-style: italic;
+    }
+
+    /* Introduction / Conclusion special styling */
+    .special-card .chapter-num {
+      background: var(--alpha-light-100);
+      color: var(--alpha-light-900);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      box-shadow: var(--shadow-modal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 200ms ease-out, background 150ms ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .page-wrapper { padding: 48px 16px 80px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .top-bar-subtitle { display: none; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .hero-stats { flex-direction: column; gap: 0; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--alpha-light-100); }
+      .hero-stat:last-child { border-bottom: none; }
+      .chapter-body { grid-template-columns: 1fr; }
+      .content-block.full-width { grid-column: 1; }
+      .takeaway-box { grid-column: 1; }
+      .bridge-box { grid-column: 1; }
+      .part-title { font-size: 15px; }
+    }
+
+    /* Print styles */
+    @media print {
+      body { zoom: 1; }
+      .bg-orb, .back-top, .top-bar { display: none; }
+      .page-wrapper { max-width: 100%; padding: 24px; }
+      .chapter-nav-wrap { display: none; }
+      .chapter-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; margin-bottom: 16px; }
+      .part-divider { break-before: page; margin-top: 0; }
+      .hero { padding: 0 0 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>
+      <div class="top-bar-title">Alisa Larsen &mdash; Book Outline</div>
+      <div class="top-bar-subtitle">Fall in Love with Your Voice &middot; 22 Sections &middot; 5 Parts &middot; 20 Chapters</div>
+    </div>
+    <div class="top-bar-actions">
+      <button class="pdf-btn" onclick="window.print()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10v3h10v-3M8 2v8M5 7l3 3 3-3"/>
+        </svg>
+        Save PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Complete Book Outline</div>
+    <h1><em>Fall in Love with Your Voice</em></h1>
+    <div class="hero-subtitle">A Singer's Journey from Stuck to Sovereign</div>
+    <div class="hero-author">Alisa Larsen</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">22</div>
+        <div class="hero-stat-label">Sections</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">5</div>
+        <div class="hero-stat-label">Parts</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">20</div>
+        <div class="hero-stat-label">Chapters</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">6</div>
+        <div class="hero-stat-label">The C's</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter Nav -->
+  <div class="chapter-nav-wrap">
+    <div class="section-label">Jump to section</div>
+    <div class="chapter-nav">
+      <a href="#intro" class="nav-chip nav-chip-special">Intro</a>
+      <a href="#ch1" class="nav-chip">1</a>
+      <a href="#ch2" class="nav-chip">2</a>
+      <a href="#ch3" class="nav-chip">3</a>
+      <a href="#ch4" class="nav-chip">4</a>
+      <a href="#ch5" class="nav-chip">5</a>
+      <a href="#ch6" class="nav-chip">6</a>
+      <a href="#ch7" class="nav-chip">7</a>
+      <a href="#ch8" class="nav-chip">8</a>
+      <a href="#ch9" class="nav-chip">9</a>
+      <a href="#ch10" class="nav-chip">10</a>
+      <a href="#ch11" class="nav-chip">11</a>
+      <a href="#ch12" class="nav-chip">12</a>
+      <a href="#ch13" class="nav-chip">13</a>
+      <a href="#ch14" class="nav-chip">14</a>
+      <a href="#ch15" class="nav-chip">15</a>
+      <a href="#ch16" class="nav-chip">16</a>
+      <a href="#ch17" class="nav-chip">17</a>
+      <a href="#ch18" class="nav-chip">18</a>
+      <a href="#ch19" class="nav-chip">19</a>
+      <a href="#ch20" class="nav-chip">20</a>
+      <a href="#conclusion" class="nav-chip nav-chip-special">Concl.</a>
+    </div>
+  </div>
+
+  <!-- ==================== INTRODUCTION ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Opening</div>
+    <div class="part-title">Introduction</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <div class="chapter-card special-card" id="intro">
+    <div class="chapter-header">
+      <div class="chapter-num">Intro</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Introduction</div>
+        <div class="chapter-title">The Voice You've Been Waiting For</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands their voice is not broken — it is held back — and that this book works with the whole self (breath, body, nervous system, spirit) rather than isolated technical fixes.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">Second person scene: the reader standing in the wings, bathroom mirror, or car — the inner critic running before a single note sounds. Pull back: this is not a talent problem. It is a singer who has learned to sing from the outside in. Then: a pivot. There is another way.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>You Can't Not Sing — So Why Does It Feel This Hard?</li>
+          <li>The Outside-In Trap</li>
+          <li>What Traditional Voice Training Leaves Out</li>
+          <li>The Framework — A Preview</li>
+          <li>Why I'm Writing This — The Scar, Not the Wound</li>
+          <li>Who This Book Is For — and Who It Is Not</li>
+          <li>The Invitation — Your Voice Is Already There</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks Introduced</div>
+        <ul class="pill-list">
+          <li class="pill brand">Outside-In / Inside-Out Distinction</li>
+          <li class="pill brand">The 6 C's Cycle (preview)</li>
+          <li class="pill brand">Three Pillars</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Stories</div>
+        <ul class="sections-list">
+          <li>Alisa performing for approval — realizing she was singing to earn validation</li>
+          <li>The primal sound in yoga practice — freedom before beauty</li>
+          <li>Stuck throat syndrome — her own years of constriction</li>
+          <li>Conservatory-trained student juggling technical corrections</li>
+          <li>Composite portraits of singer archetypes</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>More technique is the answer</strong> — technique alone is insufficient</li>
+          <li><strong>Believing the voice is the problem</strong> — it needs permission, not fixing</li>
+          <li><strong>Expecting linear progress</strong> — growth is a widening gyre</li>
+          <li><strong>Reading passively</strong> — this book requires engagement</li>
+          <li><strong>Waiting until ready</strong> — beginning while imperfect is the only entry</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Your voice is not broken. It is held back — by the habit of singing from the outside in: performing for approval, waiting for permission from others, managing your sound instead of expressing your truth. This book teaches you to make the shift from outside in to inside out. That shift changes everything.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 1 — "The Hidden Rule That's Keeping You Stuck" — which traces the roots of the outside-in pattern so the reader understands why it is so sticky and why seeing its origin is the first step to dismantling it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PART 1 ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Part 1</div>
+    <div class="part-title">Foundation (The Root)</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <!-- Chapter 1 -->
+  <div class="chapter-card" id="ch1">
+    <div class="chapter-header">
+      <div class="chapter-num">1</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 1 &mdash; Foundation (The Root)</div>
+        <div class="chapter-title">The Hidden Rule That's Keeping You Stuck</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands they have been unconsciously following an invisible rule — "earn your right to be heard" — and that this outside-in orientation is the root cause of their stuck voice, not a lack of talent or technique.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">A singer alone in a practice room before a performance, running through the checklist: vowels, jaw, breath, teacher's approval, audience love. Then the disorienting question: what if the checklist itself is the problem? The singer has done everything right and still feels like their voice is trapped behind glass. The chapter names the glass.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Invisible Curriculum</li>
+          <li>What "Singing from the Outside In" Actually Looks Like</li>
+          <li>How Traditional Training Accidentally Reinforces the Rule</li>
+          <li>The Root Beneath the Symptoms</li>
+          <li>Your Particular Version of the Rule</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Outside-In vs. Inside-Out Orientation</li>
+          <li class="pill brand">The Hidden Rule</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Stories</div>
+        <ul class="sections-list">
+          <li>Alisa's conservatory training — technically proficient, emotionally shut down</li>
+          <li>The audition she bombed — words forgotten mid-phrase, leaving in tears</li>
+          <li>Student who couldn't sing in front of anyone — shaking hands, pre-emptive apologies</li>
+          <li>Student who hated her own voice — deleted every recording</li>
+          <li>Alisa's personal turning point — "What will they think? Will they love me?"</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Mistaking the symptom for the problem</strong> — jaw, throat, support are symptoms</li>
+          <li><strong>More training solves the approval problem</strong> — the rule gets louder with skill</li>
+          <li><strong>Performance anxiety is separate from technique</strong> — they are the same question</li>
+          <li><strong>Waiting until ready</strong> — an infinitely receding horizon</li>
+          <li><strong>This is a mindset problem</strong> — it lives in the nervous system, not just thoughts</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Your voice is not broken. It is responding exactly as designed to a system built on the wrong foundation. The hidden rule — that you must earn the right to be heard — is a learned orientation. And because it was learned, it can be unlearned. That unlearning begins with one question: what would it feel like to sing for yourself first?</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 2 — "The Art of Letting Go" — which begins working with what the hidden rule has produced in the body: tension, perfectionism, the need to prove. If Chapter 1 diagnoses, Chapter 2 begins the softening.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter-card" id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num">2</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 1 &mdash; Foundation (The Root)</div>
+        <div class="chapter-title">The Art of Letting Go</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands that a constricted, unreliable voice is not caused by a lack of technique or talent, but by a nervous system locked in survival mode — and that the path forward begins with learning to release, not acquire.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">Alisa backstage before a performance. Has rehearsed. Knows the notes. Done everything right. And yet her throat feels like a fist. She tries to will herself to relax. It doesn't work. Then: "What if the problem isn't that you're not trying hard enough? What if the problem is that you're trying too hard?"</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Tension You Can't See (But Everyone Can Hear)</li>
+          <li>The Three Jailers — Perfectionism, Approval-Seeking, and the Need to Prove</li>
+          <li>Why Your Body Believes Singing Is Dangerous</li>
+          <li>The Foundation Is Safety, Not Skill</li>
+          <li>What Letting Go Actually Feels Like (It's Not What You Think)</li>
+          <li>Letting Go Is a Practice, Not a Destination</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Threat-Safety Continuum</li>
+          <li class="pill brand">Outside-In vs. Inside-Out (extended)</li>
+          <li class="pill brand">The Release Sequence (Somatic)</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Stories</div>
+        <ul class="sections-list">
+          <li>Stuck Throat — Alisa's conservatory years, no exercise could open it</li>
+          <li>The Audition That Bombed — freezing mid-audition, forgetting known words</li>
+          <li>The First Primal Sound — dying cat moment, terror and freedom</li>
+          <li>Performance Anxiety Student — shook and apologized; open mic 6 months later</li>
+          <li>Student Who Hated Her Voice — "I don't hate it anymore. That feels like a miracle."</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Relaxing by willpower</strong> — reinforces the same threat-response pattern</li>
+          <li><strong>Letting go as a performance note</strong> — perfectionism in disguise</li>
+          <li><strong>More effort produces freedom</strong> — effort is the mechanism of holding on</li>
+          <li><strong>Ugly sound means failure</strong> — raw sounds are the sound of an opening</li>
+          <li><strong>Freedom feels peaceful</strong> — initial release often feels like falling</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Your voice is not broken. Your nervous system is on alert. And the path forward is not more effort — it is the radical, practiced, ongoing choice to release the grip. Everything downstream of this: breath work, primal sounds, alignment, mixed belt, vagal tone — all of it depends on first subtracting the micromanagement.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 3 — Belinda the Brontosaurus — which answers: "If tension is what we're releasing, what are we releasing into?" The body itself, properly aligned.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter-card" id="ch3">
+    <div class="chapter-header">
+      <div class="chapter-num">3</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 1 &mdash; Foundation (The Root)</div>
+        <div class="chapter-title">Belinda the Brontosaurus and the Power of Alignment</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands that posture for singers is not about discipline or appearance but about creating an energetic architecture — a body organized to let breath move freely and sound travel without resistance — and they will have an embodied image (Belinda) they can return to anywhere.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">Alisa working with a student who keeps collapsing her chest and thrusting her chin. Six minutes of "stand up straight" — no change. Then: "You're a brontosaurus. Your name is Belinda." The student laughs. And in that laughter, her body does what six minutes of instruction could not. Why did a cartoon dinosaur succeed where direct instruction failed?</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>Why "Stand Up Straight" Doesn't Work</li>
+          <li>Meet Belinda — the three cues: long floating neck, broad back, large heavy tail</li>
+          <li>The Voice Rides the Breath, and the Breath Needs a Channel</li>
+          <li>Finding Belinda in Your Own Body — The Embodied Practice</li>
+          <li>What Collapses Alignment — and Why It's Not a Posture Problem</li>
+          <li>Belinda in Performance — The Image That Travels</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Belinda Model (3-cue somatic anchor)</li>
+          <li class="pill brand">Surfer on a Wave (breath-voice image)</li>
+          <li class="pill brand">Inside-Out Technique vs. External Correction</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">The Three Belinda Cues</div>
+        <ul class="sections-list">
+          <li><strong>Long floating neck</strong> — cervical spine decompresses, sub-occipital muscles release, free neck = free voice</li>
+          <li><strong>Broad back</strong> — shoulder blades soften, posterior thoracic cavity opens, lungs expand fully in lower lobes</li>
+          <li><strong>Large heavy tail</strong> — pelvis settles, pelvic floor releases, diaphragm descends without resistance</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Alignment as a position to hold</strong> — Belinda is dynamic readiness, not a frozen shape</li>
+          <li><strong>Tucking the pelvis for "support"</strong> — locks the pelvic floor; the tail drops, it doesn't tuck</li>
+          <li><strong>"Broad back" means puffed chest</strong> — broadness is in the back; the front stays soft</li>
+          <li><strong>Chin thrust on high notes</strong> — compresses larynx, narrows the space the note needs</li>
+          <li><strong>Skipping embodied practice</strong> — Belinda lives in the body, not on the page. Stand up and do it.</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Your body is your instrument's home. When that home is organized — long, open, grounded, alive — the voice does not have to work harder. It gets to work less. Belinda is not a posture to achieve. She is a felt sense to return to, again and again, until she becomes the shape your body remembers as safe.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 4 — "The Vagus Nerve and Your Voice" — teaching what to do with the breath inside that body: how the vagus nerve connects breath regulation to nervous system safety.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter-card" id="ch4">
+    <div class="chapter-header">
+      <div class="chapter-num">4</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 1 &mdash; Foundation (The Root)</div>
+        <div class="chapter-title">The Vagus Nerve and Your Voice</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands that nervous system regulation is not a precondition for good singing — it IS good singing — and will have two concrete breath practices (Ujjayi and Bhramari Pranayama) to shift their body out of fight-or-flight and open their throat to authentic expression.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">Second person: the reader about to sing. Throat tightens. Breath goes shallow. Something clamps down. They've been told this is nerves. Told to "just relax." Tried. It hasn't worked. Because what they're experiencing is a physiological event — a survival response — and no amount of willpower will release it. The vagus nerve is the key. Most singers have never heard of it.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>Your Nervous System Doesn't Know It's Just a Song</li>
+          <li>Meet Your Vagus Nerve — The Wandering Nerve That Runs Your Voice</li>
+          <li>Ujjayi — The Sound of Safety (Breathing Like the Ocean)</li>
+          <li>Bhramari Pranayama — Humming Your Nervous System Home</li>
+          <li>Vagal Tone — Why You Can't Just Breathe Once and Be Fine</li>
+          <li>Vishuddhi — The Throat Chakra as the Voice of Your Truth</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Autonomic Ladder (Polyvagal — simplified)</li>
+          <li class="pill brand">Voice-Body-Nervous System Triangle</li>
+          <li class="pill brand">The Vagal Tone Account (savings account metaphor)</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Breath Practices</div>
+        <ul class="sections-list">
+          <li><strong>Ujjayi</strong> — gentle glottal constriction, ocean sound, 4-count inhale / 6–8 count exhale, activates parasympathetic via extended exhale</li>
+          <li><strong>Bhramari</strong> — hum on exhale, mouth closed, vibration through larynx directly stimulates vagus nerve, 15x nitric oxide increase</li>
+          <li><strong>Three-Inch Flame</strong> — Vishuddhi visualization at the throat base, burns away fear and comparison</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Relaxing by thinking about relaxing</strong> — the mind cannot override the nervous system</li>
+          <li><strong>Breath work as optional warm-up</strong> — it is structural, not decorative</li>
+          <li><strong>Technique as a substitute for regulation</strong> — proficiency can coexist with chronic activation</li>
+          <li><strong>Dismissing chakra work as not serious</strong> — both maps point to the same destination</li>
+          <li><strong>Expecting immediate permanent transformation</strong> — vagal tone is fitness built over time</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Your throat does not grip out of weakness. It grips because your nervous system is doing its job. The path to a free voice is teaching your body — through breath and sound and daily practice — that it is safe to sing. The vagus nerve is the pathway. Ujjayi and Bhramari are the tools. What waits on the other side of a regulated nervous system is your actual voice.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 5 — Clarity — which asks: now that the noise is dying down, what do you actually want? You cannot hear that signal from a dysregulated state. Chapter 4 quiets the noise. Chapter 5 listens for the answer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PART 2 ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Part 2</div>
+    <div class="part-title">The System (The 6 C's)</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter-card" id="ch5">
+    <div class="chapter-header">
+      <div class="chapter-num">5</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C1</div>
+        <div class="chapter-title">Clarity: Knowing What You Actually Want</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader can distinguish between goals chased for external approval and desires that actually belong to them — and will have a concrete process for articulating what "success" in their voice means on their own terms.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">A singer asked in a lesson: "What do you want to work on today?" — and going completely blank. Not because they have nothing to work on, but because they've spent so long chasing someone else's definition of "better" that they've lost the thread back to their own desire.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Borrowed Dream Problem</li>
+          <li>The Inner Critic as a Clarity Thief</li>
+          <li>The Three Layers of What You Want (Surface / Real Desire / Deepest Why)</li>
+          <li>Singing Toward Your Own North Star</li>
+          <li>The Clarity Practice — Questions That Reveal</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Three-Layer Desire Framework</li>
+          <li class="pill brand">North Star Goal Setting</li>
+          <li class="pill brand">Inner Critic Translation</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Stories</div>
+        <ul class="sections-list">
+          <li>Alisa's conservatory training — technically proficient, feeling empty after performances (borrowed clarity)</li>
+          <li>Student who hated her voice — "I want to sing the lullaby I've been writing for five years"</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Confusing the critic's complaints for your goals</strong> — "fix my passaggio" vs. "what would I be doing if it were fixed?"</li>
+          <li><strong>Operating on borrowed clarity</strong> — the gap between "what I'm chasing" and "what I want" is where anxiety lives</li>
+          <li><strong>Waiting for certainty before committing</strong> — clarity is built by moving, not by knowing in advance</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">You cannot move toward something you haven't defined. You cannot commit to a practice, build courage, or develop confidence when the target keeps shifting based on whoever last evaluated you. Clarity is the first C for a reason: it is the internal compass that makes all the other C's possible.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 6 — Courage — which asks the harder follow-up: now that you know what you want, will you actually let yourself go there?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 6 -->
+  <div class="chapter-card" id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num">6</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C2</div>
+        <div class="chapter-title">Courage: Permission Over Proving</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Courage is not dramatic stage bravery — it is the quiet, daily act of giving yourself permission to explore, to sound imperfect, to be in process. The shift from "I need to prove I can sing" to "I am allowed to discover how I sing." By the end, the reader understands their voice has not been waiting for them to be good enough — it has been waiting for them to be brave enough to stop auditioning for their own approval.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">The Dying Cat scene: Alisa alone in her apartment, making sounds her teachers never assigned — wails, moans, a high reedy whine that would make a neighbor call animal control. Terrified someone could hear her. Then: the crack. The thing that opened. What years of "correct" singing never produced. Not beauty. Freedom. The contrast is the hook: everything she'd worked toward — purity, precision, control — had cost her the one thing she actually needed. Permission.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Courage Myth — You Don't Have to Not Be Afraid</li>
+          <li>The Permission Problem — Why Singers Wait</li>
+          <li>Primal Sounds and the Voice Below the Voice</li>
+          <li>Building a Permission Practice</li>
+          <li>Courage in the Room — Singing in Front of Others</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Permission vs. Proving Reframe</li>
+          <li class="pill brand">Low-Stakes Courage Ladder</li>
+          <li class="pill brand">Primal Sound Practice</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Stories</div>
+        <ul class="sections-list">
+          <li>The Dying Cat — first ugly sounds, terror then freedom</li>
+          <li>Student who couldn't sing in front of anyone — the courage ladder in practice</li>
+          <li>Alisa's own conservatory perfectionism vs. the moment she let go of "correct"</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Waiting to feel ready</strong> — courage is action with fear present, not after it leaves</li>
+          <li><strong>Practicing only "correct" sounds</strong> — the voice below the polished voice can't emerge</li>
+          <li><strong>Treating ugly sounds as evidence of failure</strong> — they are evidence of an opening</li>
+          <li><strong>Equating permission with carelessness</strong> — permission is precision delivered through play</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Freedom comes before beauty. The sound you've been ashamed of may be the exact sound that sets you free. Courage is not the absence of fear — it is the willingness to open the mouth when the throat wants to close. To sing the phrase when the brain wants to analyze it first.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 7 — Commitment — which asks: now that you're willing to show up courageously, how do you keep showing up, day after day, even when the breakthrough feeling from the lesson has faded?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 7 -->
+  <div class="chapter-card" id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num">7</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C3</div>
+        <div class="chapter-title">Commitment: The Daily Practice That Changes Everything</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Commitment is not willpower, discipline, or grinding through dread — it is showing up daily with breath work, embodied alignment, and playful exploration, even for ten minutes, in a way that gradually rewires the relationship with the instrument. The reader leaves with a clear, doable daily practice structure and the internal reframe that transforms obligation into devotion.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">The decision point most singers know too well: a breakthrough session, fired up to practice every day. A week later — practiced twice. Two weeks later — zero times. The feeling is gone, and so, it seems, is the breakthrough. Not with judgment but with recognition: has this happened to you? Why does it keep happening, and what is it actually costing you?</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>Why Motivation Fails (and What to Use Instead)</li>
+          <li>The Ten-Minute Daily Structure</li>
+          <li>Devotion vs. Discipline — The Internal Reframe</li>
+          <li>Building Ritual Around Practice</li>
+          <li>What to Do When You Miss a Day</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The 10-Minute Daily Practice Architecture</li>
+          <li class="pill brand">Devotion vs. Discipline Reframe</li>
+          <li class="pill brand">The Identity Anchor (I am someone who...)</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Relying on motivation as fuel</strong> — motivation is a feeling; commitment is a decision</li>
+          <li><strong>All-or-nothing practice</strong> — ten minutes is more than zero minutes, always</li>
+          <li><strong>Treating practice as performance</strong> — if it needs to be good, it won't happen daily</li>
+          <li><strong>Missing one day = failure</strong> — the spiral of self-judgment kills more practices than busy schedules</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The singer who shows up for ten minutes every day will always outpace the singer who plans a two-hour session they never take. Commitment is not what you do when you feel inspired. It is what you do when you don't. That is when it rewires everything.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 8 — Consistency — which makes the crucial distinction: Commitment is the decision to show up; Consistency is what transforms that decision into a new identity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 8 -->
+  <div class="chapter-card" id="ch8">
+    <div class="chapter-header">
+      <div class="chapter-num">8</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C4</div>
+        <div class="chapter-title">Consistency: Building the Neural Pathways of Trust</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Neural pathways are built through repetition, not willpower. The singer who practices the same 10-minute routine every morning for 90 days doesn't become "disciplined" — she makes the pattern automatic. Consistency is the bridge between knowing a technique and trusting it under pressure. It is also the cure for the most common complaint: "I sound great in the practice room and fall apart on stage." That gap is a consistency problem, not a talent problem.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Practice Room vs. Stage Gap — What Causes It</li>
+          <li>How Neural Pathways Actually Form</li>
+          <li>The River Metaphor — Carving Without Force</li>
+          <li>Measuring Consistency Without Perfectionism</li>
+          <li>When the Pattern Breaks — Recovery as Skill</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The River Canyon Model (repetition without rigidity)</li>
+          <li class="pill brand">The 90-Day Neural Window</li>
+          <li class="pill brand">Recovery as a Skill (not a failure)</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>White-knuckling consistency</strong> — the river doesn't try harder on Tuesdays</li>
+          <li><strong>Practicing differently each time</strong> — variation prevents groove-carving</li>
+          <li><strong>Measuring consistency by perfection</strong> — showing up inconsistently is still showing up</li>
+          <li><strong>Thinking the practice room gap is talent</strong> — it's a neural encoding problem</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Consistency without rigidity. Repetition without punishment. That is what builds the trust the voice needs to show up freely when it counts. The singer who sounds free on stage is not more talented — she has simply repeated the experience of freedom enough times that her nervous system expects it.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 9 — Confidence — the 5th C and the pivot point: after clearing (Clarity), stepping in (Courage), showing up (Commitment), and building pathways (Consistency), the reader gets to claim what has been quietly growing: embodied knowing.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 9 -->
+  <div class="chapter-card" id="ch9">
+    <div class="chapter-header">
+      <div class="chapter-num">9</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C5</div>
+        <div class="chapter-title">Confidence: The Gift of Embodied Knowing</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Dismantles the most pervasive lie in vocal training: that confidence is earned through external validation — enough compliments, a good review, a flawless performance. Confidence is an inside job — a felt, embodied sense of knowing built incrementally through internal cues, nervous system regulation, and honoring one's unique sound. It is not the prerequisite to singing well; it is the byproduct of having done the inner work of the previous four C's.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The External Validation Trap — Why Compliments Don't Create Confidence</li>
+          <li>Embodied Knowing — What Confidence Actually Feels Like</li>
+          <li>The Cumulative Evidence Account</li>
+          <li>Presence as Confidence — Staying With Yourself Under Pressure</li>
+          <li>Your Voice Is Not Your Worth</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Confidence as Presence (not bravado)</li>
+          <li class="pill brand">The Cumulative Evidence Account</li>
+          <li class="pill brand">Internal vs. External Confidence Anchors</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Waiting for external proof</strong> — confidence built on praise collapses with criticism</li>
+          <li><strong>Faking confidence</strong> — bravado is the outside-in version; presence is the inside-out version</li>
+          <li><strong>Confidence = certainty</strong> — confidence is the ability to stay with yourself even when uncertain</li>
+          <li><strong>One performance defines it</strong> — confidence is accumulated, not awarded</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Confidence is not something you perform. It is something you inhabit. It grows in the space between "I don't know if I can do this" and "I'm going to do it anyway." Every time you show up for yourself — in practice, in performance, in the moment after a mistake — you make a deposit. The account grows. And eventually, the balance is enough to hold you even when things go wrong.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 10 — Connection — the 6th and final C, and the payoff chapter: why all of this work ultimately exists, and what moves people when a singer is truly present.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 10 -->
+  <div class="chapter-card" id="ch10">
+    <div class="chapter-header">
+      <div class="chapter-num">10</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 2 &mdash; The 6 C's &middot; C6</div>
+        <div class="chapter-title">Connection: Singing That Moves Hearts</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The culmination of Part 2. Connection is not a technique — it is the reason technique exists. Without it, all the preceding work can become another form of performance anxiety dressed in better clothes. The chapter argues that the opposite of approval-addiction is connection: to self, to music, to meaning, and to others. By the end, the reader feels they have arrived somewhere — not at the end of a journey, but at the beginning of a different kind of one.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">A student finishes singing — imperfectly, voice cracked, forgot a line, started over. But no one in the room was thinking about that. They were leaning forward. Some blinking back tears. Afterward: "I don't know what happened, but I felt that." What moves people is not perfect pitch or flawless technique. It is presence. And presence is just another word for connection.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Opposite of Approval-Seeking Is Connection (Johann Hari applied)</li>
+          <li>Connection to Self — The Internal Anchor</li>
+          <li>Connection to the Music — What the Song Is Actually About</li>
+          <li>Connection to the Audience — Offering vs. Performing</li>
+          <li>What Moves People — The Physics of Presence</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Offering vs. Performing Distinction</li>
+          <li class="pill brand">The 4 Layers of Connection</li>
+          <li class="pill brand">Presence as the final technical tool</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Connection as charm or charisma</strong> — it is internal before it is external</li>
+          <li><strong>Technique guarantees connection</strong> — technically perfect performances can leave audiences cold</li>
+          <li><strong>Connection as something you do to an audience</strong> — it is something you are in, and they feel it</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The 6 C's are not a ladder you climb and leave behind. They are a spiral you move through, deeper each time. Connection is where the spiral completes and begins again — because connection is what all the previous work has been for. Not a better voice. A more present one.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Part 3 — The Technique — where having built the inner foundation through the 6 C's, the reader is now ready to develop the technical ground floor that carries the inner work into sound: breath support, mixed belt, resonance, and the throat chakra.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PART 3 ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Part 3</div>
+    <div class="part-title">The Technique (Breath, Body, Sound)</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <!-- Chapter 11 -->
+  <div class="chapter-card" id="ch11">
+    <div class="chapter-header">
+      <div class="chapter-num">11</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 3 &mdash; The Technique</div>
+        <div class="chapter-title">The Truth About Support</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The bridge between philosophy and physiology. Parts 1 and 2 gave foundation and framework. Now: the technical ground floor — breath support. But not the conventional "support more" instruction. This chapter dismantles that phrase and replaces it with what true diaphragmatic support actually feels like: 75–85% engagement, a softened solar plexus, and a relationship with gravity that allows breath to do what it was already designed to do.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">She has heard it a hundred times. "Support more." She braces her abdomen. Her solar plexus hardens. Her throat grips. The sound that comes out is smaller and tighter than the one she heard in her head. This is not support. This is effort masquerading as technique. Support is not something you add. It is something you stop interfering with.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>"Support More" — The Most Damaging Phrase in Voice Training</li>
+          <li>What the Diaphragm Actually Does</li>
+          <li>The 75–85% Rule — Enough and Not Too Much</li>
+          <li>The Softened Solar Plexus — The Missing Instruction</li>
+          <li>Breath as Relationship, Not Command</li>
+          <li>The Honey Pot Visualization</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The 75–85% Engagement Rule</li>
+          <li class="pill brand">The Honey Pot Visualization</li>
+          <li class="pill brand">Support as Releasing, Not Adding</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>"Support more" = brace harder</strong> — pushing creates the opposite of free support</li>
+          <li><strong>The solar plexus must be tight</strong> — hardening the solar plexus blocks diaphragm descent</li>
+          <li><strong>Support is a conscious muscular action</strong> — true support is a release into coordination</li>
+          <li><strong>More breath = better support</strong> — excess breath creates pressure, not support</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Support is not something you add. It is what happens when you stop interfering with what the breath already knows how to do. A softened solar plexus, a diaphragm allowed to descend, gravity doing its job — this is the ground floor that all technique rests on. Get this right, and the rest of Part 3 begins to organize itself naturally.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Chapter 12 — Mixed Belt — which builds on a correctly understood support mechanism to explore the full range of the voice across registration, from chest to head voice and everything in between.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 12 -->
+  <div class="chapter-card" id="ch12">
+    <div class="chapter-header">
+      <div class="chapter-num">12</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 3 &mdash; The Technique</div>
+        <div class="chapter-title">Mixed Belt and the Singer's Sandbox</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands mixed belt not as a trick or a compromise between registers, but as the integration of the full vocal instrument — a coordinated, resonant sound that blends chest and head voice without muscling or forcing. They learn to explore registration through play rather than through fixed technical targets.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Registration Myth — Chest Voice, Head Voice, and What's Between</li>
+          <li>What Mixed Belt Actually Is (and Isn't)</li>
+          <li>The Passaggio — The Bridge Every Singer Fears</li>
+          <li>The Sandbox Approach — Exploration Over Execution</li>
+          <li>Common Registration Compensations and How to Release Them</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Registration as a Spectrum, Not a Switch</li>
+          <li class="pill brand">The Sandbox Approach (play-based exploration)</li>
+          <li class="pill brand">Passaggio Navigation</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Muscling through the passaggio</strong> — the break is a coordination challenge, not a strength problem</li>
+          <li><strong>Chest voice = strong; head voice = weak</strong> — both are full, resonant registers</li>
+          <li><strong>Mixed belt requires a specific sound</strong> — it is a coordination, not an aesthetic target</li>
+          <li><strong>Practicing only in comfortable range</strong> — the edges are where integration happens</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The voice is not divided into zones that must be carefully managed. It is one instrument with a full spectrum of coordinations. Mixed belt is not the goal — wholeness is. And wholeness comes through exploration, through the sandbox, through the willingness to sound uncertain in the middle range until the body finds its own integration.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 13 -->
+  <div class="chapter-card" id="ch13">
+    <div class="chapter-header">
+      <div class="chapter-num">13</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 3 &mdash; The Technique</div>
+        <div class="chapter-title">The Throat Chakra and Truthful Communication</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Extends the Vishuddhi work from Chapter 4 into a full technical and energetic treatment of the throat as the site of authentic expression. The reader understands that chronic throat tension is not only physiological but also reflects years of unexpressed self — and that the practices that open Vishuddhi are also the practices that open the voice technically.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Throat as Portal — Between Heart and Mind</li>
+          <li>When the Throat Holds — Patterns of Vocal Suppression</li>
+          <li>Vishuddhi Activation Practices — Sound, Visualization, Mantra</li>
+          <li>Truthful Communication — Singing What You Mean</li>
+          <li>The Voice of the Body vs. The Voice of the Ego</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Vishuddhi — 5th Chakra (throat)</li>
+          <li class="pill brand">Heart-to-Mind Bridge (Anahata to Ajna)</li>
+          <li class="pill brand">Sound as Energetic Medicine</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Practices Introduced</div>
+        <ul class="pill-list">
+          <li class="pill">Ujjayi (extended)</li>
+          <li class="pill">Bhramari (extended)</li>
+          <li class="pill">Blue light throat visualization</li>
+          <li class="pill">Three-inch flame</li>
+          <li class="pill">Mantra/toning</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The throat is not just a vocal instrument. It is the portal between what you feel and what you say. When it is safe — physiologically, emotionally, energetically — your voice comes out. The work of opening Vishuddhi is not separate from the technical work of freeing the voice. They are the same work, described by different maps.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 14 -->
+  <div class="chapter-card" id="ch14">
+    <div class="chapter-header">
+      <div class="chapter-num">14</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 3 &mdash; The Technique</div>
+        <div class="chapter-title">Vowel Equalization, Resonance, and the Acoustic Magic</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The reader understands vowel modification not as an aesthetic correction but as an acoustic reality — the shaping of the vocal tract to amplify resonance at specific frequencies. They move from vowel modification as a technical rule to vowel equalization as a felt, responsive craft. The acoustic magic of the singing voice is demystified: it is not talent. It is physics, made available through understanding and practice.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Vowel Problem — Why Singers Sound Strangled on High Notes</li>
+          <li>What Resonance Actually Is — The Physics Made Simple</li>
+          <li>Vowel Modification vs. Vowel Equalization</li>
+          <li>The Formant Map — Key Vowel Shapes and Their Acoustic Effects</li>
+          <li>Resonance as a Felt Sense, Not a Corrected Position</li>
+          <li>The Acoustic Free Zone — Finding Your Resonant Sweet Spot</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Vowel Equalization (vs. modification)</li>
+          <li class="pill brand">The Formant Map</li>
+          <li class="pill brand">Resonance as Felt Sense</li>
+          <li class="pill brand">The Acoustic Free Zone</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Vowel modification = distortion</strong> — it is acoustic precision, not aesthetic compromise</li>
+          <li><strong>Resonance is fixed by position</strong> — it is a dynamic response to pitch, vowel, and breath</li>
+          <li><strong>Resonance is only in the head or chest</strong> — the whole body is the resonating system</li>
+          <li><strong>Singing the written vowel on high notes</strong> — physics demands modification; the listener still hears the intended vowel</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The acoustic magic of the voice is not talent. It is physics, accessed through a responsive vocal tract. When the singer stops trying to hold the written vowel and starts listening for the resonant sweet spot, the voice stops fighting itself. That is the acoustic free zone — and every singer has access to it.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Part 4 — The Transformation — where the reader shifts from building pieces to asking: why aren't the pieces working together? Chapter 15 answers that question by reorienting from problem-solver to whole-system participant.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PART 4 ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Part 4</div>
+    <div class="part-title">The Transformation (Integration and Artistry)</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <!-- Chapter 15 -->
+  <div class="chapter-card" id="ch15">
+    <div class="chapter-header">
+      <div class="chapter-num">15</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 4 &mdash; The Transformation</div>
+        <div class="chapter-title">From Fragmentation to Flow</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The pivot point of the entire book. The reader has received philosophy (Parts 1–2) and technique (Part 3). Now: why aren't the pieces working together? This chapter diagnoses the root cause — chasing symptoms in isolation — and reframes the singer's entire orientation from problem-solver to whole-system participant. Flow is not something you achieve by getting all the fragments right. It is what happens when you stop fragmenting yourself.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">Inside the singer's experience mid-lesson: running a mental checklist — jaw relaxed, tongue flat, ribs out, belly soft, chin neutral, eyes forward, diaphragm engaged. Thinking about six things simultaneously. And somehow, in the middle of managing all of it — you forgot to sing.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Fragment Trap — Why Fixing Pieces Doesn't Create Wholeness</li>
+          <li>What Flow Actually Is (Not What You Think)</li>
+          <li>The Whole-Body Listening Practice</li>
+          <li>Integration Over Correction — A Different Kind of Attention</li>
+          <li>The Moment It All Comes Together</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Whole-System Participation (vs. problem-solving)</li>
+          <li class="pill brand">The Integration Attention (soft focus)</li>
+          <li class="pill brand">Flow as Emergent Property</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>The checklist approach in performance</strong> — more items = less singing</li>
+          <li><strong>Fragment-fixing produces lasting change</strong> — changes isolated from the whole don't integrate</li>
+          <li><strong>Flow is a destination</strong> — it is an emergent state that arises when managing stops</li>
+          <li><strong>Trying harder produces flow</strong> — flow requires a different quality of attention, not more effort</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The singer who is managing six things simultaneously is not singing. They are conducting a rehearsal inside their own head. Flow arrives when the conductor sits down and the music begins. Your job, in the end, is not to control the voice. It is to get out of the way of what it already knows how to do.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 16 -->
+  <div class="chapter-card" id="ch16">
+    <div class="chapter-header">
+      <div class="chapter-num">16</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 4 &mdash; The Transformation</div>
+        <div class="chapter-title">The Singer's Sandbox</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Play is not the opposite of seriousness — it is the mechanism through which integration actually happens. The Singer's Sandbox is both a practice philosophy and a specific practice structure: a dedicated space where the singer explores without performance stakes, experiments without judgment, and discovers what the voice is capable of when no one is grading it.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>Why Adults Stop Playing — and What It Costs the Voice</li>
+          <li>The Sandbox Structure — Time, Space, Rules (There Aren't Any)</li>
+          <li>Exploration Prompts — Ways into the Sandbox</li>
+          <li>What Emerges in the Sandbox (and Why It's Never Wrong)</li>
+          <li>Taking Sandbox Freedom into Performance</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Singer's Sandbox Practice</li>
+          <li class="pill brand">Exploration Without Agenda</li>
+          <li class="pill brand">Play as Integration Mechanism</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Play is unprofessional</strong> — it is the mechanism by which professionals integrate technique</li>
+          <li><strong>Every practice session needs a goal</strong> — the sandbox has only one rule: no judgment</li>
+          <li><strong>Exploration requires permission from a teacher</strong> — it requires only your own permission</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The voice that emerges in the sandbox — unguarded, experimental, occasionally ugly, sometimes astonishing — is closer to your real voice than the one you perform. What you discover in play, you can eventually bring into song. The sandbox is not where the serious work happens later. It is where the serious work happens now.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 17 -->
+  <div class="chapter-card" id="ch17">
+    <div class="chapter-header">
+      <div class="chapter-num">17</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 4 &mdash; The Transformation</div>
+        <div class="chapter-title">Energetic Lines of Force and Embodied Intention</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Introduces the concept of energetic lines of force — the invisible vectors of intention that determine where the sound goes and whether it lands. The reader understands that a technically perfect note that goes nowhere is less powerful than an imperfect one that is sent with full embodied intention. Artistry begins where technique ends, and it begins in the body and the imagination, not in the mouth.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>What Is Energetic Force — and Why It Changes Everything</li>
+          <li>Lines of Intention — Where Are You Sending the Sound?</li>
+          <li>The Body as Energetic Amplifier</li>
+          <li>Imagination as Technique — The Inside-Out Artistic Tool</li>
+          <li>Intention in Practice — Building the Habit of Direction</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">Energetic Lines of Force</li>
+          <li class="pill brand">Embodied Intention Practice</li>
+          <li class="pill brand">Imagination as Technical Tool</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">Where the sound goes is as important as what the sound is. The singer who sends each phrase with a clear line of intention — even an imagined one — will always be more arresting than the technically superior singer who sends nothing. Artistry is direction. And direction begins in the body before it leaves the mouth.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 18 -->
+  <div class="chapter-card" id="ch18">
+    <div class="chapter-header">
+      <div class="chapter-num">18</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 4 &mdash; The Transformation</div>
+        <div class="chapter-title">The Messy Middle and the Cost of Waiting</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Names and normalizes the most dangerous phase of transformation: the messy middle, where old patterns have been disrupted but new ones aren't yet fully established. The voice may feel less reliable than before. The reader is likely to interpret this as regression. This chapter reframes it as the necessary chaos of integration — and confronts the real cost of the alternative: waiting until conditions are perfect to begin.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Hook</div>
+        <div class="content-block-text">A singer who has been doing the work — daily practice, nervous system regulation, sandbox exploration — and her voice feels worse. More unreliable. More vulnerable. She's tempted to stop. She thinks she was better before she started. This is the messy middle. And the fact that she's in it is the proof that something real is happening.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Dip — Why Transformation Feels Like Regression</li>
+          <li>Old Patterns Disrupted, New Patterns Forming</li>
+          <li>The Cost of Waiting — What Staying Stuck Actually Costs</li>
+          <li>Navigating the Messy Middle — What to Hold On To</li>
+          <li>Signs You're Through It</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Transformation Dip (normal, not regression)</li>
+          <li class="pill brand">Cost of Waiting Calculation</li>
+          <li class="pill brand">Anchoring to Commitment in the Dip</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Worse = wrong direction</strong> — the dip is evidence of real change, not failure</li>
+          <li><strong>Return to old methods when the new feels unreliable</strong> — rebuilding the old prison is always available; it solves nothing</li>
+          <li><strong>Waiting for the messy middle to pass before performing</strong> — the middle passes by moving through it, not around it</li>
+          <li><strong>The cost of waiting is zero</strong> — the cost is compounding: time, confidence, the performances not given</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The messy middle is not a detour from the path. It is the path. Every singer who has made a real change in their relationship with their voice has passed through this disorienting, unreliable, uncomfortable zone. The singers who come out the other side are not the ones who avoided it. They are the ones who kept showing up inside it.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to Part 5 — The Path Forward — which takes everything the reader has learned and funnels it toward a clear, honest, compassionate decision: what do you actually do next, and how much support do you need to get there?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PART 5 ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Part 5</div>
+    <div class="part-title">The Path Forward (Your Next Steps)</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <!-- Chapter 19 -->
+  <div class="chapter-card" id="ch19">
+    <div class="chapter-header">
+      <div class="chapter-num">19</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 5 &mdash; The Path Forward</div>
+        <div class="chapter-title">Choosing Your Path: Solo, Community, or Guided</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Every chapter in this book has moved the reader inward. Now comes the question: what do I actually do next? This chapter takes everything learned and funnels it toward a clear, honest, compassionate decision — how much support do you actually need to go where you want to go, and are you willing to give it to yourself? Presents three genuine paths without false urgency or manipulation.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>The Self-Serious Singer — Why You've Earned This Question</li>
+          <li>Path 1: Solo Practice — The Case for Going It Alone</li>
+          <li>Path 2: Community — The Power of Being Witnessed</li>
+          <li>Path 3: Guided Work — When You Need a Mirror, Not Just a Map</li>
+          <li>The Discernment Framework — Which Path Is Right for You Right Now?</li>
+          <li>Investment as Self-Respect</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">The Three Paths</div>
+        <ul class="sections-list">
+          <li><strong>Solo</strong> — daily practice with the book's tools; best for those who learn by doing, have a clear internal compass, low stakes goals</li>
+          <li><strong>Community</strong> — group classes, singing circles, online cohorts; best for those who need to be witnessed and need the safety of shared vulnerability</li>
+          <li><strong>Guided</strong> — one-on-one with a teacher using Alisa's methodology; best for those with specific technical goals, high stakes, or deep patterns requiring direct mirror</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Discernment Framework (5 questions)</li>
+          <li class="pill brand">Investment as Self-Respect Reframe</li>
+          <li class="pill brand">The 6 C's as Path Selector</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Mistakes Addressed</div>
+        <ul class="mistake-list">
+          <li><strong>Waiting until "good enough" to deserve help</strong> — serious singers invest because their voice matters, not because they've earned it</li>
+          <li><strong>Solo is always cheaper</strong> — the hidden cost of unsupported work is measured in years</li>
+          <li><strong>Community replaces individual technique work</strong> — it supplements it</li>
+          <li><strong>One path for life</strong> — the right path changes as goals and circumstances change</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">There is no wrong path. There is only the path that matches where you are right now — your goals, your resources, your readiness. The question is not "which path is best?" The question is: which path am I actually willing to take? And then: will I take it today, or will I keep rehearsing the decision?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 20 -->
+  <div class="chapter-card" id="ch20">
+    <div class="chapter-header">
+      <div class="chapter-num">20</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Part 5 &mdash; The Path Forward</div>
+        <div class="chapter-title">The Singing Chat and the Invitation to Begin</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">The final chapter before the Conclusion. It extends a specific, concrete invitation to work with Alisa directly — not as a sales pitch, but as a natural next step for the reader who has done the inner work and is ready to be accompanied on the outer journey. The "Singing Chat" is Alisa's discovery call, reframed as a conversation between two people who care about the same thing: the singer's voice finally coming all the way out.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>What a Singing Chat Actually Is (and Isn't)</li>
+          <li>Who It's For — and Who It Isn't</li>
+          <li>What to Expect in the Conversation</li>
+          <li>The Invitation — No Pressure, No Manipulation, No Urgency</li>
+          <li>What Happens After — The Possibility on the Other Side</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Distinctions</div>
+        <ul class="sections-list">
+          <li><strong>Chat vs. consultation</strong> — this is a conversation, not an evaluation</li>
+          <li><strong>Discovery vs. pitch</strong> — the goal is mutual clarity, not closing a sale</li>
+          <li><strong>Ready vs. resolved</strong> — you don't need to have it figured out; you need to be willing to explore</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Frameworks</div>
+        <ul class="pill-list">
+          <li class="pill brand">The Singing Chat Structure</li>
+          <li class="pill brand">Invitation Without Manipulation</li>
+          <li class="pill brand">Readiness vs. Perfection</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Chapter Takeaway</div>
+        <div class="content-block-text">The invitation is open. The conversation is available. The only requirement is showing up — not with your voice polished, not with your doubts resolved, not with your technique sorted. Just with yourself, and the honest desire to find out what's possible. That is enough. That has always been enough.</div>
+      </div>
+      <div class="bridge-box">
+        <div class="bridge-arrow"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v6M2 5l3 3 3-3"/></svg></div>
+        <div class="bridge-text">Leads to the Conclusion — not another chapter of instruction, but a homecoming. The reader is returned to themselves — standing in the fullness of who they already are, not who they might become once they practice enough.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSION ==================== -->
+  <div class="part-divider">
+    <div class="part-badge">Closing</div>
+    <div class="part-title">Conclusion</div>
+    <div class="part-rule"></div>
+  </div>
+
+  <div class="chapter-card special-card" id="conclusion">
+    <div class="chapter-header">
+      <div class="chapter-num">End</div>
+      <div class="chapter-header-text">
+        <div class="chapter-part-label">Conclusion</div>
+        <div class="chapter-title">Your Voice Doesn't Need Proving, It Needs Permission</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="content-block full-width">
+        <div class="content-block-label">Purpose</div>
+        <div class="content-block-text">Not a recap. Not a summary. Not a sales pitch dressed in benediction. A homecoming. Its purpose is singular: to leave the reader standing in the fullness of who they already are — not who they might become once they practice enough or prove enough. Four things accomplished: witnessing the arc traversed, returning to the book's single most important truth, sealing the inside-out shift, and sending the reader forward — not with urgency, but with sovereign readiness.</div>
+      </div>
+      <div class="content-block full-width">
+        <div class="content-block-label">Opening Image</div>
+        <div class="content-block-text">A quiet return: "Remember the singer standing in the wings? The one at the beginning of this book — in front of a bathroom mirror, or alone in the car, or waiting in the dark offstage, with the inner critic already running its commentary... That singer is still you. And she is also not." The same instrument. The same throat. The same breath. The same history. But now she knows what it has been waiting for. Not another scale. Not a better technique. Not someone else's permission. Yours.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Key Sections</div>
+        <ul class="sections-list">
+          <li>You Are Not the Same Singer Who Started This Book</li>
+          <li>The Single Most Important Truth — Returned</li>
+          <li>The Inside-Out Shift, Made Explicit</li>
+          <li>The Ongoing Spiral — This Is Not the End</li>
+          <li>The Last Word</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">The Book's Arc Named</div>
+        <ul class="sections-list">
+          <li><strong>Part 1</strong> — Dismantled the hidden rules that kept the voice small</li>
+          <li><strong>Part 2</strong> — Built a new framework (the 6 C's) in place of those rules</li>
+          <li><strong>Part 3</strong> — Gave the instrument its true technical foundation</li>
+          <li><strong>Part 4</strong> — Showed what integration looks and feels like from the inside</li>
+          <li><strong>Part 5</strong> — Turned the reader toward their actual next step</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="content-block-label">Emotional Arc</div>
+        <ul class="pill-list">
+          <li class="pill brand">Earned stillness</li>
+          <li class="pill brand">Deep recognition</li>
+          <li class="pill brand">Sovereign readiness</li>
+        </ul>
+      </div>
+      <div class="takeaway-box">
+        <div class="content-block-label">Final Takeaway</div>
+        <div class="content-block-text">The reader should close this book feeling not pumped up but settled. Not motivated in the shallow sense, but moved in the deep one. They should feel, perhaps for the first time in a long time, that their voice belongs to them — and that they are ready to use it. Your voice doesn't need proving. It needs permission. And only you can give that.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-wrapper -->
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 14V4M4 8l5-5 5 5"/>
+  </svg>
+</button>
+
+<script>
+  // Back-to-top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // Active nav chip highlight on scroll
+  const chips = document.querySelectorAll('.nav-chip');
+  const sections = [];
+  chips.forEach(chip => {
+    const href = chip.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const el = document.querySelector(href);
+      if (el) sections.push({ el, chip });
+    }
+  });
+
+  function updateActiveChip() {
+    let current = null;
+    const scrollY = window.scrollY + 120;
+    for (const { el } of sections) {
+      if (el.offsetTop <= scrollY) current = el.id;
+    }
+    chips.forEach(chip => chip.classList.remove('active'));
+    if (current) {
+      const activeChip = document.querySelector(`.nav-chip[href="#${current}"]`);
+      if (activeChip) activeChip.classList.add('active');
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveChip, { passive: true });
+  updateActiveChip();
+</script>
+
+</body>
+</html>
