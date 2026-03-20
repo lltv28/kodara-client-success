@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddie Bin-Mahfouz — Warm Email Sequence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --b-w-white: #ffffff;
+      --alpha-light-25: rgba(26,26,26,0.04);
+      --alpha-light-50: rgba(26,26,26,0.06);
+      --alpha-light-100: rgba(26,26,26,0.09);
+      --alpha-light-200: rgba(26,26,26,0.20);
+      --alpha-light-300: rgba(26,26,26,0.28);
+      --alpha-light-400: rgba(26,26,26,0.36);
+      --alpha-light-500: rgba(26,26,26,0.48);
+      --alpha-light-600: rgba(26,26,26,0.60);
+      --alpha-light-900: rgba(26,26,26,0.80);
+      --alpha-dark-300: rgba(255,255,255,0.28);
+      --alpha-dark-600: rgba(255,255,255,0.60);
+      --alpha-dark-800: rgba(255,255,255,0.75);
+      --alpha-dark-900: rgba(255,255,255,0.80);
+      --alpha-brand-50: rgba(16,104,68,0.06);
+      --alpha-brand-100: rgba(16,104,68,0.08);
+      --alpha-brand-200: rgba(16,104,68,0.12);
+      --alpha-brand-950: rgba(16,104,68,0.92);
+      --shadow-card: 0px 22px 6px rgba(0,0,0,0), 0px 14px 6px rgba(0,0,0,0), 0px 8px 5px rgba(0,0,0,0.01), 0px 4px 4px rgba(0,0,0,0.02), 0px 1px 2px rgba(0,0,0,0.02);
+      --shadow-modal: 0px 67px 19px rgba(0,0,0,0), 0px 43px 17px rgba(0,0,0,0.01), 0px 24px 15px rgba(0,0,0,0.02), 0px 11px 11px rgba(0,0,0,0.03), 0px 3px 6px rgba(0,0,0,0.04);
+      --font-primary: 'Instrument Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body { zoom: 1.25; }
+
+    body {
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      background: var(--b-w-white);
+      color: var(--alpha-light-600);
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.15px;
+      font-weight: 500;
+      min-height: 100vh;
+    }
+
+    /* Decorative background orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-orb-1 { width: 600px; height: 600px; background: rgba(16,104,68,0.03); top: -200px; right: -100px; }
+    .bg-orb-2 { width: 400px; height: 400px; background: rgba(16,104,68,0.025); bottom: 10%; left: -100px; }
+    .bg-orb-3 { width: 500px; height: 500px; background: rgba(16,104,68,0.02); top: 50%; right: -150px; }
+
+    /* Layout */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--alpha-dark-800);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--alpha-light-50);
+      padding: 16px 24px;
+      margin: -48px -24px 48px;
+    }
+    .top-bar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--alpha-light-900);
+      letter-spacing: -0.15px;
+    }
+    .top-bar-subtitle {
+      font-size: 12px;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 24px 0 48px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+      font-weight: 400;
+      color: var(--alpha-light-900);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--alpha-light-500);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Sequence overview nav */
+    .sequence-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .nav-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--alpha-dark-300);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--alpha-light-50);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+    .nav-chip:hover {
+      background: var(--alpha-dark-600);
+      border-color: var(--alpha-light-100);
+    }
+    .nav-chip-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .nav-chip-label {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: -0.15px;
+      color: var(--alpha-light-600);
+      font-weight: 500;
+    }
+    .nav-chip-phase {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--alpha-light-400);
+      flex-shrink: 0;
+    }
+
+    /* Cadence table */
+    .cadence-section {
+      margin-bottom: 48px;
+    }
+    .cadence-section h2 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+      margin-bottom: 16px;
+    }
+    .cadence-table {
+      width: 100%;
+      background: var(--alpha-light-25);
+      border-radius: 16px;
+      padding: 4px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+    }
+    .cadence-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-500);
+      letter-spacing: -0.15px;
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table td {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--alpha-light-600);
+      border-bottom: 1px solid var(--alpha-light-50);
+    }
+    .cadence-table tr:last-child td { border-bottom: none; }
+    .cadence-table .day-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .cadence-table .phase-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--alpha-light-50);
+      color: var(--alpha-light-600);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Email card */
+    .email-card {
+      position: relative;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 32px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+
+    .email-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 0;
+    }
+    .email-num-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .email-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--alpha-brand-50);
+      color: var(--alpha-brand-950);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .email-phase {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: -0.15px;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--alpha-light-25);
+      border: 1px solid var(--alpha-light-100);
+      border-radius: 8px;
+      color: var(--alpha-light-600);
+      font-family: var(--font-primary);
+      font-variation-settings: 'wdth' 100;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      cursor: pointer;
+      transition: background 150ms ease-out, border-color 150ms ease-out;
+    }
+    .copy-btn:hover {
+      background: var(--alpha-light-50);
+      border-color: var(--alpha-light-200);
+    }
+    .copy-btn.copied {
+      background: var(--alpha-brand-50);
+      border-color: rgba(16,104,68,0.15);
+      color: var(--alpha-brand-950);
+    }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .email-subject-bar {
+      padding: 16px 24px 0;
+    }
+    .email-subject-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .email-subject {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: var(--alpha-light-900);
+    }
+
+    .email-divider {
+      margin: 16px 24px 0;
+      border: none;
+      border-top: 1px solid var(--alpha-light-50);
+    }
+
+    .email-body {
+      padding: 20px 24px 24px;
+    }
+    .email-body p {
+      margin-bottom: 16px;
+      line-height: 24px;
+      color: var(--alpha-light-600);
+    }
+    .email-body p:last-child { margin-bottom: 0; }
+    .email-body strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+    .email-body ul, .email-body ol {
+      list-style: none;
+      margin: 0 0 16px 0;
+      padding: 0;
+      color: var(--alpha-light-600);
+      line-height: 24px;
+    }
+    .email-body li { margin-bottom: 6px; }
+    .email-body li::before { content: "- "; }
+    .email-body li:last-child { margin-bottom: 0; }
+    .email-body em {
+      color: var(--alpha-light-600);
+      font-style: normal;
+    }
+
+    .email-cta {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-top: 0;
+    }
+    .email-cta p {
+      color: var(--alpha-light-600) !important;
+      margin-bottom: 0 !important;
+      font-weight: 400;
+    }
+    .email-cta strong {
+      color: var(--alpha-light-600);
+      font-weight: 400;
+    }
+
+    .email-signoff {
+      margin-top: 20px;
+      color: var(--alpha-light-600);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 48px 16px 60px; }
+      .top-bar { margin: -48px -16px 36px; padding: 14px 16px; }
+      .hero h1 { font-size: 26px; line-height: 34px; }
+      .sequence-nav { gap: 6px; }
+      .nav-chip-phase { display: none; }
+      .email-header { padding: 16px 16px 0; flex-wrap: wrap; gap: 12px; }
+      .email-subject-bar { padding: 12px 16px 0; }
+      .email-divider { margin: 12px 16px 0; }
+      .email-body { padding: 16px; }
+      .cadence-table { font-size: 12px; }
+      .cadence-table th, .cadence-table td { padding: 8px 10px; }
+    }
+
+    /* Section divider */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--alpha-light-400);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: var(--b-w-white);
+      border: 1px solid var(--alpha-light-100);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 200ms ease-out, background 150ms ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--alpha-light-25); }
+    .back-top svg { width: 18px; height: 18px; color: var(--alpha-light-600); }
+  </style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>
+      <div class="top-bar-title">AI-Powered BDR Academy Platform</div>
+      <div class="top-bar-subtitle">Warm Email Sequence &middot; 10 Emails &middot; 25-Day Campaign</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Warm Email Sequence</h1>
+    <p>10 emails for people already in your network &mdash; VPs of Sales, CEOs, HR directors, and sales leaders at B2B manufacturers and distributors. Personal, conversational, reply-based CTAs.</p>
+  </div>
+
+  <!-- Sequence Nav -->
+  <div class="section-label">Jump to email</div>
+  <div class="sequence-nav">
+    <a href="#email-1" class="nav-chip"><span class="nav-chip-num">1</span><span class="nav-chip-label">75% of your pipeline is walking out the door</span><span class="nav-chip-phase">Desire &middot; Day 1</span></a>
+    <a href="#email-2" class="nav-chip"><span class="nav-chip-num">2</span><span class="nav-chip-label">It's not your salespeople's fault</span><span class="nav-chip-phase">Pain &middot; Day 3</span></a>
+    <a href="#email-3" class="nav-chip"><span class="nav-chip-num">3</span><span class="nav-chip-label">Same team. Double the close rate.</span><span class="nav-chip-phase">Pointing &middot; Day 5</span></a>
+    <a href="#email-4" class="nav-chip"><span class="nav-chip-num">4</span><span class="nav-chip-label">I couldn't train enough teams the old way</span><span class="nav-chip-phase">Product intro &middot; Day 8</span></a>
+    <a href="#email-5" class="nav-chip"><span class="nav-chip-num">5</span><span class="nav-chip-label">Here's everything inside (no surprises)</span><span class="nav-chip-phase">Product details &middot; Day 10</span></a>
+    <a href="#email-6" class="nav-chip"><span class="nav-chip-num">6</span><span class="nav-chip-label">$120,000 per year or $1,250 once</span><span class="nav-chip-phase">Value anchor &middot; Day 13</span></a>
+    <a href="#email-7" class="nav-chip"><span class="nav-chip-num">7</span><span class="nav-chip-label">What did last month's missed deals cost you</span><span class="nav-chip-phase">Pain + urgency &middot; Day 16</span></a>
+    <a href="#email-8" class="nav-chip"><span class="nav-chip-num">8</span><span class="nav-chip-label">Does this actually work for my industry</span><span class="nav-chip-phase">Objection handling &middot; Day 19</span></a>
+    <a href="#email-9" class="nav-chip"><span class="nav-chip-num">9</span><span class="nav-chip-label">Here's what happens after you sign up</span><span class="nav-chip-phase">Future pacing &middot; Day 22</span></a>
+    <a href="#email-10" class="nav-chip"><span class="nav-chip-num">10</span><span class="nav-chip-label">Not going to keep emailing you about this</span><span class="nav-chip-phase">Final CTA &middot; Day 25</span></a>
+  </div>
+
+  <!-- Cadence Table -->
+  <div class="cadence-section">
+    <h2>Sending cadence</h2>
+    <table class="cadence-table">
+      <thead>
+        <tr><th>#</th><th>Send</th><th>Subject line</th><th>Phase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="day-badge">Day 1</span></td><td>75% of your pipeline is walking out the door</td><td><span class="phase-badge">Desire</span></td></tr>
+        <tr><td>2</td><td><span class="day-badge">Day 3</span></td><td>It's not your salespeople's fault</td><td><span class="phase-badge">Pain</span></td></tr>
+        <tr><td>3</td><td><span class="day-badge">Day 5</span></td><td>Same team. Double the close rate.</td><td><span class="phase-badge">Pointing</span></td></tr>
+        <tr><td>4</td><td><span class="day-badge">Day 8</span></td><td>I couldn't train enough teams the old way</td><td><span class="phase-badge">Product intro</span></td></tr>
+        <tr><td>5</td><td><span class="day-badge">Day 10</span></td><td>Here's everything inside (no surprises)</td><td><span class="phase-badge">Product details</span></td></tr>
+        <tr><td>6</td><td><span class="day-badge">Day 13</span></td><td>$120,000 per year or $1,250 once</td><td><span class="phase-badge">Value anchor</span></td></tr>
+        <tr><td>7</td><td><span class="day-badge">Day 16</span></td><td>What did last month's missed deals cost you</td><td><span class="phase-badge">Pain + urgency</span></td></tr>
+        <tr><td>8</td><td><span class="day-badge">Day 19</span></td><td>Does this actually work for my industry</td><td><span class="phase-badge">Objection handling</span></td></tr>
+        <tr><td>9</td><td><span class="day-badge">Day 22</span></td><td>Here's what happens after you sign up</td><td><span class="phase-badge">Future pacing</span></td></tr>
+        <tr><td>10</td><td><span class="day-badge">Day 25</span></td><td>Not going to keep emailing you about this</td><td><span class="phase-badge">Final CTA</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ EMAIL 1 ============ -->
+  <div class="section-label">Emails 1&ndash;3 &mdash; Build belief before product</div>
+
+  <div class="email-card" id="email-1">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">1</span>
+        <span class="email-phase">Desire &middot; Day 1</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-1-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">75% of your pipeline is walking out the door</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-1-body">
+      <p>Hey [First Name],</p>
+      <p>I want to put a number in front of you that most people in our industry don't talk about.</p>
+      <p>The average B2B sales team closes at 25-30%. That means 70-75% of every qualified lead you pay for walks out the door and buys from someone else.</p>
+      <p>Not because your product is bad. Not because the leads are bad.</p>
+      <p>Because nobody ever taught your salespeople how to actually close.</p>
+      <p>Meanwhile, your reps are spending only 36.6% of their time actually selling. The rest is admin, meetings, CRM busywork, and low-value tasks that don't move the needle.</p>
+      <p>I've spent 20+ years training B2B sales teams at manufacturers and distributors. I've recruited and developed over 100 sales professionals. And I've never seen a bigger gap between how much money companies spend on marketing and how little they invest in the people who are supposed to convert those leads.</p>
+      <p>We're building something at TBSPRO1 that I think changes the equation entirely. Not ready to share everything yet, but I wanted to put this on your radar.</p>
+      <div class="email-cta">
+        <p><strong>If your sales team's close rate has been stuck and you know leads are slipping through the cracks, reply and let me know. I want to make sure you're one of the first to hear what we've built.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Talk soon,<br>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 2 ============ -->
+  <div class="email-card" id="email-2">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">2</span>
+        <span class="email-phase">Pain &middot; Day 3</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-2-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">It's not your salespeople's fault</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-2-body">
+      <p>Hey [First Name],</p>
+      <p>I want to tell you something I've seen over and over in 20+ years of working with B2B sales teams.</p>
+      <p>The companies that can't close? They don't have bad salespeople. They don't lack hustle. They don't need more leads.</p>
+      <p>They lack a process.</p>
+      <p>Think about it. Your reps walk into a call with no structured framework. No qualification methodology. No tested objection scripts. No consistent way to open, engage, or close. They're winging it every single time and hoping personality carries the deal.</p>
+      <p>And when it doesn't work, you step in. Again. Every important proposal. Every big deal. Every "this one's too important to let the team handle" moment lands on your desk.</p>
+      <p>I call it the Mechanic Trap. You started the business to be the CEO -- the architect who designs the system and scales the company. But somewhere along the way, you became the head salesperson. And you can't step away because the whole thing depends on you being in the room.</p>
+      <p>Your reps fumble virtual presentations. Your CRM is a graveyard of empty fields and guesswork forecasts. Your pipeline is unpredictable. And the last training program you bought? There's a binder on a shelf somewhere that nobody opened after the first week.</p>
+      <p>That's not a people problem. That's a certification problem. Your team was never actually tested on whether they can sell.</p>
+      <div class="email-cta">
+        <p><strong>If this hits close to home -- reply and tell me: how much of your time each week are you personally spending on deals your team should be handling? I'd genuinely like to know.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 3 ============ -->
+  <div class="email-card" id="email-3">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">3</span>
+        <span class="email-phase">Pointing &middot; Day 5</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-3-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Same team. Double the close rate.</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-3-body">
+      <p>Hey [First Name],</p>
+      <p>I want to share something I've been watching closely over the past year.</p>
+      <p>Some B2B manufacturers and distributors are pulling ahead. Not because they hired more reps. Not because they increased their ad budget. Not because they found a better CRM.</p>
+      <p>They started combining structured sales certification with AI-powered training customized to their specific industry.</p>
+      <p>And the results are hard to argue with:</p>
+      <ul>
+        <li>One distributor went from a 30% close rate to 70% in a single week after a 4-hour virtual selling intensive</li>
+        <li>A B2B tech company added $1.2M in new pipeline revenue in 60 days -- same ad spend, same lead sources</li>
+        <li>Teams are cutting new rep ramp-up time by 50% because there's a system, not tribal knowledge</li>
+        <li>Companies are seeing 280% sales growth when they replace "winging it" with a certified, repeatable process</li>
+      </ul>
+      <p>The companies that are moving on this are building certified sales teams. Their reps are trained, tested, and field-verified -- not just "attended a seminar." And the companies that wait are competing against increasingly disciplined teams while their reps are still figuring it out on the fly.</p>
+      <p>This is the direction things are heading.</p>
+      <div class="email-cta">
+        <p><strong>If you want to see how this actually works -- how AI-powered training gets customized to your industry and your team -- reply and I'll send you a walkthrough.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 4 ============ -->
+  <div class="section-label">Emails 4&ndash;6 &mdash; Introduce and justify the offer</div>
+
+  <div class="email-card" id="email-4">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">4</span>
+        <span class="email-phase">Product intro &middot; Day 8</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-4-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">I couldn't train enough teams the old way</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-4-body">
+      <p>Hey [First Name],</p>
+      <p>I need to be honest about something.</p>
+      <p>My BDR Academy -- the 6-week, in-person certification program -- works. Close rates from 25% to 50-70%. Reps who are certified, field-tested, and actually know how to sell. 98% satisfaction rating across every engagement.</p>
+      <p>But at $12,000 per engagement, with me personally conducting every certification and flying out for every field ride-along, I can only take on a handful of companies per quarter.</p>
+      <p>And there are hundreds of manufacturers and distributors out there whose teams are stuck at 25% and can't wait three months for a spot to open up.</p>
+      <p>That's why I built the AI-Powered BDR Academy Platform.</p>
+      <p>I took everything from 20+ years of executive selling -- the frameworks I teach (BANT, MEDDIC, SPIN, BAR Method, SOAR), the role-play certifications, the industry-specific training modules, the virtual selling discipline -- and built it into an AI platform that auto-customizes the entire BDR Academy for any B2B manufacturer or distributor.</p>
+      <p>You input your website URL and business type. The AI generates training content built around your industry, your product catalog, your customer objections, your competitive landscape. Not generic scripts. Not "feel-felt-found" fluff. Your scenarios. Your language. Your world.</p>
+      <p>It includes a personalized welcome video from me when you log in, stage-completion videos guiding you through each phase, multi-language support, and three certification tiers depending on how much direct access to me you need.</p>
+      <p>This isn't ChatGPT with a sales prompt. This is the same methodology that drove 280% sales growth and turned a 30% close rate into 70% in one week -- delivered through a platform that actually scales.</p>
+      <div class="email-cta">
+        <p><strong>Reply with "SHOW ME" and I'll send you a real example of what the platform produces for a specific industry.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 5 ============ -->
+  <div class="email-card" id="email-5">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">5</span>
+        <span class="email-phase">Product details &middot; Day 10</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-5-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's everything inside (no surprises)</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-5-body">
+      <p>Hey [First Name],</p>
+      <p>A few of you replied asking exactly what comes with the AI-Powered BDR Academy Platform, so let me lay it all out. No fluff.</p>
+      <p><strong>The AI-Customized Training Engine:</strong></p>
+      <ul>
+        <li>Input your website URL and business type -- the AI generates industry-specific training content tailored to your company</li>
+        <li>Covers all six chapters: BD foundations, prospecting and lead gen, sales calls and storytelling, product knowledge and objection handling, emotional intelligence and goal-setting, AI transformation in sales</li>
+        <li>Custom examples, quizzes, and role-play scenarios built around YOUR product catalog and customer objections</li>
+        <li>Multi-language support (Spanish, Arabic, and more)</li>
+      </ul>
+      <p><strong>The Certification System:</strong></p>
+      <ul>
+        <li>Three role-play certifications: Open, Engage, Close -- the same pass-or-fail exams I use in the in-person BDR Academy</li>
+        <li>Stage-completion assessments that verify competence, not just attendance</li>
+        <li>Your reps don't move forward until they prove they can execute</li>
+      </ul>
+      <p><strong>Personal Guidance from Me:</strong></p>
+      <ul>
+        <li>Personalized welcome video when you log in</li>
+        <li>Stage-completion videos guiding you through each phase of the program</li>
+        <li>Based on my book, The Art of Business Development in the Age of AI</li>
+      </ul>
+      <p><strong>Three Package Tiers:</strong></p>
+      <ul>
+        <li>Tier 1 ($1,250): 100% AI-driven training -- full platform access, all modules, all certifications</li>
+        <li>Tier 2 ($1,250-$1,500): AI training + one 1-hour live review session with me after your team passes the first exam</li>
+        <li>Tier 3 (Custom, $3,000-$5,000): AI training + live final certification with me (virtual or in-person), covering all six chapters and the Open-Engage-Close role-plays</li>
+      </ul>
+      <p><strong>Optional Add-On -- LinkedIn Sales Funnel ($1,500):</strong></p>
+      <ul>
+        <li>I build your LinkedIn outreach funnel during onboarding</li>
+        <li>4-6 custom AI messages for LinkedIn prospecting</li>
+        <li>Integration with Sales Navigator and Calendly</li>
+        <li>Uses the credibility-first outreach methodology that gets a 90% connection rate</li>
+      </ul>
+      <div class="email-cta">
+        <p><strong>Reply with any questions -- or if you want me to walk you through it personally, just say the word.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 6 ============ -->
+  <div class="email-card" id="email-6">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">6</span>
+        <span class="email-phase">Value anchor &middot; Day 13</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-6-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">$120,000 per year or $1,250 once</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-6-body">
+      <p>Hey [First Name],</p>
+      <p>Let me show you some numbers that put this in perspective.</p>
+      <p><strong>Option A: Hire a full-time internal sales trainer</strong></p>
+      <ul>
+        <li>$80,000-$120,000/year salary</li>
+        <li>Hope they have 20 years of executive selling experience</li>
+        <li>Hope they can teach virtual selling, not just in-person</li>
+        <li>Hope they'll actually do field ride-alongs and certify your reps</li>
+        <li>They become overhead whether or not results improve</li>
+      </ul>
+      <p><strong>Option B: Bring in a sales training firm</strong></p>
+      <ul>
+        <li>$5,000-$20,000 per engagement</li>
+        <li>Generic methodology -- Sandler, Dale Carnegie, Challenger</li>
+        <li>No customization to your industry or product catalog</li>
+        <li>No certification. No field-testing. A binder and a handshake.</li>
+        <li>Your team is fired up for two weeks and back to winging it by Monday</li>
+      </ul>
+      <p><strong>Option C: Online courses and DIY</strong></p>
+      <ul>
+        <li>$50-$500 per person on Udemy or LinkedIn Learning</li>
+        <li>No accountability. No testing. No industry context.</li>
+        <li>Your reps watch two videos and never log in again</li>
+        <li>Close rate doesn't move</li>
+      </ul>
+      <p><strong>Option D: AI-Powered BDR Academy Platform</strong></p>
+      <ul>
+        <li>$1,250 one-time (Tier 1) -- less than one month of an internal hire</li>
+        <li>Auto-customized to your industry, your products, your objections</li>
+        <li>Certification-based -- your reps prove they can execute, not just attend</li>
+        <li>Built on the same frameworks that produced 280% sales growth and a 30% to 70% close rate jump</li>
+        <li>Optional live access to me for review sessions or full certification</li>
+        <li>Pays for itself the moment your team closes one deal they would have lost</li>
+      </ul>
+      <p>If your average deal size is $10,000, the entire platform investment pays for itself with a single extra close. Everything after that is pure profit.</p>
+      <p>This isn't about replacing your team. It's about giving them a certified, repeatable process that makes them perform like the salespeople you hired them to be.</p>
+      <div class="email-cta">
+        <p><strong>Reply if you want to talk through what this would look like for your specific team and industry. Happy to do a quick call.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 7 ============ -->
+  <div class="section-label">Emails 7&ndash;10 &mdash; Handle objections and drive action</div>
+
+  <div class="email-card" id="email-7">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">7</span>
+        <span class="email-phase">Pain + urgency &middot; Day 16</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-7-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">What did last month's missed deals cost you</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-7-body">
+      <p>Hey [First Name],</p>
+      <p>Quick question. No judgment.</p>
+      <p>How many deals did your team lose last month that they should have closed?</p>
+      <p>Not because the leads were bad. Not because the prospect wasn't interested. But because your rep couldn't handle the objection. Couldn't control the virtual call. Couldn't articulate the value prop clearly enough. Or just didn't follow up.</p>
+      <p>I ask because I see it constantly. A manufacturer has 100 opportunities a month at a $10,000 average deal size. Close rate is 25%. That means they're closing 25 and losing 75.</p>
+      <p>If that close rate were 50% -- not even the 70% some of my clients hit -- that's 25 additional deals per month. $250,000 in revenue. Every month.</p>
+      <p>Now multiply that across a year. $3,000,000.</p>
+      <p>That's not what training costs. That's what NOT training costs.</p>
+      <p>And that doesn't count the 20 hours a week you spend personally saving deals your reps should be closing. Or the vacations you've canceled. Or the reps who quit because they never had a process that made them successful.</p>
+      <p>The AI-Powered BDR Academy Platform starts at $1,250. Your broken process costs you $250,000 a month. Every month you wait, you're choosing the more expensive option.</p>
+      <p>The founding member rate is still available, but we're filling up.</p>
+      <div class="email-cta">
+        <p><strong>Reply and tell me -- what's the one deal you lost last quarter that still bothers you? The one you know your team should have closed.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 8 ============ -->
+  <div class="email-card" id="email-8">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">8</span>
+        <span class="email-phase">Objection handling &middot; Day 19</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-8-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Does this actually work for my industry</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-8-body">
+      <p>Hey [First Name],</p>
+      <p>The most common reply I've gotten to these emails is some version of:</p>
+      <p><em>"This sounds good, Eddie. But we sell restaurant equipment (or auto parts, or industrial supply). My guys are old-school. Will an AI platform actually work for us?"</em></p>
+      <p>Fair question. Here's my honest answer.</p>
+      <p>Generic AI training? No. It won't work for your team. ChatGPT doesn't know the difference between selling fleet vehicles and selling kitchen equipment to restaurant chains. It'll give you generic "build the relationship" advice that sounds like every other trainer your team has ignored.</p>
+      <p>That's exactly why we didn't build generic AI.</p>
+      <p>The AI-Powered BDR Academy Platform was built by me -- 20+ years of executive selling across manufacturers and distributors, MBA, certifications in Master Selling, Strategic Marketing, and Executive Negotiation, author of The Art of Business Development in the Age of AI, 100+ sales professionals trained with a 98% satisfaction rating.</p>
+      <p>When your company inputs its website and business type, the platform generates:</p>
+      <ul>
+        <li>Training examples using YOUR product categories and customer types</li>
+        <li>Role-play scenarios based on the objections YOUR buyers actually raise</li>
+        <li>Qualification frameworks (BANT, MEDDIC, SPIN) applied to YOUR sales cycle</li>
+        <li>Virtual selling techniques specifically for YOUR type of B2B conversation</li>
+        <li>Objection scripts customized to YOUR competitive landscape</li>
+      </ul>
+      <p>I've done this for restaurant equipment, auto parts, industrial supply, pharma, logistics, and B2B tech. The frameworks are universal. The execution is customized to you.</p>
+      <p>Is it perfect out of the box every time? No. That's why Tier 2 includes a live review session with me, and Tier 3 includes full live certification. But even Tier 1 gets you 85-90% of the way there because the AI is trained on what actually works -- not on marketing theory.</p>
+      <div class="email-cta">
+        <p><strong>If you're still on the fence, reply and tell me what your team sells and what their biggest struggle is on calls. I'll show you exactly what the platform would produce for that specific scenario. No charge, no commitment.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 9 ============ -->
+  <div class="email-card" id="email-9">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">9</span>
+        <span class="email-phase">Future pacing &middot; Day 22</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-9-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Here's what happens after you sign up</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-9-body">
+      <p>Hey [First Name],</p>
+      <p>Some people have asked me what the first month actually looks like if they come on board. So let me walk through it.</p>
+      <p><strong>Day 1-2: You get access.</strong><br>You receive login credentials and a personalized welcome video from me. You input your website URL and business type. The AI auto-generates your industry-customized training content -- examples, quizzes, role-plays, all tailored to your company. Takes about 15 minutes to set up.</p>
+      <p><strong>Day 3-7: Your team starts training.</strong><br>Your reps begin with Chapter 1 -- business development foundations, the BD process, sales and marketing alignment. The content uses their products, their customers, their scenarios. It doesn't feel generic because it isn't. By end of week one, they've completed the first module and the first stage assessment.</p>
+      <p><strong>Day 7-14: First certification milestone.</strong><br>Your team moves into prospecting, lead generation, active listening, and relationship building. They practice with role-play scenarios built around your actual competitive landscape. If you're on Tier 2 or 3, this is when you can schedule your live review session with me to check progress and course-correct.</p>
+      <p><strong>Day 14-30: Momentum builds.</strong><br>By now your reps are into objection handling, value communication, and virtual selling techniques. They're practicing the BAR Method on YOUR objections, not textbook examples. They're learning camera presence, energy management, and how to close through a screen. You'll start seeing different behavior on calls -- more structured, more confident, more disciplined.</p>
+      <p><strong>By the end of month one,</strong> your team has a framework they actually use. Your reps are qualifying with BANT instead of guessing. They're handling objections with tested scripts instead of panic. And you're hearing different conversations happening on the sales floor.</p>
+      <p>That's not theoretical. That's what the platform was built to do.</p>
+      <p>Founding member spots are filling up. Tier 1 starts at $1,250 one-time. Tier 2 with live review is $1,250-$1,500. Tier 3 with full live certification is $3,000-$5,000.</p>
+      <div class="email-cta">
+        <p><strong>Reply "I'M IN" and I'll get you set up within 24 hours. Or reply with any questions -- I'll answer every one personally.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EMAIL 10 ============ -->
+  <div class="email-card" id="email-10">
+    <div class="email-header">
+      <div class="email-num-badge">
+        <span class="email-num">10</span>
+        <span class="email-phase">Final CTA &middot; Day 25</span>
+      </div>
+      <button class="copy-btn" onclick="copyEmail(this, 'email-10-body')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy</span>
+      </button>
+    </div>
+    <div class="email-subject-bar">
+      <div class="email-subject-label">Subject</div>
+      <div class="email-subject">Not going to keep emailing you about this</div>
+    </div>
+    <hr class="email-divider">
+    <div class="email-body" id="email-10-body">
+      <p>Hey [First Name],</p>
+      <p>This is the last email I'm sending about the AI-Powered BDR Academy Platform launch.</p>
+      <p>Not because I don't think it matters. I do. I've spent 20 years watching B2B sales teams underperform -- not because the people aren't capable, but because nobody ever gave them a real process, tested whether they could execute it, and customized it to their actual industry. That's what this platform does.</p>
+      <p>But I also respect your inbox.</p>
+      <p>So here's where things stand:</p>
+      <ul>
+        <li>Founding member spots are almost full</li>
+        <li>Tier 1 (full AI-driven training): $1,250 one-time</li>
+        <li>Tier 2 (AI + live review session with me): $1,250-$1,500</li>
+        <li>Tier 3 (AI + full live certification with me): $3,000-$5,000</li>
+        <li>After founding spots close, pricing goes up</li>
+      </ul>
+      <p>If you've been reading these emails and thinking "yeah, my team needs this" -- now's the time.</p>
+      <p>If the timing isn't right, I completely understand. The platform will still be here. It'll just cost more.</p>
+      <p>And if sales training isn't your biggest challenge right now, that's fine too. I still offer the full in-person BDR Academy ($12,000), virtual selling intensives, and custom consulting for companies that want me in the room. Whenever you're ready, we can talk about what makes sense for your situation.</p>
+      <p>But if your close rate has been stuck at 25-30%, your reps are winging it on calls, and you're tired of being the one who has to close every important deal -- this was built for exactly that problem.</p>
+      <p>$1,250. Industry-customized AI training. Certification-based. Built on the same methodology that took one client from 30% to 70% in a week. 100+ sales pros trained. 98% satisfaction. 280% sales growth.</p>
+      <div class="email-cta">
+        <p><strong>Reply "LET'S GO" and I'll personally get you set up. Or reply with whatever's holding you back -- I'd rather have an honest conversation than wonder.</strong></p>
+      </div>
+      <div class="email-signoff">
+        <p>Appreciate you reading this far.</p>
+        <p>Eddie</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Back to top button -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Copy single email
+  function copyEmail(btn, bodyId) {
+    const el = document.getElementById(bodyId);
+    // Get the card to also grab subject
+    const card = el.closest('.email-card');
+    const subject = card.querySelector('.email-subject').textContent;
+    const bodyText = getPlainText(el);
+    const full = 'Subject: ' + subject + '\n\n' + bodyText;
+
+    navigator.clipboard.writeText(full).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Extract clean plain text from email body
+  function getPlainText(el) {
+    let text = '';
+    el.childNodes.forEach(node => {
+      if (node.nodeType === 3) {
+        text += node.textContent;
+      } else if (node.nodeType === 1) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === 'p' || tag === 'div') {
+          text += getPlainText(node) + '\n\n';
+        } else if (tag === 'ul' || tag === 'ol') {
+          node.querySelectorAll('li').forEach(li => {
+            text += '- ' + li.textContent.trim() + '\n';
+          });
+          text += '\n';
+        } else if (tag === 'br') {
+          text += '\n';
+        } else if (tag === 'hr') {
+          // skip
+        } else {
+          text += getPlainText(node);
+        }
+      }
+    });
+    return text.replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  // Back to top visibility
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
